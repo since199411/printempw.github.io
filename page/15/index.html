@@ -170,6 +170,52 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/force-to-break-the-text-in-html-elements/">使 HTML 元素中的文字强制自动换行</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>唔。。有可能你会碰到这种情况：</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-09_14-04-35.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-09_14-04-35.png" alt="1"></a></p>
+<p>文本溢出元素了。原因是因为窝用的主题作者没有设置洋文的 break-all，怕截断正常单词，于是就。。 窝以前就直接用 <pre> 标签就算了，然而有些东西放代码高亮里不好看，于是给作者提了个 issue，dalao 说是今晚 commit，但是好像跳票了~<a href="https://img.blessing.studio/images/2015/08/2015-08-08_03-04-04.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-08_03-04-04.jpg" alt="20150808110355"></a></pre></p>
+<p>没办法只好自己动手丰衣足食，Google 了一下总结了个临时解决方法：</p>
+<h3 id="1-在文章中加个内联-CSS"><a href="#1-在文章中加个内联-CSS" class="headerlink" title="1.在文章中加个内联 CSS"></a>1.在文章中加个内联 CSS</h3><style type="text/css"> .withBreak { word-wrap: break-word; } </style>
+
+<p>在文本编辑器中加入就不用窝讲了吧。当然直接加到主题的 style.css 里也可以哦。</p>
+<p>记得插入后 <strong>不要 </strong>切换至可视化编辑器，坑爹的 TinyMCE 会把内联 CSS 搞没掉  :(</p>
+<h3 id="2-给需要强制换行的-HTML-标签加上-class-属性"><a href="#2-给需要强制换行的-HTML-标签加上-class-属性" class="headerlink" title="2.给需要强制换行的 HTML 标签加上 class 属性"></a>2.给需要强制换行的 HTML 标签加上 class 属性</h3><p>按照上面 CSS，就加上 <span class="lang:default decode:true  crayon-inline ">class=”withBreak”</span> ，举个栗子：</p>
+<blockquote class="withBreak"> <a href="https://www.feedly.com/home#subscription/feed/%s" target="_blank" rel="external">https://www.feedly.com/home#subscription/feed/%s</a> </blockquote>
+
+<h3 id="3-Cool-It’s-Done-贴上完成后效果"><a href="#3-Cool-It’s-Done-贴上完成后效果" class="headerlink" title="3.Cool! It’s Done. 贴上完成后效果"></a>3.Cool! It’s Done. 贴上完成后效果</h3><p><a href="https://img.blessing.studio/images/2015/08/2015-08-09_14-04-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-09_14-04-53.png" alt="2"></a></p>
+<hr>
+<p>//窝非前端，都是 Google 来的，如有 dalao 发现错误请指正 (つд⊂)</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-10</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="force-to-break-the-text-in-html-elements/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/CSS/">CSS</a>, <a class="tag-link" href="/tag/前端/">前端</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/using-the-extension-of-chrome-to-subscribe-rss-with-feedly/">如何在 Chrome 中方便地添加 RSS 订阅源至 Feedly</a>
       </h2>
 
@@ -583,44 +629,6 @@ $ sudo reboot
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ClariS/">ClariS</a>, <a class="tag-link" href="/tag/音乐/">音乐</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/bye-qujing/">为曲径默哀</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <blockquote>
-<h3 id="向曲径说再见"><a href="#向曲径说再见" class="headerlink" title="向曲径说再见"></a>向曲径说再见</h3><p>曲径从诞生至今，为科技工作者和在校师生，在获取商业信息和学术研究等方面提供了很大的方便和技术支持。在曲径运作中，个别问题还处于法律空白，有些问题还存在争议。</p>
-<p>为了维护国家互联网法律和政策，保证互联网用户获取信息内容和渠道的安全性，国家要求互联网用户从正规渠道获取信息。基于该原因，曲径自觉遵守国家的法律、法规和政策，已在2015年7月28日，自愿将名下所有互联网服务关停，并不再提供类似的服务。曲径开发者将从事其它领域的工作。</p>
-</blockquote>
-<p><a href="https://getqujing.com/" target="_blank" rel="external">https://getqujing.com/</a></p>
-<p>走好。</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-30</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="bye-qujing/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/审查制度/">审查制度</a>
     
   </span>
 </div>

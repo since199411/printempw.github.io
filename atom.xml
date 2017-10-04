@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blessing.studio/"/>
-  <updated>2017-08-08T15:28:32.000Z</updated>
+  <updated>2017-10-04T02:50:41.000Z</updated>
   <id>https://blessing.studio/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Travis CI 自动部署 Hexo 博客</title>
+    <link href="https://blessing.studio/deploy-hexo-blog-automatically-with-travis-ci/"/>
+    <id>https://blessing.studio/deploy-hexo-blog-automatically-with-travis-ci/</id>
+    <published>2017-10-04T02:50:41.000Z</published>
+    <updated>2017-10-04T02:50:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前（六月份高考完后）我把博客引擎由 Ghost <a href="https://blessing.studio/migrated-to-hexo/">换成了静态博客生成器 Hexo</a>，并且只使用了自带的 <code>hexo d</code> 来部署生成好的静态博客到服务器上。虽然不像动态博客程序那样可以随时随地更新博客，但是想到马上就要上大学了，之后手头都会有电脑，所以更新博客也不算那么麻烦。</p><p>但是实在是人算不如天算，今天浙江新高考改革是结结实实地把我坑了一把。二段线以上一段线未满这样中途半端的分数让人在填志愿时着实是犯难 —— 这次浙江几乎普遍出现「一段考生抢以往的二本中好学校，二段考生抢三本学校」这样神秘的情况。思来想去最后把心一横，决定去再读一年高四。后来全省高考录取情况出来后，也证实了我当时复读的决定也不是不合理的（譬如当时上了新浪微博热门话题的「浙江滑档大学」等）。</p><p>关于复读的话题就先放一放吧，毕竟现在的时间确实是有些紧，可能得等到寒假时才能好好地写一篇近况报告以及关于高四生活的事情了，非常遗憾。</p><p>回到正题，因为我输得透彻滚去读高四了，所以自然不可能每次都有配置完好的操作环境让我手动发博文 + 部署了（虽然我也不见得有时间写什么博文）。在这样的前提条件下，一个 Hexo 博客的自动部署（持续集成）系统就显得非常有必要了。</p><h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>首先我们需要了解的是，我们到底希望实现一个怎样的系统？以下是我的设想：</p><ol><li>更新博客文章内容后 commit 到 GitHub repo（也可以直接在 GitHub 网页上 commit）；</li><li>Travis CI 自动编译生成出新的静态博客文件；</li><li>自动部署至 GitHub Pages 和我自己的服务器。</li></ol><a id="more"></a><p>虽然互联网上关于自动部署 Hexo 博客的文章已经有很多了，但是我这里还是有些需求是和他们不一样的：</p><ol><li>我所使用的 Seventeen 主题源码存放在 <a href="https://gitee.com/" target="_blank" rel="external">Gitee</a> （就是原来的 Git@OSC）上的私有仓库中（毕竟这主题只是我移植到 Hexo 上来的，主题版权依然属于<a href="https://qaq.cat/" target="_blank" rel="external">原作者</a>）；</li><li>需要同时部署至 GitHub Pages 和我自己的 VPS 上。</li></ol><p>折腾期间也是踩到了一些坑，也在这里记录一下。</p><h2 id="0x02-配置-GitHub-仓库"><a href="#0x02-配置-GitHub-仓库" class="headerlink" title="0x02 配置 GitHub 仓库"></a>0x02 配置 GitHub 仓库</h2><p>说实话我之前都没用过 GitHub Pages，也没打算直接用它来存放我的博客（<a href="https://blessing.studio/">blessing.studio</a> 依然部署在我的 VPS 上）。不过想想之后我也没有搞运维的时间了，多来几个博客的存档备份也是好的（反正也是免费的，笑）。</p><p>怎样启用 GitHub Pages 我就不多说了，智力正常的人应该都能完成这些操作。因为域名是以用户名开头的 User Pages 默认只能显示 master 分支里的内容（我也懒得去弄 Custom domain 啥的），所以我用了不同的分支来存放不同的内容：</p><ul><li><strong>master</strong> 存放 Hexo 生成好的静态文件，所有 commit 信息格式均为 <code>Site updated: %Y-%m-%d %H:%M:%S</code>；</li><li><strong>source</strong> 存放 scaffolds（脚手架）、source（文章 Markdown 源码）、_config.yml（Hexo 配置）等文件，commit 信息前都加上对应的 emoji（确实蛮好玩的，参见 <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="external">gitmoji</a>），并设置为 repo 的默认分支。</li></ul><p>分支操作大概像这样：</p><pre><code class="shell">git initgit remote add origin git@github.com:printempw/printempw.github.io.git# 新建 source 分支git checkout --orphan sourcegit add .git commit -m &quot;:tada: Initial commit&quot;git push origin source:source</code></pre><p>最后这个 repo 的画风是这样的：</p><p><img src="https://img.blessing.studio/images/2017/10/04/snipaste_20171004_201448.png" alt="snipaste_20171004_201448.png"></p><p><img src="https://img.blessing.studio/images/2017/10/04/snipaste_20171004_201526.png" alt="snipaste_20171004_201526.png"></p><p>我是觉得挺不错的，你说呢？</p><h2 id="0x03-配置-Travis-CI"><a href="#0x03-配置-Travis-CI" class="headerlink" title="0x03 配置 Travis CI"></a>0x03 配置 Travis CI</h2><p>怎么登录 Travis CI 并关联 GitHub 项目我也一样不多说，只要智力正常以下略。</p><p>下面主要讲一下如何编写 <code>.travis.yml</code> 配置文件。</p><h3 id="0x31-配置部署秘钥"><a href="#0x31-配置部署秘钥" class="headerlink" title="0x31 配置部署秘钥"></a>0x31 配置部署秘钥</h3><p>我博客的部署过程中需要用到 ssh 密钥认证的地方大概有这几处：</p><ul><li>从 Gitee 私有仓库 clone 主题；</li><li>将编译好的文件 push 到 GitHub Pages 和 VPS。</li></ul><p>一般网上的文章只有一个自动 push 到 GitHub Pages 的需求，所以直接申请一个 GitHub 的 Personal access tokens，配合 Travis 的环境变量配置就可以拿到 push 权限了。不过我这里情况复杂一些，所以不如直接搞个部署秘钥来得方便（而且那个 token 是可以操作所有 repo 的，更不安全）。</p><p>首先，新生成一个 ssh 密钥对（不要嫌麻烦直接把你机器上的秘钥拿去用了，太危险）：</p><pre><code class="shell"># 随便生成在哪都行，文件名也随意$ ssh-keygen -f travis.key</code></pre><p>然后把生成的公钥文件（e.g. <code>travis.key.pub</code>）分别添加到 GitHub Deploy Keys（在哪你自己找呀）、Gitee 部署秘钥、VPS 上的 <code>~/.ssh/authorized_keys</code> 中，这样 Travis CI 的机器就可以直接访问这些服务器了。</p><p>那我们要怎么在 Travis CI 自动部署过程中使用这个私钥呢？直接放在 repo 里提交上去肯定是不行的；而且那么长一串的私钥，总不能设置成环境变量吧（摊手）。</p><p>不过好在 Travis CI 提供了文件加密工具，这样我们就可以直接把加密后的私钥提交到 git repo 中，然后在 Travis CI 自动部署过程中解密出原秘钥并使用了（网上还有其他神秘的加密方法，但是没几个有 openssl aes-256-cbc 加密这样靠谱）。</p><p>首先，我们需要安装 Travis 的命令行工具：</p><pre><code class="shell"># 是的，你没看错，Travis 的命令行工具是用 Ruby 写的# 所以，想要用它你还得去安装 Ruby 环境……去吧，我的朋友$ sudo gem install travis</code></pre><p>然后通过命令行登录 Travis 并加密文件：</p><pre><code class="shell"># 交互式操作，使用 GitHub 账号密码登录# 如果是私有项目要加个 --pro 参数$ travis login --auto# 加密完成后会在当前目录下生成一个 travis.key.enc 文件# 还会在你的 .travis.yml 文件里自动加上用于解密的 shell 语句# 还 tmd 会自动格式化你的 .travis.yml 文件，去他妈的$ travis encrypt-file travis.key -add</code></pre><p>需要注意的是，这些文件加密步骤<strong>不能</strong>在 Windows 系统下完成，不然在自动部署时会出现神秘的错误（wrong final block length）。这个问题已经被很多人<a href="https://github.com/travis-ci/travis-ci/issues/4746" target="_blank" rel="external">报告过了</a>（实际上我也踩上去了），并且<a href="https://docs.travis-ci.com/user/encrypting-files/" target="_blank" rel="external">官方文档</a>里也加上了这样一段话：</p><p><img src="https://img.blessing.studio/images/2017/10/04/snipaste_20171004_204633.png" alt="Caveat"></p><p>总之就是「辣鸡 Windows 太菜了不行，给我用 WSL 或者类 Unix 系统吧哈哈哈」的意思（迫真）经过我的测试，Windows10 下的 babun、Git Bash 均告失败，WSL（Windows Subsystem for Linux）和我 VPS 上的 Ubuntu 14.04 所生成的加密文件均可通过自动部署，屁事儿没有。</p><p>以上步骤完成后你会得到一个 <code>travis.key.enc</code>，然后你把这玩意放到 repo 的哪里去都成，随你喜欢，只要能访问得到就可以（比如说我放到了 <code>.travis</code> 目录里）。然后在 <code>.travis.yml</code> 可以使用如下命令解密出原本的 ssh 私钥：</p><pre><code># 环境变量 $encrypted_1fc90f464345_key 中的那一串字符是随机的，每个人都不一样，自己机灵点儿改成你自己的。这个环境变量名也可以在 Travis CI 的项目后台环境变量设置中查看openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d</code></pre><p>搞定了密钥认证后，我们还需要修改一下机器的 SSH 配置。为啥呢？</p><p><img src="https://i.loli.net/2017/10/04/59d4dac7a6381.png" alt="snipaste_20171004_205715.png"></p><p>相信大家对于上面的提示并不陌生 —— 每次我们使用 ssh 尝试连接到一个我们之前没有连接过的服务器时都会出现这样的提示。但是在 Travis CI 的自动部署过程中是不接受任何命令行输入的（好像可以，但是很麻烦），所以我们必须想办法把这个确认过程给干掉，否则自动部署就会被卡在这里直到超时了。</p><p>网上搜一搜就能知道管这玩意的是 <code>./ssh/config</code> 里的 <code>StrictHostKeyChecking</code> 配置项，所以我们可以在项目里写一个自己的 ssh 配置文件，然后在自动部署过程中替换掉 Travis CI 机器的 ssh 配置：</p><pre><code># 文件 [.travis/ssh_config]Host github.com    User git    StrictHostKeyChecking no    IdentityFile ~/.ssh/id_rsa    IdentitiesOnly yesHost gitee.com    User git    StrictHostKeyChecking no    IdentityFile ~/.ssh/id_rsa    IdentitiesOnly yesHost prinzeugen.net    User git    StrictHostKeyChecking no    IdentityFile ~/.ssh/id_rsa    IdentitiesOnly yes# 文件 [.travis.yml]mv -fv .travis/ssh-config ~/.ssh/config</code></pre><p>也有另外一种方法是通过在 <code>.travis.yml</code> 中添加 <code>ssh_known_hosts</code> 来实现的（具体可以看 Travis CI 的 <a href="https://docs.travis-ci.com/user/ssh-known-hosts/" target="_blank" rel="external">官方文档</a>），不过上面的方法灵活性更高（是的，我是写到这里才发现还有这种方法……上面的我也懒得删了，就放在那吧，括弧笑）。</p><pre><code class="yml">addons:  ssh_known_hosts:  - github.com  - gitee.com  - prinzeugen.net</code></pre><p>这样一来，就没有什么能阻挡我们的自动部署过程啦 <img src="https://img.blessing.studio/images/2017/10/04/QQ20171004210320.jpg" alt="表情"></p><h3 id="0x32-编写-travis-yml"><a href="#0x32-编写-travis-yml" class="headerlink" title="0x32 编写 .travis.yml"></a>0x32 编写 .travis.yml</h3><p>我就直接贴我自己的配置了（放在 <a href="https://gist.github.com/printempw/42e8781ed3adadbcc6ecac01904a32f6" target="_blank" rel="external">Gist</a> 上，加载不出来的自己想办法），诸位看着修改：</p><script src="https://work.prinzeugen.net/gist/printempw/42e8781ed3adadbcc6ecac01904a32f6.js"></script><p>大部分语句都加了注释，我也就不再多说明了。</p><p>如果不出意外，每次 push 新 commit 到 source 分支后，Travis CI 就会自动帮你构建最新的静态博客，并部署至 Github Pages 和你自己的 VPS 上了。</p><p><img src="https://img.blessing.studio/images/2017/10/04/snipaste_20171004_212745.png" alt="Travis CI Build Status"></p><h2 id="0x04-后记"><a href="#0x04-后记" class="headerlink" title="0x04 后记"></a>0x04 后记</h2><p>打开博客一看，上一篇博文已经是两个月之前的事情了。复读开学之后这段时间确实是挺忙的，每天晚上回寝室后屌累屌困，最多也就记记账，看看邮件，看看 RSS，闲的话刷刷 Twitter，确实是没有什么时间像这样坐下来写一篇文章了。</p><p>估计以后博文更新频率也会越来越低吧，唉。</p><h3 id="0x41-参考链接"><a href="#0x41-参考链接" class="headerlink" title="0x41 参考链接"></a>0x41 参考链接</h3><ul><li><a href="https://changkun.us/archives/2017/06/232/" target="_blank" rel="external">Hexo + GitHub + Travis CI + VPS 自动部署</a></li><li><a href="http://www.itfanr.cc/2017/08/09/using-travis-ci-automatic-deploy-hexo-blogs/" target="_blank" rel="external">使用 Travis CI 自动部署 Hexo 博客</a></li><li><a href="https://segmentfault.com/a/1190000009054888" target="_blank" rel="external">使用 Travis 自动部署 Hexo 到 Github 与 自己的服务器</a></li><li><a href="https://zespia.tw/blog/2015/01/21/continuous-deployment-to-github-with-travis/" target="_blank" rel="external">用 Travis CI 自動部署網站到 GitHub</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前（六月份高考完后）我把博客引擎由 Ghost &lt;a href=&quot;https://blessing.studio/migrated-to-hexo/&quot;&gt;换成了静态博客生成器 Hexo&lt;/a&gt;，并且只使用了自带的 &lt;code&gt;hexo d&lt;/code&gt; 来部署生成好的静态博客到服务器上。虽然不像动态博客程序那样可以随时随地更新博客，但是想到马上就要上大学了，之后手头都会有电脑，所以更新博客也不算那么麻烦。&lt;/p&gt;
+&lt;p&gt;但是实在是人算不如天算，今天浙江新高考改革是结结实实地把我坑了一把。二段线以上一段线未满这样中途半端的分数让人在填志愿时着实是犯难 —— 这次浙江几乎普遍出现「一段考生抢以往的二本中好学校，二段考生抢三本学校」这样神秘的情况。思来想去最后把心一横，决定去再读一年高四。后来全省高考录取情况出来后，也证实了我当时复读的决定也不是不合理的（譬如当时上了新浪微博热门话题的「浙江滑档大学」等）。&lt;/p&gt;
+&lt;p&gt;关于复读的话题就先放一放吧，毕竟现在的时间确实是有些紧，可能得等到寒假时才能好好地写一篇近况报告以及关于高四生活的事情了，非常遗憾。&lt;/p&gt;
+&lt;p&gt;回到正题，因为我输得透彻滚去读高四了，所以自然不可能每次都有配置完好的操作环境让我手动发博文 + 部署了（虽然我也不见得有时间写什么博文）。在这样的前提条件下，一个 Hexo 博客的自动部署（持续集成）系统就显得非常有必要了。&lt;/p&gt;
+&lt;h2 id=&quot;0x01-需求分析&quot;&gt;&lt;a href=&quot;#0x01-需求分析&quot; class=&quot;headerlink&quot; title=&quot;0x01 需求分析&quot;&gt;&lt;/a&gt;0x01 需求分析&lt;/h2&gt;&lt;p&gt;首先我们需要了解的是，我们到底希望实现一个怎样的系统？以下是我的设想：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;更新博客文章内容后 commit 到 GitHub repo（也可以直接在 GitHub 网页上 commit）；&lt;/li&gt;
+&lt;li&gt;Travis CI 自动编译生成出新的静态博客文件；&lt;/li&gt;
+&lt;li&gt;自动部署至 GitHub Pages 和我自己的服务器。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="https://blessing.studio/categories/tech/"/>
+    
+    
+      <category term="博客" scheme="https://blessing.studio/tag/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="https://blessing.studio/tag/Hexo/"/>
+    
+      <category term="持续集成" scheme="https://blessing.studio/tag/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
+    
+  </entry>
   
   <entry>
     <title>又是一种 Minecraft 外置登录解决方案：自行实现 Yggdrasil API</title>
@@ -608,41 +643,6 @@
       <category term="评测" scheme="https://blessing.studio/tag/%E8%AF%84%E6%B5%8B/"/>
     
       <category term="Kindle" scheme="https://blessing.studio/tag/Kindle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客样式与字体的更新报告</title>
-    <link href="https://blessing.studio/report-update-of-blog-styles-and-fonts/"/>
-    <id>https://blessing.studio/report-update-of-blog-styles-and-fonts/</id>
-    <published>2017-02-26T09:29:56.000Z</published>
-    <updated>2017-04-28T05:20:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>一直想改进一下博客的字体和在手机上的样式，奈何最近一直没有时间，只好作罢。昨天晚上抽出一些时间做了一些改进，顺便写篇博文算是记录<del>灌水</del>（笑）。</p><p>【更新 17/04/24】</p><ul><li>正文字体已由 Monda 改为 PT Serif</li><li><a href="https://twitter.com/printempw/status/856456764803301376" target="_blank" rel="external">调整了</a> blockquote 的样式</li></ul><h3 id="标题字体改为-Roboto-Slab"><a href="#标题字体改为-Roboto-Slab" class="headerlink" title="标题字体改为 Roboto Slab"></a>标题字体改为 Roboto Slab</h3><p>Roboto Slab 是<a href="https://zh.wikipedia.org/wiki/%E7%B2%97%E8%A1%AC%E7%BA%BF%E4%BD%93" target="_blank" rel="external">粗衬线体</a>，比起 Georgia 更适合做标题。</p><p><img src="https://ooo.0o0.ooo/2017/02/26/58b29e66b01d7.png" alt="效果图"></p><p><em>（上面是 Georgia，下面是 Roboto Slab）</em></p><h3 id="全局除正文外的西文字体使用-Alegreya"><a href="#全局除正文外的西文字体使用-Alegreya" class="headerlink" title="全局除正文外的西文字体使用 Alegreya"></a>全局除正文外的西文字体使用 Alegreya</h3><p>之前正文以外的西文字体都是使用的 Georgia，同样是衬线字体，<a href="https://fonts.google.com/specimen/Alegreya" target="_blank" rel="external">Alegreya</a> 的衬线更加富有书法气息，比较帅气。</p><a id="more"></a><p><img src="https://ooo.0o0.ooo/2017/02/26/58b29a1894a08.png" alt="Alegreya"></p><p>这里摘抄一段 <a href="http://blog.justfont.com/2014/06/google-fonts-1/" target="_blank" rel="external">JUSTFONT BLOG</a> 对 Alegreya 的介绍：</p><blockquote><p>Alegreya 目前已经小有成就：曾在国际文字设计协会 (Atypi) 的字体设计比赛 Letter2 中拿下奖项，被认为是近十年来最重要的 53 个字体之一。它是个专门为长文阅读打造的字体。除了造型令人回想起文艺复兴时期的诗人手书以外，这个字体造型上的动感与韵律让长时间阅读变得比较有味道。虽然是根据古典的造型打造，但应用到现代的排版环境上，也不特别觉得突兀。</p></blockquote><p>以本博客底部的版权信息为例看看对比效果（上面是 Georgia，下面是 Alegreya）：</p><p><img src="https://ooo.0o0.ooo/2017/02/26/58b2839230fd0.png" alt="对比图"></p><h3 id="正文字体改为-Monda"><a href="#正文字体改为-Monda" class="headerlink" title="正文字体改为 Monda"></a>正文字体改为 Monda</h3><p>之前博客正文中的西文字体是使用的 <a href="https://fonts.google.com/specimen/Alegreya+Sans" target="_blank" rel="external">Alegeya Sans</a>。这是一款根据与 Alegreya 相同骨架设计的人文主义感非衬线字体。它很漂亮，但可惜它在正文中的表现还是有些不尽人意，这次索性改成了 <a href="https://fonts.google.com/specimen/Monda" target="_blank" rel="external">Monda</a> 这款无衬线字体。</p><p>我之前的 <a href="https://twitter.com/printempw/status/835472326221127683" target="_blank" rel="external">Tweet</a> 里也有提到过，对比图如下（上面是 Alegreya Sans <em>Medium</em>，下面是 Monda <em>Regular</em>）：</p><p><img src="https://img.blessing.studio/images/2017/02/26/QQ20170226164005.png" alt="对比图"></p><h3 id="全局字体大小由-15px-改为-14px"><a href="#全局字体大小由-15px-改为-14px" class="headerlink" title="全局字体大小由 15px 改为 14px"></a>全局字体大小由 15px 改为 14px</h3><p>因为之前使用的 Alegeya Sans 比起 <code>font-size</code> 相同的中文字体在视觉上要小一些，为了能够看清西文字体遂将字体调大了。改为 Monda 之后就可以不用这么处理了，字体大小改为 14px 也没有什么看不清的。</p><p>行高也由原来的 <code>1.8px</code> 增加至 <code>1.9px</code>，阅读起来应该会舒适一些。</p><h3 id="使用-affix-js-替换-jQuery-lockfixed"><a href="#使用-affix-js-替换-jQuery-lockfixed" class="headerlink" title="使用 affix.js 替换 jQuery lockfixed"></a>使用 affix.js 替换 jQuery lockfixed</h3><p>这个主题原先是使用 <a href="https://github.com/ymschaap/jquery-lockfixed" target="_blank" rel="external">jquery-lockfixed</a> 来实现侧边栏固定小工具的，但这玩意有时候会出现神秘的 BUG，遂使用 Bootstrap 的 <a href="http://getbootstrap.com/javascript/#affix" target="_blank" rel="external">affix.js</a> 替换掉它。</p><pre><code class="js">$(&#39;#sbpin&#39;).affix({    offset: {        top: function () {            return $(&#39;#abovesb&#39;).offset().top + $(&#39;#abovesb&#39;).outerHeight()        }    }});</code></pre><h3 id="取消手机上内容左右两侧的-margin"><a href="#取消手机上内容左右两侧的-margin" class="headerlink" title="取消手机上内容左右两侧的 margin"></a>取消手机上内容左右两侧的 margin</h3><p>因为这个主题是卡片式的设计，每篇 POST 都是以卡片的形式展示出来的。而原主题在手机上也保留了这个设计，造成了很大一部分都被用于显示卡片的边缘。</p><p>这次我也把卡片的两边的 margin 给去掉了，并且修改了一下侧边栏，把空间都空出来给正文，这样阅读体验会更好一些。效果可以看<a href="https://twitter.com/printempw/status/833219482554245121" target="_blank" rel="external">这里</a>。</p><h3 id="改进侧边栏在手机上的表现"><a href="#改进侧边栏在手机上的表现" class="headerlink" title="改进侧边栏在手机上的表现"></a>改进侧边栏在手机上的表现</h3><p>以前手机上侧边栏是直接隐藏起来的，只保留最上面的名片部分，因此侧边栏上的 <a href="https://blessing.studio/a-hitokoto-crawler/">Hitokoto</a> 小工具和 <a href="https://blessing.studio/do-you-like-me-mysqli-version/">Do you like me</a> 小工具在手机上都不可见了，还是比较蛋疼的。</p><p>我稍微修改了一下，现在侧边栏的内容在手机上会被放到所有内容的底部。这样的好处是一进入文章页首屏就是正文，而不是像以前那样首屏是我的名片。</p><p><del>（首屏是名片也没什么不好的啊）</del></p><h3 id="改进「返回顶部」按钮"><a href="#改进「返回顶部」按钮" class="headerlink" title="改进「返回顶部」按钮"></a>改进「返回顶部」按钮</h3><p>给「返回顶部」的按钮加了个滚动到一定程度才出现的效果，以前是直接固定着的（早该加了）。</p><p>这个样式参考了 Hexo 的一个主题：<a href="https://github.com/iissnan/hexo-theme-next/blob/master/source/js/src/post-details.js" target="_blank" rel="external">NexT</a>。</p><h3 id="延迟加载-Disqus"><a href="#延迟加载-Disqus" class="headerlink" title="延迟加载 Disqus"></a>延迟加载 Disqus</h3><p>这其实之前就实现了，不过也在这里提一下吧。</p><p>我对进行了一些改动，代码托管在 <a href="https://gist.github.com/printempw/e31ae00ddbadf1b0237c56a36e7ee6b1" target="_blank" rel="external">Gist</a> 上：</p><p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="e31ae00ddbadf1b0237c56a36e7ee6b1">点击以加载 Gist（无法加载时请翻墙）</button></p><p>上面那个「点击加载 Gist」按钮也是我之前<a href="https://blessing.studio/how-to-load-gist-dynamically-via-clicking-button/">折腾</a>的。</p><h3 id="添加文章目录-TOC"><a href="#添加文章目录-TOC" class="headerlink" title="添加文章目录 TOC"></a>添加文章目录 TOC</h3><p>这个也是一直想做的，然而实现了发现没地方放……</p><p>以后再看看能加到哪里吧，效果参见我之前发的<a href="https://twitter.com/printempw/status/833210925255516160" target="_blank" rel="external">推文</a>。</p><hr><p>很惭愧，做了点微小的工作。附上以前我对博客样式的折腾：</p><ul><li><a href="https://blessing.studio/wow-typography/">最近有点迷上字体排印学了</a> <em>2015-11-16</em></li><li><a href="https://blessing.studio/adjust-blog/">对博客进行了稍微的调教</a> <em>2015-08-03</em></li></ul><p>如果哪里样式有不对头，或者对本博客的样式有什么意见/建议的话，请在下方评论区告诉我 :D</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一直想改进一下博客的字体和在手机上的样式，奈何最近一直没有时间，只好作罢。昨天晚上抽出一些时间做了一些改进，顺便写篇博文算是记录&lt;del&gt;灌水&lt;/del&gt;（笑）。&lt;/p&gt;
-&lt;p&gt;【更新 17/04/24】&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;正文字体已由 Monda 改为 PT Serif&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://twitter.com/printempw/status/856456764803301376&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;调整了&lt;/a&gt; blockquote 的样式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;标题字体改为-Roboto-Slab&quot;&gt;&lt;a href=&quot;#标题字体改为-Roboto-Slab&quot; class=&quot;headerlink&quot; title=&quot;标题字体改为 Roboto Slab&quot;&gt;&lt;/a&gt;标题字体改为 Roboto Slab&lt;/h3&gt;&lt;p&gt;Roboto Slab 是&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%B2%97%E8%A1%AC%E7%BA%BF%E4%BD%93&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;粗衬线体&lt;/a&gt;，比起 Georgia 更适合做标题。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2017/02/26/58b29e66b01d7.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;（上面是 Georgia，下面是 Roboto Slab）&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&quot;全局除正文外的西文字体使用-Alegreya&quot;&gt;&lt;a href=&quot;#全局除正文外的西文字体使用-Alegreya&quot; class=&quot;headerlink&quot; title=&quot;全局除正文外的西文字体使用 Alegreya&quot;&gt;&lt;/a&gt;全局除正文外的西文字体使用 Alegreya&lt;/h3&gt;&lt;p&gt;之前正文以外的西文字体都是使用的 Georgia，同样是衬线字体，&lt;a href=&quot;https://fonts.google.com/specimen/Alegreya&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alegreya&lt;/a&gt; 的衬线更加富有书法气息，比较帅气。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="日常" scheme="https://blessing.studio/categories/diary/"/>
-    
-    
-      <category term="博客" scheme="https://blessing.studio/tag/%E5%8D%9A%E5%AE%A2/"/>
-    
-      <category term="设计" scheme="https://blessing.studio/tag/%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="字体" scheme="https://blessing.studio/tag/%E5%AD%97%E4%BD%93/"/>
     
   </entry>
   

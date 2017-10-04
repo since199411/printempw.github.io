@@ -170,6 +170,50 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/ubuntu-14-04-add-swap-2/">Ubuntu 14.04 添加 swap 交换分区</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>听说加了 swap 会有用。。总之试一下又不会怀孕 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
+<p>参考了 Digital Ocean 官方的教程：<a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04" target="_blank" rel="external">How To Add Swap on Ubuntu 14.04</a></p>
+<blockquote>
+<p>Linux 中 Swap（交换分区），类似于Windows的虚拟内存，就是当内存不足的时候，把一部分硬盘空间虚拟成内存使用，从而解决内存容量不足的情况，和Windows的虚拟内存（pagefile.sys）的作用是一样的。</p>
+</blockquote>
+<hr>
+<h3 id="1-查看操作系统中是否已经有交换分区"><a href="#1-查看操作系统中是否已经有交换分区" class="headerlink" title="1.查看操作系统中是否已经有交换分区"></a>1.查看操作系统中是否已经有交换分区</h3><p>使用 <code>sudo swapon -s</code> 或者 <code>free -m</code></p>
+<pre><code>total used free shared buffers cached
+Mem: 3953 154 3799 0 8 83 -/+
+buffers/cache: 62 3890
+Swap: 0 0 0
+</code></pre>
+          <a class="more-link" href="/ubuntu-14-04-add-swap-2/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-11</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="ubuntu-14-04-add-swap-2/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Linux/">Linux</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/lnmp-wordpress-cant-display-all-themes/">lnmp 搭建 WordPress 后台不能显示所有主题</a>
       </h2>
 
@@ -615,42 +659,6 @@ arch ramips_24kec 400
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/OpenWRT/">OpenWRT</a>, <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/xiaomi-router-mini-openwrt/">给小米路由器 mini 刷 OpenWRT</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>再也受不了 sabi 小米面向小白优化的 rom 了，咱怎么说也算半个 geek 嘛 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
-<p>而且原生 rom 确实太辣鸡，好好一个 OpenWRT 给整成什么样了。。于是参考网上教程刷了个 PandoraBox ，姑且写一篇博文记录一下吧~</p>
-<h3 id="拿到路由器的-ssh-权限"><a href="#拿到路由器的-ssh-权限" class="headerlink" title="拿到路由器的 ssh 权限"></a>拿到路由器的 ssh 权限</h3><p>小米大概是为了不让小白瞎搞还是什么原因默认关闭了 ssh 权限，请先去 <a href="https://d.miwifi.com/rom/ssh" target="_blank" rel="external">这里</a> 解锁 ssh 权限。</p>
-<p>（顺带一提窝没好好看说明，在上电的时候操作结果等了这家伙2次 reset <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a>）</p>
-          <a class="more-link" href="/xiaomi-router-mini-openwrt/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-06-28</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="xiaomi-router-mini-openwrt/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/OpenWRT/">OpenWRT</a>, <a class="tag-link" href="/tag/小米/">小米</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>
