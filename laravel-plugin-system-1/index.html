@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字。欢迎订阅 RSS (ﾟ∀ﾟ)ﾉ" />
+
+  <meta name="keywords" content="Laravel,PHP," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="插件，即 Plug-in（又有外挂、Extension、Addon 等叫法），是一类特定的功能模块，通过和应用程序的互动，用来替应用程序增加一些所需要的特定的功能。插件的特点是：  当你需要它的时候激活它，不需要它的时候禁用/删除它； 无论是激活还是禁用都不影响系统核心模块的运行。  也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 中文 WikiPe">
+<meta name="keywords" content="Laravel,PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel 框架下的插件机制实现（一）—— 构建插件系统">
+<meta property="og:url" content="https://blessing.studio/laravel-plugin-system-1/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="插件，即 Plug-in（又有外挂、Extension、Addon 等叫法），是一类特定的功能模块，通过和应用程序的互动，用来替应用程序增加一些所需要的特定的功能。插件的特点是：  当你需要它的时候激活它，不需要它的时候禁用/删除它； 无论是激活还是禁用都不影响系统核心模块的运行。  也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 中文 WikiPe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.prinzeugen.net/image.php?di=CFTF">
+<meta property="og:updated_time" content="2016-11-20T07:42:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel 框架下的插件机制实现（一）—— 构建插件系统">
+<meta name="twitter:description" content="插件，即 Plug-in（又有外挂、Extension、Addon 等叫法），是一类特定的功能模块，通过和应用程序的互动，用来替应用程序增加一些所需要的特定的功能。插件的特点是：  当你需要它的时候激活它，不需要它的时候禁用/删除它； 无论是激活还是禁用都不影响系统核心模块的运行。  也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 中文 WikiPe">
+<meta name="twitter:image" content="https://img.prinzeugen.net/image.php?di=CFTF">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/laravel-plugin-system-1/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=PT+Serif">
+
+
+    <title>Laravel 框架下的插件机制实现（一）—— 构建插件系统 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/laravel-plugin-system-1/">Laravel 框架下的插件机制实现（一）—— 构建插件系统</a>
+    </h1>
+
+    
+
+
+  <div class="alert alert-warning expired-warning">
+    <p>本文最后更新于 318 天前（2016-11-20），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+    <div class="post-content">
+      <p>插件，即 Plug-in（又有外挂、Extension、Addon 等叫法），是一类特定的功能模块，通过和应用程序的互动，用来替应用程序增加一些所需要的特定的功能。插件的特点是：</p>
+<ul>
+<li>当你需要它的时候激活它，不需要它的时候禁用/删除它；</li>
+<li>无论是激活还是禁用都不影响系统核心模块的运行。</li>
+</ul>
+<p>也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 <a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E4%BB%B6" target="_blank" rel="external">中文 WikiPedia</a>。</p>
+<p>虽然现在网上有很多 PHP 的插件机制的实现（当然我指的是英文内容，中文关于 PHP 插件机制的搜出来现在还是那么点破文章），譬如 <a href="https://github.com/FoolCode/Plugin" target="_blank" rel="external">FoolCode/Plugin</a>，或者 WordPress 的插件实现。</p>
+<p>不过我今天想介绍的是如何使用 Laravel 的服务容器、事件机制等功能来实现一个比较优雅的插件机制。</p>
+<p><em>Greatly inspired by <a href="https://github.com/flarum/core/tree/master/src/Extension" target="_blank" rel="external">Flarum</a></em>，在此致谢 ヾ(´ωﾟ｀)</p>
+<a id="more"></a>
+<blockquote>
+<p>这是这个系列的第一篇，主要描述了该如何构建一个插件系统。第二篇则会讲述该如何利用这个插件系统开发一个插件。</p>
+</blockquote>
+<p>该开始了 <img src="https://img.prinzeugen.net/image.php?di=CFTF" alt=""></p>
+<hr>
+<h2 id="0x01-目录结构"><a href="#0x01-目录结构" class="headerlink" title="0x01 目录结构"></a>0x01 目录结构</h2><p>首先我们要想好每个插件的目录结构 <strong>应该是啥样的</strong>，譬如哪里存储 <strong>插件元信息</strong>，在哪里给插件存放 <strong>初始化代码</strong>，在哪里给插件存放自己的 <strong>业务逻辑</strong> 等等。</p>
+<p>举些栗子：WordPress 的插件信息是直接存储在 PHP 文件的注释里的，Flarum 甚至是直接用 composer 来管理插件（每个插件都是一个 composer 包，插件信息就在 <code>composer.json</code>）里，也是猛的不行 ( ;ﾟдﾟ)</p>
+<p>然而我们还得照顾虚拟主机用户，所以直接用 composer 管理虽然屌，但还是有点不适合。最终我选择的目录结构是这样的：</p>
+<pre><code>➜  bs-super-cache git:(master)$ tree
+.
+├── bootstrap.php # 引导文件
+├── lang          # 语言文件
+├── package.json  # 存放插件信息（必须）
+├── src           # 该文件夹下的类将会被自动加载
+│   └── Listener
+│       ├── CacheAvatarPreview.php
+│       ├── CachePlayerJson.php
+│       └── CacheSkinPreview.php
+└── views         # 视图文件
+    └── config.tpl
+</code></pre><p>其中使用了 <code>package.json</code> 文件来存储插件信息和 <code>bootstrap.php</code> 作为引导文件。</p>
+<p>其中 <code>package.json</code> 的内容应该像这样：</p>
+<pre><code>{
+  &quot;name&quot;: &quot;bs-super-cache&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;title&quot;: &quot;BS Super Cache&quot;,
+  &quot;description&quot;: &quot;缓存皮肤预览图、头像、玩家 Json，优化站点性能。&quot;,
+  &quot;author&quot;: &quot;printempw&quot;,
+  &quot;namespace&quot;: &quot;SuperCache&quot;,
+  &quot;config&quot;: &quot;config.tpl&quot;
+}
+</code></pre><p>其中的字段 <code>name</code> 将成为插件的 <strong>唯一标识符</strong>，而插件所在的文件夹名称是不需要在意的。</p>
+<p>其他的字段大部分都是能够通过名字看出作用来的，所以我就不多赘述。关于那个 <code>namespace</code> 下面会讲。</p>
+<p>而引导文件 <code>bootstrap.php</code> 应该返回一个 <strong>闭包 Closure</strong>，并且在这个闭包里执行插件的初始化工作。关于这玩意会在下面的 0x04 里详细描述。</p>
+<h2 id="0x02-Plugin-插件抽象类"><a href="#0x02-Plugin-插件抽象类" class="headerlink" title="0x02 Plugin 插件抽象类"></a>0x02 <code>Plugin</code> 插件抽象类</h2><p>想好了目录结构，接下来我们需要一个 <code>Plugin</code> 类来方便从文件系统加载并存储插件信息用于这次请求的生命周期（放到容器里）。</p>
+<p>关于 <code>Plugin</code> 这个类，它是每一个具体插件的抽象，我们需要通过这玩意来进行 <strong>获取插件信息</strong>、<strong>启用/禁用</strong>、<strong>安装/删除</strong> 等操作，所以类也必须提供相应的方法：</p>
+<p>（代码块放在了 Gist 上）</p>
+<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="8bc1049481f2ba0be51eba4edccea2d5">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<p>可以看到我们在类中使用了 <code>$packageInfo</code> 这个属性来存储 <code>json_decode</code> 解析后的 <code>package.json</code> 的内容，并通过一堆 <code>getter</code> 和 <code>setter</code> 实现了上述的功能。</p>
+<p>我们同时还实现了一些魔术方法，以让我们能够更方便的获取插件的信息。</p>
+<h2 id="0x03-PluginManager-插件经理类"><a href="#0x03-PluginManager-插件经理类" class="headerlink" title="0x03 PluginManager 插件经理类"></a>0x03 <code>PluginManager</code> 插件经理类</h2><p>这个插件经理类也是这个插件系统中很重要的一部分了，它主要负责扫描文件系统并 <strong>加载所有插件</strong>、查询数据库<strong>获取插件的启用情况</strong>、在插件被 启用/禁用/删除 时<strong>触发相应事件</strong>好让插件能够做出反应。</p>
+<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="e1cc9516189c800cd50ad7955adfc1b2">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<p>可以看到我们在 <code>PluginManager</code> 类的构造函数中使用了类型提示，这可以让 Laravel 的服务容器为我们注入我们需要的依赖。</p>
+<p>在 <code>getPlugins()</code> 方法中，我们遍历了项目根目录下的 <code>plugins</code> 目录（当然这个目录的位置你可以随意定制）。所有含有 <code>package.json</code> 的子目录都被我们视做一个个插件，并把它们实例化为 <code>Plugin</code> 对象，然后存放到自身的 <code>plugins</code> 属性中。</p>
+<p>其他诸如启用、禁用插件的方法中都应该 <strong>触发事件</strong> 让插件能够在临死之前打扫一下自己留下的东西（数据库记录等）或者执行初始化等工作。</p>
+<p><code>getEnabledBootstrappers()</code> 这个方法返回了一个储存了所有已启用插件的引导文件路径的集合，这个将在下面用到。</p>
+<p><strong>题外话</strong>：我给李们港，<code>Illuminate\Support</code> 下的包，超好用的！(つд⊂)</p>
+<h2 id="0x04-PluginServiceProvider-服务提供者"><a href="#0x04-PluginServiceProvider-服务提供者" class="headerlink" title="0x04 PluginServiceProvider 服务提供者"></a>0x04 <code>PluginServiceProvider</code> 服务提供者</h2><p>在这个服务提供者里，我们将把 <code>PluginManager</code> 绑定到服务容器上，并且初始化所有的插件。</p>
+<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="8b3632231a999a2fc1bf949d97608530">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<p>可以看到，我们在 <code>require</code> 了各个插件的 <code>bootstrap.php</code> 文件得到了 <code>Closure</code> 对象后，使用了服务容器的 <code>call()</code> 方法调用了这个闭包。这也就意味着我们可以在 <code>bootstrap.php</code> 开心地使用 Laravel 提供的依赖注入功能啦。</p>
+<p>然后我们只要把 <code>PluginServiceProvider</code> 添加到 <code>config/app.php</code> 的服务提供者数组里去就可以加载插件机制的核心了：</p>
+<pre><code>&#39;providers&#39; =&gt; [
+    // 其他 Provider ...
+    App\Providers\PluginServiceProvider::class,
+],
+</code></pre><p><strong>注意：</strong>请自行调整 <code>PluginServiceProvider</code> 的加载顺序，否则可能会造成一些依赖问题。</p>
+<hr>
+<p>你觉得这样就差不多了？当然不可能 (　ﾟ 3ﾟ)</p>
+<p>那么接下来将讲述如何让插件开发者能够在开发过程中爽到：</p>
+<h2 id="0x21-自动加载"><a href="#0x21-自动加载" class="headerlink" title="0x21 自动加载"></a>0x21 自动加载</h2><p>既然不能像 Toby Zerner 那种猛男一样直接用 composer 管理插件，我们就必须自己为插件提供类的 <strong>自动加载</strong>。像 WordPress 那样要插件自己手动 <code>include</code> 类文件的方式早就过气了好吗，现在都啥年代了，自动加载才是王道 (ゝ∀･)☆</p>
+<p>这也是为什么上面插件的目录结构中有 <code>src</code> 这个目录，以及 <code>package.json</code> 里有 <code>namespace</code> 这个字段的原因了 —— <strong>插件 <code>src</code> 目录下的类将会被挂载至它定义的命令空间内</strong>。</p>
+<p>正如上面「目录结构」那里所演示的，我们可以直接使用 <code>SuperCache\Listener\CachePlayerJson</code> 这个类，并且该插件目录下的 <code>/src/Listener/CachePlayerJson.php</code> 文件将会被自动加载。</p>
+<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="d7eb791b346e0521f838e269d8e87bd3">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<p>同样是在 <code>PluginServiceProvider</code> 这个类中，我们在加载插件的时候使用了 <code>$src_paths</code> 这个数组来储存各个插件的「命名空间」到「<code>src</code> 目录」的映射，并且通过 <code>spl_autoload_register</code> 这个内置函数注册了一个 autoload。这个 SPL 函数的文档在 <a href="http://php.net/manual/zh/function.spl-autoload-register.php" target="_blank" rel="external">这里</a>。</p>
+<p>当然我们在这个新的 autoload 函数中判断了所要加载的类是否存在于插件们定义的 <code>namespace</code> 中，不然的话可能会和 composer 的自动加载冲突。</p>
+<p><strong>需要注意的是</strong>，这里我使用了 <code>PSR-0</code> 规范作为插件的自动加载规范<del>（因为懒）</del>，如果想要使用 <code>PSR-4</code> 的，可以参考 composer 的实现（笑）。</p>
+<h2 id="0x22-关于视图和本地化"><a href="#0x22-关于视图和本地化" class="headerlink" title="0x22 关于视图和本地化"></a>0x22 关于视图和本地化</h2><p>Laravel 中插件系统的另一大问题是，如何让插件能够自由的显示插件中定义视图文件以及本地化的语言文件：直接调用 <code>view($key)</code> 这样是<strong>只会</strong>在主程序的视图目录下寻找的。</p>
+<p>嘛，毕竟这些东西在文档上都是只字未提啊。所以我读了一遍 Laravel 的 <code>View</code> 和 <code>Translation</code>，发现了他们都提供了类似「命名空间」 的方法，代码分别在 <a href="https://laravel.com/api/5.3/Illuminate/View/FileViewFinder.html#method_addNamespace" target="_blank" rel="external">这里</a> 和 <a href="https://laravel.com/api/5.3/Illuminate/Translation/FileLoader.html#method_addNamespace" target="_blank" rel="external">这里</a>。</p>
+<p>简单来说，他们都支持解析类似于 <code>SuperCache::config.fuck</code> 这样的带命名空间的键值，并且可以通过 <code>addNamespace</code> 方法给这些命名空间映射上真实目录。</p>
+<p>那么问题就好办了：</p>
+<pre><code>$loader = $this-&gt;app-&gt;make(&#39;translation.loader&#39;);
+// make view instead of view.finder since the finder is defined as not a singleton
+$finder = $this-&gt;app-&gt;make(&#39;view&#39;);
+
+foreach ($plugins-&gt;getPlugins() as $plugin) {
+    // add paths of translation files for namespace hints
+    $loader-&gt;addNamespace($plugin-&gt;getNameSpace(), $plugin-&gt;getPath().&quot;/lang&quot;);
+    // add paths of views
+    $finder-&gt;addNamespace($plugin-&gt;getNameSpace(), $plugin-&gt;getPath().&quot;/views&quot;);
+}
+</code></pre><p>在初始化插件的时候把他们的 <code>namespace</code> 同时注册给 Laravel 的视图组件和翻译组件即可，这样就可以用命名空间来访问插件 <code>views</code> 目录和 <code>lang</code> 目录下的内容了~</p>
+<blockquote>
+<p>需要注意的是，我们这里并不是从服务容器中取出 <code>Illuminate\View\FileViewFinder</code> 实例，而是取出了 <code>Illuminate\View\Factory</code>。因为 <code>view.finder</code> 是通过 <code>$app-&gt;bind()</code> 绑定的，也就是每次服务容器中解析出的都是不同的 finder，这也就意味着我们添加的命名空间提示都会消失掉。而 factory 是通过 <code>$app-&gt;singleton()</code> 注册的，每次解析出来的都是同一个实例，所以不会有上述问题。这个地方坑了我蛮久的，所以这里提醒一下大家。</p>
+</blockquote>
+<p>题外话，<code>Factory</code> 也有 <code>addNamespace</code> 这个方法，说明 Taylor Otwell 也是考虑的很周到啊，同时也说明了 Laravel 的文档是多么的菜 ⊂彡☆))д´)</p>
+<p>完整的 <code>PluginServiceProvider</code> 可以参考 <a href="https://github.com/printempw/blessing-skin-server/blob/master/app/Providers/PluginServiceProvider.php" target="_blank" rel="external">这里</a>。</p>
+<hr>
+<p>这样一来基本的插件系统就已经完工了，下一篇文章将会详细讲述该如何编写一个插件。</p>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-11-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="laravel-plugin-system-1/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">但为君故，沉吟至今。</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-popular">
+      <a href="/popular-posts" title="(=ﾟωﾟ)=" rel="section">
+        <i class="fa fa-star"></i>最受欢迎的文章
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <div class="like-widget">
+        <p class="like-title">Do you like me ?</p>
+        <div style="margin: -3px 0 -2px;">
+          <a class="like-vote">
+            <i id="heart" class="fa fa-heart-o"></i> <span id="count"><span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2017 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>

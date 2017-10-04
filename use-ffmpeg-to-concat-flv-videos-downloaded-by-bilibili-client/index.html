@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字。欢迎订阅 RSS (ﾟ∀ﾟ)ﾉ" />
+
+  <meta name="keywords" content="Shell," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。 缘起前些天我关注的某 气人主播 在 bilibili 上传了《盗贼之海》（Sea of Thieves）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P  然而这位pong友上传的是 bilibili 客">
+<meta name="keywords" content="Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 ffmpeg 拼接 bilibili 客户端所下载的分段 flv 视频">
+<meta property="og:url" content="https://blessing.studio/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。 缘起前些天我关注的某 气人主播 在 bilibili 上传了《盗贼之海》（Sea of Thieves）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P  然而这位pong友上传的是 bilibili 客">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/20170513185210.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/05/13/5916f998dd712.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/QQ20170513201722.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/QQ20170513202429.png">
+<meta property="og:updated_time" content="2017-05-13T13:48:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 ffmpeg 拼接 bilibili 客户端所下载的分段 flv 视频">
+<meta name="twitter:description" content="唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。 缘起前些天我关注的某 气人主播 在 bilibili 上传了《盗贼之海》（Sea of Thieves）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P  然而这位pong友上传的是 bilibili 客">
+<meta name="twitter:image" content="https://img.blessing.studio/images/2017/05/13/20170513185210.png">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=PT+Serif">
+
+
+    <title>使用 ffmpeg 拼接 bilibili 客户端所下载的分段 flv 视频 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/">使用 ffmpeg 拼接 bilibili 客户端所下载的分段 flv 视频</a>
+    </h1>
+
+    
+
+
+
+
+    <div class="post-content">
+      <p>唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。</p>
+<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="external">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
+<p><img src="https://img.blessing.studio/images/2017/05/13/20170513185210.png" alt="感谢这位pong友"></p>
+<p>然而这位pong友上传的是 bilibili 客户端的下载（缓存）格式，虽然放在手机的 <code>/Android/data/tv.danmaku.bili/download</code> 目录下就可以被客户端直接识别，但是想要在电脑上直接播放就没那么容易了。</p>
+<a id="more"></a>
+<p>我们先来看看 B 站客户端下载内容的目录结构：</p>
+<pre><code class="text">10034455（视频 AV 号）
+├── 1（视频的各分 P）
+│   ├── danmaku.xml（弹幕文件）
+│   ├── entry.json（单 Part 信息、标题等等）
+│   └── lua.flv.bili2api.3（分段视频，一段差不多六分钟）
+│       ├── 0.blv（就是改了后缀的 flv 文件）
+│       ├── 0.blv.4m.sum（校验码）
+│       ├── 1.blv
+│       ├── 1.blv.4m.sum
+│       ├── 2.blv
+│       ├── 2.blv.4m.sum
+│       └── index.json（储存分段信息）
+├── 2
+└── 3
+</code></pre>
+<p>可以看到目录的结构还是比较清晰的，一眼看过去就能懂个大概，也没有什么反人类的混淆机制。想要在电脑上观看的话，就必须把那些 <code>0.blv</code>、<code>1.blv</code> 之类的文件后缀先修改为 <code>.flv</code>，然后再把他们合并起来（不合并的话就无法在那些本地弹幕播放器中与弹幕文件时间轴对应了）。</p>
+<p>不过作为一个搞技术的人，我自然是不可能去手动重命名 + 合并这些东西的，那太蠢了。这种无脑力气活就该让计算机来帮我们解决 ;)</p>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
+<li>合并分段的 flv 文件到一个文件；</li>
+<li>操作方便；</li>
+<li>速度尽可能地快。</li>
+</ul>
+<h3 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h3><p>因为图方便，我先是在 Google 上找了一些视频合并的软件，包括「格式工厂」、「硕鼠合并」、「极速 FLV 合并器」、「BoilsoftVideoJoiner」等。经试用，硕鼠等大部分过久没有更新的软件都无法正确识别上述的 FLV 格式，导致合并失败，具体原因没有去深究。而格式工厂等软件似乎必须对所有分段视频进行转码后再合并（有损合并），即使那些视频的尺寸、音视频编码均相同。这也导致这些软件合并速度屌慢，不予考虑。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>最后还是决定用 <code>ffmpeg</code> 进行视频合并操作。不得不说，<code>ffmpeg</code> 这个养活了绝大多数国产视频处理软件的开源项目在视频处理方面确实是一把好手，Google 一下就找到了解决方案。</p>
+<p>举个栗子，如果你有 这几个视频要合并：</p>
+<p><code>1.flv</code>、<code>2.flv</code>、<code>3.flv</code></p>
+<p>你只需要建立一个文本文件（e.g. <code>ff.txt</code>），在里面写上：</p>
+<pre><code># 相对路径、绝对路径均可
+file &#39;/path/to/1.flv&#39;
+file &#39;/path/to/2.flv&#39;
+file &#39;/path/to/3.flv&#39;
+</code></pre><p>然后在 shell 中运行：</p>
+<pre><code class="bash">ffmpeg -f concat -i /path/to/ff.txt -c copy output.mp4
+
+# 参数说明：
+# -i 设定输入文件
+# -f 设定编码器，这里使用 concat 无损合并
+# -c 流选择器，这里选择所有流
+# 最后可以选择任何可以封装的格式，不一定是 MP4
+</code></pre>
+<p>然后，就好了。合并速度差不多就是你硬盘的 I/O 速度。</p>
+<p>题外话，在 Windows 上，<code>ffmpeg</code> 可以用 <a href="https://chocolatey.org/" target="_blank" rel="external">Chocolatey</a> 这个包管理器安装。直接在终端中运行 <code>$ choco install ffmpeg</code>，下载安装修改环境变量一步到位，突出一个爽到。</p>
+<h3 id="写个脚本"><a href="#写个脚本" class="headerlink" title="写个脚本"></a>写个脚本</h3><p>知道了原理，就可以动手写个自动化脚本了。这里我选择了 Bash 脚本语言，毕竟就这么点功能，几行就 OK。用 Bash 的话开个终端复制进去就可以直接运行，比起其他语言也方便 <del>（我才不会说是因为我 Python 都快忘光了呢）</del>。</p>
+<p>另外需要注意的是，有些视频的分段超过了 10 个文件，如果直接遍历的话会变成 <code>[1, 10, 2, 3...]</code> 这样的顺序，导致最后拼接出来的视频也变成这样，所以需要给单位数的分段先添个 <code>0</code>，这样就会是 <code>[01, 02 ... 10]</code> 的正常顺序了。</p>
+<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="1bc29da99b238d68e87af874f898f435">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<p>这里是压缩过的单行版，方便复制：</p>
+<pre><code class="bash">cat /dev/null &gt; ff.txt;for i in *.blv; do seq_num=&quot;${i%.blv}&quot;;if [ &quot;${#seq_num}&quot; -eq 1 ];then mv &quot;$i&quot; &quot;0$seq_num.flv&quot;;else mv &quot;$i&quot; &quot;$seq_num.flv&quot;;fi;done;for i in *.flv; do echo &quot;file &#39;${i}&#39;&quot; &gt;&gt; &quot;ff.txt&quot;;done;ffmpeg -f concat -i ff.txt -c copy ../output.mp4;rm ff.txt;printf &quot;success&quot;
+</code></pre>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://ooo.0o0.ooo/2017/05/13/5916f998dd712.png" alt="终端执行"></p>
+<p><img src="https://img.blessing.studio/images/2017/05/13/QQ20170513201722.png" alt="输出结果"></p>
+<p>合并过程大概六七秒吧，一发入魂非常到位。</p>
+<p>将合并后的视频文件 <code>output.mp4</code> 和 <code>danmaku.xml</code> 弹幕文件一起拖入「弹弹 Play」或「BiliLocal」等本地弹幕播放器后就可以观看了，爽到。</p>
+<p><img src="https://img.blessing.studio/images/2017/05/13/QQ20170513202429.png" alt="弹幕播放器"></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a href="https://www.cnbeining.com/2014/05/dealing-with-cat-all-on-video-non-destructive-merge-mainly-h-264-problem/" target="_blank" rel="external">和猫打交道——所有关于视频无损合并（主要是 H.264）的问题</a></li>
+<li><a href="https://github.com/soimort/you-get/issues/324" target="_blank" rel="external">使用 ffmpeg concat 分离器来更有效地拼接视频</a></li>
+</ul>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-05-13</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Shell/">Shell</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">但为君故，沉吟至今。</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-popular">
+      <a href="/popular-posts" title="(=ﾟωﾟ)=" rel="section">
+        <i class="fa fa-star"></i>最受欢迎的文章
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <div class="like-widget">
+        <p class="like-title">Do you like me ?</p>
+        <div style="margin: -3px 0 -2px;">
+          <a class="like-vote">
+            <i id="heart" class="fa fa-heart-o"></i> <span id="count"><span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2017 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>

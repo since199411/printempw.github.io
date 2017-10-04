@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字。欢迎订阅 RSS (ﾟ∀ﾟ)ﾉ" />
+
+  <meta name="keywords" content="Laravel,PHP," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="虽然 Laravel 官方文档提供的添加 Artisan Command 的方法是直接修改 app/Console/Kernel.php 文件并在 $commands 属性中注册要添加的 Artisan 命名的类名（Laravel 服务容器会自动解析），但是，如果我们出现需要「动态（运行时）添加 Artisan 命令」的需求的话，就会很容易吃瘪。因为，Laravel 的文档（当然，我说的是官网上的">
+<meta name="keywords" content="Laravel,PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel 动态添加 Artisan 命令的最佳实践">
+<meta property="og:url" content="https://blessing.studio/best-practice-of-adding-artisan-commands-dynamically/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="虽然 Laravel 官方文档提供的添加 Artisan Command 的方法是直接修改 app/Console/Kernel.php 文件并在 $commands 属性中注册要添加的 Artisan 命名的类名（Laravel 服务容器会自动解析），但是，如果我们出现需要「动态（运行时）添加 Artisan 命令」的需求的话，就会很容易吃瘪。因为，Laravel 的文档（当然，我说的是官网上的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2017/07/30/597df1d0e5231.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/07/30/934f97e408371023.png">
+<meta property="og:updated_time" content="2017-07-30T10:45:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel 动态添加 Artisan 命令的最佳实践">
+<meta name="twitter:description" content="虽然 Laravel 官方文档提供的添加 Artisan Command 的方法是直接修改 app/Console/Kernel.php 文件并在 $commands 属性中注册要添加的 Artisan 命名的类名（Laravel 服务容器会自动解析），但是，如果我们出现需要「动态（运行时）添加 Artisan 命令」的需求的话，就会很容易吃瘪。因为，Laravel 的文档（当然，我说的是官网上的">
+<meta name="twitter:image" content="https://i.loli.net/2017/07/30/597df1d0e5231.png">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/best-practice-of-adding-artisan-commands-dynamically/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=PT+Serif">
+
+
+    <title>Laravel 动态添加 Artisan 命令的最佳实践 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/best-practice-of-adding-artisan-commands-dynamically/">Laravel 动态添加 Artisan 命令的最佳实践</a>
+    </h1>
+
+    
+
+
+
+
+    <div class="post-content">
+      <p>虽然 Laravel 官方文档提供的添加 Artisan Command 的方法是直接修改 <code>app/Console/Kernel.php</code> 文件并在 <code>$commands</code> 属性中注册要添加的 Artisan 命名的类名（Laravel 服务容器会自动解析），但是，如果我们出现需要「动态（运行时）添加 Artisan 命令」的需求的话，就会很容易吃瘪。因为，Laravel 的文档（当然，我说的是官网上的）几乎没有提到任何关于这方面的内容。</p>
+<p>这也是我为什么总是吐槽 Laravel 文档有些地方很烂的原因 —— 很多时候你为了实现一个文档里没提到的功能，需要去翻半天 Laravel 的框架源码才能找到解决方法（我博客的 <a href="https://blessing.studio/tag/Laravel/">Laravel 标签</a> 下已经有不少这样的踩坑文了）。虽然 Laravel 框架的源码很优雅，看着也不会难受，但是在一堆文件中跳来跳去寻找逻辑浪费脑细胞的行为还是能省则省吧 :(</p>
+<p>这次要实现的功能是在运行时动态加载自定义的 Artisan Command（更详细一些的需求就是在皮肤站的一个插件中注册 Artisan 命令，Laravel 插件系统的实现可以参考我之前的 <a href="https://blessing.studio/laravel-plugin-system-1/">另一篇文章</a>）。</p>
+<h2 id="TL-DR-太长不看"><a href="#TL-DR-太长不看" class="headerlink" title="TL;DR 太长不看"></a>TL;DR 太长不看</h2><p>总之先上干货，毕竟不是所有人都喜欢听我废话一大堆后才拿到解决方案的。</p>
+<p>Laravel 5.3 及以上：</p>
+<pre><code class="php">Artisan::starting(function ($artisan) {
+    // 传入类名字符串即可，会被服务容器自动解析
+    $artisan-&gt;resolve(&#39;Example\FooCommand&#39;);
+    // 批量添加
+    $artisan-&gt;resolveCommands([
+        &#39;Example\FuckCommand&#39;,
+        &#39;Example\ShitCommand&#39;
+    ]);
+    // 参数必须为 Symfony\Component\Console\Command\Command 的实例
+    // 继承自 Illuminate\Console\Command 的类实例也可以
+    $artisan-&gt;add($command);
+});
+</code></pre>
+<p>Laravel 5.2：</p>
+<pre><code class="php">Event::listen(&#39;Illuminate\Console\Events\ArtisanStarting&#39;, function ($event) {
+    // 其他用法同上
+    $event-&gt;artisan-&gt;resolve(&#39;Example\BarCommand&#39;);
+});
+</code></pre>
+<a id="more"></a>
+<p>Laravel 5.1：</p>
+<pre><code class="php">Event::listen(&#39;artisan.start&#39;, function ($event) {
+    // 其他用法同上
+    $event-&gt;artisan-&gt;resolve(&#39;Example\WtfCommand&#39;);
+});
+</code></pre>
+<p>接下来就是我摸索时尝试的步骤，写下来权当记录<del>水博文</del>，发了发牢骚，有兴趣的就继续看下去吧。</p>
+<h2 id="0x01-初步尝试"><a href="#0x01-初步尝试" class="headerlink" title="0x01 初步尝试"></a>0x01 初步尝试</h2><p>既然 Laravel 最常见的注册 Artisan 命令的方式是修改 <code>APP\Console\Kernel</code> 类中的 <code>$commands</code>，那么一般正常人都会从这边开始下手。可以看到，这个类是继承自 <code>Illuminate\Foundation\Console\Kernel</code> 类并覆写了 <code>$commands</code> 属性。让我们稍微看一下这个 <code>$commands</code> 属性用在哪了：</p>
+<pre><code class="php">/**
+ * Get the Artisan application instance.
+ *
+ * @return \Illuminate\Console\Application
+ */
+protected function getArtisan()
+{
+    if (is_null($this-&gt;artisan)) {
+        return $this-&gt;artisan = (new Artisan($this-&gt;app, $this-&gt;events, $this-&gt;app-&gt;version()))
+                            -&gt;resolveCommands($this-&gt;commands);
+    }
+
+    return $this-&gt;artisan;
+}
+</code></pre>
+<p>可以看到，这个方法用单例模式实例化了一个 Artisan（<code>Artisan</code> 是 <code>Illuminate\Console\Application</code> 的别名），其中最重要的是调用了 <code>Illuminate\Console\Application::resolveCommands</code> 这个方法，并且将那个注册了自定义 Artisan 命令的属性给传了进去。我们跳转到那个 <code>resolveCommands</code> 方法看一看……</p>
+<pre><code class="php">/**
+ * Add a command, resolving through the application.
+ *
+ * @param  string  $command
+ * @return \Symfony\Component\Console\Command\Command
+ */
+public function resolve($command)
+{
+    return $this-&gt;add($this-&gt;laravel-&gt;make($command));
+}
+
+/**
+ * Resolve an array of commands through the application.
+ *
+ * @param  array|mixed  $commands
+ * @return $this
+ */
+public function resolveCommands($commands)
+{
+    $commands = is_array($commands) ? $commands : func_get_args();
+
+    foreach ($commands as $command) {
+        $this-&gt;resolve($command);
+    }
+
+    return $this;
+}
+</code></pre>
+<p>代码条理很清晰，挨个儿把那些 <code>$commands</code> 中的元素给丢进 Laravel 服务容器里实例化之后，调用父类方法 <code>Symfony\Component\Console\Application::add</code> （是的，Laravel 用了很多很多 Symfony 的组件）添加到自身实例中，持引用以供之后的调用所需。</p>
+<p>继续翻看 <code>Illuminate\Foundation\Console\Kernel</code> 的源码，可以看到 Laravel 贴心地开放了一个 <code>registerCommand</code> 方法：</p>
+<pre><code class="php">/**
+ * Register the given command with the console application.
+ *
+ * @param  \Symfony\Component\Console\Command\Command  $command
+ * @return void
+ */
+public function registerCommand($command)
+{
+    $this-&gt;getArtisan()-&gt;add($command);
+}
+</code></pre>
+<p>那么我们要做的就是，在运行时中拿到 <code>Kernel</code> 的实例，并且通过调用 <code>registerCommand</code> 方法把我们的自定义 Artisan 命令也给加进去。那么我们要怎样才能拿到这个实例呢？</p>
+<p>相信对 Laravel 有所了解的各位都会想到 —— 服务容器。</p>
+<p>通过查阅 Laravel 命令行入口（根目录下的 <code>artisan</code> 文件）源码可以知道，Laravel 就是使用服务容器来实例化 <code>Kernel</code> 的：</p>
+<pre><code class="php">$kernel = $app-&gt;make(Illuminate\Contracts\Console\Kernel::class);
+</code></pre>
+<p>如果你有心的话，会发现 Laravel 框架的 Web 入口文件（<code>public/index.php</code>）和命令行入口文件中实例化 <code>Kernel</code> 的语句都是一样的，那么为什么通过 Web 访问时解析出来的是 <code>App\Http\Kernel</code> 的实例而通过命令行访问时解析出来的就是 <code>App\Console\Kernel</code> 的实例了呢？</p>
+<p>这里就涉及 Laravel 服务容器的一个强大的核心功能 —— 绑定接口至实现。因为这些实例都实现了相同的接口，所以我们可以使用相同的代码并且很方便地更换接口后的具体实现，这也是使用 IoC 容器的好处之一，有兴趣的多去了解了解吧 :)</p>
+<p>闲话休提，那么我们只要通过服务容器就可以拿到 <code>Kernel</code> 实例了（当然，如果你愿意，你也可以直接通过 <code>$GLOBAL[&#39;kernel&#39;]</code> 来访问全局作用域下定义的那个 <code>$kernel</code> 变量，效果都是一样的，但是太 tmd lowb 了，所以我不愿意用），看起来已经离成功了一大半呢！</p>
+<pre><code class="php">$kernel = app(&#39;Illuminate\Contracts\Console\Kernel&#39;);
+// 因为 registerCommand 方法只接受 Symfony\Component\Console\Command\Command 的实例作为参数
+$kernel-&gt;registerCommand(app(&#39;Example\FooCommand&#39;));
+</code></pre>
+<p>然后我们执行一下 <code>php artisan list</code>，就能看到我们的命令已经出现啦：</p>
+<pre><code>Laravel Framework version 5.2.45
+
+Usage:
+  command [options] [arguments]
+
+Available commands:
+  help           Displays help for a command
+  list           Lists commands
+  foo            Example command
+</code></pre><p>但是等等……Laravel 自带的那些 <code>make</code>、<code>migrate</code> 等命令哪里去了？我最开始出现这个问题的时候还以为是我太早把 <code>Kernel</code> 解析出来了，后来直接使用 <code>$GLOBALS[&#39;kernel&#39;]</code> 也是一样的问题时才认识到问题另有原因。仔细阅读源码后发现 Artisan 命令行在调用（<code>handle</code>、<code>call</code> 等方法）之前都会调用这样一个方法：</p>
+<pre><code class="php">$this-&gt;bootstrap();
+</code></pre>
+<style>.post-content table, .post-content code { word-wrap: break-word; }</style>
+
+<p>通过阅读源码可以知道这个 <code>bootstrap</code> 方法就是用来加载 Laravel 框架的基本组件的，包括 <code>Illuminate\Foundation\Providers\ArtisanServiceProvider</code> 这个服务提供者中提供的所有框架内置 Artisan 命令。好在这个方法是 public 的，所以我们只要在 <code>registerCommand</code> 之前调用一下这个方法就可以啦：</p>
+<pre><code class="php">$kernel = app(&#39;Illuminate\Contracts\Console\Kernel&#39;);
+$kernel-&gt;bootstrap();
+$kernel-&gt;registerCommand(app(&#39;Example\FooCommand&#39;));
+</code></pre>
+<p>如果你愿意，你甚至还可以直接使用 <code>Artisan</code> 这个 <code>Facade</code>，因为它就是指向 <code>Illuminate\Contracts\Console\Kernel</code> 的：</p>
+<pre><code class="php">Artisan::bootstrap();
+Artisan::registerCommand(app(&#39;InsaneProfileCache\Commands\Clean&#39;));
+</code></pre>
+<p>结果如下：</p>
+<p><img src="https://i.loli.net/2017/07/30/597df1d0e5231.png" alt="Screenshot"></p>
+<h2 id="0x02-继续尝试"><a href="#0x02-继续尝试" class="headerlink" title="0x02 继续尝试"></a>0x02 继续尝试</h2><p>虽然这样确实能够实现我们的需求，但是我觉得这样不行（话说我都不晓得嘻哈梗怎么突然就流行起来了，虽然确实蛮有意思的啦）。</p>
+<p><img src="https://img.blessing.studio/images/2017/07/30/934f97e408371023.png" alt="我觉得不行"></p>
+<p>又要自己取出 <code>Kernel</code> 实例，又要自己调用 <code>bootstrap</code> 方法，调用 <code>registerCommand</code> 方法之前还有自己先把 Command 实例化……这么繁琐，肯定不是运行时添加 Artisan 命令的最佳实践，所以我决定继续寻找更优解。</p>
+<p>虽然我们上面用的方法是取出 <code>Kernel</code> 实例并进行操作的，但是其实该方法里的操作也是基于 <code>getArtisan</code> 所获取的  <code>Illuminate\Console\Application</code> （👈这玩意在 Laravel 源码里经常被 as 为 <code>Artisan</code>）实例进行的。可惜的是这个方法是 <code>protected</code> 的，我们无法直接调用它，所以我们还是先去看这个类的源码吧：</p>
+<pre><code class="php">/**
+ * Create a new Artisan console application.
+ *
+ * @param  \Illuminate\Contracts\Container\Container  $laravel
+ * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+ * @param  string  $version
+ * @return void
+ */
+public function __construct(Container $laravel, Dispatcher $events, $version)
+{
+    parent::__construct(&#39;Laravel Framework&#39;, $version);
+
+    $this-&gt;laravel = $laravel;
+    $this-&gt;setAutoExit(false);
+    $this-&gt;setCatchExceptions(false);
+
+    $events-&gt;fire(new Events\ArtisanStarting($this));
+}
+</code></pre>
+<p>瞧我发现了什么？Artisan 在实例化之后会触发一个 <code>Illuminate\Console\Events\ArtisanStarting</code> 事件，并且把自身实例给传递过去。那么我们要做的就很简单了：监听该事件，拿到 Artisan 实例，调用 <code>resolve</code> 或 <code>resolveCommands</code> 方法来注册我们的 Artisan 命令即可。</p>
+<p>具体的方法在最上面给出了，我这里就不多说了。另外需要注意的是，Laravel 5.1 版本并没有 <code>ArtisanStarting</code> 这个事件，而是 <code>artisan.start</code>，不过原理都是一样的：</p>
+<pre><code class="php">$events-&gt;fire(&#39;artisan.start&#39;, [$this]);
+</code></pre>
+<p>另外，在 Laravel 5.3 及以上版本中，Artisan 还贴心地提供了 <code>Artisan::starting</code> 这个方法，和监听事件的效果差不多，不过是直接修改实例的 <code>$bootstrappers</code> 属性的，传递一个闭包进去即可，示例代码见最上方。</p>
+<h2 id="0x03-一些牢骚"><a href="#0x03-一些牢骚" class="headerlink" title="0x03 一些牢骚"></a>0x03 一些牢骚</h2><p>虽然只要看源码就能知道，Laravel 框架很多地方都预留了非常多的接口，让我们可以方便优雅地实现很多自定义功能，这也是我为什么喜欢这个框架的原因之一。</p>
+<p>但是……但是，你的文档就不能写好一点吗！哪怕提一下这些 API 也好啊！</p>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-07-30</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="best-practice-of-adding-artisan-commands-dynamically/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">但为君故，沉吟至今。</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-popular">
+      <a href="/popular-posts" title="(=ﾟωﾟ)=" rel="section">
+        <i class="fa fa-star"></i>最受欢迎的文章
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <div class="like-widget">
+        <p class="like-title">Do you like me ?</p>
+        <div style="margin: -3px 0 -2px;">
+          <a class="like-vote">
+            <i id="heart" class="fa fa-heart-o"></i> <span id="count"><span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2017 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>

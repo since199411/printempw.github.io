@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字。欢迎订阅 RSS (ﾟ∀ﾟ)ﾉ" />
+
+  <meta name="keywords" content="shadowsocks,ss-panel,教程," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta name="keywords" content="shadowsocks,ss-panel,教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可能是最好的 ss-panel 部署教程">
+<meta property="og:url" content="https://blessing.studio/build-shadowsocks-sharing-site-with-ss-panel/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218174949.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218180726.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218181624.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218183004.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/02/18/58a82108b285e.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218184049.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/02/18/58a825580f6c3.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218200629.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218203217.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/02/18/58a8420faee8c.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218213554.png">
+<meta property="og:updated_time" content="2017-02-18T13:58:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="可能是最好的 ss-panel 部署教程">
+<meta name="twitter:description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta name="twitter:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/build-shadowsocks-sharing-site-with-ss-panel/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.css.network/css?family=PT+Serif">
+
+
+    <title>可能是最好的 ss-panel 部署教程 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/build-shadowsocks-sharing-site-with-ss-panel/">可能是最好的 ss-panel 部署教程</a>
+    </h1>
+
+    
+
+
+  <div class="alert alert-warning expired-warning">
+    <p>本文最后更新于 227 天前（2017-02-18），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+    <div class="post-content">
+      <div class="alert alert-info"><p>为最好的 ss-panel 部署教程献上更新！<sup><a href="https://zh.wikipedia.org/zh/%E7%82%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8D%BB%E4%B8%8A%E7%A5%9D%E7%A6%8F%EF%BC%81" target="_blank" rel="external">NETA</a></sup><br>本文最后更新与 2017-02-08，更新内容详见博文底部。</p>
+</div>
+<p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
+<div class="alert alert-warning"><p>注意，本教程 <strong>不是</strong> 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配置，最好可以看得懂一些代码。</p>
+</div>
+<h2 id="一、安装并配置-ss-panel"><a href="#一、安装并配置-ss-panel" class="headerlink" title="一、安装并配置 ss-panel"></a>一、安装并配置 ss-panel</h2><p>本教程打算先配置好前端，当然你想要先配置后端可以拉下去。</p>
+<h3 id="0x01-环境要求"><a href="#0x01-环境要求" class="headerlink" title="0x01 环境要求"></a>0x01 环境要求</h3><p>作为前端的 ss-panel 是使用 PHP 编写的网页应用程序，它对你的主机运行环境有一定的要求。</p>
+<ul>
+<li>PHP 5.6 或更高</li>
+<li>MySQL 5.5 或更高</li>
+<li>支持 URL 重写的 Web 服务器（Nginx / Apache 均可）</li>
+</ul>
+<p>本教程所使用的环境是 NGINX + PHP 7 + MariaDB 10。当然其他主流 LNMP/LAMP 架构都可以（个人推荐使用 <a href="https://oneinstack.com/" target="_blank" rel="external">OneinStack</a>），确保你的站点可以访问后就继续吧。</p>
+<p>什么？你不知道上面说的那些东西是什么？那你为什么不问问<a href="https://www.google.com/" target="_blank" rel="external">神奇海螺</a>呢？</p>
+<hr>
+<p><strong>注意</strong>，接下来的操作大部分都是在【目标服务器】的 shell 中进行的。继续阅读之前，你需要通过 SSH 等工具连接至你的服务器，它一般长这样：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png" alt="shell example"></p>
+<p>如果你不晓得这是什么，神奇海螺……以下略。</p>
+<a id="more"></a>
+<h3 id="0x02-下载-ss-panel-源码"><a href="#0x02-下载-ss-panel-源码" class="headerlink" title="0x02 下载 ss-panel 源码"></a>0x02 下载 ss-panel 源码</h3><p>ss-panel 的 GitHub 项目地址：<a href="https://github.com/orvice/ss-panel" target="_blank" rel="external">orvice/ss-panel</a></p>
+<p>使用 <code>cd</code> 进入你站点的 web 根目录，从 git 上 clone 源码：</p>
+<pre><code class="bash"># 最前面的美元符号是命令提示符，别把这个给一起输进去了
+$ git clone https://github.com/orvice/ss-panel.git
+</code></pre>
+<p>当然你也可以下载源码再用 SCP/FPS 传到服务器上去。</p>
+<p>注意源码下载完成后的目录结构，<strong>请务必保证</strong> <code>/public</code> 目录在站点的根目录下。你可以使用 <code>$ mv ss-panel/{.,}* ./</code> 命令将子目录的内容移动到当前目录来。正确的目录结构应该类似于这样：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218174949.png" alt="directory structure example"></p>
+<h3 id="0x03-配置-ss-panel"><a href="#0x03-配置-ss-panel" class="headerlink" title="0x03 配置 ss-panel"></a>0x03 配置 ss-panel</h3><p>执行完上面的步骤之后，你兴高采烈地访问了你的站点，却得到了无情的 403 Forbidden —— 站点根目录下竟然没有 index.php！</p>
+<p>好吧其实没什么好奇怪的，大部分 MVC 框架都将 <code>index.php</code> 的入口文件放到其他子目录下了，这样做是为了保护根目录下的配置文件等可能会导致信息泄露的敏感文件无法被访问。</p>
+<p>接下来请按照 <a href="https://sspanel.xyz/docs/intro/installation#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE" target="_blank" rel="external">官方文档的说明</a> 正确配置你的 Web 服务器。正确配置后的 NGINX 配置应该长这样：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218180726.png" alt="nginx configuration sample"></p>
+<p>编辑完后重载你的 Web 服务器，然后访问你的站点……于是你得到了一个 500 Internal Server Error（如果你没开启 <code>display_errors</code> 可能看不到详细报错）：</p>
+<pre><code>Warning: require(/home/wwwroot/ss.prinzeugen.net/vendor/autoload.php): failed to open stream: No such file or directory in /home/wwwroot/ss.prinzeugen.net/bootstrap.php on line 18
+
+Fatal error: require(): Failed opening required &#39;/home/wwwroot/ss.prinzeugen.net/vendor/autoload.php&#39; (include_path=&#39;.:/usr/local/php/lib/php&#39;) in /home/wwwroot/ss.prinzeugen.net/bootstrap.php on line 18
+</code></pre><p>这是我们还未安装 ss-panel 所需的依赖库导致的。遂安装之：</p>
+<pre><code class="bash">$ curl -sS https://getcomposer.org/installer | php
+$ php composer.phar install
+</code></pre>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218181624.png" alt="installing dependencies with composer"></p>
+<p>等待它安装完毕后接着进行配置：</p>
+<pre><code class="bash">$ cp .env.example .env
+</code></pre>
+<p>将 <code>.env.example</code> 复制一份重命名为 <code>.env</code>，自行修改其中的数据库等信息。</p>
+<pre><code class="python"># database 数据库配置
+db_driver = &#39;mysql&#39;
+db_host = &#39;localhost&#39;
+db_port = &#39;3306&#39;
+db_database = &#39;ss-panel&#39;
+db_username = &#39;ss-panel&#39;
+db_password = &#39;secret&#39;
+db_charset = &#39;utf8&#39;
+db_collation = &#39;utf8_general_ci&#39;
+db_prefix = &#39;&#39;
+</code></pre>
+<p>数据库的创建我就不多说了，建站的一般都玩过数据库吧？将根目录下的 <code>db.sql</code> 导入到数据库中即可。其他配置自行修改。</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218183004.png" alt="importing tables"></p>
+<p>你还需要修改 <code>.env</code> 中的 <code>muKey</code> 字段，修改为任意字符串（最好只包含 ASCII 字符），下面配置后端的时候我们需要使用到这个 <code>muKey</code>：</p>
+<pre><code>muKey = &#39;api_key_just_for_test&#39;
+</code></pre><p>接下来，确保 <code>storage</code> 目录可写入（否则 Smarty 会报错）：</p>
+<pre><code>$ chown -R www storage
+</code></pre><p>现在访问你的站点，就可以看到 ss-panel 的首页啦：</p>
+<p><img src="https://ooo.0o0.ooo/2017/02/18/58a82108b285e.png" alt="landing page"></p>
+<h3 id="0x03-进入-ss-panel-后台"><a href="#0x03-进入-ss-panel-后台" class="headerlink" title="0x03 进入 ss-panel 后台"></a>0x03 进入 ss-panel 后台</h3><p>现在访问 <a href="http://your-domain/admin" target="_blank" rel="external">http://your-domain/admin</a> 就可以进入 ss-panel 后台了。</p>
+<p>不过细心的你可能会注意到，刚才导入数据表的时候，user 表并没有添加记录，那要咋进管理后台呢？当然你可以在数据库中手动加一条记录，不过作者已经提供了一个更方便的方式：</p>
+<pre><code class="bash">$ php xcat createAdmin
+</code></pre>
+<p>在站点根目录下运行，根据提示即可创建管理员账号 <del>（这个文字对齐真鸡儿 shi）</del>：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218184049.png" alt="creating admin account"></p>
+<p>使用刚才填写的邮箱和密码进入后台：</p>
+<p><img src="https://ooo.0o0.ooo/2017/02/18/58a825580f6c3.png" alt="ss-panel dashboard screenshot"></p>
+<p>到这里，作为前端的 ss-panel 就已经配置完成了。下面开始部署作为后端的 <code>shadowsocks-manyuser</code>。</p>
+<hr>
+<h2 id="二、部署并配置-shadowsocks-manyuser"><a href="#二、部署并配置-shadowsocks-manyuser" class="headerlink" title="二、部署并配置 shadowsocks-manyuser"></a>二、部署并配置 shadowsocks-manyuser</h2><p>在本篇教程中我们使用 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="external">fsgmhoward/shadowsocks-py-mu</a> 这个版本的后端。不同于这篇教程原先推荐的 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="external">@mengskysama</a> 版本，这个后端支持使用 MultiUser API 与前端的 ss-panel 进行用户信息交互。</p>
+<p>这个 API 的官方介绍在<a href="https://sspanel.xyz/docs/muapi" target="_blank" rel="external">这里</a>。简单来讲，如果你通过 API 来与前端通信，你就不需要修改后端的数据库配置了，并且可以使用「自定义加密」、「流量记录」等高级功能。下面我<strong>只介绍</strong>使用 API 的方法，另外那个比较麻烦的方法可以在<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#install-instruction-for-database-user" target="_blank" rel="external">这里</a>查看。</p>
+<h3 id="0x01-安装-shadowsocks-manyuser"><a href="#0x01-安装-shadowsocks-manyuser" class="headerlink" title="0x01 安装 shadowsocks-manyuser"></a>0x01 安装 shadowsocks-manyuser</h3><p>先将代码 clone 到本地：</p>
+<pre><code class="bash">$ git clone https://github.com/fsgmhoward/shadowsocks-py-mu.git
+</code></pre>
+<p>源码 clone 后，你的目录结构应该是这样的：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218200629.png" alt="directory structure ss mu"></p>
+<p>其中的 shadowsocks 子目录才是我们需要的，外面的是 <code>setup.py</code> 的相关文件。</p>
+<h3 id="0x02-配置-shadowsocks-manyuser"><a href="#0x02-配置-shadowsocks-manyuser" class="headerlink" title="0x02 配置 shadowsocks-manyuser"></a>0x02 配置 shadowsocks-manyuser</h3><p>进入 <code>shadowsocks</code> 目录，将 <code>config_example.py</code> 复制一份到 <code>config.py</code>：</p>
+<pre><code class="bash">$ cp config_example.py config.py
+</code></pre>
+<p>修改其中第 15 行和第 29~31 行的内容：</p>
+<pre><code># 启用 MultiUser API
+API_ENABLED = True
+
+# 就是在你的站点地址后面加个 /mu
+API_URL = &#39;http://ss.prinzeugen.net/mu&#39;
+# 还记得上面在 .env 中填写的 muKey 吗？把它填在这里
+API_PASS = &#39;api_key_just_for_test&#39;
+</code></pre><p>由于我们选择使用 Mu API 来与前端通信，所以我们<strong>不需要</strong>修改 <code>config.py</code> 中任何关于数据库的配置。</p>
+<p>好了，现在可以试着运行一下 <code>$ python servers.py</code> 了（注意，是 <strong>servers.py</strong> 而不是 <strong>server.py</strong>）。如果没错的话，应该可以看到这样的输出：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218203217.png" alt="running successfully"></p>
+<p>其中 <code>P[XXX]</code> 表示用户端口，<code>M[XXX]</code> 表示加密方式，<code>E[XXX]</code> 表示用户的邮箱地址。这些都会随着 ss-panel 前端中用户配置的改变而实时变化。</p>
+<h3 id="0x03-常见错误-FAQ"><a href="#0x03-常见错误-FAQ" class="headerlink" title="0x03 常见错误 FAQ"></a>0x03 常见错误 FAQ</h3><p>连接上 shadowsocks 试试看能不能翻墙了？<strong>八成不能</strong>。</p>
+<p>虽然你成功的把 servers.py 跑起来了，但还可能有各种神奇的错误阻止你翻出伟大的墙。</p>
+<p>首先国际惯例查看连接：</p>
+<pre><code class="bash">$ netstat -anp | grep 你的端口
+</code></pre>
+<p>正常的话，应该是这样的：</p>
+<pre><code class="no-highlight">Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:62111            0.0.0.0:*               LISTEN      32083/python
+tcp        0      0 162.233.122.111:62111    115.233.233.140:47177   TIME_WAIT   -            
+tcp        0      0 162.233.122.111:62111    115.233.233.140:47161   TIME_WAIT   -            
+tcp        0      0 162.233.122.111:62111    115.233.233.140:47160   TIME_WAIT   -            
+tcp        0      0 162.233.122.111:62111    115.233.233.140:47157   TIME_WAIT   -
+</code></pre>
+<p>如果没有来自你的 IP 的 TCP 连接的话，那八成就是防火墙的锅了，执行 iptables 放行你的端口：</p>
+<pre><code class="bash">$ iptables -I INPUT -p tcp -m tcp --dport 你的端口 -j ACCEPT
+$ iptables-save
+</code></pre>
+<blockquote>
+<p>ss-panel 新注册的用户所分配的端口均为其 id-1 的用户的端口号 + 1。比如说你把 admin 用户（uid 为1）的端口改为 12450（ss-panel 中不能改，去数据库改），那么后面注册的新用户的端口就会是 12451, 12452 这样递增的。</p>
+</blockquote>
+<p>所以如果你要开放注册，就要这样配置你的 iptables：</p>
+<pre><code class="bash"># 注意是半角冒号，意为允许 12450 及以上的端口
+# 也可以指定 12450:15550 这样的范围
+$ iptables -I INPUT -p tcp -m tcp --dport 12450: -j ACCEPT
+</code></pre>
+<p>现在再连接 shadowsocks 就应该可以看到 TCP 连接信息了。并且你可以在 ss-mu 后端的输出信息中看到详细的连接日志：</p>
+<p><img src="https://ooo.0o0.ooo/2017/02/18/58a8420faee8c.png" alt="connection log"></p>
+<p>日志格式的详细介绍在这里：<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#explanation-of-the-log-output" target="_blank" rel="external">Explanation of the log output</a>。</p>
+<h2 id="三、配置-ss-manyuser-守护进程以及多节点配置"><a href="#三、配置-ss-manyuser-守护进程以及多节点配置" class="headerlink" title="三、配置 ss-manyuser 守护进程以及多节点配置"></a>三、配置 ss-manyuser 守护进程以及多节点配置</h2><h3 id="0x01-使用-supervisor-监控-ss-manyuser-运行"><a href="#0x01-使用-supervisor-监控-ss-manyuser-运行" class="headerlink" title="0x01 使用 supervisor 监控 ss-manyuser 运行"></a>0x01 使用 supervisor 监控 ss-manyuser 运行</h3><p>如果你只是想让 ss-manyuser 在后台运行的话，可以参考我写的<a href="https://prinzeugen.net/linux-tips-how-to-run-program-on-the-background" target="_blank" rel="external">这篇文章</a>。</p>
+<p>安装 supervisor （用的是上面安装过的 pip）：</p>
+<pre><code class="bash"># 先安装 pip 包管理器
+$ sudo apt-get install python-pip  # For Debian/Ubuntu
+$ sudo yum install python-pip      # For CentOS
+
+$ pip install supervisor
+</code></pre>
+<p>创建 supervisor 配置文件</p>
+<pre><code class="bash"># 输出至 supervisor 的默认配置路径
+$ echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre>
+<p>运行 supervisor 服务</p>
+<pre><code class="bash">$ supervisord
+</code></pre>
+<p>配置 supervisor 以监控 ss-manyuser 运行</p>
+<pre><code class="bash">$ vim /etc/supervisord.conf
+</code></pre>
+<p>在文件尾部（当然也可以<a href="http://supervisord.org/configuration.html" target="_blank" rel="external">新建配置文件</a>，不过这样比较方便）添加如下内容并酌情修改：</p>
+<pre><code class="ini">[program:ss-manyuser]
+command = python /root/shadowsocks-py-mu/shadowsocks/servers.py
+user = root
+autostart = true
+autorestart = true
+</code></pre>
+<p>其中 command 里的目录请自行修改为你的 <code>servers.py</code> 所在的绝对路径。</p>
+<p>重启 supervisor 服务以加载配置</p>
+<pre><code class="bash">$ killall -HUP supervisord
+</code></pre>
+<p>查看 shadowsocks-manyuser 是否已经运行：</p>
+<pre><code class="bash">$ ps -ef | grep servers.py
+root       952   739  0 15:40 ?        00:00:00 python /root/shadowsocks-rm/shadowsocks/servers.py
+</code></pre>
+<p>可以通过以下命令管理 shadowsock-manyuser 的状态</p>
+<pre><code class="bash">$ supervisorctl {start|stop|restart} ss-manyuser
+</code></pre>
+<h3 id="0x02-ss-panel-的多节点配置"><a href="#0x02-ss-panel-的多节点配置" class="headerlink" title="0x02 ss-panel 的多节点配置"></a>0x02 ss-panel 的多节点配置</h3><p>其实多节点也没咋玄乎，说白了就是多个后端共用一个前端而已。而且我们的后端是使用 Mu API 来与前端进行交互的，所以多节点的配置就更简单了：只要把所有后端的 <code>config.py</code> 中的 <code>API_URL</code> 和 <code>API_PASS</code> 都改成一样即可（记得 <code>API_ENABLED = True</code>）。</p>
+<h2 id="四、写在后面"><a href="#四、写在后面" class="headerlink" title="四、写在后面"></a>四、写在后面</h2><p>其他可用的前端：</p>
+<ul>
+<li><a href="https://github.com/esdeathlove/ss-panel-v3-mod" target="_blank" rel="external">esdeathlove/ss-panel-v3-mod</a>，修改版的 ss-panel，修改了蛮多东西的，有兴趣的朋友可以去看看，他那边安装说明都写得很详细了；</li>
+<li><a href="https://github.com/sendya/shadowsocks-panel" target="_blank" rel="external">sendya/shadowsocks-panel</a>，另外一个全新的 ss-manyuser 前端，有用户等级、套餐、支付等功能，不支持使用 Mu API，部署教程在<a href="https://github.com/sendya/shadowsocks-panel/wiki/Shadowsocks-Panel-%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B" target="_blank" rel="external">这里</a>。</li>
+</ul>
+<p>其他可用的后端：</p>
+<ul>
+<li><a href="https://github.com/catpie/ss-go-mu" target="_blank" rel="external">shadowsocks-go mu</a>，Go 语言实现，性能比 Python 版好，也支持 Mu API；</li>
+<li><a href="https://github.com/shadowsocksr/shadowsocksr" target="_blank" rel="external">shadowsocksR manyuser</a> SSR 版本，见仁见智。</li>
+</ul>
+<p>这几个后端的部署方法大同小异，我这里就不再赘述了。</p>
+<h4 id="文章更新日志"><a href="#文章更新日志" class="headerlink" title="文章更新日志"></a>文章更新日志</h4><ul>
+<li>2017-02-18</li>
+<li>根据评论区推荐将后端由 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="external">mengskysama/shadowsocks-rm/manyuser</a> 切换至 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="external">fsgmhoward/shadowsocks-py-mu</a>；</li>
+<li>所有后端配置均改用 <a href="https://sspanel.xyz/docs/muapi/v2" target="_blank" rel="external">Mu API v2</a> 的方法；</li>
+<li>使用了更加严谨的文法。</li>
+</ul>
+<hr>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218213554.png" alt="success google"></p>
+<p>至此，你已完成对 ss-panel 的部署。叫上小伙伴们一起享受自由的互联网吧 ;)</p>
+<p>如果碰到什么奇怪的错误，请评论留言（带上你的日志）</p>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="build-shadowsocks-sharing-site-with-ss-panel/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>, <a class="tag-link" href="/tag/ss-panel/">ss-panel</a>, <a class="tag-link" href="/tag/教程/">教程</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">但为君故，沉吟至今。</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-popular">
+      <a href="/popular-posts" title="(=ﾟωﾟ)=" rel="section">
+        <i class="fa fa-star"></i>最受欢迎的文章
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <div class="like-widget">
+        <p class="like-title">Do you like me ?</p>
+        <div style="margin: -3px 0 -2px;">
+          <a class="like-vote">
+            <i id="heart" class="fa fa-heart-o"></i> <span id="count"><span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2017 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>
