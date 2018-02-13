@@ -170,6 +170,56 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/openwrt-shadowsocks/">OpenWRT 配置 shadowsocks</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>咱折腾了好久都是命令行的方法但是玩玩没想到用LuCI会这么简单 <img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="bq"></p>
+<p>首先修改opkg配置</p>
+<pre><code>dest root /
+dest ram /tmp
+lists_dir ext /var/opkg-lists
+option overlay_root /overlay
+src/gz r2_base http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/base
+src/gz r2_management http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/management
+src/gz r2_oldpackages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/oldpackages
+src/gz r2_packages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/packages
+src/gz r2_routing http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/routing
+src/gz r2_telephony http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/telephony
+
+arch all 100
+arch noarch 200
+arch ralink 300
+arch ramips_24kec 400
+</code></pre><p>刷新列表后，过滤器里过滤 <code>shadowsocks</code>：</p>
+          <a class="more-link" href="/openwrt-shadowsocks/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-06-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="openwrt-shadowsocks/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/OpenWRT/">OpenWRT</a>, <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/xiaomi-router-mini-openwrt/">给小米路由器 mini 刷 OpenWRT</a>
       </h2>
 
@@ -488,41 +538,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/android-first-line/">《第一行代码》读完一遍辣</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>但是只看一遍并没有什么卵用。</p>
-<p>虽然java和C艹是挺像的，但还是有很大不同的，类继承重写方法的 <em>@override </em>刚开始都不知道。</p>
-<p>不过窝还是庆幸有啃过一会C++ Primer，不然估计java一点都看不懂呢。啊呀手机打字真辛苦啊，看了那么多还只能等周末上机啊啊啊，只是看的话一点也不熟练嘛。总之再看一遍好了~</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-06-16</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="android-first-line/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Android/">Android</a>
     
   </span>
 </div>
