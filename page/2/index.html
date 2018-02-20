@@ -170,6 +170,45 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/get-hexo-posts-by-category-or-tag/">Hexo 获取特定分类或标签下的文章</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天在将博客主题移植至 Hexo 时，想要获取某个分类（Category）或者标签（Tag）下的所有文章（准确来说是想获得文章总数），在使用中文关键词搜索时，没有获得任何有用的信息（或许是我搜索姿势不对）。换用英文关键词「hexo category all posts」后搜索到了所需的信息，遂决定写一篇文章记录一下，希望能帮到后来人。</p>
+<h3 id="获取特定分类下的文章"><a href="#获取特定分类下的文章" class="headerlink" title="获取特定分类下的文章"></a>获取特定分类下的文章</h3><pre><code class="javascript">let result = site.categories.findOne({name: &#39;example&#39;})
+</code></pre>
+<p>同样的，你可以这样获取特定标签下的文章：</p>
+<pre><code class="javascript">site.tags.findOne({name: &#39;example&#39;})
+</code></pre>
+<p>其中 <code>name</code> 指定要查找分类的名称，返回值是一个 Warehouse（Hexo 作者开发的一个轻量级数据库） <code>Document</code> 对象。你可以直接使用 <code>result.length</code> 来获得该分类 / 标签下的文章总数。你也可以用 <code>forEach</code> 来遍历每篇文章：</p>
+          <a class="more-link" href="/get-hexo-posts-by-category-or-tag/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-06-15</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="get-hexo-posts-by-category-or-tag/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/lumen-dd-dump-with-prettier-result/">让 Lumen 的 dd() 与 dump() 函数输出更漂亮</a>
       </h2>
 
@@ -500,53 +539,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/RSS/">RSS</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/kemono-friends/">快乐的旅途与汇聚的奇迹：《动物朋友》推荐</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <div class="alert alert-info"><p>本文大概有 14k 字，我也不知道阅读完需要多少分钟。</p>
-</div>
-<p>不过为了方便各位看官的时间管理，我还是贴心地提供了 TL;DR（太长不看）简介：</p>
-<blockquote>
-<p>《动物朋友》超好看的！！！</p>
-</blockquote>
-<p>标题上的「推荐」二字只是为了念起来好听，实际上本文并无多少安利意图。</p>
-<p>谨以此文纪念《动物朋友》这部奇迹的作品。</p>
-<h2 id="一、什么是《动物朋友》？"><a href="#一、什么是《动物朋友》？" class="headerlink" title="一、什么是《动物朋友》？"></a>一、什么是《动物朋友》？</h2><p>『动物朋友』（けものフレンズ，又译作『兽娘动物园』、『萌兽之友』）是由けものフレンズプロジェクト发起的日本跨媒体制作企划，有手游、漫画、动画等衍生作品。本文主要讲述企划中于 2017 年 1 月开播的 TV 动画。</p>
-<blockquote>
-<p>个人比较喜欢「动物朋友」这个译名，看不惯的朋友们请自行脑内替换。以我奇妙的感性来看，「动物朋友」更能体现出「人」与「动物」之间的亲密关系，而不是像「兽娘动物园」那样有种淡淡的疏离感。毕竟这部作品讲述的是人类与各种动物们和睦相处、互相扶持渡过难关的温馨故事，而不是人类通过牢笼般的「动物园」观察动物们。</p>
-</blockquote>
-<p>这部动画讲述的是在疑似人类灭绝、看不到其他人类存在的巨大综合<del>美少女</del>动物园「Japari Park（ジャパリパーク）」里，动画里目前唯一的人类「小包（かばんちゃん）」在旅途中与各式各样因「砂之星（サンドスター）」的力量而拥有人类姿态的动物女孩 —— 通称「Friends（フレンズ）」们邂逅的故事。</p>
-<p><img src="https://img.blessing.studio/images/2017/04/04/anime-main.jpg" alt="动画主视觉图"></p>
-<p>……当然，如果仅仅是这样，我是不可能为它专门写一篇博客的，毕竟我这博客又不是什么 ACG 资讯站点 (・_ゝ・)</p>
-          <a class="more-link" href="/kemono-friends/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-04-23</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="kemono-friends/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>, <a class="tag-link" href="/tag/安利/">安利</a>
     
   </span>
 </div>

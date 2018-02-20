@@ -170,6 +170,58 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/splitting-a-subfolder-out-into-a-new-git-repository/">如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>这几天想要把一个 git 仓库中<strong>已经存在</strong>的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。</p>
+<p>另外，在 git 里这种掌控历史的感觉真棒（笑）</p>
+<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所有为 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">Blessing Skin</a> 这个程序编写的插件源码都放在一个 <a href="https://github.com/printempw/blessing-skin-plugins" target="_blank" rel="external">git repo</a> 中了，每个子文件夹中都是一个独立的插件（因为嫌麻烦所以一股脑给塞进一个仓库里了），并且对每个子文件夹中的代码的修改最后都是在这个统一仓库中提交的。该仓库差不多长这样：</p>
+<pre><code class="text">$ tree
+├── .git
+├── avatar-api
+├── config-generator
+├── register-email-validation
+│   ├── bootstrap.php
+│   ├── package.json
+│   └── src
+├── report-texture
+└── yggdrasil-api  &lt;---【我想把这个独立为一个新 repo】
+    ├── bootstrap.php
+    ├── package.json
+    ├── routes.php
+    └── src
+</code></pre>
+<p>而我现在后悔了，想把其中的某个子目录抽离出来，把它变成一个新的 git 仓库，并且保留我之前所有在「原仓库」中关于这个子目录的「所有提交历史」。</p>
+<p>其实这种需求还是挺常见的，举个栗子：</p>
+          <a class="more-link" href="/splitting-a-subfolder-out-into-a-new-git-repository/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-02-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="splitting-a-subfolder-out-into-a-new-git-repository/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Git/">Git</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/fix-windows-update-error-0x800703ed/">Windows Update 出现错误 0x800703ed 可能的解决方法</a>
       </h2>
 
@@ -537,45 +589,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Ghost/">Ghost</a>, <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/get-hexo-posts-by-category-or-tag/">Hexo 获取特定分类或标签下的文章</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天在将博客主题移植至 Hexo 时，想要获取某个分类（Category）或者标签（Tag）下的所有文章（准确来说是想获得文章总数），在使用中文关键词搜索时，没有获得任何有用的信息（或许是我搜索姿势不对）。换用英文关键词「hexo category all posts」后搜索到了所需的信息，遂决定写一篇文章记录一下，希望能帮到后来人。</p>
-<h3 id="获取特定分类下的文章"><a href="#获取特定分类下的文章" class="headerlink" title="获取特定分类下的文章"></a>获取特定分类下的文章</h3><pre><code class="javascript">let result = site.categories.findOne({name: &#39;example&#39;})
-</code></pre>
-<p>同样的，你可以这样获取特定标签下的文章：</p>
-<pre><code class="javascript">site.tags.findOne({name: &#39;example&#39;})
-</code></pre>
-<p>其中 <code>name</code> 指定要查找分类的名称，返回值是一个 Warehouse（Hexo 作者开发的一个轻量级数据库） <code>Document</code> 对象。你可以直接使用 <code>result.length</code> 来获得该分类 / 标签下的文章总数。你也可以用 <code>forEach</code> 来遍历每篇文章：</p>
-          <a class="more-link" href="/get-hexo-posts-by-category-or-tag/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-06-15</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="get-hexo-posts-by-category-or-tag/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
     
   </span>
 </div>

@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/implement-of-php-remote-downloading-with-progress-bar/">PHP 远程文件下载的进度条实现</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>PHP 实现远程下载文件到服务端并不是什么新鲜玩意，用 <code>cURL</code>、<code>file_get_contents</code>、<code>fopen</code> 等都能够轻易实现。</p>
+<p>但是这几种常规的方法都是在一个线程内下载文件，等文件下载完毕以后才能返回 HTTP 响应。所造成的结果就是用户在页面上点击「下载到服务器」按钮后，会看到空白页和加载的小菊花转啊转，转好久之后才出现「下载成功」的页面。</p>
+<p>当然，我上面所举例的情况是只使用纯粹的表单 POST 发送请求的情况。现在的话就算再不济也一般会使用 <code>ajax</code> 发送请求，然后在前台放个加载动画，等收到下载成功的回应之后再进行下一步操作。</p>
+<p><strong>但是！</strong>即使是去掉了恶心的且需要等待的空白页，这样做还是对用户体验有不好的影响。没有具体的下载进度，只有一个一直转呀转的菊花图，估计挺多用户都无法坐和放宽吧<del>（至少对于我来说是这样的）</del></p>
+<p>而我一个 PHP 项目的一键更新系统正好需要重构，遂研究了如何在 PHP 作为后端时显示远程文件下载进度条，并捣鼓出了个像样的解决方案，在这里分享一下。</p>
+          <a class="more-link" href="/implement-of-php-remote-downloading-with-progress-bar/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-11-26</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="implement-of-php-remote-downloading-with-progress-bar/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/tips-for-fixing-audio-jack/">耳机插头修理技巧</a>
       </h2>
 
@@ -513,41 +550,6 @@ if (!String.prototype.endsWith) {
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-certbot-to-issue-lets-encrypt-certificates/">使用 Certbot 自动签发 Let's Encrypt 证书</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今晚一回来就看到 Google Search Console 给我发了封邮件说我站点上的 SSL 证书过期了。我上去一看还真是，这张我从 Andy 手里买来的通配符证书已经在昨天失效了。</p>
-<p>唉，时间也是过得忒快啊，转眼间一年就过去了，我也成为了苦逼的高三党，真是惨得不行 ( ・_ゝ・)</p>
-<p>不过正好，我从 <a href="https://prinzeugen.net/lets-encrypt-now-we-are-trusted/" target="_blank" rel="external">之前就一直在关注</a> Let’s Encrypt 这个项目了，这次正好试试看它好不好用。</p>
-          <a class="more-link" href="/use-certbot-to-issue-lets-encrypt-certificates/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-09-19</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-certbot-to-issue-lets-encrypt-certificates/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/Let-s-Encrypt/">Let's Encrypt</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字，欢迎订阅。" />
+
+  <meta name="keywords" content="记录,Git," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="这几天想要把一个 git 仓库中已经存在的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。 另外，在 git 里这种掌控历史的感觉真棒（笑） 0x01 需求分析我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所">
+<meta name="keywords" content="记录,Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史">
+<meta property="og:url" content="https://blessing.studio/splitting-a-subfolder-out-into-a-new-git-repository/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="这几天想要把一个 git 仓库中已经存在的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。 另外，在 git 里这种掌控历史的感觉真棒（笑） 0x01 需求分析我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-20T11:23:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史">
+<meta name="twitter:description" content="这几天想要把一个 git 仓库中已经存在的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。 另外，在 git 里这种掌控历史的感觉真棒（笑） 0x01 需求分析我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/splitting-a-subfolder-out-into-a-new-git-repository/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=PT+Serif">
+
+
+    <title>如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/splitting-a-subfolder-out-into-a-new-git-repository/">如何将现有 git 仓库中的子目录分离为独立仓库并保留其提交历史</a>
+    </h1>
+
+    
+
+
+
+
+    <div class="post-content">
+      <p>这几天想要把一个 git 仓库中<strong>已经存在</strong>的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。</p>
+<p>另外，在 git 里这种掌控历史的感觉真棒（笑）</p>
+<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所有为 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">Blessing Skin</a> 这个程序编写的插件源码都放在一个 <a href="https://github.com/printempw/blessing-skin-plugins" target="_blank" rel="external">git repo</a> 中了，每个子文件夹中都是一个独立的插件（因为嫌麻烦所以一股脑给塞进一个仓库里了），并且对每个子文件夹中的代码的修改最后都是在这个统一仓库中提交的。该仓库差不多长这样：</p>
+<pre><code class="text">$ tree
+├── .git
+├── avatar-api
+├── config-generator
+├── register-email-validation
+│   ├── bootstrap.php
+│   ├── package.json
+│   └── src
+├── report-texture
+└── yggdrasil-api  &lt;---【我想把这个独立为一个新 repo】
+    ├── bootstrap.php
+    ├── package.json
+    ├── routes.php
+    └── src
+</code></pre>
+<p>而我现在后悔了，想把其中的某个子目录抽离出来，把它变成一个新的 git 仓库，并且保留我之前所有在「原仓库」中关于这个子目录的「所有提交历史」。</p>
+<p>其实这种需求还是挺常见的，举个栗子：</p>
+<a id="more"></a>
+<blockquote>
+<p>你原本在一个项目的 git 仓库中维护了一个通用的组件库，本来以为这只是个小玩意，谁曾想随着项目的开发这个库变得越来越大，代码变得越来越复杂，不再合适与主项目代码放在同一个 repo 里了。</p>
+<p>这时你想把这个库抽离出来变成一个单独的 git repo 然后在原 repo 中使用 submodule 之类的方法引用之的时候，却发现之前的 repo 中已经有太多关于这个库的提交记录了，而你又不想让这个新 repo 直接一个 Initial Commit 唐突地就变成现在这个样子……</p>
+</blockquote>
+<p>这就是这篇文章所希望解决的需求：</p>
+<p><strong>将现有 git repo 中的子目录独立为新 repo，并保留其相关的提交历史。</strong></p>
+<h2 id="0x02-文章描述约定"><a href="#0x02-文章描述约定" class="headerlink" title="0x02 文章描述约定"></a>0x02 文章描述约定</h2><p>为了方便描述后续操作，这里稍微约定一下文章中各占位符的含义。</p>
+<ul>
+<li>原来的仓库 👉 <code>&lt;big-repo&gt;</code></li>
+<li>想要分离出来的子文件夹名称 👉 <code>&lt;name-of-folder&gt;</code></li>
+<li>该子文件夹形成的新仓库 👉 <code>&lt;new-repo&gt;</code></li>
+</ul>
+<p>也就是说：我们有一个叫做 <code>big-repo</code> 的仓库，里面有不少子文件夹，我们想要把其中一个文件夹抽离出来，将其变成一个新的仓库 <code>new-repo</code>，并且保留之前在 <code>big-repo</code> 中所有关于这个子文件夹的所有 commit 记录。</p>
+<p>差不多就是这样。(・_ゝ・)</p>
+<h2 id="0x03-最简单的方法，使用-git-subtree"><a href="#0x03-最简单的方法，使用-git-subtree" class="headerlink" title="0x03 最简单的方法，使用 git subtree"></a>0x03 最简单的方法，使用 git subtree</h2><p>看来上述需求还是比较普遍的，自从 1.8 版本之后 git 就添加了 subtree 子命令，使用这个新命令我们可以很简单高效地解决这个问题。</p>
+<p>首先，进入 <code>big-repo</code> 所在的目录，运行：</p>
+<pre><code class="bash">git subtree split -P &lt;name-of-folder&gt; -b &lt;name-of-new-branch&gt;
+</code></pre>
+<p>运行后，git 会遍历原仓库中所有的历史提交，挑选出与指定路径相关的 commit 并存入名为 <code>name-of-new-branch</code> 的临时分支中。另外需要注意的是，<strong>如果你在使用 Windows</strong>，且该文件夹深度 &gt; 1，你必须使用斜杠 <code>/</code> 作为目录分隔符而不是默认的反斜杠 <code>\</code>。</p>
+<p>然后，我们创建一个新的 git 仓库：</p>
+<pre><code class="bash">mkdir &lt;new-repo&gt;
+git init
+</code></pre>
+<p>接着把原仓库中的临时分支拉到新仓库中：</p>
+<pre><code class="bash">git pull &lt;/path/to/big-repo&gt; &lt;name-of-new-branch&gt;
+</code></pre>
+<p>好了，完成。现在看看你的新仓库，是不是已经包含了原子文件夹中的所有文件和你之前在原仓库中的所有提交历史呢？</p>
+<h2 id="0x04-麻烦点的方法，使用-git-filter-branch"><a href="#0x04-麻烦点的方法，使用-git-filter-branch" class="headerlink" title="0x04 麻烦点的方法，使用 git filter-branch"></a>0x04 麻烦点的方法，使用 git filter-branch</h2><p>除了使用新添加的 <code>subtree</code> 命令，你也可以使用 git 传统的所谓核弹级大杀器命令 —— <code>filter-branch</code> 解决上述问题。</p>
+<p>首先，clone 一份原仓库并删掉原来的 remote：</p>
+<pre><code class="bash">git clone &lt;big-repo&gt; &lt;new-repo&gt;
+cd &lt;new-repo&gt;
+git remote rm origin
+</code></pre>
+<p>然后运行如下命令（这是重点）：</p>
+<pre><code class="bash">git filter-branch --tag-name-filter cat --prune-empty --subdirectory-filter &lt;name-of-folder&gt; -- --all
+</code></pre>
+<p>这条命令同样会过滤所有历史提交，只保留所有对指定子目录有影响的提交，并将该子目录设为该仓库的根目录。这里说明各下个参数的作用：</p>
+<ul>
+<li><code>--tag-name-filter</code> 该参数控制我们要如何处理旧的 tag，cat 即表示原样输出；</li>
+<li><code>--prune-empty</code> 删除空的（对子目录没有影响的）提交；</li>
+<li><code>--subdirectory-filter</code> 指定子目录路径；</li>
+<li><code>-- --all</code> 该参数必须跟在 <code>--</code> 后面，表示对所有分支进行操作。如果你只想保存当前分支，也可以不添加此参数。</li>
+</ul>
+<p>该命令执行完毕后就可以看到新仓库中已经变成子目录的内容了，且保留了关于该子目录所有的提交历史。不过只是这样的话新仓库中的 <code>.git</code> 目录里还是保存有不少无用的 object，我们需要将其清除掉以减小新仓库的体积（如果你用上面 <code>subtree</code> 的方法的话是不需要执行这一步的）。</p>
+<pre><code class="bash">git reset --hard
+git for-each-ref --format=&quot;%(refname)&quot; refs/original/ | xargs -n 1 git update-ref -d
+git reflog expire --expire=now --all
+git gc --aggressive --prune=now
+</code></pre>
+<p>这样，虽然麻烦点，我们也得到了和使用 0x03 方法后一样的新仓库。</p>
+<h2 id="0x05-清理原仓库"><a href="#0x05-清理原仓库" class="headerlink" title="0x05 清理原仓库"></a>0x05 清理原仓库</h2><p>既然所指定的子文件夹已经被分离为一个单独的 git repo 了，我们就可以放心地在原仓库中删除它了：</p>
+<pre><code class="bash">git rm -rf &lt;name-of-folder&gt;
+# 提交一下说明对应操作
+git commit -m &#39;Remove some fxxking shit&#39;
+# 删除刚才创建的临时分支
+# 后一种方法不需要执行这一步
+git branch -D &lt;name-of-new-branch&gt;
+</code></pre>
+<p>不过这种方法还是会在提交历史中保留所有关于这个子目录的内容，如果你想要把这个子目录从原 repo 中<strong>不留一丝痕迹地完全移除</strong>，那你需要 BFG Repo Cleaner 这样的工具或者使用 <code>filter-branch</code> 等命令。</p>
+<p>关于这个的具体操作我这里就不提了，网上一搜一大把。不过需要注意的是，这种做法并不值得提倡，请在你完全清楚自己在做什么的前提下使用此方法改写提交历史。</p>
+<h2 id="0x06-关联原仓库与新仓库"><a href="#0x06-关联原仓库与新仓库" class="headerlink" title="0x06 关联原仓库与新仓库"></a>0x06 关联原仓库与新仓库</h2><p>这一步是可选的。</p>
+<p>一般来说，在我们把原目录中的子文件夹分离成独立的 git 仓库后，总会希望再通过某种方法在原仓库中引用新仓库的代码。</p>
+<p>这里我们可以通过 <code>subtree</code> 或者 <code>submodule</code> 两种命令来实现，不过他们两个各有优点和缺点，所以请根据你自己的实际情况选择（不过现在一般都推荐使用 subtree，submodule 用起来实在是太他妈的蛋疼了）。</p>
+<p>当然，你也可以分离之后直接使用 npm、composer 之类的包管理器将新仓库作为一个依赖库引入进来，这也是完全没有问题的。</p>
+<h2 id="0x07-参考链接"><a href="#0x07-参考链接" class="headerlink" title="0x07 参考链接"></a>0x07 参考链接</h2><ul>
+<li><a href="https://stackoverflow.com/questions/359424/detach-move-subdirectory-into-separate-git-repository" target="_blank" rel="external">Detach (move) subdirectory into separate Git repository</a></li>
+<li><a href="https://stackoverflow.com/questions/17413493/create-a-submodule-repository-from-a-folder-and-keep-its-git-commit-history" target="_blank" rel="external">Create a submodule repository from a folder and keep its git commit history</a></li>
+<li><a href="http://graycarl.me/blog/make-a-directory-into-git-submodule" target="_blank" rel="external">如何把 GIT 仓库的子目录独立为子模块</a></li>
+</ul>
+<p>啊，另外，上次说好的 WSL 博文可能要鸽了抱歉咕咕咕。</p>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-02-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="splitting-a-subfolder-out-into-a-new-git-repository/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Git/">Git</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">半吊子全栈开发者的日常</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-popular">
+      <a href="/popular-posts" title="(=ﾟωﾟ)=" rel="section">
+        <i class="fa fa-star"></i>最受欢迎的文章
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <div class="like-widget">
+        <p class="like-title">Do you like me ?</p>
+        <div style="margin: -3px 0 -2px;">
+          <a class="like-vote">
+            <i id="heart" class="fa fa-heart-o"></i> <span id="count"><span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2018 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>

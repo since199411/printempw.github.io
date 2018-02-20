@@ -170,6 +170,50 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/chrome-hsts/">Chrome 下使支持 https 的站点默认使用 ssl 加密</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>有些网站比如 V2EX 支持 https 但是不强制使用 https，在 chrome 下我们可以通过设置使访问 V2EX 强制使用 https 。</p>
+<p>方法很简单，在 <a href="chrome://net-internals/#hsts" target="_blank" rel="external">chrome://net-internals/#hsts</a> 中添加需要使用 HSTS 的站点即可。</p>
+<blockquote>
+<p>HSTS (HTTP Strict Transport Security)，HTTP严格传输安全，是一套由互联网工程任务组发布的互联网安全策略机制。网站可以选择使用HSTS策略，来让浏览器强制使用HTTPS与网站进行通信，以减少会话劫持风险。</p>
+</blockquote>
+<p>HSTS 的作用是强制客户端（如浏览器）使用HTTPS与服务器创建连接。</p>
+<p>比如，<a href="https://example.com/" target="_blank" rel="external">https://example.com/</a> 的响应头含有 <span class="lang:default decode:true  crayon-inline ">Strict-Transport-Security: max-age=31536000; includeSubDomains</span> 。这意味着两点：</p>
+<ol>
+<li>在接下来的一年（即31536000秒）中，浏览器只要向 example.com 或其子域名发送 HTTP 请求时，必须采用 HTTPS 来发起连接。比如，用户点击超链接或在地址栏输入 <a href="http://www.example.com/" target="_blank" rel="external">http://www.example.com/</a> ，浏览器应当自动将 http 转写成 https，然后直接向 <a href="https://www.example.com/" target="_blank" rel="external">https://www.example.com/</a> 发送请求。</li>
+<li>在接下来的一年中，如果 example.com 服务器发送的 TLS 证书无效，用户不能忽略浏览器警告继续访问网站。</li>
+</ol>
+<p>以上内容引自 <a href="https://zh.wikipedia.org/wiki/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8" target="_blank" rel="external">中文维基百科</a>。</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-24</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="chrome-hsts/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Chrome/">Chrome</a>, <a class="tag-link" href="/tag/Https/">Https</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/ice-beer-saikou-da/">やっぱり夏とゆうならばアイスビールだよねえ～♥</a>
       </h2>
 
@@ -577,54 +621,6 @@ server_name_in_redirect off; ＃服务器名称重定向：关
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Https/">Https</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/byebye-mr-iwata/">岩田桑一路走好</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <h4 id="这是一个时代的结束。"><a href="#这是一个时代的结束。" class="headerlink" title="这是一个时代的结束。"></a>这是一个时代的结束。</h4><h4 id="たくさんの夢をくれた、ありがとうございました。"><a href="#たくさんの夢をくれた、ありがとうございました。" class="headerlink" title="たくさんの夢をくれた、ありがとうございました。"></a>たくさんの夢をくれた、ありがとうございました。</h4><p> さよなら、岩田さん。</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-13_15-45-10.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-13_15-45-10.jpg" alt="914913A4B7AD4E05FF8748C91B10F84B"></a></p>
-<hr>
-<p>北京时间7月13日消息，日本游戏巨头任天堂公司刚刚发布简短声明宣布，公司总裁岩田聪已于7月11日病逝，终年55岁。</p>
-<h3 id="声明内容如下："><a href="#声明内容如下：" class="headerlink" title="声明内容如下："></a>声明内容如下：</h3><p>“任天堂公司沉痛宣布，公司总裁岩田聪因胆管肿瘤增生，已于7月11日病逝。”</p>
-<p>岩田聪去年因病未能参加E3游戏大会，不久之后又进行了切除胆管肿瘤的手术。几个月后，岩田聪发布Twitter回应自己的健康状况称：“我现在状态很好”。</p>
-<p>岩田聪上世纪80年代加入任天堂，参与开发了气球大战（Balloon Fight）、地球冒险（EarthBound）等游戏。岩田聪在2000年升任公司主管，2002年接任山内溥成为任天堂第四任总裁。</p>
-<p>在岩田聪担任总裁期间，任天堂获得了巨大成功，如Wii和DS等游戏机产品，也经历过严重失败，比如GameCube和Wii U。</p>
-<p>无论是在游戏行业或在任天堂粉丝中，岩田聪都是一位非常受欢迎的人物。游戏玩家会非常想念他的。</p>
-<h3 id="岩田聪生平简介："><a href="#岩田聪生平简介：" class="headerlink" title="岩田聪生平简介："></a>岩田聪生平简介：</h3><p>1959年12月6日生于北海道札幌。岩田聪小时候就对游戏开发抱有浓厚兴趣，起初，他埋头于电脑程序的研究。中学期间，岩田聪的一大业余爱好便是在家里制作各种电子器件游戏。</p>
-<p>北海道札幌南高等学校毕业后，岩田聪进入了著名的东京工业大学(Tokyo Institute of Technology），主修”计算机科学”专业。</p>
-<p>岩田聪初入职场，便进了HAL Laboratory公司，1982年，岩田聪加盟HAL成为了一名专职员工。岩田聪所主创的Kirby’s Dreamland获得了巨大的成功，并逐渐成为业界瞩目的一颗新星。</p>
-<p>1992年HAL Laboratory陷入严重亏损。岩田聪受任于败军之际，被指定为公司的新任总裁。岩田聪在位七年（1993年至2000年），硬是凭借超凡的努力，将HAL从红字带回黑字，扭亏为盈！</p>
-<p>2000年，岩田聪从HAL转投NCL，被任命为任天堂企划部的主管，主要负责规划任天堂的全球战略。</p>
-<p>2002年5月，岩田聪(Satoru Iwata)就任任天堂公司的新任总裁,他也是继山内房次郎（Fusajiro Yamauchi）于1889年创办任天堂公司以来的第四任总裁。</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-22_14-38-15.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-22_14-38-15.jpg" alt="51408506_p0_master1200"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-14</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="byebye-mr-iwata/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>
     
   </span>
 </div>
