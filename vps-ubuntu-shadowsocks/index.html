@@ -179,14 +179,20 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 903 天前（2015-08-31），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 904 天前（2015-08-31），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 904 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
-      <p><strong>UPDATE：</strong>窝基于此教程的内容写了个一一键安装脚本，具体可以<a href="https://prinzeugen.net/shadowsocks-install-shell/" target="_blank" rel="external">看这里</a>。</p>
+      <p><strong>UPDATE：</strong>窝基于此教程的内容写了个一一键安装脚本，具体可以<a href="https://prinzeugen.net/shadowsocks-install-shell/" target="_blank" rel="noopener">看这里</a>。</p>
 <hr>
 <p>就在刚才咱买的ss服务过期了，vps又买到了，自然是在vps上搭个ss来爬墙 <img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></p>
 <h3 id="ssh-上-vps，apt-get"><a href="#ssh-上-vps，apt-get" class="headerlink" title="ssh 上 vps，apt-get"></a>ssh 上 vps，apt-get</h3><pre><code>apt-get install python-pip m2crypto supervisor pip install shadowsocks
@@ -201,7 +207,7 @@
     &quot;method&quot;:&quot;aes-256-cfb&quot;
 }
 </code></pre><a id="more"></a>
-<h3 id="编辑-etc-supervisor-conf-d-shadowsocks-conf"><a href="#编辑-etc-supervisor-conf-d-shadowsocks-conf" class="headerlink" title="编辑 `/etc/supervisor/conf.d/shadowsocks.conf"></a>编辑 <code>`/etc/supervisor/conf.d/shadowsocks.conf</code></h3><pre><code>[program:shadowsocks]
+<h3 id="编辑-etc-supervisor-conf-d-shadowsocks-conf"><a href="#编辑-etc-supervisor-conf-d-shadowsocks-conf" class="headerlink" title="编辑 /etc/supervisor/conf.d/shadowsocks.conf`"></a>编辑 <code></code>/etc/supervisor/conf.d/shadowsocks.conf`</h3><pre><code>[program:shadowsocks]
 command=ssserver -c /etc/shadowsocks.json
 autorestart=true
 user=nobody
@@ -215,7 +221,7 @@ iptables-save
 </code></pre><p>至此 shadowsocks 部署完成。</p>
 <p><img src="https://img.blessing.studio/images/2015/07/2015-07-08_10-03-53.png" alt="20150708175558"></p>
 <hr>
-<p>本文自 <a href="http://www.chedanji.com/ubuntu-shadowsocks/" target="_blank" rel="external">http://www.chedanji.com/ubuntu-shadowsocks/</a> ，略有修改</p>
+<p>本文自 <a href="http://www.chedanji.com/ubuntu-shadowsocks/" target="_blank" rel="noopener">http://www.chedanji.com/ubuntu-shadowsocks/</a> ，略有修改</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

@@ -178,18 +178,26 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 504 天前（2016-10-04），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 505 天前（2016-10-04），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 505 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
-      <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="external">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
+      <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="noopener">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
 <p>我到现在也还是搞不懂那到底是正常流量还是 CC 攻击。。难道正常用户会每秒请求 20+ 次 Json Profile 吗？又不是天天退/进游戏玩 <img src="https://moepic.org/images/2016/10/02/c066215f622f0bf2fe7ee9625955e343.jpg" alt="emotion"></p>
-<p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="external">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="external">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
+<p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="noopener">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="noopener">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
 <p>正好最近国庆放假（虽然只有四天），我就抽了点时间出来研究了一下如何给我的皮肤站套一层缓存 ( ・_ゝ・)</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>网上关于页面缓存的解决方案大致有 <code>Squid</code>、<code>Varnish</code>、<code>Nginx</code> 几种，他们之间各有优劣，有兴趣的可以自行搜索。我因为需求不大所以就选用了 Nginx 来缓存动态内容。</p>
+<a id="more"></a>
+<hr>
+<p>网上关于页面缓存的解决方案大致有 <code>Squid</code>、<code>Varnish</code>、<code>Nginx</code> 几种，他们之间各有优劣，有兴趣的可以自行搜索。我因为需求不大所以就选用了 Nginx 来缓存动态内容。</p>
 <p>虽然说 Nginx 同时还可以做到负载均衡之类的事，但由于我这穷屌只有一台机子，所以只好普通地做成这样的架构：</p>
 <pre><code>[用户] --- 访问 ---&gt; [skin.prinzeugen.net] 
   ^                           |
@@ -205,16 +213,16 @@
 </code></pre><p>这样的话，虽然还是 Layer7 的缓存处理，但是由于绕过了坑爹的 Laravel，站点的性能还是可以有大幅提高的。</p>
 <p>具体如何配置 Nginx 的缓存，可以参考以下的链接，我就不多赘述了：</p>
 <ul>
-<li><a href="https://linux.cn/article-5945-1.html" target="_blank" rel="external">NGINX 缓存使用官方指南</a> &lt;- 推荐</li>
-<li><a href="http://cui.zhbor.com/article/29.html" target="_blank" rel="external">Nginx 反向代理替代 Squid 做 Web 缓存服务器</a></li>
+<li><a href="https://linux.cn/article-5945-1.html" target="_blank" rel="noopener">NGINX 缓存使用官方指南</a> &lt;- 推荐</li>
+<li><a href="http://cui.zhbor.com/article/29.html" target="_blank" rel="noopener">Nginx 反向代理替代 Squid 做 Web 缓存服务器</a></li>
 </ul>
 <hr>
 <p>我下面说一下使用 Nginx 反代缓存时可能遇到的坑：</p>
 <h4 id="一、Cache-Control-HTTP-头"><a href="#一、Cache-Control-HTTP-头" class="headerlink" title="一、Cache-Control HTTP 头"></a>一、<code>Cache-Control</code> HTTP 头</h4><p>你需要保证你页面的 <code>Cache-Control</code> 头部不为 <code>no-cache</code>，不然的话 Nginx <strong>默认</strong>是不会缓存的。</p>
 <h4 id="二、Set-Cookie-HTTP-头"><a href="#二、Set-Cookie-HTTP-头" class="headerlink" title="二、Set-Cookie HTTP 头"></a>二、<code>Set-Cookie</code> HTTP 头</h4><p>同样的，需要缓存的页面响应头中不得含有 <code>Set-Cookie</code> 字段，否则 Nginx 也是<strong>默认</strong>不缓存的。然而坑爹的是，Laravel 5.2 默认会给 <code>routes.php</code> 中所有的路由套上一个 <code>StartSession</code> 中间件，并且给响应头附上 <code>Set-Cookie</code>。</p>
-<p>在 Laravel 5.3 以后路由文件可以模块化了所以没问题，但是对于由于种种原因无法使用 5.3 的用户（我他喵的还得照顾广大虚拟主机用户们），就要自己解决路由模块化问题了，具体可以参考 <a href="https://laravel-china.org/topics/2484#reply2" target="_blank" rel="external">这里</a> 和 <a href="https://github.com/printempw/blessing-skin-server/commit/8944be0e2a7ad89591e86f57756450043612d462" target="_blank" rel="external">这里</a>。</p>
+<p>在 Laravel 5.3 以后路由文件可以模块化了所以没问题，但是对于由于种种原因无法使用 5.3 的用户（我他喵的还得照顾广大虚拟主机用户们），就要自己解决路由模块化问题了，具体可以参考 <a href="https://laravel-china.org/topics/2484#reply2" target="_blank" rel="noopener">这里</a> 和 <a href="https://github.com/printempw/blessing-skin-server/commit/8944be0e2a7ad89591e86f57756450043612d462" target="_blank" rel="noopener">这里</a>。</p>
 <h4 id="三、反代可能会造成的后端协议判断错误"><a href="#三、反代可能会造成的后端协议判断错误" class="headerlink" title="三、反代可能会造成的后端协议判断错误"></a>三、反代可能会造成的后端协议判断错误</h4><p>可以看到我们是把所有请求转发到 <code>http://localhost:8080</code> 处理了，但如果你的后端是用请求的 URL 来判断 http/https 的时候就要注意了（譬如坑爹的 Laravel <code>UrlGenerater</code> 和 Symfony 的 <code>Request::isSecure</code>）。此时的解决方法大致两类，修改后端或者把 <code>proxy_pass</code> 中的地址改成 <code>https</code>（自己解决证书问题）。</p>
-<p>什么？你说设置 <code>X-Forwarded-Proto</code>？抱歉，Laravel 所使用的 Symfony Request 并不鸟你，你还需要把你的代理 IP <a href="https://github.com/symfony/http-foundation/blob/master/Request.php#L1177" target="_blank" rel="external">用一个静态方法传过去</a> 它才会判断这个头哟~</p>
+<p>什么？你说设置 <code>X-Forwarded-Proto</code>？抱歉，Laravel 所使用的 Symfony Request 并不鸟你，你还需要把你的代理 IP <a href="https://github.com/symfony/http-foundation/blob/master/Request.php#L1177" target="_blank" rel="noopener">用一个静态方法传过去</a> 它才会判断这个头哟~</p>
 <hr>
 <p>如果一切配置无误，你就可以看到你的内容已经被 Nginx 缓存下来啦：</p>
 <p><img src="https://img.prinzeugen.net/image.php?di=M8Z0" alt="Screenshot"></p>

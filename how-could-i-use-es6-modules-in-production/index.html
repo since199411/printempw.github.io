@@ -184,15 +184,17 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 229 天前（2017-07-06），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 230 天前（2017-07-06），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
     <div class="post-content">
       <p>Python3 已经发布了九年了，Python 社区却还在用 Python 2.7；而 JavaScript 社区正好相反，大家都已经开始把还没有实现的语言特性用到生产环境中了 (´_ゝ `)</p>
-<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="external">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
+<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="noopener">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
 <h2 id="JavaScript-模块化现状"><a href="#JavaScript-模块化现状" class="headerlink" title="JavaScript 模块化现状"></a>JavaScript 模块化现状</h2><p>随着 JavaScript 越来越广泛的应用，朝着单页应用（SPA）方向发展的网页与代码量的愈发庞大，社区需要一种更好的代码组织形式，这就是模块化：将你的一大坨代码分装为多个不同的模块。</p>
 <p>但是在 ES6 标准出台之前，由于标准的缺失（连 CSS 都有 <code>@import</code>，JavaScript 却连个毛线都没），这几年里 JavaScript 社区里冒出了各种各样的模块化解决方案<del>（群魔乱舞）</del>，懵到一种极致。主要的几种模块化方案举例如下：</p>
 <h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>主要用于服务端，模块同步加载（也因此不适合在浏览器中运行，不过也有 <code>Browserify</code> 之类的转换工具），Node.js 的模块化实现就是基于 CommonJS 规范的，通常用法像这样：</p>
@@ -231,7 +233,7 @@ define(&#39;bullshit&#39;, [&#39;dep1&#39;, &#39;dep2&#39;], (dep1, dep2) =&gt; 
 <h3 id="ES6-Module🚀"><a href="#ES6-Module🚀" class="headerlink" title="ES6 Module🚀"></a>ES6 Module🚀</h3><p>在 ES6 模块标准出来之前，主要的模块化方案就是上述 CommonJS 和 AMD 两种了，一种用于服务器，一种用于浏览器。其他的规范还有：</p>
 <ul>
 <li>最古老的 IIFE（立即执行函数）；</li>
-<li>CMD（Common Module Definition，和 AMD 挺像的，可以参考：<a href="https://github.com/seajs/seajs/issues/277" target="_blank" rel="external">与 RequireJS 的异同</a>）；</li>
+<li>CMD（Common Module Definition，和 AMD 挺像的，可以参考：<a href="https://github.com/seajs/seajs/issues/277" target="_blank" rel="noopener">与 RequireJS 的异同</a>）；</li>
 <li>UMD（Universal Module Definition，兼容 AMD 和 CommonJS 的语法糖规范）；</li>
 </ul>
 <p>等等，这里就按下不表。</p>
@@ -253,7 +255,7 @@ export {
 <ul>
 <li>这是 ECMAScript 官方标准（嗯）；</li>
 <li>语义化的语法，清晰明了，同时支持服务器端和浏览器；</li>
-<li>静态 / 编译时加载（与上面俩规范的动态 / 运行时加载不同），可以做静态优化（比如下面提到的 tree-shaking），加载效率高（不过相应地灵活性也降低了，期待 <a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="external"><code>import()</code></a> 也成为规范）；</li>
+<li>静态 / 编译时加载（与上面俩规范的动态 / 运行时加载不同），可以做静态优化（比如下面提到的 tree-shaking），加载效率高（不过相应地灵活性也降低了，期待 <a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener"><code>import()</code></a> 也成为规范）；</li>
 <li>输出的是值的引用，可动态修改；</li>
 </ul>
 <p>嗯，你说的都对，那我tm到底要怎样才能在生产环境中用上 ES6 的模块化特性呢？</p>
@@ -287,7 +289,7 @@ export {
 # 最后那俩是用来配合 gulp stream 的
 $ yarn add --dev babel-cli babel-preset-env babelify browserify gulp vinyl-buffer vinyl-source-stream
 </code></pre>
-<p>这里我们用 Gulp 作为任务管理工具来实现自动化（什么，都 7012 年了你还不知道 Gulp？那为什么不去问问<a href="https://www.google.com/" target="_blank" rel="external">神奇海螺</a>呢？），<code>gulpfile.js</code> 内容如下：</p>
+<p>这里我们用 Gulp 作为任务管理工具来实现自动化（什么，都 7012 年了你还不知道 Gulp？那为什么不去问问<a href="https://www.google.com/" target="_blank" rel="noopener">神奇海螺</a>呢？），<code>gulpfile.js</code> 内容如下：</p>
 <pre><code class="javascript">var gulp       = require(&#39;gulp&#39;),
     browserify = require(&#39;browserify&#39;),
     babelify   = require(&#39;babelify&#39;),
@@ -394,15 +396,15 @@ bundle.js  2.86 kB       0  [emitted]  main
 <p>而且 Webpack 自带的 tree-shaking 只是把没用到的模块从 <code>export</code> 中去掉而已，之后还要再接一个 UglifyJS 之类的工具把冗余代码干掉才能达到 Rollup.js 那样的效果。</p>
 </div>
 <p>Webpack 也可以配合 Gulp 工作流让开发更嗨皮，有兴趣的可自行研究。目前来看，这三种方案中，我本人更倾向于使用 Webpack，不知道诸君会选用什么呢？</p>
-<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>前几天我在捣鼓 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">printempw/blessing-skin-server</a> 那坨 shi 一样 JavaScript 代码的模块化的时候，打算试着使用一下 ES6 标准中的模块化方案，并找了 Google 大老师问 ES6 模块转译打包相关的资源，找了半天，几乎没有什么像样的中文资源。全是讲 ES6 模块是啥、有多好、为什么要用之类的，没几个是讲到底该怎么在生产环境中使用的（也有可能是我搜索姿势不对），说不出话。遂撰此文，希望能帮到后来人。</p>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>前几天我在捣鼓 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="noopener">printempw/blessing-skin-server</a> 那坨 shi 一样 JavaScript 代码的模块化的时候，打算试着使用一下 ES6 标准中的模块化方案，并找了 Google 大老师问 ES6 模块转译打包相关的资源，找了半天，几乎没有什么像样的中文资源。全是讲 ES6 模块是啥、有多好、为什么要用之类的，没几个是讲到底该怎么在生产环境中使用的（也有可能是我搜索姿势不对），说不出话。遂撰此文，希望能帮到后来人。</p>
 <p>且本人水平有限，如果文中有什么错误，欢迎在下方评论区批评指出。</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
 <li><a href="Getting import/export working ES6 style using Browserify + Babelify + Gulp = -5hrs of life">Getting import/export working ES6 style using Browserify + Babelify + Gulp = -5hrs of life</a></li>
-<li><a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js • guide</a></li>
-<li><a href="http://brooch.me/2017/06/30/webpack-tree-shaking/" target="_blank" rel="external">使用 webpack 2 tree-shaking 机制时需要注意的细节</a></li>
-<li><a href="http://xwjgo.github.io/2016/09/23/webpack+babel%E5%AE%9E%E7%8E%B0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8es6%E6%A8%A1%E5%9D%97%E8%AF%AD%E6%B3%95/" target="_blank" rel="external">webpack+babel 加载 es6 模块</a></li>
-<li><a href="https://webpack.js.org/configuration/" target="_blank" rel="external">Documentation - webpack</a></li>
-<li><a href="https://www.zhihu.com/question/41922432" target="_blank" rel="external">如何评价 Webpack 2 新引入的 Tree-shaking 代码优化技术？</a></li>
+<li><a href="https://rollupjs.org/" target="_blank" rel="noopener">rollup.js • guide</a></li>
+<li><a href="http://brooch.me/2017/06/30/webpack-tree-shaking/" target="_blank" rel="noopener">使用 webpack 2 tree-shaking 机制时需要注意的细节</a></li>
+<li><a href="http://xwjgo.github.io/2016/09/23/webpack+babel%E5%AE%9E%E7%8E%B0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8es6%E6%A8%A1%E5%9D%97%E8%AF%AD%E6%B3%95/" target="_blank" rel="noopener">webpack+babel 加载 es6 模块</a></li>
+<li><a href="https://webpack.js.org/configuration/" target="_blank" rel="noopener">Documentation - webpack</a></li>
+<li><a href="https://www.zhihu.com/question/41922432" target="_blank" rel="noopener">如何评价 Webpack 2 新引入的 Tree-shaking 代码优化技术？</a></li>
 </ul>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

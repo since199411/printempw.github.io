@@ -179,8 +179,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 674 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 675 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 675 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -195,7 +201,7 @@
 <a id="more"></a>
 <script src="https://work.prinzeugen.net/gist/printempw/d1af9fefbcbd89996273.js"></script>
 
-<p><code>__autoload</code> 是 PHP 的魔术方法，具体请查看<a href="http://php.net/manual/zh/function.autoload.php" target="_blank" rel="external">官方文档</a>。</p>
+<p><code>__autoload</code> 是 PHP 的魔术方法，具体请查看<a href="http://php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">官方文档</a>。</p>
 <p>使用了命名空间之后，<code>__autoload</code> 函数得到的 <code>$classname</code> 参数值（即需要被加载的类名）就会类似于这样 <code>Database\AuthmeDatabase</code>，而我们要做的，就是把用 <code>\</code> 组织的带命名空间类名转换为 <strong>目录 + 类名 + 文件后缀</strong>。</p>
 <pre><code>$filename = $include_dir.str_replace(&#39;\\&#39;, DIRECTORY_SEPARATOR, $classname) . &#39;.class.php&#39;;
 </code></pre><p>这样就可以得到文件的绝对路径了：</p>
@@ -205,9 +211,9 @@
 <p>神清气爽<br><img src="https://img.prinzeugen.net/image.php?di=8WUY" alt=""></p>
 <hr>
 <p>参考链接：</p>
-<p><a href="http://php.net/manual/zh/language.namespaces.php" target="_blank" rel="external">PHP: 命名空间 - Manual</a></p>
-<p><a href="http://yansu.org/2014/01/16/php-namespace-and-autoload.html" target="_blank" rel="external">PHP命名空间及自动加载</a></p>
-<p><a href="https://www.zybuluo.com/phper/note/66447" target="_blank" rel="external">PHP中的自动加载</a></p>
+<p><a href="http://php.net/manual/zh/language.namespaces.php" target="_blank" rel="noopener">PHP: 命名空间 - Manual</a></p>
+<p><a href="http://yansu.org/2014/01/16/php-namespace-and-autoload.html" target="_blank" rel="noopener">PHP命名空间及自动加载</a></p>
+<p><a href="https://www.zybuluo.com/phper/note/66447" target="_blank" rel="noopener">PHP中的自动加载</a></p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

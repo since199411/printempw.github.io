@@ -177,7 +177,7 @@
         
           <p>今晚一回来就看到 Google Search Console 给我发了封邮件说我站点上的 SSL 证书过期了。我上去一看还真是，这张我从 Andy 手里买来的通配符证书已经在昨天失效了。</p>
 <p>唉，时间也是过得忒快啊，转眼间一年就过去了，我也成为了苦逼的高三党，真是惨得不行 ( ・_ゝ・)</p>
-<p>不过正好，我从 <a href="https://prinzeugen.net/lets-encrypt-now-we-are-trusted/" target="_blank" rel="external">之前就一直在关注</a> Let’s Encrypt 这个项目了，这次正好试试看它好不好用。</p>
+<p>不过正好，我从 <a href="https://prinzeugen.net/lets-encrypt-now-we-are-trusted/" target="_blank" rel="noopener">之前就一直在关注</a> Let’s Encrypt 这个项目了，这次正好试试看它好不好用。</p>
           <a class="more-link" href="/use-certbot-to-issue-lets-encrypt-certificates/#more">阅读全文&rarr;</a>
         
       </div>
@@ -216,7 +216,7 @@
 <p>Boxy Theme</p>
 <p>The most hackable theme for Sublime Text 3</p>
 </blockquote>
-<p>这个主题在 Package Control 上的页面在<a href="https://packagecontrol.io/packages/Boxy%20Theme" target="_blank" rel="external">这里</a>，这是一个非常强大的主题，你可以去看看它的介绍视频。</p>
+<p>这个主题在 Package Control 上的页面在<a href="https://packagecontrol.io/packages/Boxy%20Theme" target="_blank" rel="noopener">这里</a>，这是一个非常强大的主题，你可以去看看它的介绍视频。</p>
 <p>Boxy 提供了很多自定义选项，因此你甚至可以把 Sublime 打扮成 Atom、VS Code，甚至是同为 ST 主题的 Predawn/Material 的样式，简直碉堡了好吗：</p>
 <p><img src="https://img.prinzeugen.net/image.php?di=VFYA" alt="Screenshot"></p>
           <a class="more-link" href="/boxy-the-most-hackable-theme-fot-st3/#more">阅读全文&rarr;</a>
@@ -251,7 +251,7 @@
 
       <div class="post-content">
         
-          <p>现在 Blessing Skin Server 的 HTML 模板是使用 Laravel 自带的本地化来实现多语言支持的，并且使用了 <a href="https://github.com/Devitek/laravel-yaml-translation" target="_blank" rel="external">devitek/yaml-translation</a> 这个包把 Laravel 语言文件从默认的 PHP 数组形式改为 YAML 格式的文件。</p>
+          <p>现在 Blessing Skin Server 的 HTML 模板是使用 Laravel 自带的本地化来实现多语言支持的，并且使用了 <a href="https://github.com/Devitek/laravel-yaml-translation" target="_blank" rel="noopener">devitek/yaml-translation</a> 这个包把 Laravel 语言文件从默认的 PHP 数组形式改为 YAML 格式的文件。</p>
 <p>不得不说数组形式的语言文件简直反人类好吗，一大堆 <code>=&gt;</code> 看的眼晕。。YAML 大法好！(ゝ∀･)</p>
 <p>回到正题。虽然 HTML 模板里的国际化是解决了，但是整个应用中需要国际化的地方可不止 HTML 模板，同时还有 JavaScript。但是静态的脚本文件中总不能内嵌 PHP 吧，所以我们得搞个单独的解决方案。</p>
 <p>虽然说网上现成的 JS 国际化的库很多，但我总觉得有些看不上眼（可能是我没找到好的），就准备自己实现一下。</p>
@@ -287,7 +287,7 @@
 
       <div class="post-content">
         
-          <p>不得不说 Laravel 的 <a href="http://laravel-china.org/docs/5.1/validation" target="_blank" rel="external">Validation</a> 是极好的，非常易于使用，麻麻再也不用担心我要写一大堆验证啦 ~(　^ω^)</p>
+          <p>不得不说 Laravel 的 <a href="http://laravel-china.org/docs/5.1/validation" target="_blank" rel="noopener">Validation</a> 是极好的，非常易于使用，麻麻再也不用担心我要写一大堆验证啦 ~(　^ω^)</p>
 <p>但是这个 Validator 有一个神秘的地方 ( -д-)，正如官方文档所说，它会自动判断当前请求是否为 Ajax 发送的，如果是，则在验证失败的时候返回一个 <code>JsonResponse</code> 响应而不是 <code>RedirectResponse</code> 响应。</p>
 <blockquote>
 <p><strong>但是</strong>，这个 JSON 响应的状态码，是 422。</p>
@@ -400,7 +400,7 @@
       <div class="post-content">
         
           <p>今天上午我把 Blessing Skin Server 的框架改为了 Laravel，到处修修改改一会后终于可以跑起来了。因为我之前也是使用的 Blade 模板引擎和与 Illuminate\Routing 语法类似的路由库，所以迁移过程还算是挺无痛的。</p>
-<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="external">Laravel Elixir</a>。</p>
+<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="noopener">Laravel Elixir</a>。</p>
 <p>改写原来 gulpfile.js 中的原生 Gulp Tasks 到 Laravel Elixir 的模式并不算麻烦，常用的 task 都有集成，并且通过链式调用的方式依次执行各个 Task。</p>
 <p>改写好后，直接运行 <code>$ gulp</code> 即可执行所有的 elixir tasks，并且执行完毕后还会有详细的表格报告和 Toast 通知，非常的方便。</p>
 <p>但是，不知道是我的姿势不对还是怎么回事，我没有找到能够把一个目录下所有的 css/js 文件压缩后复制到另一个目录的 elixir task，无奈之下只好写成原生的 Gulp Task，并且使用 elixir 的 <code>mix.task()</code> 方法来调用：</p>
@@ -437,7 +437,7 @@
       <div class="post-content">
         
           <p>因为一些原因，我准备把 Blessing Skin 的框架换成 Laravel 了（之前是自己搭建的一个框架），但是在模板迁移的时候遇到了一点问题。</p>
-<p>之前我是使用的 <a href="https://github.com/XiaoLer/blade" target="_blank" rel="external">XiaoLer/blade</a> 这个从 Laravel 中抽离出来的 Blade 模板引擎，并且自定义为使用 <code>.tpl</code> 文件后缀。你问为啥不用默认的 <code>.blade.php</code> 而是用这个 Smarty 的模板扩展名？能有啥，好看呗 :-D</p>
+<p>之前我是使用的 <a href="https://github.com/XiaoLer/blade" target="_blank" rel="noopener">XiaoLer/blade</a> 这个从 Laravel 中抽离出来的 Blade 模板引擎，并且自定义为使用 <code>.tpl</code> 文件后缀。你问为啥不用默认的 <code>.blade.php</code> 而是用这个 Smarty 的模板扩展名？能有啥，好看呗 :-D</p>
 <p>不过之前我是直接调用 <code>FileViewFinder</code> 类的 <code>addExtension</code> 方法来添加扩展名的，但是在 Laravel 里就不能这样了。你总不能在 <code>Illuminate\View</code> 加几句话吧？</p>
 <p>去 Google 搜索了下，没发现有可以很方便使用的方法（当然是搜的鹰文，说不定是我姿势不对），就只好自己找了。</p>
 <p>首先先从 <code>View</code> Facade 入手，可以看到它是从服务容器中解析出了 <code>view</code> 这个绑定。继续往下找，打开 <code>Illuminate\View\ViewServiceProvider</code>，看看 View 的服务提供者到底是把啥给绑定到 <code>view</code> 上去了：</p>
@@ -510,7 +510,7 @@
         
           <p>上次有人叫我在 Blessing Skin 每次升级的时候带上一个增量更新包，只包含所有上一个版本后修改过的文件。</p>
 <p>我听到这个需求，最开始想到的是使用 <code>git diff --name-only</code>，加上这个参数后可以只显示 commit 之间修改过的文件名，然后就可以用管道通给 zip 之类的程序来压缩。</p>
-<p>去网上搜了搜，发现还有<a href="http://www.cnblogs.com/lhb25/p/10-useful-advanced-git-commands.html" target="_blank" rel="external">更简单的方法</a>：</p>
+<p>去网上搜了搜，发现还有<a href="http://www.cnblogs.com/lhb25/p/10-useful-advanced-git-commands.html" target="_blank" rel="noopener">更简单的方法</a>：</p>
 <pre><code class="shell">$ git archive -o ../latest.zip NEW_COMMIT_ID $(git diff --name-only OLD_COMMIT_ID NEW_COMMIT_ID)
 </code></pre>
 <p>这是用了 <code>git archieve</code> 命令，本质上和我上面说的也差不离。</p>

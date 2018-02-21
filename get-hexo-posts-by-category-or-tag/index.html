@@ -175,9 +175,11 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 250 天前（2017-06-15），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
@@ -194,16 +196,16 @@
     // do what you want to do with each post
 });
 </code></pre>
-<p>而 <code>result.posts</code> 是一个 Warehouse 的 <code>Model</code> 对象，所以你可以使用一些 <code>Model</code> 的高级方法（具体可用方法参见 <a href="https://zespia.tw/warehouse/Model.html" target="_blank" rel="external">Warehouse 文档</a>）。举个栗子：</p>
+<p>而 <code>result.posts</code> 是一个 Warehouse 的 <code>Model</code> 对象，所以你可以使用一些 <code>Model</code> 的高级方法（具体可用方法参见 <a href="https://zespia.tw/warehouse/Model.html" target="_blank" rel="noopener">Warehouse 文档</a>）。举个栗子：</p>
 <pre><code class="ejs">&lt;% site.tags.findOne({name: &#39;example&#39;}).posts.sort(&#39;date&#39;, -1).limit(5).each(function(post) {%&gt; 
     &lt;%- partial(&#39;_partial/project-excerpt&#39;, {item: post}) %&gt; 
 &lt;% })%
 </code></pre>
 <p>这里不得不吐槽一下，Hexo 的文档真是太烂了，太烂了。写个主题，有时候想要实现一个功能还要疯狂看 Hexo 源码，说不出话。</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
-<li><a href="https://github.com/hexojs/hexo/issues/493" target="_blank" rel="external">How to select all posts in a certain tag or category and assign it to page.posts of the page I just created? #493</a></li>
-<li><a href="https://stackoverflow.com/questions/38998718/how-to-filter-posts-by-tag-in-hexo" target="_blank" rel="external">How to filter posts by tag in Hexo? - Stack Overflow</a></li>
-<li><a href="https://zespia.tw/warehouse/Model.html" target="_blank" rel="external">Model - Warehouse Documentation</a></li>
+<li><a href="https://github.com/hexojs/hexo/issues/493" target="_blank" rel="noopener">How to select all posts in a certain tag or category and assign it to page.posts of the page I just created? #493</a></li>
+<li><a href="https://stackoverflow.com/questions/38998718/how-to-filter-posts-by-tag-in-hexo" target="_blank" rel="noopener">How to filter posts by tag in Hexo? - Stack Overflow</a></li>
+<li><a href="https://zespia.tw/warehouse/Model.html" target="_blank" rel="noopener">Model - Warehouse Documentation</a></li>
 </ul>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

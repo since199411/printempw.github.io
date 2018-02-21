@@ -175,28 +175,28 @@
 
       <div class="post-content">
         
-          <p>关于锐速是否道德的讨论：<a href="https://www.v2ex.com/t/164883" target="_blank" rel="external">V2EX</a> ，这种东西仁者见仁智者见智。</p>
+          <p>关于锐速是否道德的讨论：<a href="https://www.v2ex.com/t/164883" target="_blank" rel="noopener">V2EX</a> ，这种东西仁者见仁智者见智。</p>
 <hr>
-<p>自建的 Shadowsocks 代理速度永远是在 100KBps 左右徘徊 <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a>，搜索优化相关时发现了锐速这个解决方法。试用了三天，<span style="line-height: 1.5;">感觉效果还不错，代理速度提升了，网站内容下载时间也显著减少（然而响应速度是硬伤 qvq</span></p>
+<p>自建的 Shadowsocks 代理速度永远是在 100KBps 左右徘徊 <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a>，搜索优化相关时发现了锐速这个解决方法。试用了三天，<span style="line-height: 1.5;">感觉效果还不错，代理速度提升了，网站内容下载时间也显著减少（然而响应速度是硬伤 qvq</span></p>
 <h3 id="锐速是什么，好吃吗？"><a href="#锐速是什么，好吃吗？" class="headerlink" title="锐速是什么，好吃吗？"></a>锐速是什么，好吃吗？</h3><p><em>锐速 (ServerSpeeder)</em> 加速软件是一种基于 ZETATCP 加速引擎的软件，可显著提升带宽吞吐量，充分利用服务器带宽。</p>
 <p>锐速不能突破原服务器带宽限制，也不会限制服务器带宽的利用</p>
-<p>最近推出了永久免费套餐：<a href="http://www.serverspeeder.com/" target="_blank" rel="external">http://www.serverspeeder.com/</a></p>
+<p>最近推出了永久免费套餐：<a href="http://www.serverspeeder.com/" target="_blank" rel="noopener">http://www.serverspeeder.com/</a></p>
 <h3 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h3><ol>
-<li><p>去官网注册一个账号，在后台可以看到锐速支持的 linux 内核。如果你的内核不被支持，请自行更改内核（DigitalOcean 用户可以直接在控制面板更改内核，其他手动更改内核窝会根据 conoha 的 vps 写一篇 （UPDATE: 已完成，在<a href="https://prinzeugen.net/ubuntu-14-04-change-kernel-to-install-serverspeeder/" target="_blank" rel="external">这里</a> |ω・´) </p>
+<li><p>去官网注册一个账号，在后台可以看到锐速支持的 linux 内核。如果你的内核不被支持，请自行更改内核（DigitalOcean 用户可以直接在控制面板更改内核，其他手动更改内核窝会根据 conoha 的 vps 写一篇 （UPDATE: 已完成，在<a href="https://prinzeugen.net/ubuntu-14-04-change-kernel-to-install-serverspeeder/" target="_blank" rel="noopener">这里</a> |ω・´) </p>
 </li>
 <li><p>按照官网教程安装</p>
 </li>
 </ol>
-<p>wget <a href="http://my.serverspeeder.com/d/ls/serverSpeederInstaller.tar.gz" target="_blank" rel="external">http://my.serverspeeder.com/d/ls/serverSpeederInstaller.tar.gz</a> tar xzvf serverSpeederInstaller.tar.gz sudo bash serverSpeederInstaller.sh</p>
+<p>wget <a href="http://my.serverspeeder.com/d/ls/serverSpeederInstaller.tar.gz" target="_blank" rel="noopener">http://my.serverspeeder.com/d/ls/serverSpeederInstaller.tar.gz</a> tar xzvf serverSpeederInstaller.tar.gz sudo bash serverSpeederInstaller.sh</p>
 <p>接下来一路默认配置。还有一些配置优化相关放到最后讲</p>
 <h3 id="安装好了。。"><a href="#安装好了。。" class="headerlink" title="安装好了。。"></a>安装好了。。</h3><p>做什么呢？嘛，总之先去油管看看视频吧</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-08-02_06-30-34.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-08-02_06-30-34.png" alt="20150802142705"></a></p>
-<p>这速度。。嘛啊，还算可以接受吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 比以前好多了</p>
-<p>然后可以从服务器下载 <a href="https://files.prinzeugen.net/100mb.test" target="_blank" rel="external">100mb.test</a> 文件试试 HTTP 速度</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-31_11-17-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-31_11-17-53.png" alt="20150731191654"></a></p>
-<p>wow~ 这 tm 以前快多了，以前可是 60KB/s 的啊 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-08-02_06-30-34.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-08-02_06-30-34.png" alt="20150802142705"></a></p>
+<p>这速度。。嘛啊，还算可以接受吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 比以前好多了</p>
+<p>然后可以从服务器下载 <a href="https://files.prinzeugen.net/100mb.test" target="_blank" rel="noopener">100mb.test</a> 文件试试 HTTP 速度</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-31_11-17-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-31_11-17-53.png" alt="20150731191654"></a></p>
+<p>wow~ 这 tm 以前快多了，以前可是 60KB/s 的啊 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <h3 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h3><p>锐速还是比较有用的，对于个人搭建的 SS 可以起到较好的加速作用，</p>
-<p>至少是值得一试 <a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a>，反正是免费的嘛</p>
+<p>至少是值得一试 <a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a>，反正是免费的嘛</p>
 
         
       </div>
@@ -233,8 +233,8 @@
 <p>已经结束了~ 然而没人发图 qwq 什么时候才会有录像呢</p>
 <hr>
 <h3 id="ClariS-1st-Live-“扉の先へ”-明日からはじまります！！！"><a href="#ClariS-1st-Live-“扉の先へ”-明日からはじまります！！！" class="headerlink" title="ClariS 1st Live “扉の先へ” 明日からはじまります！！！"></a><del>ClariS 1st Live “扉の先へ” 明日からはじまります！！！</del></h3><p>ダイ★コウ☆フン</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-30_01-15-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-30_01-15-15.png" alt="20150730090831"></a></p>
-<div class="wp-player" data-address="https://files.prinzeugen.net/Music/border.mp3|" data-author="ClariS|" data-autoplay="0" data-lyric="close" data-source="xiami" data-thumb="https://files.prinzeugen.net/Music/1320084858.jpg|" data-title="border|" data-type="song" data-wp-player="wp-player" data-xiami=""><div class="wp-player-box"><div class="wp-player-thumb"><img src="https://prinzeugen.net/wp-content/plugins/wp-player/images/default.png" alt=""><div class="wp-player-playing"><span></span></div></div><div class="wp-player-panel"><div class="wp-player-title"></div><div class="wp-player-author"></div><div class="wp-player-progress"><div class="wp-player-seek-bar"><div class="wp-player-play-bar"><span class="wp-player-play-current"></span></div></div></div><div class="wp-player-controls-holder"><div class="wp-player-time"></div><div class="wp-player-controls"><a href="javascript:;" title="上一首" target="_blank" rel="external"></a> <a href="javascript:;" title="播放" target="_blank" rel="external"></a> <a href="javascript:;" title="暂停" target="_blank" rel="external"></a> <a href="javascript:;" title="下一首" target="_blank" rel="external"></a></div><div class="wp-player-list-btn" title="歌单"></div></div></div></div><div class="wp-player-main"><div class="wp-player-list"><br></div><div class="wp-player-lyrics"><br></div></div></div>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-30_01-15-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-30_01-15-15.png" alt="20150730090831"></a></p>
+<div class="wp-player" data-address="https://files.prinzeugen.net/Music/border.mp3|" data-author="ClariS|" data-autoplay="0" data-lyric="close" data-source="xiami" data-thumb="https://files.prinzeugen.net/Music/1320084858.jpg|" data-title="border|" data-type="song" data-wp-player="wp-player" data-xiami=""><div class="wp-player-box"><div class="wp-player-thumb"><img src="https://prinzeugen.net/wp-content/plugins/wp-player/images/default.png" alt=""><div class="wp-player-playing"><span></span></div></div><div class="wp-player-panel"><div class="wp-player-title"></div><div class="wp-player-author"></div><div class="wp-player-progress"><div class="wp-player-seek-bar"><div class="wp-player-play-bar"><span class="wp-player-play-current"></span></div></div></div><div class="wp-player-controls-holder"><div class="wp-player-time"></div><div class="wp-player-controls"><a href="javascript:;" title="上一首" target="_blank" rel="noopener"></a> <a href="javascript:;" title="播放" target="_blank" rel="noopener"></a> <a href="javascript:;" title="暂停" target="_blank" rel="noopener"></a> <a href="javascript:;" title="下一首" target="_blank" rel="noopener"></a></div><div class="wp-player-list-btn" title="歌单"></div></div></div></div><div class="wp-player-main"><div class="wp-player-list"><br></div><div class="wp-player-lyrics"><br></div></div></div>
 
 
         
@@ -272,7 +272,7 @@
 <h3 id="向曲径说再见"><a href="#向曲径说再见" class="headerlink" title="向曲径说再见"></a>向曲径说再见</h3><p>曲径从诞生至今，为科技工作者和在校师生，在获取商业信息和学术研究等方面提供了很大的方便和技术支持。在曲径运作中，个别问题还处于法律空白，有些问题还存在争议。</p>
 <p>为了维护国家互联网法律和政策，保证互联网用户获取信息内容和渠道的安全性，国家要求互联网用户从正规渠道获取信息。基于该原因，曲径自觉遵守国家的法律、法规和政策，已在2015年7月28日，自愿将名下所有互联网服务关停，并不再提供类似的服务。曲径开发者将从事其它领域的工作。</p>
 </blockquote>
-<p><a href="https://getqujing.com/" target="_blank" rel="external">https://getqujing.com/</a></p>
+<p><a href="https://getqujing.com/" target="_blank" rel="noopener">https://getqujing.com/</a></p>
 <p>走好。</p>
 
         
@@ -308,7 +308,7 @@
         
           <p>首先先来理一下 memcache 和 memcached 的区别：</p>
 <blockquote>
-<p><a href="http://memcached.org/" target="_blank" rel="external">Memcache</a> 是一个自由和开放源代码、高性能的、具有分布式对象的缓存系统。它可以用来保存一些经常存取的对象或数据，加速动态 web 应用程序，减轻数据库负载。保存的数据像一张巨大的 HASH 表，该表以键值对的方式存在内存中。</p>
+<p><a href="http://memcached.org/" target="_blank" rel="noopener">Memcache</a> 是一个自由和开放源代码、高性能的、具有分布式对象的缓存系统。它可以用来保存一些经常存取的对象或数据，加速动态 web 应用程序，减轻数据库负载。保存的数据像一张巨大的 HASH 表，该表以键值对的方式存在内存中。</p>
 </blockquote>
 <p>Memcache 是这个项目的名称，memcached 是这个项目的主程序名称也是守护进程。还有一个 memcached 是 php-extension。</p>
 <p>环境：<em>Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-57-generic i686) with lnmp</em></p>
@@ -317,8 +317,8 @@
 <p>参数说明：</p>
 <p><em>-p  侦听的端口，默认为 11211</em><br><em>-m  使用内存大小，默认为 64m</em><br><em>-d  作为守护进程启动</em></p>
 <p>可以用 <span class="lang:sh decode:true crayon-inline">ps -ef|grep memcached</span>  或者 <span class="lang:sh decode:true  crayon-inline">telnet 127.0.0.1 11211</span>  查看 memcached 服务状态</p>
-<h3 id="二、安装-PHP-memcached-扩展"><a href="#二、安装-PHP-memcached-扩展" class="headerlink" title="二、安装 PHP memcached 扩展"></a>二、安装 PHP memcached 扩展</h3><p>这个就没有那么方便了，要自己编译，在<a href="http://pecl.php.net/package/memcached" target="_blank" rel="external">这里</a>选一个版本下载解压（注意 memcached 和 memcache 两种 php 扩展的区别，推荐 php-memcached </p>
-<p>wget <a href="http://pecl.php.net/get/memcached-2.1.0.tgz" target="_blank" rel="external">http://pecl.php.net/get/memcached-2.1.0.tgz</a> tar -xvf memcached-2.1.0.tgz</p>
+<h3 id="二、安装-PHP-memcached-扩展"><a href="#二、安装-PHP-memcached-扩展" class="headerlink" title="二、安装 PHP memcached 扩展"></a>二、安装 PHP memcached 扩展</h3><p>这个就没有那么方便了，要自己编译，在<a href="http://pecl.php.net/package/memcached" target="_blank" rel="noopener">这里</a>选一个版本下载解压（注意 memcached 和 memcache 两种 php 扩展的区别，推荐 php-memcached </p>
+<p>wget <a href="http://pecl.php.net/get/memcached-2.1.0.tgz" target="_blank" rel="noopener">http://pecl.php.net/get/memcached-2.1.0.tgz</a> tar -xvf memcached-2.1.0.tgz</p>
 <p>开始编译：（机灵点儿，下面 php 路径自己看着改</p>
 <p>/usr/local/php/bin/phpize ./configure –with-php-config=/usr/local/php/bin/php-config make &amp;&amp; make install</p>
 <p>编译成功后会输出</p>
@@ -326,16 +326,16 @@
 <p>Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/</p>
 </blockquote>
 <p>ls 一下这个目录，</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" alt="20150726203222"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" alt="20150726203222"></a></p>
 <p>多了一个编译出来的 memcache.so ，mv 到你的 <em>php extension dir</em> 里去（可以在 phpinfo() 中查看</p>
 <p>然后在 php.ini 的最后加入一句</p>
 <p>extension = memcache.so</p>
 <p>重启 php-fpm 和 nginx 后就可以在 phpinfo() 中看到扩展信息了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" alt="phpinfo"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" alt="phpinfo"></a></p>
 <h3 id="三、在-WordPress-中启用-memcache-缓存"><a href="#三、在-WordPress-中启用-memcache-缓存" class="headerlink" title="三、在 WordPress 中启用 memcache 缓存"></a>三、在 WordPress 中启用 memcache 缓存</h3><p>推荐 W3-Total-Cache，运行 W3TC 的 compatibility check 可以看到 memcache 已经安装成功可以使用了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" alt="w3tc_memcache"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" alt="w3tc_memcache"></a></p>
 <p>具体设置就不说了，自己看着改吧。</p>
-<p>（如果跟窝一样无法忍受 W3TC 的破图标的话就看一下<a href="https://prinzeugen.net/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/" target="_blank" rel="external">这一篇</a>吧</p>
+<p>（如果跟窝一样无法忍受 W3TC 的破图标的话就看一下<a href="https://prinzeugen.net/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/" target="_blank" rel="noopener">这一篇</a>吧</p>
 
         
       </div>
@@ -369,9 +369,9 @@
       <div class="post-content">
         
           <p>站点换了 favicon ，玩 ghost 的可能比较熟悉。。 <img src="https://img.blessing.studio/images/2015/07/2015-07-28_06-29-38.png" alt="favicon_green"></p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_06-27-19.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_06-27-19.png" alt="ghostchina"></a></p>
-<p>没错就是从 ghost 中文网扒下来的 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a> 感觉挺好看就改了个色贴上去了。</p>
-<p>原来那个表情 favicon 太糊，如果没见过原图的话可能会不明所以 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_06-27-19.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_06-27-19.png" alt="ghostchina"></a></p>
+<p>没错就是从 ghost 中文网扒下来的 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a> 感觉挺好看就改了个色贴上去了。</p>
+<p>原来那个表情 favicon 太糊，如果没见过原图的话可能会不明所以 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
 
         
       </div>
@@ -404,13 +404,13 @@
 
       <div class="post-content">
         
-          <p>今天去看看的时候发现闭站维护了，没多大在意，结果一瞟发现竟然是 https <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" alt="hacg"></a> <a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" alt="ssl"></a></p>
+          <p>今天去看看的时候发现闭站维护了，没多大在意，结果一瞟发现竟然是 https <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" alt="hacg"></a> <a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" alt="ssl"></a></p>
 <p>证书是和窝一样的 Wosign Class1 免费证书</p>
-<p>SSL 大法好，麻麻再也不用担心被抓关键词辣 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
+<p>SSL 大法好，麻麻再也不用担心被抓关键词辣 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
 <p><strong>UPDATE：</strong>琉璃神社能访问了，再一瞟。。</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" alt="CLOUDFLARE"></a></p>
-<p>woc <em>CloudFlare</em> <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a> 看来 H 萌是被 D 怕了</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" alt="CLOUDFLARE"></a></p>
+<p>woc <em>CloudFlare</em> <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a> 看来 H 萌是被 D 怕了</p>
 
         
       </div>
@@ -444,29 +444,29 @@
       <div class="post-content">
         
           <p>W3 Total Cache 是个很好的 WordPress 缓存插件，提供页面数据库等等的硬盘缓存和 memcached 缓存，比 WP Super Cache 不知道高到哪里去了（笑，然而这个极好的插件却。。</p>
-<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 <p>忍着不适将其配置好后马上开始着手替换这破图标。第一步自然是搜索引擎大法，遗憾的是都没有人写类似的文章。。难道用 W3TC 的强迫症只有窝这么一个吗。没办法了，自己动手，丰衣足食。</p>
 <p>想到的第一个办法是替换图标源文件。审查元素发现是在 <em>w3-total-cache/pub/img/w3tc-sprite.png</em>，</p>
-<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
+<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
 <p>把插件下载下来，shell 下执行 <span class="lang:sh decode:true crayon-inline">find .|xargs grep -ri “w3tc-sprite.png” -l</span>  /<em> <a href="#1">坑1</a> </em>/，定位到引用此图标的文件 <em>./lib/W3/Plugin/TotalCacheAdmin.php</em> ，再定位至</p>
 <p>#toplevel_page_w3tc_dashboard .wp-menu-image { background: url(&lt;?php echo plugins_url(‘w3-total-cache/pub/img/w3tc-sprite.png’)?&gt;) no-repeat 0 -32px !important; }</p>
 <p>还有一大段差不多的代码窝就不贴了，将其注释掉（聪明点，别一大块注释，不然会有奇怪的错误 </p>
 <p>这段代码是自定义当添加侧边栏菜单的函数</p>
 <p>add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );</p>
-<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="external">这里</a><span style="line-height: 1.5;">。</span></p>
-<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="external">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
+<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="noopener">这里</a><span style="line-height: 1.5;">。</span></p>
+<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="noopener">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
 <p>具体使用方法就是在 $icon_url 参数位置填上 <span class="lang:default decode:true  crayon-inline ">‘dashicons-admin-generic’</span> //<a href="#2">坑2</a></p>
 <p>再次查找使用了 add_menu_page 函数的文件 <span class="lang:sh decode:true  crayon-inline ">find .|xargs grep -ri “add_menu_page” -l</span> ，可以看到是在 <em>./lib/W3/Menus.php</em> 里调用的，调用代码是这样的：</p>
 <p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’, ‘’, ‘div’);</p>
 <p>将其替换成这样：</p>
 <p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’,’’,’dashicons-admin-generic’, ‘div’);</p>
 <p>坑2注意，WP 官方给的函数中参数有 7 个，但是 W3TC 中只用了 6 个。咱当时将那个空引号替换后发现没生效还以为是窝哪里搞错了又到处寻找解决方法。。。（扶额 ，估计那个空引号是 $function 吧，窝具体也没深入了解</p>
-<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
-<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
+<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
+<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
 <p>关于坑一：</p>
-<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 
         
       </div>
@@ -501,10 +501,10 @@
         
           <p>以前就注意到 wp 有这个功能了，可以在评论被回复时发邮件通知评论者，是个增强用户粘性的好方法。然而窝这犄角旮旯的能来几个人就不错了，哪有人闲得蛋疼来评论呢，所以咱也就没在意。</p>
 <p>然而就在昨天，窝的博客迎来了激动人心的历史上的跨越：</p>
-<h3 id="有窝不认识的人发表了评论！"><a href="#有窝不认识的人发表了评论！" class="headerlink" title="有窝不认识的人发表了评论！"></a>有窝不认识的人发表了评论！</h3><p>woc 窝当时心里真激动啊，这是评论者的一小步是人博客的一大步啊<a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<h3 id="有窝不认识的人发表了评论！"><a href="#有窝不认识的人发表了评论！" class="headerlink" title="有窝不认识的人发表了评论！"></a>有窝不认识的人发表了评论！</h3><p>woc 窝当时心里真激动啊，这是评论者的一小步是人博客的一大步啊<a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>窝当时就抄起键盘准备回复，突然一想没有邮件通知玩个卵啊</p>
 <p>遂搜索了一大堆方法，其中也踩了不少坑，在这里记录一下。</p>
-<p>原生 wp 的邮件发送是使用 php 的 mail() 函数，这点在后台登陆页的忘记密码处可以得知。你可以在 <a href="http://www.yahei.net/" target="_blank" rel="external">探针</a> 里查看你的 mail() 函数是否启用。使用 mail() 函数的方法请自行搜索。</p>
+<p>原生 wp 的邮件发送是使用 php 的 mail() 函数，这点在后台登陆页的忘记密码处可以得知。你可以在 <a href="http://www.yahei.net/" target="_blank" rel="noopener">探针</a> 里查看你的 mail() 函数是否启用。使用 mail() 函数的方法请自行搜索。</p>
 <p>首先去找一个启用 SMTP 的插件，这里推荐 Easy WP SMTP。配置不多说，请自行搞到能收到测试邮件。</p>
 <p>如果你的主题自带回复提醒的话现在就可以测试一下了 // <a href="#1">坑1</a></p>
 <p>对于没有这个功能主题，打开开主题的 function.php ，在合适位置加入如下代码：</p>
@@ -513,12 +513,12 @@
 <p>初次使用请将代码底部的 echo 反注释，方便调试</p>
 <p>成功后发送的邮件大概是这样的：</p>
 <p><table style="width: 99.8%; height: 99.8%;"><tbody><tr><td style="background: #FAFAFA url('https://files.prinzeugen.net/Resources/pics/mail_background.png');"><div style="background-color: white; border-top: 2px solid #12ADDB; box-shadow: 0 1px 3px #AAAAAA; line-height: 180%; padding: 0 15px 12px; width: 500px; margin: 50px auto; color: #555555; font-family: Century Gothic,Trebuchet MS,Hiragino Sans GB,微软雅黑,Microsoft Yahei,Tahoma,Helvetica,Arial,SimSun,sans-serif; font-size: 12px;"></div></td></tr></tbody></table></p>
-<h2 id="gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！"><a href="#gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！" class="headerlink" title="&gt; 您在 (ゝω·)~☆ kira 博客上的留言有回复啦！"></a><span style="color: #12addb; font-weight: bold;">&gt; </span>您在<a href="https://prinzeugen.net" target="_blank" rel="external"> (ゝω·)~☆ kira </a>博客上的留言有回复啦！</h2><div style="padding: 0 12px 0 12px; margin-top: 18px;">printempw ，您曾在文章《关于》上发表评论:<br><br>TEST FOR MAIL<br><br>printempw 给您的回复如下:<br><br>FXCK U MAN<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-88" target="_blank" rel="external">查看回复的完整內容 </a>。欢迎再次光临 <a href="https://prinzeugen.net" target="_blank" rel="external">(ゝω·)~☆ kira </a>。<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div>想要更改邮件样式请自行更改 <strong>$message</strong> 内的内容，窝也贴一段别的样式<br><br>$message = ‘<div style="border-right:#666666 1px solid;border-radius:8px;color:#111;font-size:12px;width:702px;border-bottom:#666666 1px solid;font-family:微软雅黑,arial;margin:10px auto 0px;border-top:#666666 1px solid;border-left:#666666 1px solid"><div class="adM"> </div><div style="width:100%;background:#666666;min-height:60px;color:white;border-radius:6px 6px 0 0"><span style="line-height:60px;min-height:60px;margin-left:30px;font-size:12px">您在 <a style="color:#00bbff;font-weight:600;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 上的留言有回复啦！</span> </div> <div style="margin:0px auto;width:90%"> <p>‘ . trim(get_comment($parent_id)-&gt;comment_author) . ‘, 您好!</p> <p>您于’ . trim(get_comment($parent_id)-&gt;comment_date) . ‘ 在文章《’ . get_the_title($comment-&gt;comment_post_ID) . ‘》上发表评论: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br(get_comment($parent_id)-&gt;comment_content) . ‘</p> <p>‘ . trim($comment-&gt;comment_author) . ‘ 于’ . trim($comment-&gt;comment_date) . ‘ 给您的回复如下: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br($comment-&gt;comment_content) . ‘</p> <p>您可以点击 <a style="color:#00bbff;text-decoration:none" href="' . htmlspecialchars(get_comment_link($parent_id)) . '" target="_blank">查看回复的完整內容</a></p> <p>感谢你对 <a style="color:#00bbff;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 的关注，欢迎再次光临~(｀･ω･)</p><p>（此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ）</p></div></div>‘;<br><br>这是预览：<br><br><div style="border-radius: 8px; color: #111; font-size: 12px; width: 702px; font-family: 微软雅黑,arial; margin: 10px auto 0px; border: #666666 1px solid;"><div style="width: 100%; background: #666666; min-height: 60px; color: white; border-radius: 6px 6px 0 0;"><span style="line-height: 60px; min-height: 60px; margin-left: 30px; font-size: 12px;">您在 <a href="https://prinzeugen.net" target="_blank" rel="external">(ゝω·)~☆ kira</a> 上的留言有回复啦！</span></div><div style="margin: 0px auto; width: 90%;">H, 您好!<br><br>您于2015-07-26 14:29:42 在文章《关于》上发表评论:<br><br>AAA I WANT A MAIL<br><br>printempw 于2015-07-26 15:10:35 给您的回复如下:<br><br>蛤<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-81" target="_blank" rel="external">查看回复的完整內容</a><br><br>感谢你对 <a href="https://prinzeugen.net" target="_blank" rel="external">(ゝω·)~☆ kira</a> 的关注，欢迎再次光临~(｀･ω･)<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div></div> 
+<h2 id="gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！"><a href="#gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！" class="headerlink" title="&gt; 您在 (ゝω·)~☆ kira 博客上的留言有回复啦！"></a><span style="color: #12addb; font-weight: bold;">&gt; </span>您在<a href="https://prinzeugen.net" target="_blank" rel="noopener"> (ゝω·)~☆ kira </a>博客上的留言有回复啦！</h2><div style="padding: 0 12px 0 12px; margin-top: 18px;">printempw ，您曾在文章《关于》上发表评论:<br><br>TEST FOR MAIL<br><br>printempw 给您的回复如下:<br><br>FXCK U MAN<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-88" target="_blank" rel="noopener">查看回复的完整內容 </a>。欢迎再次光临 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira </a>。<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div>想要更改邮件样式请自行更改 <strong>$message</strong> 内的内容，窝也贴一段别的样式<br><br>$message = ‘<div style="border-right:#666666 1px solid;border-radius:8px;color:#111;font-size:12px;width:702px;border-bottom:#666666 1px solid;font-family:微软雅黑,arial;margin:10px auto 0px;border-top:#666666 1px solid;border-left:#666666 1px solid"><div class="adM"> </div><div style="width:100%;background:#666666;min-height:60px;color:white;border-radius:6px 6px 0 0"><span style="line-height:60px;min-height:60px;margin-left:30px;font-size:12px">您在 <a style="color:#00bbff;font-weight:600;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 上的留言有回复啦！</span> </div> <div style="margin:0px auto;width:90%"> <p>‘ . trim(get_comment($parent_id)-&gt;comment_author) . ‘, 您好!</p> <p>您于’ . trim(get_comment($parent_id)-&gt;comment_date) . ‘ 在文章《’ . get_the_title($comment-&gt;comment_post_ID) . ‘》上发表评论: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br(get_comment($parent_id)-&gt;comment_content) . ‘</p> <p>‘ . trim($comment-&gt;comment_author) . ‘ 于’ . trim($comment-&gt;comment_date) . ‘ 给您的回复如下: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br($comment-&gt;comment_content) . ‘</p> <p>您可以点击 <a style="color:#00bbff;text-decoration:none" href="' . htmlspecialchars(get_comment_link($parent_id)) . '" target="_blank">查看回复的完整內容</a></p> <p>感谢你对 <a style="color:#00bbff;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 的关注，欢迎再次光临~(｀･ω･)</p><p>（此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ）</p></div></div>‘;<br><br>这是预览：<br><br><div style="border-radius: 8px; color: #111; font-size: 12px; width: 702px; font-family: 微软雅黑,arial; margin: 10px auto 0px; border: #666666 1px solid;"><div style="width: 100%; background: #666666; min-height: 60px; color: white; border-radius: 6px 6px 0 0;"><span style="line-height: 60px; min-height: 60px; margin-left: 30px; font-size: 12px;">您在 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira</a> 上的留言有回复啦！</span></div><div style="margin: 0px auto; width: 90%;">H, 您好!<br><br>您于2015-07-26 14:29:42 在文章《关于》上发表评论:<br><br>AAA I WANT A MAIL<br><br>printempw 于2015-07-26 15:10:35 给您的回复如下:<br><br>蛤<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-81" target="_blank" rel="noopener">查看回复的完整內容</a><br><br>感谢你对 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira</a> 的关注，欢迎再次光临~(｀･ω･)<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div></div> 
 
 <p>//关于坑1</p>
 <p>应该是窝主题里的函数哪里出了问题害的窝 SMTP 不行 mail() 也不行折腾了一下午（扶额</p>
 <p>如果你明明 SMTP 可以发件但是收不到回复邮件的话，可以在这个函数顶上写个 wp_mail() （参数自己看）来调试</p>
-<p>上面的是在别处扒来的，不过这样的话那个评论复选框就没用了呢 <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a> 等有时间窝在把判断逻辑也写进去</p>
+<p>上面的是在别处扒来的，不过这样的话那个评论复选框就没用了呢 <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a> 等有时间窝在把判断逻辑也写进去</p>
 
         
       </div>
@@ -554,9 +554,9 @@
           <p>咱是全站 ssl 加密的，自然不能让访客以 http 协议明文访问。要实现 http 访问自动重定向至 https，可以使用 nginx 的 rewrite 语句。</p>
 <p>虽然咱是早就实现了，但是最近由于种种原因重新配置时又要再去搜索，遂写篇文章备忘。</p>
 <p><strong>http 跳转到 https：</strong></p>
-<p>rewrite ^(.*)$  <a href="https://$host$1" target="_blank" rel="external">https://$host$1</a> permanent;</p>
+<p>rewrite ^(.*)$  https://$host$1 permanent;</p>
 <p><strong>带 www 域名跳转到根域名：</strong></p>
-<p>if ($host ~<em> www.prinzeugen.net) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="external">https://prinzeugen.net/$1</a> permanent; }</p>
+<p>if ($host ~<em> <a href="http://www.prinzeugen.net" target="_blank" rel="noopener">www.prinzeugen.net</a>) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="noopener">https://prinzeugen.net/$1</a> permanent; }</p>
 <p>顺带一提如果需要这几句话的地方比较多，可以写个 conf 直接 include，举个栗子：</p>
 <p>在 rewrite.conf 中写上上面的语句，然后在 <strong>nginx.conf</strong> 中写一句：</p>
 <p>include /home/wwwroot/lnmp/rewrite.conf;</p>
@@ -593,7 +593,7 @@
 
       <div class="post-content">
         
-          <h3 id="UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core"><a href="#UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core" class="headerlink" title="UPDATE：已找到完美解决方法，请移步 https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/"></a><strong>UPDATE：</strong>已找到完美解决方法，请移步 <a href="https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/" target="_blank" rel="external">https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/</a></h3><hr>
+          <h3 id="UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core"><a href="#UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core" class="headerlink" title="UPDATE：已找到完美解决方法，请移步 https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/"></a><strong>UPDATE：</strong>已找到完美解决方法，请移步 <a href="https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/" target="_blank" rel="noopener">https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/</a></h3><hr>
 <p>昨天晚上窝就下载了OEM 泄露的 win10 RTM iso，因为 Windows Update 一直升级失败，挂着安装。。然后就出现了错误</p>
 <blockquote>
 <p>无法安装 Windows 10</p>
@@ -602,11 +602,11 @@
 </blockquote>
 <p>但是太晚了就懒得折腾也没觉得多大点事儿就睡觉了。今早起来再次安装依然 same error。</p>
 <p>窝当时心里挺慌，觉得大概是 iso 的问题，遂下载了 10240 的 iso（NOW ON 10130），然而还是同样的错误。尝试全新安装，USB Boot，HDD Boot 全都是 same error。看来自己是无法解决了，遂使用搜索引擎（已百度搜过但是没有有效解决方法。</p>
-<p>搜索了大概 30 min+（Google 关键词 <strong>BOOT SAFE_OS</strong>，百度 pass），看了所有相关的 Microsoft Community 的文章（鹰文），唯一有用的是发现不止窝一个，有很多人有同样的错误。里面的 MS 帮助人员也列出了一些解决措施，包括 set EDB (<a href="http://www.webopedia.com/TERM/E/Execute_Disable_Bit.html" target="_blank" rel="external">Execute Disable Bit</a>) to Enable 之类的，但是没什么卵用。</p>
+<p>搜索了大概 30 min+（Google 关键词 <strong>BOOT SAFE_OS</strong>，百度 pass），看了所有相关的 Microsoft Community 的文章（鹰文），唯一有用的是发现不止窝一个，有很多人有同样的错误。里面的 MS 帮助人员也列出了一些解决措施，包括 set EDB (<a href="http://www.webopedia.com/TERM/E/Execute_Disable_Bit.html" target="_blank" rel="noopener">Execute Disable Bit</a>) to Enable 之类的，但是没什么卵用。</p>
 <p>继续 Google 和在 pcbeta 之类的论坛搜索，发现也有人发帖说 Install Windows 10166 on G3258 failed，窝一看就觉得大概是这个了，帖子描述的错误码和症状和窝一模一样而且窝也是 Intel G3258 on E85m motherboard。</p>
 <p>遂再次 Google 之，又看了一大堆 MS community 的文，最后锁定搜索关键词为 <strong>Windows 10 G3258</strong></p>
 <p>可以看到有很多出现此问题的人，描述的内容也都是 0xC1900101 – 0X20017 而且10130 及之前都是 no problem</p>
-<p>其中最有用的帖子大概是这个：<a href="https://social.technet.microsoft.com/Forums/en-US/15d85ab2-9fc5-4683-96d6-7770a40284d4/windows-10-new-builds-wont-boot?forum=WinPreview2014Setup" target="_blank" rel="external">Windows 10 – new builds won’t boot</a></p>
+<p>其中最有用的帖子大概是这个：<a href="https://social.technet.microsoft.com/Forums/en-US/15d85ab2-9fc5-4683-96d6-7770a40284d4/windows-10-new-builds-wont-boot?forum=WinPreview2014Setup" target="_blank" rel="noopener">Windows 10 – new builds won’t boot</a></p>
 <h3 id="所以目前唯一的解决办法就是在-BIOS-中将-CPU-核心数调为-1"><a href="#所以目前唯一的解决办法就是在-BIOS-中将-CPU-核心数调为-1" class="headerlink" title="所以目前唯一的解决办法就是在 BIOS 中将 CPU 核心数调为 1"></a>所以目前唯一的解决办法就是在 BIOS 中将 CPU 核心数调为 1</h3><p>但是将双核 U 调成单核这吃了屎一般的感觉。。只好等 MS 在 29th 的发布了，如果还没有解决的话窝估计要投奔 linux 的怀抱了</p>
 <p>目前没有在主用 PC 上装 elementray OS freya 就是怕双亲用不习惯。。想艹黑苹果但是 G3258 好像也会有奇怪的问题。。</p>
 <p>真是多灾多难呐， G3258。</p>

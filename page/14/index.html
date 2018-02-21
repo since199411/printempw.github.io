@@ -176,12 +176,12 @@
       <div class="post-content">
         
           <p>如果你使用的是 CM12 并且长时间使用 root 权限的话，一定会发现通知栏上有一个难看的 # 符号即 SU Indicator，超级用户权限指示器。这对于强迫症用户简直就是持久性伤害 max 啊 qwq</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-22_02-21-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-22_02-21-53.png" alt="CM12_Pound_Symbol"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-22_02-21-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-22_02-21-53.png" alt="CM12_Pound_Symbol"></a></p>
 <p>那么要怎样去掉呢？（之前忘记截图了，只好网上找了张图贴上来 qwq</p>
 <h3 id="1-使用-Xposed"><a href="#1-使用-Xposed" class="headerlink" title="1. 使用 Xposed"></a>1. 使用 Xposed</h3><p>有一个 Xposed 模块叫 Disable SU Indicator，试用于 CM12，有需要可以自行搜索。但是现在 Android 5.1.1 的 Xposed 框架很不稳定，很有可能会出现 boot loop 无限重启的情况，不值得。那怎么办呢？</p>
-<h3 id="2-使用-SuperSU-替换-CM-默认的-root-权限管理"><a href="#2-使用-SuperSU-替换-CM-默认的-root-权限管理" class="headerlink" title="2. 使用 SuperSU 替换 CM 默认的 root 权限管理"></a>2. 使用 SuperSU 替换 CM 默认的 root 权限管理</h3><p>到处搜索的时候找到了这篇文章：<a href="http://www.androidexplained.com/cm12-remove-pound-symbol-status-bar/" target="_blank" rel="external">CM12: How to Remove the # Symbol in the Status Bar</a>，里面讲述了一种用 SuperSU 替换 CM 自带 root 授权管理的方法，不过他使用的是卡刷 SuperSU 的方法。</p>
+<h3 id="2-使用-SuperSU-替换-CM-默认的-root-权限管理"><a href="#2-使用-SuperSU-替换-CM-默认的-root-权限管理" class="headerlink" title="2. 使用 SuperSU 替换 CM 默认的 root 权限管理"></a>2. 使用 SuperSU 替换 CM 默认的 root 权限管理</h3><p>到处搜索的时候找到了这篇文章：<a href="http://www.androidexplained.com/cm12-remove-pound-symbol-status-bar/" target="_blank" rel="noopener">CM12: How to Remove the # Symbol in the Status Bar</a>，里面讲述了一种用 SuperSU 替换 CM 自带 root 授权管理的方法，不过他使用的是卡刷 SuperSU 的方法。</p>
 <p>但是经过窝亲自测试，直接安装 SuperSU 的 apk，他就会自动到 recovery 安装二进制文件（TWRP 等 Recovery）。窝的是 MI3 刷的 CM12，recovery 就是 TWRP，亲测成功。如果是其他不受支持的 recovery 的话那就请卡刷吧~</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-22_02-39-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-22_02-39-53.png" alt="Screenshot_2015-08-22-10-32-23"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-22_02-39-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-22_02-39-53.png" alt="Screenshot_2015-08-22-10-32-23"></a></p>
 <p>自动重启后，使用 root 权限就没有难看的 # 号啦~  (ノﾟ∀ﾟ)ノ</p>
 
         
@@ -216,7 +216,7 @@
       <div class="post-content">
         
           <p>天若有情天亦老，我为长者续一秒。你一秒来我一秒，众人续命蛤不老。</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-16_16-56-35.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-16_16-56-35.jpg" alt="image" title="wp-1439744121194"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-16_16-56-35.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-16_16-56-35.jpg" alt="image" title="wp-1439744121194"></a></p>
 
         
       </div>
@@ -251,7 +251,7 @@
         
           <p>窝一直天真的以为不会有人暴力破解窝的，直到今天看了一下 <code>grep sshd /var/log/auth.log</code> 。。</p>
 <p><img src="https://img.blessing.studio/images/2015/08/2015-08-15_12-49-38.png" alt="log"></p>
-<p>防止 ssh 暴力破解大概就是使用 ssh key，改端口，关闭口令登录，还有就是 fail2ban，denyhost 之类的软件了，这里窝打算使用 fail2ban。项目地址：<a href="https://github.com/fail2ban/fail2ban" target="_blank" rel="external">GitHub</a>，官网：<a href="http://www.fail2ban.org/" target="_blank" rel="external">http://www.fail2ban.org/</a></p>
+<p>防止 ssh 暴力破解大概就是使用 ssh key，改端口，关闭口令登录，还有就是 fail2ban，denyhost 之类的软件了，这里窝打算使用 fail2ban。项目地址：<a href="https://github.com/fail2ban/fail2ban" target="_blank" rel="noopener">GitHub</a>，官网：<a href="http://www.fail2ban.org/" target="_blank" rel="noopener">http://www.fail2ban.org/</a></p>
 <pre><code>__      _ _ ___ _               
 / _|__ _(_) |_  ) |__  __ _ _ _  
 |  _/ _` | | |/ /| &#39;_ \/ _` | &#39; \
@@ -309,10 +309,10 @@ If you would like to configure email alerts, you can change the value from actio
 <p>根据 <code>/etc/fail2ban/jail.conf</code> 中 <code>ssh</code> 的配置，只要窝们登录失败六次错误就会被 ban 掉 IP，那么就让窝祭出 cmd 大法来 ssh 登录吧！</p>
 <p><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" alt="em1"></p>
 <p>测试结果明天更吧~</p>
-<h3 id="5-参考资料"><a href="#5-参考资料" class="headerlink" title="5. 参考资料"></a>5. 参考资料</h3><p><a href="https://github.com/fail2ban/fail2ban/blob/master/README.md" target="_blank" rel="external">https://github.com/fail2ban/fail2ban/blob/master/README.md</a></p>
-<p><a href="http://drops.wooyun.org/tips/3029" target="_blank" rel="external">http://drops.wooyun.org/tips/3029</a></p>
-<p><a href="http://my.oschina.net/lijialong/blog/109497" target="_blank" rel="external">http://my.oschina.net/lijialong/blog/109497</a></p>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04?utm_medium=community&amp;utm_source=newsletter&amp;utm_campaign=8272015" target="_blank" rel="external">https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04?utm_medium=community&amp;utm_source=newsletter&amp;utm_campaign=8272015</a></p>
+<h3 id="5-参考资料"><a href="#5-参考资料" class="headerlink" title="5. 参考资料"></a>5. 参考资料</h3><p><a href="https://github.com/fail2ban/fail2ban/blob/master/README.md" target="_blank" rel="noopener">https://github.com/fail2ban/fail2ban/blob/master/README.md</a></p>
+<p><a href="http://drops.wooyun.org/tips/3029" target="_blank" rel="noopener">http://drops.wooyun.org/tips/3029</a></p>
+<p><a href="http://my.oschina.net/lijialong/blog/109497" target="_blank" rel="noopener">http://my.oschina.net/lijialong/blog/109497</a></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04?utm_medium=community&amp;utm_source=newsletter&amp;utm_campaign=8272015" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04?utm_medium=community&amp;utm_source=newsletter&amp;utm_campaign=8272015</a></p>
 <h3 id="6-UPDATE-LOG："><a href="#6-UPDATE-LOG：" class="headerlink" title="6. UPDATE LOG："></a>6. UPDATE LOG：</h3><p>8.28 使用分页和 bootstrap 对教程重新排版；添加了一些内容</p>
 
         
@@ -346,18 +346,18 @@ If you would like to configure email alerts, you can change the value from actio
 
       <div class="post-content">
         
-          <div class="alert alert-danger"><p>想要购买 ConoHa 的，<strong>三思而后行</strong>。详情：<a href="https://prinzeugen.net/mail-log-to-conoha-user-center-after-ddos/" target="_blank" rel="external">VPS 被 DDoS 后与 ConoHa 客服的邮件记录</a></p>
+          <div class="alert alert-danger"><p>想要购买 ConoHa 的，<strong>三思而后行</strong>。详情：<a href="https://prinzeugen.net/mail-log-to-conoha-user-center-after-ddos/" target="_blank" rel="noopener">VPS 被 DDoS 后与 ConoHa 客服的邮件记录</a></p>
 </div>
 <p>现在窝的博客已经全线转移到 ConoHa GMO 了，访问速度应该会快一些了，至少在窝这是这样，大概 ctrl+F5 可以在 3s 内打开：</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-13_08-51-51.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-13_08-51-51-1024x231.png" alt="console"></a></p>
-<p>正好窝两家 IDC 同价位的 VPS 都使用了一个月多了，就写一篇评测 DO 和 ConoHa 的文吧。关于窝博客的三次搬迁可以看<a href="https://prinzeugen.net/move-to-conoha-tokyo/" target="_blank" rel="external">这里</a>，<a href="https://prinzeugen.net/move-back-to-digitalocean-nyc-3/" target="_blank" rel="external">这里</a>，还有<a href="https://prinzeugen.net/wanna-move-back-to-conoha/" target="_blank" rel="external">这里</a>。</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-13_08-51-51.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-13_08-51-51-1024x231.png" alt="console"></a></p>
+<p>正好窝两家 IDC 同价位的 VPS 都使用了一个月多了，就写一篇评测 DO 和 ConoHa 的文吧。关于窝博客的三次搬迁可以看<a href="https://prinzeugen.net/move-to-conoha-tokyo/" target="_blank" rel="noopener">这里</a>，<a href="https://prinzeugen.net/move-back-to-digitalocean-nyc-3/" target="_blank" rel="noopener">这里</a>，还有<a href="https://prinzeugen.net/wanna-move-back-to-conoha/" target="_blank" rel="noopener">这里</a>。</p>
 <hr>
 <h3 id="1-价格"><a href="#1-价格" class="headerlink" title="1. 价格"></a>1. 价格</h3><p>窝 DigitalOcean 和 ConoHa 买的都是 1G RAM 的 VPS，配置差不多，除了 conoha 是双核 CPU，DO 是单核。两者的价钱有一定差距，conoha 1G RAM 900円/月，约合软妹币 ￥45。DO 1G RAM $10/月，约合 60 软妹币。当然对于壕来说也不是太大的差别啦</p>
-<h3 id="2-速度"><a href="#2-速度" class="headerlink" title="2. 速度"></a>2. 速度</h3><p>conoha 窝买的是东京机房，DO 的买过 SFO 和 NYC3 的机房。但是刚买 conoha 的时候似乎正值线路抽风，ping 高下行小，也就是窝从 conoha 搬家到 DO 的理由。不过现在 conoha 东京机房要比 DO NYC3 机房线路好多了，具体可以看<a href="https://prinzeugen.net/wanna-move-back-to-conoha/" target="_blank" rel="external">这篇文章</a>。</p>
+<h3 id="2-速度"><a href="#2-速度" class="headerlink" title="2. 速度"></a>2. 速度</h3><p>conoha 窝买的是东京机房，DO 的买过 SFO 和 NYC3 的机房。但是刚买 conoha 的时候似乎正值线路抽风，ping 高下行小，也就是窝从 conoha 搬家到 DO 的理由。不过现在 conoha 东京机房要比 DO NYC3 机房线路好多了，具体可以看<a href="https://prinzeugen.net/wanna-move-back-to-conoha/" target="_blank" rel="noopener">这篇文章</a>。</p>
 <p>另外要说的是 DO 的 SFO 机房并没有网上吹的那么玄乎，窝亲身试用也比 NYC3 好不到哪里去。</p>
 <p>（到月底之前窝可以提供 ss 账号或者 http 100mb.test 下载测试，有需要请评论）</p>
 <p><strong>UPDATE：</strong>最近 ConoHa GMO 到电信简直起飞啊</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-14_03-08-04.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-14_03-08-04.png" alt="conoha youtube"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-14_03-08-04.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-14_03-08-04.png" alt="conoha youtube"></a></p>
           <a class="more-link" href="/digitalocean-or-conoha-that-is-a-problem/#more">阅读全文&rarr;</a>
         
       </div>
@@ -390,7 +390,7 @@ If you would like to configure email alerts, you can change the value from actio
 
       <div class="post-content">
         
-          <p>简书上的文章。关于斯德哥尔摩症候群 <a href="http://program-think.blogspot.com/2012/06/stockholm-syndrome.html" target="_blank" rel="external">@编程随想</a> （请翻墙查看）</p>
+          <p>简书上的文章。关于斯德哥尔摩症候群 <a href="http://program-think.blogspot.com/2012/06/stockholm-syndrome.html" target="_blank" rel="noopener">@编程随想</a> （请翻墙查看）</p>
 <hr>
 <p>今天，代理又坏了。我和几个朋友又打开微信群，开始讨论如果它就此死掉，下一步我们该换什么别的方法。</p>
 <p>最近几个月，这个只聊翻墙问题的群常常被顶在微信第一页。</p>
@@ -437,11 +437,11 @@ If you would like to configure email alerts, you can change the value from actio
           <p>睡前听说了天津的爆炸事件，我也不灌鸡汤，只能说愿逝者安息。</p>
 <p>然而你朝还是这鸟样我也不想说些什么了。</p>
 <hr>
-<p><a href="http://www.letscorp.net/archives/93205" target="_blank" rel="external">天津爆炸图集【追责未到，禁令先行】</a></p>
-<p><a href="http://chinadigitaltimes.net/chinese/2015/08/%E6%B8%A9%E5%AE%B6%E8%A1%97-%E5%A1%98%E6%B2%BD%E5%A4%A7%E7%88%86%E7%82%B8-%E5%A4%A9%E6%B4%A5%E4%BE%9D%E7%84%B6%E6%98%AF%E5%BA%A7%E6%B2%A1%E6%9C%89%E6%96%B0%E9%97%BB%E7%9A%84%E5%9F%8E%E5%B8%82/" target="_blank" rel="external">塘沽大爆炸 天津依然是座没有新闻的城市</a></p>
-<p><a href="http://chinadigitaltimes.net/chinese/2015/08/%E3%80%90%E7%BD%91%E7%BB%9C%E6%B0%91%E8%AE%AE%E3%80%91%E6%96%B0%E9%97%BB%E4%B8%8D%E9%87%8D%E8%A6%81-%E6%94%BF%E6%B2%BB%E6%89%8D%E9%87%8D%E8%A6%81/" target="_blank" rel="external">【网络民议】新闻不重要 政治才重要</a></p>
+<p><a href="http://www.letscorp.net/archives/93205" target="_blank" rel="noopener">天津爆炸图集【追责未到，禁令先行】</a></p>
+<p><a href="http://chinadigitaltimes.net/chinese/2015/08/%E6%B8%A9%E5%AE%B6%E8%A1%97-%E5%A1%98%E6%B2%BD%E5%A4%A7%E7%88%86%E7%82%B8-%E5%A4%A9%E6%B4%A5%E4%BE%9D%E7%84%B6%E6%98%AF%E5%BA%A7%E6%B2%A1%E6%9C%89%E6%96%B0%E9%97%BB%E7%9A%84%E5%9F%8E%E5%B8%82/" target="_blank" rel="noopener">塘沽大爆炸 天津依然是座没有新闻的城市</a></p>
+<p><a href="http://chinadigitaltimes.net/chinese/2015/08/%E3%80%90%E7%BD%91%E7%BB%9C%E6%B0%91%E8%AE%AE%E3%80%91%E6%96%B0%E9%97%BB%E4%B8%8D%E9%87%8D%E8%A6%81-%E6%94%BF%E6%B2%BB%E6%89%8D%E9%87%8D%E8%A6%81/" target="_blank" rel="noopener">【网络民议】新闻不重要 政治才重要</a></p>
 <hr>
-<p>以上链接请翻墙查看。 <a href="http://chinadigitaltimes.net/chinese/tag/%E5%A4%A9%E6%B4%A5%E7%88%86%E7%82%B8/" target="_blank" rel="external">阅读更多 @中国数字时代 -&gt;</a></p>
+<p>以上链接请翻墙查看。 <a href="http://chinadigitaltimes.net/chinese/tag/%E5%A4%A9%E6%B4%A5%E7%88%86%E7%82%B8/" target="_blank" rel="noopener">阅读更多 @中国数字时代 -&gt;</a></p>
 
         
       </div>
@@ -475,15 +475,15 @@ If you would like to configure email alerts, you can change the value from actio
       <div class="post-content">
         
           <p>关于站点搬迁的文章已经写了两篇了。。</p>
-<p><a href="https://prinzeugen.net/move-to-conoha-tokyo/" target="_blank" rel="external">DigitalOcean -&gt; ConoHa</a>， <a href="https://prinzeugen.net/move-back-to-digitalocean-nyc-3/" target="_blank" rel="external">ConoHa -&gt; DigitalOcean</a></p>
+<p><a href="https://prinzeugen.net/move-to-conoha-tokyo/" target="_blank" rel="noopener">DigitalOcean -&gt; ConoHa</a>， <a href="https://prinzeugen.net/move-back-to-digitalocean-nyc-3/" target="_blank" rel="noopener">ConoHa -&gt; DigitalOcean</a></p>
 <hr>
 <p>今天估计是 DigitalOcean 抽风了，到 NYC3 的延迟瞬间爆满，下午的时候一度出现过丢包率 75% 的情况，ssh 都连不上（现在的 ping 稳定在 300ms 左右）。窝受不了了就回去看了看上次被窝放置 play 的 conoha，ping 了一下竟然才 90ms+，当时窝就震惊了，难道是 conoha 的优化还是说那群流量矿石党走了？被 conoha 杀了也有可能（笑</p>
-<p>总之 conoha 到窝这得速度突然起飞了，http 下载可以飙到 2M/s+，全国 ping 数据也比 DO 好看多了。于是重装了 conoha VPS 的系统，<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="external">安装了锐速</a>，scp 一下速度简直叼炸天  <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11-1024x206.png" alt="scp"></a><br> 对比了一下 DO NYC3 的破数据，窝果断准备换啊，而且 conoha 配置比 DO 好，还比 DO 便宜，现在线路也没问题了，那为什么不换呢~ <a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" alt="em1"></a>  下面贴一下现在 DigitalOcean 和 ConoHa 各自的全国 ping </p>
+<p>总之 conoha 到窝这得速度突然起飞了，http 下载可以飙到 2M/s+，全国 ping 数据也比 DO 好看多了。于是重装了 conoha VPS 的系统，<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="noopener">安装了锐速</a>，scp 一下速度简直叼炸天  <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11-1024x206.png" alt="scp"></a><br> 对比了一下 DO NYC3 的破数据，窝果断准备换啊，而且 conoha 配置比 DO 好，还比 DO 便宜，现在线路也没问题了，那为什么不换呢~ <a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" alt="em1"></a>  下面贴一下现在 DigitalOcean 和 ConoHa 各自的全国 ping </p>
 <p>DigitalOcean NYC3：</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" alt="main"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" alt="main"></a></p>
 <p>ConoHa Tokyo：</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" alt="conoha"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" alt="conoha"></a></p>
 <p>不过还是先观望一下，希望不要过几天 conoha 又抽风。现在先准备下，配置好 web 环境</p>
 
         
@@ -519,7 +519,7 @@ If you would like to configure email alerts, you can change the value from actio
         
           <div class="alert alert-warning"><p>从 WordPress 迁移至 Ghost 时把代码样式都给弄乱了，换行全都被吞掉了，不过我也懒得再去修复就是了（反正原来的代码也很屎）。</p>
 </div>
-<p>窝最近由于一些需求所以经常要在 VPS 上安装 shadowsocks，但是每一次都按照窝以前写的<a href="https://prinzeugen.net/vps-ubuntu-shadowsocks/" target="_blank" rel="external">那篇文章</a>那样一个个配置真是有够麻烦，虽然别人早就写了很多比窝这个更好的脚本，但是感觉比较臃肿，比较窝的需求也就那么点。正好可以学习学习写 shell 嘛~ (｀･ω･)</p>
+<p>窝最近由于一些需求所以经常要在 VPS 上安装 shadowsocks，但是每一次都按照窝以前写的<a href="https://prinzeugen.net/vps-ubuntu-shadowsocks/" target="_blank" rel="noopener">那篇文章</a>那样一个个配置真是有够麻烦，虽然别人早就写了很多比窝这个更好的脚本，但是感觉比较臃肿，比较窝的需求也就那么点。正好可以学习学习写 shell 嘛~ (｀･ω･)</p>
 <p>注意，这个脚本<strong>只适用于 Ubuntu</strong>，而且窝几乎一点 排错/DEBUG 代码都没有写，如果你真的想用那就用吧（没错写这篇文只是为了水一发 <img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"> 并不觉得有人会用。</p>
 <p>下面贴代码：
           <a class="more-link" href="/shadowsocks-install-shell/#more">阅读全文&rarr;</a>
@@ -556,7 +556,7 @@ If you would like to configure email alerts, you can change the value from actio
         
           <h2 id="G-is-for-Google"><a href="#G-is-for-Google" class="headerlink" title="G is for Google"></a>G is for Google</h2><p>Google 联合创始人 Larry Page 通过官方博客宣布公司重组，成立新公司 Alphabet，他将担任新公司的 CEO，Sergey Brin 任总裁，Eric Schmidt 担任执行主席。旧的 Google 公司在剥离掉部分业务（或叫瘦身）后将成为新公司的全资子公司， Sundar Pichai 将担任新 Google 的 CEO，其主要业务包括了搜索、广告、地图、应用、YouTube 和 Android。研发实验室 Google X 以及风险投资部门 Google Ventures 和 Google Capital，商业硬件业务和服务如 Calico、Nest 和 Fiber 将独立于新 Google 运营。</p>
 <hr>
-<p>哇塞这尼玛大新闻啊卧槽，昨天的 post 窝 TM 刚刚看 feed 时才发现 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<p>哇塞这尼玛大新闻啊卧槽，昨天的 post 窝 TM 刚刚看 feed 时才发现 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 <p>下面贴声明原文（大段洋文预警
           <a class="more-link" href="/google-alphabet/#more">阅读全文&rarr;</a>
         
@@ -590,11 +590,11 @@ If you would like to configure email alerts, you can change the value from actio
 
       <div class="post-content">
         
-          <p>今天窝又撸了个站点 <a href="https://archive.prinzeugen.net/" target="_blank" rel="external">https://archive.prinzeugen.net/</a> 用于放一些奇怪的东西，favicon 也是延续 mcmod 子站的风格从 minecraft 物品中选。既然是 archive，窝就选中了书的贴图 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-20.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-20.png" alt="Book"></a>。选完后，突然手痒，于是也想把主站的 favicon 换掉。上次换的 ghost 中文网上扒下来的 favicon <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-52.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-52.png" alt="favicon_green"></a> 总觉得有哪里不对，不是很好看，于是又开始了对于患有选择困难症候群的窝的噩梦搬的挑选。因为刚刚用了书本的贴图，于是想在主站上用附魔书贴图 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-50-23.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-50-23.png" alt="favicon_enchanted_book"></a>，为了更有特色，于是将附魔书上的红丝带改成了绿色 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-51-12.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-51-12.png" alt="favicon_enchanted_book_green"></a>。</p>
-<p>但是实际应用起来还是感觉差了那么一点，总感觉哪里不够 qwq 后来又试了钻石镐 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-48.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-48.png" alt="Grid_Diamond_Pickaxe"></a>，钻石 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-58-01.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-58-01.png" alt="Grid_Diamond"></a>，但是感觉都没有给窝那种 “wow！阔勒哒！” 的感觉 (つд⊂)</p>
-<p>多亏后来 @随然 dalao 让窝去用那个 MC 金坷拉的图标。窝一想就觉得这靠谱，想了好久找到了<a href="http://tieba.baidu.com/p/3257037401" target="_blank" rel="external">原帖地址</a>，然而其中的图标右下角带了个 2 数字，不过不是啥大事，PS 涂一涂就好了</p>
-<p>于是这就是激动人心的金坷拉 favicon 辣！<a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-05.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-05.png" alt="favicon_jinkela"></a>  (ノﾟ∀ﾟ)ノwow~yeah~~</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-11_07-02-08.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-11_07-02-08.png" alt="favicons"></a></p>
+          <p>今天窝又撸了个站点 <a href="https://archive.prinzeugen.net/" target="_blank" rel="noopener">https://archive.prinzeugen.net/</a> 用于放一些奇怪的东西，favicon 也是延续 mcmod 子站的风格从 minecraft 物品中选。既然是 archive，窝就选中了书的贴图 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-20.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-20.png" alt="Book"></a>。选完后，突然手痒，于是也想把主站的 favicon 换掉。上次换的 ghost 中文网上扒下来的 favicon <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-52.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-49-52.png" alt="favicon_green"></a> 总觉得有哪里不对，不是很好看，于是又开始了对于患有选择困难症候群的窝的噩梦搬的挑选。因为刚刚用了书本的贴图，于是想在主站上用附魔书贴图 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-50-23.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-50-23.png" alt="favicon_enchanted_book"></a>，为了更有特色，于是将附魔书上的红丝带改成了绿色 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-51-12.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-51-12.png" alt="favicon_enchanted_book_green"></a>。</p>
+<p>但是实际应用起来还是感觉差了那么一点，总感觉哪里不够 qwq 后来又试了钻石镐 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-48.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-48.png" alt="Grid_Diamond_Pickaxe"></a>，钻石 <a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-58-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-58-01.png" alt="Grid_Diamond"></a>，但是感觉都没有给窝那种 “wow！阔勒哒！” 的感觉 (つд⊂)</p>
+<p>多亏后来 @随然 dalao 让窝去用那个 MC 金坷拉的图标。窝一想就觉得这靠谱，想了好久找到了<a href="http://tieba.baidu.com/p/3257037401" target="_blank" rel="noopener">原帖地址</a>，然而其中的图标右下角带了个 2 数字，不过不是啥大事，PS 涂一涂就好了</p>
+<p>于是这就是激动人心的金坷拉 favicon 辣！<a href="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-05.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-10_13-57-05.png" alt="favicon_jinkela"></a>  (ノﾟ∀ﾟ)ノwow~yeah~~</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-11_07-02-08.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-11_07-02-08.png" alt="favicons"></a></p>
 
         
       </div>

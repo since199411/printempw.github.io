@@ -177,20 +177,26 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 877 天前（2015-09-27），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 878 天前（2015-09-27），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 878 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
-      <p>这篇文章应该算是 定制 <em>Seventeen</em> 主题第二弹吧。第一弹 <a href="https://prinzeugen.net/remove-border-of-img-in-theme-seventeen/" target="_blank" rel="external">在这里</a>。</p>
+      <p>这篇文章应该算是 定制 <em>Seventeen</em> 主题第二弹吧。第一弹 <a href="https://prinzeugen.net/remove-border-of-img-in-theme-seventeen/" target="_blank" rel="noopener">在这里</a>。</p>
 <p>最近经常写长文章，但是文章太长的话就难以选择标题的尺寸了，很为难。今天早上听群里人说 wordpress 自带文章分页功能，遂 Google 之，发现只需要在文章中插入 <span class="lang:default decode:true crayon-inline">&lt;!–nextpage–&gt;</span>  就可以实现分页了。</p>
 <p>但是，想要启用这个功能还需要在主题的 <em>single.php</em> 中的 <span class="lang:php decode:true crayon-inline">&lt;?php the_content(); ?&gt;</span>  后加入</p>
 <p>&lt;?php wp_link_pages(); ?&gt;</p>
 <p>才可以实现文章分页功能。</p>
 <p><strong>注意</strong>，有可能你主题的 <em>single.php</em> 中只包含了主循环体而没有明显的输出 content，这种情况还请随机应变。可以看看都没有 content，post 之类的字眼。</p>
-<p>但是如果只是这样的话，是完全没有定义样式的，简直是丑的可以 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a>。遂自定义其样式：</p>
+<p>但是如果只是这样的话，是完全没有定义样式的，简直是丑的可以 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a>。遂自定义其样式：</p>
 <p>注意，以下 CSS 仅适用于 <em>Seventeen</em> 主题，其他主题还请自行撰写样式。</p>
 <p>将上述的 <code>&lt;!–?php wp_link_pages(); ?–&gt;</code> 替换为：</p>
 <p>&lt;?php wp_link_pages(array(‘before’ =&gt; ‘<div class="pagenavi hentry">分页阅读：’, ‘after’ =&gt; ‘’, ‘next_or_number’ =&gt; ‘next’, ‘previouspagelink’ =&gt; ‘<span class="page-numbers page-previous"></span>‘, ‘nextpagelink’ =&gt; “”)); wp_link_pages(array(‘before’ =&gt; ‘’, ‘after’ =&gt; ‘’, ‘next_or_number’ =&gt; ‘number’, ‘link_before’ =&gt;’<span class="page-numbers">‘, ‘link_after’=&gt;’</span>‘)); wp_link_pages(array(‘before’ =&gt; ‘’, ‘after’ =&gt; ‘</div>‘, ‘next_or_number’ =&gt; ‘next’, ‘previouspagelink’ =&gt; ‘’, ‘nextpagelink’ =&gt; ‘<span class="page-numbers page-next"></span>‘)); ?&gt;</p>

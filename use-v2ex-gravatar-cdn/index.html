@@ -179,18 +179,24 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 906 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 907 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 907 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
-      <p>今天咱逛 v2 时突然发现原来 v2 的 gravatar cdn 是可以公开调用的<a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
-<p>正巧咱艹上了 https ，v2 的 gravatar cdn 又是支持 ssl 的，就懒得自己搭了 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
+      <p>今天咱逛 v2 时突然发现原来 v2 的 gravatar cdn 是可以公开调用的<a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
+<p>正巧咱艹上了 https ，v2 的 gravatar cdn 又是支持 ssl 的，就懒得自己搭了 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
 <p>只要在主题的 function.php 中的 php 结束标签之前加入如下代码即可：</p>
-<p>/<em>替换为v2ex的Gravatar CDN</em>/ function getV2exAvatar($avatar) { $avatar = str_replace(array(“www.gravatar.com/avatar”,”0.gravatar.com/avatar”,”1.gravatar.com/avatar”,”2.gravatar.com/avatar”),”cdn.v2ex.com/gravatar”,$avatar); return $avatar; } add_filter(‘get_avatar’, ‘getV2exAvatar’);</p>
-<p>如果尼的主题已经自带 gravatar 爬墙，但是都不支持 ssl （像窝一样 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>/<em>替换为v2ex的Gravatar CDN</em>/ function getV2exAvatar($avatar) { $avatar = str_replace(array(“<a href="http://www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)" target="_blank" rel="noopener">www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)</a>; return $avatar; } add_filter(‘get_avatar’, ‘getV2exAvatar’);</p>
+<p>如果尼的主题已经自带 gravatar 爬墙，但是都不支持 ssl （像窝一样 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>就在function.php中查找 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">$avatar</span> 关键字，随机应变替换即可</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

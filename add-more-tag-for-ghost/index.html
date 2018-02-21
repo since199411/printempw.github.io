@@ -175,8 +175,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 451 天前（2016-11-26），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 451 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -185,7 +191,7 @@
       <p>众所周知，WordPress 有个 <code>&lt;!--more--&gt;</code> 标签可以控制预览输出的内容，在 <code>&lt;!--more--&gt;</code> 之后的内容是不会显示在预览中的，需要进入 Post 页才能看到完整内容。</p>
 <p>蛋疼的是，Ghost 并不支持类似的功能，只能让它自动切割预览内容（根据字数）。这 TM 的就非常尴尬了，刚刚在展示窝惠的魅力时（上一篇 Post），如果让 Ghost 自己来切的话，就会把三张图片全部切在预览里，这样首页就会变得贼大，所以得想个法子了。</p>
 <a id="more"></a>
-<p>以下解决方法来自这个 <a href="https://github.com/arianf/Ghost/commit/3bb95eb6028ed63f37fff0809932d4aac01b20ed" target="_blank" rel="external">Pull Request</a>，有修改。</p>
+<p>以下解决方法来自这个 <a href="https://github.com/arianf/Ghost/commit/3bb95eb6028ed63f37fff0809932d4aac01b20ed" target="_blank" rel="noopener">Pull Request</a>，有修改。</p>
 <p>找到 <code>core/server/helpers/content.js</code>，在第 22 行的 <code>if</code> 语句里面加一个 <code>&lt;!--more--&gt;</code> 标签的判断：</p>
 <div class="alert alert-warning"><p>注意：新版 Lodash 将 <code>contains</code> 函数更名为了 <code>includes</code>。如出现 <code>_.contains() is not a function</code> 的情况，请将下面代码中的 <code>contains</code> 替换为 <code>includes</code>。</p>
 </div>

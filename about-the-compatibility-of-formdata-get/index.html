@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 574 天前（2016-07-26），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 575 天前（2016-07-26），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 575 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -187,7 +193,7 @@
       <p>又踩到坑了，稍微记录一下 ( ・_ゝ・)</p>
 <p>我在 Ajax 上传文件时是用的构建 <code>FormData</code> 对象的方法，构建完之后我很自然的打算从对象里面取出值来做验证，StackOverflow 里搜了一下之后就知道了有 <code>FormData.get()</code> 这个方法，我也没想太多就直接用了，并且在我本地环境（Chrome 51）上没有任何问题。</p>
 <p>前天把 beta 版的 v3 皮肤站上线测试了，今天就有人发邮件给我，竟然是 <code>FormData.get()</code> 这个语句报错了，提示 <code>e.get is not a function</code>，当时我就知道八成又是兼容性问题了 ( `д´)</p>
-<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="external">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
+<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="noopener">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

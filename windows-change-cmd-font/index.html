@@ -178,8 +178,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 888 天前（2015-09-15），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 889 天前（2015-09-15），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 889 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -188,7 +194,7 @@
       <p>那个点阵字体真tm的难看，最近经常用 cmd，就去找了找方法，整理如下：</p>
 <ol>
 <li>打开regedit，进入 <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont</code></li>
-<li>添加新字符串值 <code>000</code>（原来有 <code>000</code> 的话就添加 <code>0000</code>），设置值为字体名称（字体名称可在这里查看 <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts</code>，窝当然是用窝大 <a href="https://github.com/adobe-fonts/source-code-pro/releases" target="_blank" rel="external">Source Code Pro</a> 辣）<a id="more"></a></li>
+<li>添加新字符串值 <code>000</code>（原来有 <code>000</code> 的话就添加 <code>0000</code>），设置值为字体名称（字体名称可在这里查看 <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts</code>，窝当然是用窝大 <a href="https://github.com/adobe-fonts/source-code-pro/releases" target="_blank" rel="noopener">Source Code Pro</a> 辣）<a id="more"></a></li>
 <li>然后在 cmd 里输入 <code>chcp 850</code> 修改 cmd 的编码集</li>
 <li>在cmd标题栏「右键 &gt; 设置」即可看到新字体啦~ 然后加上半透明，超SAO <img src="https://img.blessing.studio/images/2015/06/2015-06-04_23-31-30.jpg" alt="emotion"></li>
 </ol>

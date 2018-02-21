@@ -175,8 +175,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 906 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 907 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 907 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -185,9 +191,9 @@
       <p>咱是全站 ssl 加密的，自然不能让访客以 http 协议明文访问。要实现 http 访问自动重定向至 https，可以使用 nginx 的 rewrite 语句。</p>
 <p>虽然咱是早就实现了，但是最近由于种种原因重新配置时又要再去搜索，遂写篇文章备忘。</p>
 <p><strong>http 跳转到 https：</strong></p>
-<p>rewrite ^(.*)$  <a href="https://$host$1" target="_blank" rel="external">https://$host$1</a> permanent;</p>
+<p>rewrite ^(.*)$  https://$host$1 permanent;</p>
 <p><strong>带 www 域名跳转到根域名：</strong></p>
-<p>if ($host ~<em> www.prinzeugen.net) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="external">https://prinzeugen.net/$1</a> permanent; }</p>
+<p>if ($host ~<em> <a href="http://www.prinzeugen.net" target="_blank" rel="noopener">www.prinzeugen.net</a>) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="noopener">https://prinzeugen.net/$1</a> permanent; }</p>
 <p>顺带一提如果需要这几句话的地方比较多，可以写个 conf 直接 include，举个栗子：</p>
 <p>在 rewrite.conf 中写上上面的语句，然后在 <strong>nginx.conf</strong> 中写一句：</p>
 <p>include /home/wwwroot/lnmp/rewrite.conf;</p>

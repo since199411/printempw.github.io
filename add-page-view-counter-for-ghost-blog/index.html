@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 674 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 675 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 675 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -186,7 +192,7 @@
     <div class="post-content">
       <p>博客搬迁到 Ghost 后，原来的 Post Views 无法显示一直是窝的一大心病。</p>
 <p>众所周知 Ghost 是使用模板语言 handlebars 来开发主题的，这也就造成了主题开发者们很难输出一些动态内容，而只能使用其内置的助手函数输出有限的可变内容。</p>
-<p>总不能就这样下去吧，于是窝经过了一番搜索，找到了这个东西 —— <a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不算子</a>。</p>
+<p>总不能就这样下去吧，于是窝经过了一番搜索，找到了这个东西 —— <a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不算子</a>。</p>
 <p>看来困扰于静态页面访问计数的不止窝一个啊。然而看了一下，不算子并不提供可调用的 API，也就是说窝没办法在文章分页上显示每篇文章的点击数了。</p>
 <p>这怎么行？于是窝动了自己写计数服务的念头。</p>
 <a id="more"></a>
@@ -198,8 +204,8 @@
 <p>至于从 WP-PostViews 插件中导出数据，也不难。思路是遍历所有 <code>wp_postmeta</code> 中 <code>meta-key</code> 字段为 <code>views</code> 的记录，通过 <code>post_id</code> 去 <code>wp_posts</code> 表找到 <code>post-name</code> 字段（和 Ghost 的 slug 是一样的），稍微处理一下就好了。<del>等窝写好了也会一起贴出来。</del></p>
 <p>转换脚本已经写好了，本来想用 Python 来处理的，但是最后由于懒得找适用的包所以作罢 QvQ。最后用 PHP 简单的实现了下，贴在下面（如果等待响应很长时间不要打窝）。</p>
 <p><strong>更新</strong>：添加了 “热门文章” 功能，访问 <code>index.php?action=order&amp;limit=10</code> 即可得到访问量前 10 的文章列表 （json），示例代码也一起贴在下面了。</p>
-<p>源码托管于 <a href="https://gist.github.com/printempw/f8626711835718c1ad68" target="_blank" rel="external">Gist</a>，<del>适用于使用 MySQL 的 Ghost 用户。如果你是使用 SQLite，而且恰好需要这个功能的话，留言给窝，窝也好有点动力。</del></p>
-<p><strong>更新</strong>：应 Andy 之托，支持了 SQLite。MySQL &amp; SQLite 通用版在<a href="https://gist.github.com/printempw/a1018424b3bf03b0072f" target="_blank" rel="external">这里</a>。</p>
+<p>源码托管于 <a href="https://gist.github.com/printempw/f8626711835718c1ad68" target="_blank" rel="noopener">Gist</a>，<del>适用于使用 MySQL 的 Ghost 用户。如果你是使用 SQLite，而且恰好需要这个功能的话，留言给窝，窝也好有点动力。</del></p>
+<p><strong>更新</strong>：应 Andy 之托，支持了 SQLite。MySQL &amp; SQLite 通用版在<a href="https://gist.github.com/printempw/a1018424b3bf03b0072f" target="_blank" rel="noopener">这里</a>。</p>
 <script src="//work.prinzeugen.net/gist/f8626711835718c1ad68.js"></script>
 <p>转换脚本如下：</p>
 <script src="//work.prinzeugen.net/gist/3a72cf916a6689c7a665.js"></script>

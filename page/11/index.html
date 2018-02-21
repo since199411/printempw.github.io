@@ -177,7 +177,7 @@
         
           <p>WordPress 的创始人之一 Alex King ，罹患大肠癌去世。</p>
 <p>站点全灰以示纪念。愿天国不再有病痛。</p>
-<p><a href="https://poststatus.com/alex-king/" target="_blank" rel="external">https://poststatus.com/alex-king/</a></p>
+<p><a href="https://poststatus.com/alex-king/" target="_blank" rel="noopener">https://poststatus.com/alex-king/</a></p>
 
         
       </div>
@@ -212,9 +212,9 @@
         
           <p>Pixiv 的动图机制很奇怪，并不是 GIF 或者其他动画格式，而是要求画师将动图的每一帧一帧都上传。</p>
 <p>这点从 P 站的 network 里可以看出来，206 分批次下载了一个 zip 包。</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-27_08-10-44.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-27_08-10-44-1024x366.png" alt="network"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-27_08-10-44.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-27_08-10-44-1024x366.png" alt="network"></a></p>
 <p>然而直接访问这个压缩包却返回 403 Forbidden，看来是服务器加了判断 Referer 的防盗链。然而并没啥卵用，看一下 network 里的 Referer，只要是 pixiv.net 都没关系。遂 wget 之：</p>
-<p>$ wget –referer=’<a href="http://www.pixiv.net/" target="_blank" rel="external">http://www.pixiv.net/</a>‘ <a href="http://i4.pixiv.net/img-zip-ugoira/img/2015/01/01/04/51/40/47905591_ugoira600x600.zip" target="_blank" rel="external">http://i4.pixiv.net/img-zip-ugoira/img/2015/01/01/04/51/40/47905591_ugoira600x600.zip</a></p>
+<p>$ wget –referer=’<a href="http://www.pixiv.net/&#39;" target="_blank" rel="noopener">http://www.pixiv.net/&#39;</a> <a href="http://i4.pixiv.net/img-zip-ugoira/img/2015/01/01/04/51/40/47905591_ugoira600x600.zip" target="_blank" rel="noopener">http://i4.pixiv.net/img-zip-ugoira/img/2015/01/01/04/51/40/47905591_ugoira600x600.zip</a></p>
 <p>顺利下载完毕～压缩包里就是一帧一帧的图片啦，之后用工具处理下就好了。</p>
 <p>本来是应该这样就完事了的，但是由于窝突(nao)发奇(chou)想，想用 Python 来实现，顺带用下 <code>urllib</code>，为以后写爬虫做准备。</p>
 <p>想得轻松，实现的时候却遇到了不少坑。首先是对 Python 语法的不熟悉，有时候写几句就要去看看文档，简直酸爽。不过 Python 语法并不难，基础的多写一点就记牢了。</p>
@@ -227,7 +227,7 @@
 <p>其中 <code>URL</code> 是需要下载的文件 URL，<code>Referer</code> 是 header 中的 Referer，<code>threads</code> 是线程数。理论上通用其他情况。</p>
 <p>然而这个破脚本还有很多不足之处，比如说 proxy 配置还没写好（没时间了），还有可能因为网络中断而下载不完之类的，似乎多线程也不是很完美，总之先这样吧～下星期再完善。</p>
 <p>欢迎大触提建议/吊打 qwq</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-27_08-12-38.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-27_08-12-38.png" alt="result"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-27_08-12-38.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-27_08-12-38.png" alt="result"></a></p>
 
         
       </div>
@@ -267,10 +267,10 @@
 <p>该说总结得真好吗（笑</p>
 <p>不过窝还是很喜欢这部作品哦，作画脚本音乐都非常不错。唯一感觉不足的就是系列构成，感觉麻子的这个脚本如果可以有更多的集数，后半部分就不会这么仓促了。</p>
 <p>不要太在意别人的评论，自己看得开心，才是最重要的 ( ´∀｀)</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-26_17-51-13.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-26_17-51-13-1024x576.png" alt="Screenshot_2015-09-27-01-41-45"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-26_17-51-13.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-26_17-51-13-1024x576.png" alt="Screenshot_2015-09-27-01-41-45"></a></p>
 <p>虽然最后一集剧情仓促，但是这个 HE 窝给满分啊 (<em>´ω｀</em>)</p>
 <p>话说 ZHIEND 主唱就打了个酱油？</p>
-<p><div class="wp-player" data-address="http://p2.music.126.net/gyNK2GMN_T3bc4LSAYC1rA==/3286440256314296.mp3|" data-author="Lia|" data-autoplay="0" data-lyric="close" data-source="netease" data-thumb="https://img.prinzeugen.net/image.php?di=PFNF|" data-title="Bravely You|" data-type="song" data-wp-player="wp-player" data-xiami=""><div class="wp-player-box"><div class="wp-player-thumb"><img src="https://prinzeugen.net/wp-content/plugins/wp-player/images/default.png" alt=""><div class="wp-player-playing"><span></span></div></div><div class="wp-player-panel"><div class="wp-player-title"></div><div class="wp-player-author"></div><div class="wp-player-progress"><div class="wp-player-seek-bar"><div class="wp-player-play-bar"><span class="wp-player-play-current"></span></div></div></div><div class="wp-player-controls-holder"><div class="wp-player-time"></div><div class="wp-player-controls"><a href="javascript:;" title="上一首" target="_blank" rel="external"></a> <a href="javascript:;" title="播放" target="_blank" rel="external"></a> <a href="javascript:;" title="暂停" target="_blank" rel="external"></a> <a href="javascript:;" title="下一首" target="_blank" rel="external"></a></div><div class="wp-player-list-btn" title="歌单"></div></div></div></div><div class="wp-player-main"><div class="wp-player-list"><br></div><div class="wp-player-lyrics"><br></div></div></div>或许你可以看看 <a href="http://pudding.cc/activity/5607d259e397fa2c7b8b45df" target="_blank" rel="external">这篇</a>，反正窝是写不出这么长的评论的。个人觉得写得好，最少不像那些傻逼评论一样用“喂屎”带过。</p>
+<p><div class="wp-player" data-address="http://p2.music.126.net/gyNK2GMN_T3bc4LSAYC1rA==/3286440256314296.mp3|" data-author="Lia|" data-autoplay="0" data-lyric="close" data-source="netease" data-thumb="https://img.prinzeugen.net/image.php?di=PFNF|" data-title="Bravely You|" data-type="song" data-wp-player="wp-player" data-xiami=""><div class="wp-player-box"><div class="wp-player-thumb"><img src="https://prinzeugen.net/wp-content/plugins/wp-player/images/default.png" alt=""><div class="wp-player-playing"><span></span></div></div><div class="wp-player-panel"><div class="wp-player-title"></div><div class="wp-player-author"></div><div class="wp-player-progress"><div class="wp-player-seek-bar"><div class="wp-player-play-bar"><span class="wp-player-play-current"></span></div></div></div><div class="wp-player-controls-holder"><div class="wp-player-time"></div><div class="wp-player-controls"><a href="javascript:;" title="上一首" target="_blank" rel="noopener"></a> <a href="javascript:;" title="播放" target="_blank" rel="noopener"></a> <a href="javascript:;" title="暂停" target="_blank" rel="noopener"></a> <a href="javascript:;" title="下一首" target="_blank" rel="noopener"></a></div><div class="wp-player-list-btn" title="歌单"></div></div></div></div><div class="wp-player-main"><div class="wp-player-list"><br></div><div class="wp-player-lyrics"><br></div></div></div>或许你可以看看 <a href="http://pudding.cc/activity/5607d259e397fa2c7b8b45df" target="_blank" rel="noopener">这篇</a>，反正窝是写不出这么长的评论的。个人觉得写得好，最少不像那些傻逼评论一样用“喂屎”带过。</p>
 <p>最后，还是庆祝 Charlotte 完结，撒花～</p>
 
         
@@ -358,7 +358,7 @@
 
       <div class="post-content">
         
-          <p>强力推荐 <a href="https://v2ex.com/member/phoenixlzx" target="_blank" rel="external">凤凰卷</a> 老大的这篇文章： <a href="https://github.com/phoenixlzx/the_start.md/blob/master/README.md" target="_blank" rel="external">@GitHub</a>, or <a href="https://v2ex.com/p/7c3Jp66u" target="_blank" rel="external">@V2EX Note</a>.</p>
+          <p>强力推荐 <a href="https://v2ex.com/member/phoenixlzx" target="_blank" rel="noopener">凤凰卷</a> 老大的这篇文章： <a href="https://github.com/phoenixlzx/the_start.md/blob/master/README.md" target="_blank" rel="noopener">@GitHub</a>, or <a href="https://v2ex.com/p/7c3Jp66u" target="_blank" rel="noopener">@V2EX Note</a>.</p>
 <p>这里贴上几段窝觉得很棒的段落，具体带格式文章请前往上面的链接阅读。</p>
 <hr>
 <p>这里的人都比较喜欢装逼，所以当你遇到了看起来很难很不会的名词的时候，其实那只是创造者起了一个看起来很装逼的名字而已。</p>
@@ -366,11 +366,11 @@
 <p>但是看重精神和执行力并不代表这个世界不看重你的能力。而在你所有的能力中，最重要的也是直接受到精神和执行力影响的就是你的学习能力。</p>
 <p>请<strong>认真读完</strong>下面的两篇文章。如果没有读懂，请<strong>再读一次直到读懂、烙印在脑海中为止</strong>，否则请<strong>不要</strong>继续向下看。</p>
 <ul>
-<li><a href="http://lilydjwg.vim-cn.com/articles/smart-questions.html" target="_blank" rel="external">提问的智慧</a></li>
-<li><a href="http://translations.readthedocs.org/en/latest/hacker_howto.html" target="_blank" rel="external">如何成为一名黑客</a></li>
+<li><a href="http://lilydjwg.vim-cn.com/articles/smart-questions.html" target="_blank" rel="noopener">提问的智慧</a></li>
+<li><a href="http://translations.readthedocs.org/en/latest/hacker_howto.html" target="_blank" rel="noopener">如何成为一名黑客</a></li>
 </ul>
 <p>你需要很强的快速阅读能力来阅读各种技术文档，因为除了日本人做的东西文档大多为日文之外，原版的技术文档基本都是英文的。在很多翻译作品质量和更新进度实在残念的情况下直接阅读官方文档是最好的学习和解决问题的途径。虽然官方文档有时候自己也比较坑——这时候你需要足够强的英文表达能力来联系作者、反馈 / 交流问题甚至帮助完善文档。</p>
-<p>在通过 Google 搜索时，特别是搜索技术问题时请使用<strong>非口头化</strong>的<strong>英文关键字</strong>。<a href="https://support.google.com/websearch/answer/134479" target="_blank" rel="external">这些 tips</a> 和<a href="https://support.google.com/websearch/answer/2466433" target="_blank" rel="external">搜索操作符</a>可以提升搜索的精准程度。</p>
+<p>在通过 Google 搜索时，特别是搜索技术问题时请使用<strong>非口头化</strong>的<strong>英文关键字</strong>。<a href="https://support.google.com/websearch/answer/134479" target="_blank" rel="noopener">这些 tips</a> 和<a href="https://support.google.com/websearch/answer/2466433" target="_blank" rel="noopener">搜索操作符</a>可以提升搜索的精准程度。</p>
 <p>在搜索技术问题时，<strong>不要使用大陆公司开发的搜索引擎，例如百度。</strong></p>
 <ul>
 <li>请像高考作文一样写正文，没有人愿意看你那一坨不知道在说什么的文字。注意断句、断章和标点，适当使用一些符号来表示列表(‘<code>-</code>’ 或 ‘<code>*</code>’)、重要(‘<code>**</code>’ 或 ‘<code>__</code>’)，另外中西文之间要有空格，英文的断句标点后面也要有空格。</li>
@@ -380,9 +380,9 @@
 <p>生命不息，折腾不止</p>
 <p>经过了搭建自己的舞台，你应该已经掌握了快速了解一样新事物的方法。不管是语言还是框架还是库，按照文档即可快速套用(当然是文档不坑的前提下)。并且现在拥有帮助学习的三大杀手锏——</p>
 <ol>
-<li>最好用的搜索引擎 <a href="https://www.google.com/ncr?hl=en" target="_blank" rel="external">Google</a></li>
-<li>最大的开源代码仓库 <a href="https://github.com/" target="_blank" rel="external">GitHub</a></li>
-<li>汇聚千万问题的问答社区 <a href="http://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 当然还有<a href="http://stackexchange.com/" target="_blank" rel="external">同公司</a>旗下的<a href="http://stackexchange.com/sites" target="_blank" rel="external">其他类问答社区</a></li>
+<li>最好用的搜索引擎 <a href="https://www.google.com/ncr?hl=en" target="_blank" rel="noopener">Google</a></li>
+<li>最大的开源代码仓库 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+<li>汇聚千万问题的问答社区 <a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a> 当然还有<a href="http://stackexchange.com/" target="_blank" rel="noopener">同公司</a>旗下的<a href="http://stackexchange.com/sites" target="_blank" rel="noopener">其他类问答社区</a></li>
 </ol>
 <p>——你还在担心什么？成长的道路上早已有无数人准备好为你提供帮助，只要你愿意找到他们。</p>
 <p>石头说，「<strong>自己当全栈做个项目自然就知道自己喜欢什么了。</strong>」</p>
@@ -420,9 +420,9 @@
 
       <div class="post-content">
         
-          <p>从 <a href="https://www.andy1999.com/" target="_blank" rel="external">@Andy1999</a> 那里搞到的野卡，dalao 有路子所以很便宜哦 <a href="https://img.blessing.studio/images/2015/09/2015-09-20_05-13-56.gif" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-20_05-13-56.gif" alt="20150920131347"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-20_05-15-40.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-20_05-15-40.png" alt="crt info"></a></p>
-<p>终于可以替换掉辣鸡沃通的证书辣 <a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" alt="QQ图片20150913141653"></a></p>
+          <p>从 <a href="https://www.andy1999.com/" target="_blank" rel="noopener">@Andy1999</a> 那里搞到的野卡，dalao 有路子所以很便宜哦 <a href="https://img.blessing.studio/images/2015/09/2015-09-20_05-13-56.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-20_05-13-56.gif" alt="20150920131347"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-20_05-15-40.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-20_05-15-40.png" alt="crt info"></a></p>
+<p>终于可以替换掉辣鸡沃通的证书辣 <a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" alt="QQ图片20150913141653"></a></p>
 
         
       </div>
@@ -461,7 +461,7 @@
 <blockquote>
 <p>WiFi 杀手的工作原理使用了ARP 欺骗的原理，假冒 ARP 回复来欺骗同一 WiFi 网络上的其他设备，让它们以为你的 Android 手机是网关，然后 WiFiKill 丢掉它们的网络包。</p>
 </blockquote>
-<p>唔。。ARP 欺骗啊，窝记得几年前有看过这个的资料（在窝还在使用三六蛋的时候）。这里给出维基百科上关于 <a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE" target="_blank" rel="external">ARP</a> 和 <a href="https://zh.wikipedia.org/wiki/ARP%E6%AC%BA%E9%A8%99" target="_blank" rel="external">ARP 欺骗</a> 的页面。</p>
+<p>唔。。ARP 欺骗啊，窝记得几年前有看过这个的资料（在窝还在使用三六蛋的时候）。这里给出维基百科上关于 <a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">ARP</a> 和 <a href="https://zh.wikipedia.org/wiki/ARP%E6%AC%BA%E9%A8%99" target="_blank" rel="noopener">ARP 欺骗</a> 的页面。</p>
 <p>那么这个啥 WiFi 杀手到底是个啥黑科技呢？窝就来通俗的讲讲吧～</p>
 <p>ARP 协议是拿来干啥的呢？就是将一个网络层地址（譬如 IPv4 地址）转换为数据链路物理地址（MAC 地址）。</p>
 <p>那么估计你应该懂了吧？ARP 欺骗的原理就是伪造 ARP 回复报文。举个栗子（栗子中的 A，B 即为 IP，位置即为 MAC 地址：</p>
@@ -476,7 +476,7 @@
 <p>这就是 WiFi 杀手的原理，如果欺骗的是网关的 MAC 地址的话就会导致无法访问网络了。那么要如何防范呢？Android 平台上也有许多防御 ARP 欺骗的应用，有需要可以去找下。也可以手动清空 ARP 缓存表（在攻击者长时间跑着 ARP 欺骗程序的情况下没卵用</p>
 <p>顺带一提窝是不太提倡使用 WiFi 杀手这类应用呢。</p>
 <p>BTW，ARP 缓存表一般会在设备重启后清空哦～可以在手机终端中使用 <code>cat /proc/net/arp</code> 来查看你设备的 ARP 表</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" alt="image" title="wp-1442587367872"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" alt="image" title="wp-1442587367872"></a></p>
 <p>PS. 今天是窝博客第一次达到文章和评论数量相等哦～（虽然有一半评论是窝的 qwq</p>
 
         
@@ -510,12 +510,12 @@
 
       <div class="post-content">
         
-          <p>9 月窝最期待的项目终于有动静了！(*´∀｀) 第一个使用此项目签名的证书的网站是：<a href="https://helloworld.letsencrypt.org/" target="_blank" rel="external">https://helloworld.letsencrypt.org/</a>，不过目前还没有被信任。</p>
+          <p>9 月窝最期待的项目终于有动静了！(*´∀｀) 第一个使用此项目签名的证书的网站是：<a href="https://helloworld.letsencrypt.org/" target="_blank" rel="noopener">https://helloworld.letsencrypt.org/</a>，不过目前还没有被信任。</p>
 <p>ISP：我们已做好封锁 443 端口的准备（笑</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-15_15-10-46.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-15_15-10-46.png" alt="lisfwIGqXcOfM"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-15_15-10-46.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-15_15-10-46.png" alt="lisfwIGqXcOfM"></a></p>
 <p>Let’s Encrypt 项目旨在让每个网站都能使用 HTTPS 加密，该项目获得了 Mozilla、思科、Akamai、IdenTrust 和 EFF 等组织的支持，由 Linux 基金会托管。目前 Let’s Encrypt CA 还没有被加入到信任CA列表，用户需要自己添加 ISRG root CA 才能在浏览器上正常访问Let’s Encrypt 签名的 HTTPS 网站。它已经向 Mozilla、Google、Microsoft 和Apple 递交了root CA 申请。Let’s Encryp t计划在11月份开放签名申请，感兴趣的网站可以申请参加 beta。</p>
-<p>以上来自 <a href="http://solidot.org.feedsportal.com/c/33236/f/556826/s/49d9d106/sc/27/l/0L0Ssolidot0Borg0Cstory0Dsid0F4550A2/story01.htm" target="_blank" rel="external">Solidot</a>。</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-15_04-18-28.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-15_04-18-28-576x1024.png" alt="wpid-2015-09-15_04-18-28.png"></a></p>
+<p>以上来自 <a href="http://solidot.org.feedsportal.com/c/33236/f/556826/s/49d9d106/sc/27/l/0L0Ssolidot0Borg0Cstory0Dsid0F4550A2/story01.htm" target="_blank" rel="noopener">Solidot</a>。</p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-15_04-18-28.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-15_04-18-28-576x1024.png" alt="wpid-2015-09-15_04-18-28.png"></a></p>
 
         
       </div>
@@ -549,10 +549,10 @@
       <div class="post-content">
         
           <p>AMH 面板也是国内挺流行的一个 web 主机面板吧，而且相信很多人都是直接在 AMH 面板的软件管理中下载的 PMA。直接通过 AMH 面板访问 PMA 的话就可以登录，但是直接访问 phpMyadmin，登录的话就会出现 <code>#2002 无法登录 MySQL 服务器</code> 错误：</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-13_06-58-13.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_06-58-13.png" alt="error"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-13_06-58-13.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_06-58-13.png" alt="error"></a></p>
 <p>而且自己安装的 phpMyadmin 也同样是 #2002 错误，</p>
 <p>这尼玛不科学啊！明明 MySQL 已经启动了，用户名密码都对的！（掀桌</p>
-<p>那么这是怎么回事呢？继续阅读之前，窝希望你能够基本了解 <a href="https://zh.wikipedia.org/wiki/Unix%E5%9F%9F%E5%A5%97%E6%8E%A5%E5%AD%97" target="_blank" rel="external">UNIX Socket</a> 是个啥。（蛤？你说打不开？翻墙是基本技能。</p>
+<p>那么这是怎么回事呢？继续阅读之前，窝希望你能够基本了解 <a href="https://zh.wikipedia.org/wiki/Unix%E5%9F%9F%E5%A5%97%E6%8E%A5%E5%AD%97" target="_blank" rel="noopener">UNIX Socket</a> 是个啥。（蛤？你说打不开？翻墙是基本技能。</p>
 <p>下面简单一句话介绍一下 UNIX 套接字：<strong>总之就是一种用来与 mysql 数据库通信的工具</strong>。</p>
 <p>或许细心的 AMH 面板用户（或者喜欢折腾的），已经发现 AMH 中 mysql 的默认套接字不是 <code>/tmp/mysql.sock</code> 而是类似于 <code>/tmp/mysql-generic-5.5.40.sock</code> 的，加了版本号的 Socket。</p>
 <p>想要知道你的 socket 叫啥？请在 ssh 上 <code>$ ls -al /tmp</code> （当然先确保 MySQL 已经启动</p>
@@ -568,8 +568,8 @@
 <p>$cfg[‘Servers’][$i][‘host’] = “localhost:/tmp/{$_COOKIE[‘connect_mysql_name’]}.sock”;</p>
 <p>将其中的 <span class="lang:default decode:true crayon-inline ">/tmp/{$_COOKIE[‘connect_mysql_name’]}.sock</span>  改为 <span class="lang:default decode:true crayon-inline ">/tmp/mysql-xxxxx.sock</span>  即可</p>
 <p>试着访问看看？</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-29-05.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-29-05-1024x506.png" alt="2"></a></p>
-<p>蛤蛤，大功告成 <a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" alt="QQ图片20150913141653"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-29-05.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-29-05-1024x506.png" alt="2"></a></p>
+<p>蛤蛤，大功告成 <a href="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-13_07-32-05.jpg" alt="QQ图片20150913141653"></a></p>
 
         
       </div>
@@ -602,11 +602,11 @@
 
       <div class="post-content">
         
-          <p>原因同上次所说，不待见国内统计代码，Google Analytics 在大陆又不稳定。上次搞的 <a href="https://prinzeugen.net/build-a-reverse-proxy-of-google-analytics/" target="_blank" rel="external">GA 反代</a> 没卵用：</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" alt="GA"></a></p>
+          <p>原因同上次所说，不待见国内统计代码，Google Analytics 在大陆又不稳定。上次搞的 <a href="https://prinzeugen.net/build-a-reverse-proxy-of-google-analytics/" target="_blank" rel="noopener">GA 反代</a> 没卵用：</p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" alt="GA"></a></p>
 <p>现已弃用。一直在用 wordpress 的 slimstat 插件，还是挺不错的哦</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" alt="1"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" alt="2"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" alt="1"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" alt="2"></a></p>
 
         
       </div>

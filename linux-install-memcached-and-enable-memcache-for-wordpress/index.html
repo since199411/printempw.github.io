@@ -179,8 +179,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 906 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 907 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 907 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -188,7 +194,7 @@
     <div class="post-content">
       <p>首先先来理一下 memcache 和 memcached 的区别：</p>
 <blockquote>
-<p><a href="http://memcached.org/" target="_blank" rel="external">Memcache</a> 是一个自由和开放源代码、高性能的、具有分布式对象的缓存系统。它可以用来保存一些经常存取的对象或数据，加速动态 web 应用程序，减轻数据库负载。保存的数据像一张巨大的 HASH 表，该表以键值对的方式存在内存中。</p>
+<p><a href="http://memcached.org/" target="_blank" rel="noopener">Memcache</a> 是一个自由和开放源代码、高性能的、具有分布式对象的缓存系统。它可以用来保存一些经常存取的对象或数据，加速动态 web 应用程序，减轻数据库负载。保存的数据像一张巨大的 HASH 表，该表以键值对的方式存在内存中。</p>
 </blockquote>
 <p>Memcache 是这个项目的名称，memcached 是这个项目的主程序名称也是守护进程。还有一个 memcached 是 php-extension。</p>
 <p>环境：<em>Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-57-generic i686) with lnmp</em></p>
@@ -197,8 +203,8 @@
 <p>参数说明：</p>
 <p><em>-p  侦听的端口，默认为 11211</em><br><em>-m  使用内存大小，默认为 64m</em><br><em>-d  作为守护进程启动</em></p>
 <p>可以用 <span class="lang:sh decode:true crayon-inline">ps -ef|grep memcached</span>  或者 <span class="lang:sh decode:true  crayon-inline">telnet 127.0.0.1 11211</span>  查看 memcached 服务状态</p>
-<h3 id="二、安装-PHP-memcached-扩展"><a href="#二、安装-PHP-memcached-扩展" class="headerlink" title="二、安装 PHP memcached 扩展"></a>二、安装 PHP memcached 扩展</h3><p>这个就没有那么方便了，要自己编译，在<a href="http://pecl.php.net/package/memcached" target="_blank" rel="external">这里</a>选一个版本下载解压（注意 memcached 和 memcache 两种 php 扩展的区别，推荐 php-memcached </p>
-<p>wget <a href="http://pecl.php.net/get/memcached-2.1.0.tgz" target="_blank" rel="external">http://pecl.php.net/get/memcached-2.1.0.tgz</a> tar -xvf memcached-2.1.0.tgz</p>
+<h3 id="二、安装-PHP-memcached-扩展"><a href="#二、安装-PHP-memcached-扩展" class="headerlink" title="二、安装 PHP memcached 扩展"></a>二、安装 PHP memcached 扩展</h3><p>这个就没有那么方便了，要自己编译，在<a href="http://pecl.php.net/package/memcached" target="_blank" rel="noopener">这里</a>选一个版本下载解压（注意 memcached 和 memcache 两种 php 扩展的区别，推荐 php-memcached </p>
+<p>wget <a href="http://pecl.php.net/get/memcached-2.1.0.tgz" target="_blank" rel="noopener">http://pecl.php.net/get/memcached-2.1.0.tgz</a> tar -xvf memcached-2.1.0.tgz</p>
 <p>开始编译：（机灵点儿，下面 php 路径自己看着改</p>
 <p>/usr/local/php/bin/phpize ./configure –with-php-config=/usr/local/php/bin/php-config make &amp;&amp; make install</p>
 <p>编译成功后会输出</p>
@@ -206,16 +212,16 @@
 <p>Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/</p>
 </blockquote>
 <p>ls 一下这个目录，</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" alt="20150726203222"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" alt="20150726203222"></a></p>
 <p>多了一个编译出来的 memcache.so ，mv 到你的 <em>php extension dir</em> 里去（可以在 phpinfo() 中查看</p>
 <p>然后在 php.ini 的最后加入一句</p>
 <p>extension = memcache.so</p>
 <p>重启 php-fpm 和 nginx 后就可以在 phpinfo() 中看到扩展信息了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" alt="phpinfo"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" alt="phpinfo"></a></p>
 <h3 id="三、在-WordPress-中启用-memcache-缓存"><a href="#三、在-WordPress-中启用-memcache-缓存" class="headerlink" title="三、在 WordPress 中启用 memcache 缓存"></a>三、在 WordPress 中启用 memcache 缓存</h3><p>推荐 W3-Total-Cache，运行 W3TC 的 compatibility check 可以看到 memcache 已经安装成功可以使用了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" alt="w3tc_memcache"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" alt="w3tc_memcache"></a></p>
 <p>具体设置就不说了，自己看着改吧。</p>
-<p>（如果跟窝一样无法忍受 W3TC 的破图标的话就看一下<a href="https://prinzeugen.net/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/" target="_blank" rel="external">这一篇</a>吧</p>
+<p>（如果跟窝一样无法忍受 W3TC 的破图标的话就看一下<a href="https://prinzeugen.net/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/" target="_blank" rel="noopener">这一篇</a>吧</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

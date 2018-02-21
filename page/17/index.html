@@ -176,17 +176,17 @@
       <div class="post-content">
         
           <p>有些网站比如 V2EX 支持 https 但是不强制使用 https，在 chrome 下我们可以通过设置使访问 V2EX 强制使用 https 。</p>
-<p>方法很简单，在 <a href="chrome://net-internals/#hsts" target="_blank" rel="external">chrome://net-internals/#hsts</a> 中添加需要使用 HSTS 的站点即可。</p>
+<p>方法很简单，在 <a href="chrome://net-internals/#hsts" target="_blank" rel="noopener">chrome://net-internals/#hsts</a> 中添加需要使用 HSTS 的站点即可。</p>
 <blockquote>
 <p>HSTS (HTTP Strict Transport Security)，HTTP严格传输安全，是一套由互联网工程任务组发布的互联网安全策略机制。网站可以选择使用HSTS策略，来让浏览器强制使用HTTPS与网站进行通信，以减少会话劫持风险。</p>
 </blockquote>
 <p>HSTS 的作用是强制客户端（如浏览器）使用HTTPS与服务器创建连接。</p>
-<p>比如，<a href="https://example.com/" target="_blank" rel="external">https://example.com/</a> 的响应头含有 <span class="lang:default decode:true  crayon-inline ">Strict-Transport-Security: max-age=31536000; includeSubDomains</span> 。这意味着两点：</p>
+<p>比如，<a href="https://example.com/" target="_blank" rel="noopener">https://example.com/</a> 的响应头含有 <span class="lang:default decode:true  crayon-inline ">Strict-Transport-Security: max-age=31536000; includeSubDomains</span> 。这意味着两点：</p>
 <ol>
-<li>在接下来的一年（即31536000秒）中，浏览器只要向 example.com 或其子域名发送 HTTP 请求时，必须采用 HTTPS 来发起连接。比如，用户点击超链接或在地址栏输入 <a href="http://www.example.com/" target="_blank" rel="external">http://www.example.com/</a> ，浏览器应当自动将 http 转写成 https，然后直接向 <a href="https://www.example.com/" target="_blank" rel="external">https://www.example.com/</a> 发送请求。</li>
+<li>在接下来的一年（即31536000秒）中，浏览器只要向 example.com 或其子域名发送 HTTP 请求时，必须采用 HTTPS 来发起连接。比如，用户点击超链接或在地址栏输入 <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a> ，浏览器应当自动将 http 转写成 https，然后直接向 <a href="https://www.example.com/" target="_blank" rel="noopener">https://www.example.com/</a> 发送请求。</li>
 <li>在接下来的一年中，如果 example.com 服务器发送的 TLS 证书无效，用户不能忽略浏览器警告继续访问网站。</li>
 </ol>
-<p>以上内容引自 <a href="https://zh.wikipedia.org/wiki/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8" target="_blank" rel="external">中文维基百科</a>。</p>
+<p>以上内容引自 <a href="https://zh.wikipedia.org/wiki/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">中文维基百科</a>。</p>
 
         
       </div>
@@ -219,7 +219,7 @@
 
       <div class="post-content">
         
-          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48077065" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-22_14-57-59.jpg" alt="48077065_p0"></a></p>
+          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48077065" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-22_14-57-59.jpg" alt="48077065_p0"></a></p>
 <p>ビール最高だあああああああああ～♥　おっぱいも～♥</p>
 
         
@@ -257,7 +257,7 @@
 <blockquote>
 <p>DNS 查找失败，因此找不到 zh.wikipedia.org 的服务器。</p>
 </blockquote>
-<p>搜索了一下发现原来中文 wiki 在 5.19 开始就被 DNS 污染了，具体可以 <a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%AF%B9%E7%BB%B4%E5%9F%BA%E5%AA%92%E4%BD%93%E7%9A%84%E5%B0%81%E9%94%81" target="_blank" rel="external">看这里</a> 。</p>
+<p>搜索了一下发现原来中文 wiki 在 5.19 开始就被 DNS 污染了，具体可以 <a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%AF%B9%E7%BB%B4%E5%9F%BA%E5%AA%92%E4%BD%93%E7%9A%84%E5%B0%81%E9%94%81" target="_blank" rel="noopener">看这里</a> 。</p>
 <p>厉害厉害。丧心病狂。</p>
 <h3 id="Across-the-Great-Firewall-we-can-reach-every-corner-in-the-world"><a href="#Across-the-Great-Firewall-we-can-reach-every-corner-in-the-world" class="headerlink" title="Across the Great Firewall, we can reach every corner in the world."></a>Across the Great Firewall, we can reach every corner in the world.</h3><p>自我审查？谁搞谁傻逼。</p>
 
@@ -292,16 +292,16 @@
 
       <div class="post-content">
         
-          <p>conoha 东京机房体验了一个星期发现好！慢！啊！<a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+          <p>conoha 东京机房体验了一个星期发现好！慢！啊！<a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 <p>虽然带宽是挺大，wget 国外资源都是唰唰唰的，但是到大陆简直小水管，10KBps 的下行速度简直。。</p>
 <p>昨晚搞 conoha 的 vps 时把 nginx 艹坏了搞得证书错乱，</p>
-<p>各种解决方法无果于是回滚到早上的镜像 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>各种解决方法无果于是回滚到早上的镜像 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>不得不说conoha的系统重装速度简直慢得一B，DO 恢复 snapshot 半分钟的事儿 conoha 要半小时。。（扶额，不会是肉身重装吧（笑</p>
 <p>等了半小时开 conoha 控制面板一看。。</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-21_13-38-35.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-21_13-38-35.png" alt="20150721213634"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-21_13-38-35.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-21_13-38-35.png" alt="20150721213634"></a></p>
 <p><strong>WHAT THE FUUUUUUCKKK ! ! ! !なんだこれいみわかねーよ！！</strong></p>
 <p>这尼玛是什么奇异的错误，连镜像恢复页都不能进，窝当时心里千万只草泥马奔腾呼啸而过 <img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></p>
-<p>无法自助恢复只好用捉鸡的日语发了 tickets 就去看 charlotte 了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a>，</p>
+<p>无法自助恢复只好用捉鸡的日语发了 tickets 就去看 charlotte 了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a>，</p>
 <p>第二天早上发现了客服的回信：</p>
 <blockquote>
 <p>(お客様センター) – 2015/07/21 12:46</p>
@@ -317,10 +317,10 @@
 <p>正好碰上出了这档子事儿，也算是个搬家的好机会，就又去 DO 看了看</p>
 <p>以前听网上安利的 SFO 机房速度亲测也不是很快，这次就又开了个了 NYC3 机房的比较测试</p>
 <p>同样从 vps scp 到本地，SFO 只能跑到 30KBps，但是NYC可以跑到 300KBps</p>
-<p>虽然这看起来也是惨不忍睹的速度 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> 但是根本就不会有官方测速那么 dio 直飞 2MBps 啊</p>
-<p>反正比前两个tokyo的和SFO的已经快很多了，窝对国外vps已经无欲无求了 <a href="https://img.blessing.studio/images/2015/07/2015-07-10_10-57-26.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-10_10-57-26.jpg" alt="20150710185714"></a></p>
-<p>搭建 lnmp 艹起来 wordpress 一切顺利，搬家过程中两台 vps 互相 wget 明明可以飙到 10MBps+ <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
-<p>难道是窝这里破电信的锅？ <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
+<p>虽然这看起来也是惨不忍睹的速度 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> 但是根本就不会有官方测速那么 dio 直飞 2MBps 啊</p>
+<p>反正比前两个tokyo的和SFO的已经快很多了，窝对国外vps已经无欲无求了 <a href="https://img.blessing.studio/images/2015/07/2015-07-10_10-57-26.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-10_10-57-26.jpg" alt="20150710185714"></a></p>
+<p>搭建 lnmp 艹起来 wordpress 一切顺利，搬家过程中两台 vps 互相 wget 明明可以飙到 10MBps+ <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>难道是窝这里破电信的锅？ <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
 
         
       </div>
@@ -389,19 +389,19 @@
         
           <p>今天咱在 ssh 中执行 reboot 后，发现 wordpress、amh 都连不上 mysql 数据库</p>
 <p><span class="lang:default decode:true  crayon-inline ">amh mysql status</span>  查看发现 mysql 没有在运行，遂 <span class="lang:default decode:true  crayon-inline ">amh mysql start</span>  启动 mysql</p>
-<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
-<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="external"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
+<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
+<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="noopener"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
 <ol>
 <li><strong>df -h</strong>  看磁盘是否有空间；</li>
 <li><strong>ls -l /home/usrdata/mysql*</strong>  目录是否有权限；</li>
 <li>检测 <strong>my.cnf</strong> 配置是否正确(与是否有多余其它的)；</li>
 </ol>
 <p>一条一条试过去，咱的硬盘还充足，目录权限也没错</p>
-<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>最后在 <del>万策尽きた</del> 的时候，咱抱着最后希望 <span class="lang:default decode:true  crayon-inline ">vim /etc/mysql/my.cnf</span> 了</p>
-<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
-<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
-<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
+<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
+<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
+<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
 <p>可喜可贺，可喜可贺</p>
 
         
@@ -435,7 +435,7 @@
 
       <div class="post-content">
         
-          <p>暑假以来好像天天都在搞 vps ，本来只用过 linux 图形界面的窝也可以比较熟练地使用 shell 了 （天天对着终端艹 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ，于是整理了一些 shell 常用命令如下：</p>
+          <p>暑假以来好像天天都在搞 vps ，本来只用过 linux 图形界面的窝也可以比较熟练地使用 shell 了 （天天对着终端艹 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ，于是整理了一些 shell 常用命令如下：</p>
 <p><strong>ls  [OPTION]  [FILE]</strong>     显示目录内容</p>
 <p>-a            显示以 . 开头的文件（root 用户默认带此参数</p>
 <p>-l             列出文件具体信息</p>
@@ -481,7 +481,7 @@
 <p><strong>free -m</strong>      查看内存，swap使用情况</p>
 <p><strong>netstat -ntl</strong>      查看端口占用情况</p>
 <hr>
-<p>就先写这么点吧~ <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a></p>
+<p>就先写这么点吧~ <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a></p>
 
         
       </div>
@@ -514,11 +514,11 @@
 
       <div class="post-content">
         
-          <p>今天咱逛 v2 时突然发现原来 v2 的 gravatar cdn 是可以公开调用的<a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
-<p>正巧咱艹上了 https ，v2 的 gravatar cdn 又是支持 ssl 的，就懒得自己搭了 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
+          <p>今天咱逛 v2 时突然发现原来 v2 的 gravatar cdn 是可以公开调用的<a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
+<p>正巧咱艹上了 https ，v2 的 gravatar cdn 又是支持 ssl 的，就懒得自己搭了 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
 <p>只要在主题的 function.php 中的 php 结束标签之前加入如下代码即可：</p>
-<p>/<em>替换为v2ex的Gravatar CDN</em>/ function getV2exAvatar($avatar) { $avatar = str_replace(array(“www.gravatar.com/avatar”,”0.gravatar.com/avatar”,”1.gravatar.com/avatar”,”2.gravatar.com/avatar”),”cdn.v2ex.com/gravatar”,$avatar); return $avatar; } add_filter(‘get_avatar’, ‘getV2exAvatar’);</p>
-<p>如果尼的主题已经自带 gravatar 爬墙，但是都不支持 ssl （像窝一样 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>/<em>替换为v2ex的Gravatar CDN</em>/ function getV2exAvatar($avatar) { $avatar = str_replace(array(“<a href="http://www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)" target="_blank" rel="noopener">www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)</a>; return $avatar; } add_filter(‘get_avatar’, ‘getV2exAvatar’);</p>
+<p>如果尼的主题已经自带 gravatar 爬墙，但是都不支持 ssl （像窝一样 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>就在function.php中查找 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">$avatar</span> 关键字，随机应变替换即可</p>
 
         
@@ -553,9 +553,9 @@
       <div class="post-content">
         
           <p>今天咱重新在 vps 上部署贴吧云签到的时候，发现：</p>
-<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="external">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
-<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="external">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
-<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
+<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
+<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
+<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
 <p>常见做法：在 rewrite 规则中加入</p>
 <pre><code class="nginx">if (-d $request_filename) { 
     rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent; 
@@ -598,10 +598,10 @@ server_name_in_redirect off; ＃服务器名称重定向：关
         
           <p><strong>Update：</strong>不安全内容解☆决★完☆成~</p>
 <p>感觉速度不慢呐，加上 ssl ctrl+f5 依然可以在8s内打开</p>
-<p>估计是刚才有人在干啥拖母鸡吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>估计是刚才有人在干啥拖母鸡吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <hr>
 <p>但是好慢啊啊啊明明vps配置还可以嘛</p>
-<p><a href="https://prinzeugen.net" target="_blank" rel="external">https://prinzeugen.net</a></p>
+<p><a href="https://prinzeugen.net" target="_blank" rel="noopener">https://prinzeugen.net</a></p>
 <p>不安全内容还没去搞，先把速度搞上去吧</p>
 <p>难道真像 dalao 说的 conoha tokyo 太弱？</p>
 

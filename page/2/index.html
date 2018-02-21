@@ -215,7 +215,7 @@
       <div class="post-content">
         
           <p>做开发的，免不了要和调试打交道。单说 PHP，有的人直接 <code>echo</code>，有的人用 <code>print_r()</code>，有的人用 <code>var_dump()</code>，还有的人直接上 Xdebug，用啥的都有。</p>
-<p>如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— <code>dd()</code> 和 <code>dump()</code>。这两个函数都能够输出变量的值，不同的是 <code>dd()</code> 在输出变量值后会停止脚本的执行，而 <code>dump()</code> 不会。它们的使用方法可参照官方文档：<a href="https://laravel.com/docs/5.4/helpers#method-dd" target="_blank" rel="external">Helpers - Laravel Documentation</a>。</p>
+<p>如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— <code>dd()</code> 和 <code>dump()</code>。这两个函数都能够输出变量的值，不同的是 <code>dd()</code> 在输出变量值后会停止脚本的执行，而 <code>dump()</code> 不会。它们的使用方法可参照官方文档：<a href="https://laravel.com/docs/5.4/helpers#method-dd" target="_blank" rel="noopener">Helpers - Laravel Documentation</a>。</p>
 <p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214238.png" alt="Laravel dd() 输出示例"></p>
 <p>什么？哦，上帝！真是见鬼！怎么会有人在 Laravel 中还在用 <code>echo</code> + <code>die()</code>？好家伙，我敢打赌，他一定没有好好看文档，我向圣母玛利亚保证。如果让我看到这群愚蠢的土拨鼠，看在上帝的份上，我会用靴子狠狠地踢他们的屁股，我发誓我绝对会。</p>
           <a class="more-link" href="/lumen-dd-dump-with-prettier-result/#more">阅读全文&rarr;</a>
@@ -250,7 +250,7 @@
 
       <div class="post-content">
         
-          <p>大概是几年前（总之是我的 AM800 掉在火车上之后），我从某位 <a href="https://twitter.com/Panpawliet" target="_blank" rel="external">dalao</a> 手里低价收来了 ATH-IM50 和 ATH-ES55 两副耳机。当时写的记录文章在 <a href="https://blessing.studio/get-im50/">这里</a>，两年前的文章，现在看起来挺尬的，行文风格差了真不是一点半点。</p>
+          <p>大概是几年前（总之是我的 AM800 掉在火车上之后），我从某位 <a href="https://twitter.com/Panpawliet" target="_blank" rel="noopener">dalao</a> 手里低价收来了 ATH-IM50 和 ATH-ES55 两副耳机。当时写的记录文章在 <a href="https://blessing.studio/get-im50/">这里</a>，两年前的文章，现在看起来挺尬的，行文风格差了真不是一点半点。</p>
 <p>而且好几年过去了，这俩耳机也或多或少都出了些问题。其中 IM50 原配的线已经发硬且接触不良，官方升级线又买不起（说实话也不值），于是就去某宝买了个 DIY 升级线，用着也还算不错。</p>
 <p><img src="https://img.blessing.studio/images/2017/06/10/snipaste_20170610_230116.png" alt="某宝订单"></p>
 <p>至于 ES55，收来的时候耳机插头就是坏的，虽然当初随便买了个插头随便焊上去了事，不过后来又重新焊了一次（当时写的博文在 <a href="https://blessing.studio/tips-for-fixing-audio-jack/">这里</a>）。然而因为 ES55 不好在学校里用（太显眼，漏音也严重），放着吃灰了几个月，前几天高考结束拿出来的时候发现它的线材都已经变得黏糊糊的了。</p>
@@ -399,7 +399,7 @@
       <div class="post-content">
         
           <p>唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。</p>
-<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="external">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
+<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="noopener">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
 <p><img src="https://img.blessing.studio/images/2017/05/13/20170513185210.png" alt="感谢这位pong友"></p>
 <p>然而这位pong友上传的是 bilibili 客户端的下载（缓存）格式，虽然放在手机的 <code>/Android/data/tv.danmaku.bili/download</code> 目录下就可以被客户端直接识别，但是想要在电脑上直接播放就没那么容易了。</p>
           <a class="more-link" href="/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/#more">阅读全文&rarr;</a>
@@ -435,7 +435,7 @@
       <div class="post-content">
         
           <p>前些天某 MMA（Mixed Martial Arts，综合格斗）狂人徐晓东 20 秒打倒雷公太极创始人「雷雷」的事在中国互联网上传得火热，在大家唇枪舌剑讨论传统武术时，徐晓东又爆出许多武林界造假行为，并对各大传统武术门派下了战书。</p>
-<p>如果只是击败了雷雷一人（这家伙曾被央视介绍为「十大民间武林高手」），那也倒是还好。其他譬如陈氏太极都跳出来声明其无法代表太极门派所以不作数，雷雷本人也表示自己在这场对决中<a href="http://qiwen.lu/33959.html" target="_blank" rel="external">没有用内力</a>，因为他担心打完之后进派出所（笑）。</p>
+<p>如果只是击败了雷雷一人（这家伙曾被央视介绍为「十大民间武林高手」），那也倒是还好。其他譬如陈氏太极都跳出来声明其无法代表太极门派所以不作数，雷雷本人也表示自己在这场对决中<a href="http://qiwen.lu/33959.html" target="_blank" rel="noopener">没有用内力</a>，因为他担心打完之后进派出所（笑）。</p>
 <p>事情到这里，那些到处收徒的武林门派「大师」都是些什么货色大家都已经心知肚明：腐朽不堪的武林，师傅徒有虚名，弟子心照不宣，一个个江湖老炮心里盘算着金钱、名声。</p>
 <p>如果徐晓东就此收手，那大家表面上笑笑，也就过去了。毕竟在这个信息过剩的互联网时代，人们对某件事的关注总是会被快速地冲淡。</p>
 <p>但是徐晓冬这个揍了大师雷雷的莽汉，还在直播中口无遮拦，大肆爆料行业中的「潜规则」与造假行为。他喊话全武林，高举「武术打假」的大旗要挑战各门各派的「大师」。</p>
@@ -475,7 +475,7 @@
           <p>利用零散时间读完了《黑客与画家：硅谷创业之父 Paul Graham 文集》这本书，收获颇多。不过说是读书笔记，其实只是把一些觉得好的段落记录一下而已。这里不得不吐槽一下 Kindle 自带的标注功能：</p>
 <ul>
 <li>所有标注内容都以纯文本形式存储在一个 <code>My Clippings.txt</code> 文件里；</li>
-<li>记录格式很神秘，得用特殊工具处理（<a href="http://www.clippings.io/" target="_blank" rel="external">Clippings</a>），比较蛋痛；</li>
+<li>记录格式很神秘，得用特殊工具处理（<a href="http://www.clippings.io/" target="_blank" rel="noopener">Clippings</a>），比较蛋痛；</li>
 <li>只是个本地功能，不会自动同步到云端；</li>
 <li>无法在 Kindle 上舒爽地查看所有剪贴内容；</li>
 <li>就算你在书中把原标注删除了也还会留一份在 <code>My Clippings.txt</code> 文件里；</li>
@@ -518,7 +518,7 @@
         
           <p>今天打开 InoReader，一眼便看到「微广场」关闭服务的通知。虽然我知道这类提供微信公众号 RSS 输出的服务总有一天是会消亡的，但没想到竟是如此之快。极尽惋惜之余，不由得一声叹息。</p>
 <p><img src="https://img.blessing.studio/images/2017/04/29/iwgc_closed.png" alt="微广场关站通知"></p>
-<p>我个人是不愿意去耗费精力折腾微信公众号的抓取的，毕竟能用钱解决的事，为什么要浪费时间呢？因此我也非常愿意为这类服务付费。既然微广场已经倒下，那我也不得不寻找其他对应方案了，目前看起来<a href="http://www.jintiankansha.me/" target="_blank" rel="external">「今天看啥」</a>这个服务还不错。</p>
+<p>我个人是不愿意去耗费精力折腾微信公众号的抓取的，毕竟能用钱解决的事，为什么要浪费时间呢？因此我也非常愿意为这类服务付费。既然微广场已经倒下，那我也不得不寻找其他对应方案了，目前看起来<a href="http://www.jintiankansha.me/" target="_blank" rel="noopener">「今天看啥」</a>这个服务还不错。</p>
 <hr>
 <p>这是一个信息爆炸的时代。</p>
 <p>而我们却被大量的垃圾信息绑架着。</p>

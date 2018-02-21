@@ -184,6 +184,8 @@
 
 
 
+
+
     <div class="post-content">
       <p>之前（六月份高考完后）我把博客引擎由 Ghost <a href="https://blessing.studio/migrated-to-hexo/">换成了静态博客生成器 Hexo</a>，并且只使用了自带的 Git Deployment 来手动部署生成好的静态博客文件到服务器上。虽然不像动态博客程序那样可以随时随地更新博客，但是想到马上就要上大学了，之后手头都会有电脑，所以更新博客也不算那么麻烦。</p>
 <p>但是实在是人算不如天算，浙江这一届新高考改革是结结实实地把我坑了一把。二段线以上一段线未满这样中途半端的分数让人在填志愿时着实是犯难 —— 这次浙江几乎普遍出现「一段考生抢以往的二本中好学校，二段考生抢三本学校」这样神秘的情况。思来想去最后把心一横，决定去再读一年高四。后来全省高考录取情况出来后，也证实了我当时复读的决定也不是不合理的（譬如当时上了新浪微博热门话题的「浙江滑档大学」等）。</p>
@@ -198,7 +200,7 @@
 <a id="more"></a>
 <p>虽然互联网上关于自动部署 Hexo 博客的文章已经有很多了，但是我这里还是有些需求是和他们不一样的：</p>
 <ol>
-<li>我所使用的 Seventeen 主题源码存放在 <a href="https://gitee.com/" target="_blank" rel="external">Gitee</a> （就是原来的 Git@OSC）上的私有仓库中（毕竟这主题只是我移植到 Hexo 上来的，主题版权依然属于<a href="https://qaq.cat/" target="_blank" rel="external">原作者</a>）；</li>
+<li>我所使用的 Seventeen 主题源码存放在 <a href="https://gitee.com/" target="_blank" rel="noopener">Gitee</a> （就是原来的 Git@OSC）上的私有仓库中（毕竟这主题只是我移植到 Hexo 上来的，主题版权依然属于<a href="https://qaq.cat/" target="_blank" rel="noopener">原作者</a>）；</li>
 <li>需要同时部署至 GitHub Pages 和我自己的 VPS 上。</li>
 </ol>
 <p>折腾期间也是踩到了一些坑，也在这里记录一下。</p>
@@ -206,7 +208,7 @@
 <p>怎样启用 GitHub Pages 我就不多说了，智力正常的人应该都能完成这些操作。因为域名是以用户名开头的 User Pages 默认只能显示 master 分支里的内容（我也懒得去弄 Custom domain 啥的），所以我用了不同的分支来存放不同的内容：</p>
 <ul>
 <li><strong>master</strong> 存放 Hexo 生成好的静态文件，所有 commit 信息格式均为 <code>Site updated: %Y-%m-%d %H:%M:%S</code>；</li>
-<li><strong>source</strong> 存放 scaffolds（脚手架）、source（文章 Markdown 源码）、_config.yml（Hexo 配置）等文件，commit 信息前都加上对应的 emoji（确实蛮好玩的，参见 <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="external">gitmoji</a>），并设置为 repo 的默认分支。</li>
+<li><strong>source</strong> 存放 scaffolds（脚手架）、source（文章 Markdown 源码）、_config.yml（Hexo 配置）等文件，commit 信息前都加上对应的 emoji（确实蛮好玩的，参见 <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="noopener">gitmoji</a>），并设置为 repo 的默认分支。</li>
 </ul>
 <p>分支操作大概像这样：</p>
 <pre><code class="shell">git init
@@ -250,7 +252,7 @@ $ travis login --auto
 # 还 tmd 会自动格式化你的 .travis.yml 文件，去他妈的
 $ travis encrypt-file travis.key -add
 </code></pre>
-<p>需要注意的是，这些文件加密步骤<strong>不能</strong>在 Windows 系统下完成，不然在自动部署时会出现神秘的错误（wrong final block length）。这个问题已经被很多人<a href="https://github.com/travis-ci/travis-ci/issues/4746" target="_blank" rel="external">报告过了</a>（实际上我也踩上去了），并且<a href="https://docs.travis-ci.com/user/encrypting-files/" target="_blank" rel="external">官方文档</a>里也加上了这样一段话：</p>
+<p>需要注意的是，这些文件加密步骤<strong>不能</strong>在 Windows 系统下完成，不然在自动部署时会出现神秘的错误（wrong final block length）。这个问题已经被很多人<a href="https://github.com/travis-ci/travis-ci/issues/4746" target="_blank" rel="noopener">报告过了</a>（实际上我也踩上去了），并且<a href="https://docs.travis-ci.com/user/encrypting-files/" target="_blank" rel="noopener">官方文档</a>里也加上了这样一段话：</p>
 <p><img src="https://img.blessing.studio/images/2017/10/04/snipaste_20171004_204633.png" alt="Caveat"></p>
 <p>总之就是「辣鸡 Windows 太菜了不行，给我用 WSL 或者类 Unix 系统吧哈哈哈」的意思（迫真）经过我的测试，Windows10 下的 babun、Git Bash 均告失败，WSL（Windows Subsystem for Linux）和我 VPS 上的 Ubuntu 14.04 所生成的加密文件均可通过自动部署，屁事儿没有。</p>
 <p>以上步骤完成后你会得到一个 <code>travis.key.enc</code>，然后你把这玩意放到 repo 的哪里去都成，随你喜欢，只要能访问得到就可以（比如说我放到了 <code>.travis</code> 目录里）。然后在 <code>.travis.yml</code> 可以使用如下命令解密出原本的 ssh 私钥：</p>
@@ -281,7 +283,7 @@ Host prinzeugen.net
 
 # 文件 [.travis.yml]
 mv -fv .travis/ssh-config ~/.ssh/config
-</code></pre><p>也有另外一种方法是通过在 <code>.travis.yml</code> 中添加 <code>ssh_known_hosts</code> 来实现的（具体可以看 Travis CI 的 <a href="https://docs.travis-ci.com/user/ssh-known-hosts/" target="_blank" rel="external">官方文档</a>），不过上面的方法灵活性更高（是的，我是写到这里才发现还有这种方法……上面的我也懒得删了，就放在那吧，括弧笑）。</p>
+</code></pre><p>也有另外一种方法是通过在 <code>.travis.yml</code> 中添加 <code>ssh_known_hosts</code> 来实现的（具体可以看 Travis CI 的 <a href="https://docs.travis-ci.com/user/ssh-known-hosts/" target="_blank" rel="noopener">官方文档</a>），不过上面的方法灵活性更高（是的，我是写到这里才发现还有这种方法……上面的我也懒得删了，就放在那吧，括弧笑）。</p>
 <pre><code class="yml">addons:
   ssh_known_hosts:
   - github.com
@@ -289,7 +291,7 @@ mv -fv .travis/ssh-config ~/.ssh/config
   - prinzeugen.net
 </code></pre>
 <p>这样一来，就没有什么能阻挡我们的自动部署过程啦 <img src="https://img.blessing.studio/images/2017/10/04/QQ20171004210320.jpg" alt="表情"></p>
-<h3 id="0x32-编写-travis-yml"><a href="#0x32-编写-travis-yml" class="headerlink" title="0x32 编写 .travis.yml"></a>0x32 编写 .travis.yml</h3><p>我就直接贴我自己的配置了（放在 <a href="https://gist.github.com/printempw/42e8781ed3adadbcc6ecac01904a32f6" target="_blank" rel="external">Gist</a> 上，加载不出来的自己想办法），诸位看着修改：</p>
+<h3 id="0x32-编写-travis-yml"><a href="#0x32-编写-travis-yml" class="headerlink" title="0x32 编写 .travis.yml"></a>0x32 编写 .travis.yml</h3><p>我就直接贴我自己的配置了（放在 <a href="https://gist.github.com/printempw/42e8781ed3adadbcc6ecac01904a32f6" target="_blank" rel="noopener">Gist</a> 上，加载不出来的自己想办法），诸位看着修改：</p>
 <script src="https://work.prinzeugen.net/gist/printempw/42e8781ed3adadbcc6ecac01904a32f6.js"></script>
 
 <p>大部分语句都加了注释，我也就不再多说明了。</p>
@@ -298,10 +300,10 @@ mv -fv .travis/ssh-config ~/.ssh/config
 <h2 id="0x04-后记"><a href="#0x04-后记" class="headerlink" title="0x04 后记"></a>0x04 后记</h2><p>打开博客一看，上一篇博文已经是两个月之前的事情了。复读开学之后这段时间确实是挺忙的，每天晚上回寝室后屌累屌困，最多也就记记账，看看邮件，看看 RSS，闲的话刷刷 Twitter，确实是没有什么时间像这样坐下来写一篇文章了。</p>
 <p>估计以后博文更新频率也会越来越低吧，唉。</p>
 <h3 id="0x41-参考链接"><a href="#0x41-参考链接" class="headerlink" title="0x41 参考链接"></a>0x41 参考链接</h3><ul>
-<li><a href="https://changkun.us/archives/2017/06/232/" target="_blank" rel="external">Hexo + GitHub + Travis CI + VPS 自动部署</a></li>
-<li><a href="http://www.itfanr.cc/2017/08/09/using-travis-ci-automatic-deploy-hexo-blogs/" target="_blank" rel="external">使用 Travis CI 自动部署 Hexo 博客</a></li>
-<li><a href="https://segmentfault.com/a/1190000009054888" target="_blank" rel="external">使用 Travis 自动部署 Hexo 到 Github 与 自己的服务器</a></li>
-<li><a href="https://zespia.tw/blog/2015/01/21/continuous-deployment-to-github-with-travis/" target="_blank" rel="external">用 Travis CI 自動部署網站到 GitHub</a></li>
+<li><a href="https://changkun.us/archives/2017/06/232/" target="_blank" rel="noopener">Hexo + GitHub + Travis CI + VPS 自动部署</a></li>
+<li><a href="http://www.itfanr.cc/2017/08/09/using-travis-ci-automatic-deploy-hexo-blogs/" target="_blank" rel="noopener">使用 Travis CI 自动部署 Hexo 博客</a></li>
+<li><a href="https://segmentfault.com/a/1190000009054888" target="_blank" rel="noopener">使用 Travis 自动部署 Hexo 到 Github 与 自己的服务器</a></li>
+<li><a href="https://zespia.tw/blog/2015/01/21/continuous-deployment-to-github-with-travis/" target="_blank" rel="noopener">用 Travis CI 自動部署網站到 GitHub</a></li>
 </ul>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

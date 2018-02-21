@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 481 天前（2016-10-27），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 481 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -193,12 +199,12 @@
 <p>dd 是一个 Unix 和类 Unix 系统上的命令，主要功能为转换和复制文件。</p>
 <p>在Unix上，硬件的设备驱动（如硬盘）就像普通文件一样，出现在文件系统中；只要在各自的驱动程序中实现了对应的功能，dd 也可以读取自和/或写入到这些文件。这样，dd 也可以用在备份硬件的引导扇区、获取一定数量的随机数据等任务中。</p>
 </blockquote>
-<p>以上摘自中文 <a href="https://zh.wikipedia.org/wiki/Dd_(Unix" target="_blank" rel="external">WikiPedia</a>)。</p>
+<p>以上摘自中文 <a href="https://zh.wikipedia.org/wiki/Dd_(Unix" target="_blank" rel="noopener">WikiPedia</a>)。</p>
 <p>虽然我无法在手机上拿到 root 权限（没有权限管理应用），但是我能在 <code>ADB Shell</code> 里拿到呀：</p>
 <pre><code class="shell">printempw@prinzeugen ~ $ adb shell
 shell@android:/ $ su
 su # 切换到 root 用户
-shell@android:/ #
+shell@android:/ # 
 </code></pre>
 <p>那么既然拿到了 <code>root</code> 的 shell 访问权，为什么不能用 <code>dd</code> 命令覆写 <code>recovery</code> 呢？当然真正运行之前我还是查了一下这种方法的，不过似乎大部分都是使用 <code>dd</code> 从手机里把 <code>recovery</code> 备份出来的。。至于国内论坛上那些所谓「通过 ADB 命令刷入 recovery.img 的方法」，都是瞎 TM 扯淡，整篇文章里 adb 起到的作用就是：</p>
 <pre><code>adb reboot bootloader # 重启至 fastboot 模式

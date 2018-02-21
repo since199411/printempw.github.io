@@ -175,8 +175,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 674 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 675 天前（2016-04-17），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 675 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -184,12 +190,12 @@
     <div class="post-content">
       <p>开发这个皮肤站程序也有一段时间了，写篇文章稍微总结一下。挺久以前的草稿了，可能有些过时内容。</p>
 <hr>
-<p>起初接触到 PHP 是在搭建博客的时候，经常因为某种需求而需要对 WordPress 做一些定制。也就是那个时候我写出了人生中 <a href="https://prinzeugen.net/dont-display-weichuncai-on-mobile-page/" target="_blank" rel="external">第一行 PHP 代码</a>。</p>
+<p>起初接触到 PHP 是在搭建博客的时候，经常因为某种需求而需要对 WordPress 做一些定制。也就是那个时候我写出了人生中 <a href="https://prinzeugen.net/dont-display-weichuncai-on-mobile-page/" target="_blank" rel="noopener">第一行 PHP 代码</a>。</p>
 <p>当时对 PHP 也没太大感觉，因为当时也没接触过 Web 开发。真正开始使用 PHP，是萌发想做一个皮肤站的念头后。</p>
 <p>在开发语言中，我选择了 PHP 而不是喜欢的 Python。一是因为作为模板语言的PHP天生适合写 web 项目，二也是为了能涨点姿势。</p>
 <p>因为基础还算过得去，我也没必要去看什么 PHP 新手入门教程，上手就直接开始写了。依样画葫芦撸了个基本架构就开始写前端逻辑。</p>
 <a id="more"></a>
-<p>现在看来当时确实是挺蠢的，应该先把后端架构好，能跑起来了再说才对。不过人总是在跌跌碰碰中成长的，上次的 <a href="https://prinzeugen.net/blessing-skin-server-0-1/" target="_blank" rel="external">refactor</a> 中我也确实学到了不少。</p>
+<p>现在看来当时确实是挺蠢的，应该先把后端架构好，能跑起来了再说才对。不过人总是在跌跌碰碰中成长的，上次的 <a href="https://prinzeugen.net/blessing-skin-server-0-1/" target="_blank" rel="noopener">refactor</a> 中我也确实学到了不少。</p>
 <p>说是写前端，但到了登录的时候又重新回去打算先把后端搞好。值得庆幸的是，当时我不知道从哪里听来的 ajax，也成功的用了上去，所有的请求均在 <code>ajax.php</code> 中处理（虽然当时叫 check.php）</p>
 <p>统一的入口确实方便很多。编写后台逻辑的时候，我也学到了诸如 POST GET query string 如何处理的知识。</p>
 <p>写 ajax 文件上传的时候，遇到了 如何把 jQuery ajax 得到的数据输出到外部作用域 的问题，解决这个也使我对回调函数有了更好的理解。</p>

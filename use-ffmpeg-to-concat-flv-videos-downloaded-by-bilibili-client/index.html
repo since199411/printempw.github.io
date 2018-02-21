@@ -180,15 +180,17 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 283 天前（2017-05-13），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+
+
     <div class="post-content">
       <p>唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。</p>
-<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="external">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
+<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="noopener">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
 <p><img src="https://img.blessing.studio/images/2017/05/13/20170513185210.png" alt="感谢这位pong友"></p>
 <p>然而这位pong友上传的是 bilibili 客户端的下载（缓存）格式，虽然放在手机的 <code>/Android/data/tv.danmaku.bili/download</code> 目录下就可以被客户端直接识别，但是想要在电脑上直接播放就没那么容易了。</p>
 <a id="more"></a>
@@ -234,7 +236,7 @@ file &#39;/path/to/3.flv&#39;
 # 最后可以选择任何可以封装的格式，不一定是 MP4
 </code></pre>
 <p>然后，就好了。合并速度差不多就是你硬盘的 I/O 速度。</p>
-<p>题外话，在 Windows 上，<code>ffmpeg</code> 可以用 <a href="https://chocolatey.org/" target="_blank" rel="external">Chocolatey</a> 这个包管理器安装。直接在终端中运行 <code>$ choco install ffmpeg</code>，下载安装修改环境变量一步到位，突出一个爽到。</p>
+<p>题外话，在 Windows 上，<code>ffmpeg</code> 可以用 <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a> 这个包管理器安装。直接在终端中运行 <code>$ choco install ffmpeg</code>，下载安装修改环境变量一步到位，突出一个爽到。</p>
 <h3 id="写个脚本"><a href="#写个脚本" class="headerlink" title="写个脚本"></a>写个脚本</h3><p>知道了原理，就可以动手写个自动化脚本了。这里我选择了 Bash 脚本语言，毕竟就这么点功能，几行就 OK。用 Bash 的话开个终端复制进去就可以直接运行，比起其他语言也方便 <del>（我才不会说是因为我 Python 都快忘光了呢）</del>。</p>
 <p>另外需要注意的是，有些视频的分段超过了 10 个文件，如果直接遍历的话会变成 <code>[1, 10, 2, 3...]</code> 这样的顺序，导致最后拼接出来的视频也变成这样，所以需要给单位数的分段先添个 <code>0</code>，这样就会是 <code>[01, 02 ... 10]</code> 的正常顺序了。</p>
 <p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="1bc29da99b238d68e87af874f898f435">点击以加载 Gist（无法加载时请翻墙）</button></p>
@@ -247,8 +249,8 @@ file &#39;/path/to/3.flv&#39;
 <p>将合并后的视频文件 <code>output.mp4</code> 和 <code>danmaku.xml</code> 弹幕文件一起拖入「弹弹 Play」或「BiliLocal」等本地弹幕播放器后就可以观看了，爽到。</p>
 <p><img src="https://img.blessing.studio/images/2017/05/13/QQ20170513202429.png" alt="弹幕播放器"></p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
-<li><a href="https://www.cnbeining.com/2014/05/dealing-with-cat-all-on-video-non-destructive-merge-mainly-h-264-problem/" target="_blank" rel="external">和猫打交道——所有关于视频无损合并（主要是 H.264）的问题</a></li>
-<li><a href="https://github.com/soimort/you-get/issues/324" target="_blank" rel="external">使用 ffmpeg concat 分离器来更有效地拼接视频</a></li>
+<li><a href="https://www.cnbeining.com/2014/05/dealing-with-cat-all-on-video-non-destructive-merge-mainly-h-264-problem/" target="_blank" rel="noopener">和猫打交道——所有关于视频无损合并（主要是 H.264）的问题</a></li>
+<li><a href="https://github.com/soimort/you-get/issues/324" target="_blank" rel="noopener">使用 ffmpeg concat 分离器来更有效地拼接视频</a></li>
 </ul>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

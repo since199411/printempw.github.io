@@ -175,15 +175,21 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 540 天前（2016-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 541 天前（2016-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 541 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
       <p>今天上午我把 Blessing Skin Server 的框架改为了 Laravel，到处修修改改一会后终于可以跑起来了。因为我之前也是使用的 Blade 模板引擎和与 Illuminate\Routing 语法类似的路由库，所以迁移过程还算是挺无痛的。</p>
-<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="external">Laravel Elixir</a>。</p>
+<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="noopener">Laravel Elixir</a>。</p>
 <p>改写原来 gulpfile.js 中的原生 Gulp Tasks 到 Laravel Elixir 的模式并不算麻烦，常用的 task 都有集成，并且通过链式调用的方式依次执行各个 Task。</p>
 <p>改写好后，直接运行 <code>$ gulp</code> 即可执行所有的 elixir tasks，并且执行完毕后还会有详细的表格报告和 Toast 通知，非常的方便。</p>
 <p>但是，不知道是我的姿势不对还是怎么回事，我没有找到能够把一个目录下所有的 css/js 文件压缩后复制到另一个目录的 elixir task，无奈之下只好写成原生的 Gulp Task，并且使用 elixir 的 <code>mix.task()</code> 方法来调用：</p>
@@ -383,7 +389,7 @@ Saving To...
 [18:42:53] Starting &#39;uglify&#39;...
 [18:42:53] Finished &#39;uglify&#39; after 956 μs
 [18:42:53] Finished &#39;task&#39; after 1.16 ms
-</code></pre><p>目前已经给 Elixir 提了个 <a href="https://github.com/laravel/elixir/issues/622" target="_blank" rel="external">issue</a>，看看官方回复吧。</p>
+</code></pre><p>目前已经给 Elixir 提了个 <a href="https://github.com/laravel/elixir/issues/622" target="_blank" rel="noopener">issue</a>，看看官方回复吧。</p>
 <p>谨以此文记录，愿能帮到后来人 (;´Д`)</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

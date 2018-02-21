@@ -177,7 +177,7 @@
         
           <p>这几天想要把一个 git 仓库中<strong>已经存在</strong>的一个子文件夹独立成一个新的 git 仓库，并且保留之前关于此文件夹的所有提交历史。不过我对 git 并没有这么精通，只好上网搜索之。可能是因为我关键词抓得不准，搜了好一会儿才找到可行的方案，所以写篇博文记录一下，希望能帮到后来人。</p>
 <p>另外，在 git 里这种掌控历史的感觉真棒（笑）</p>
-<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所有为 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">Blessing Skin</a> 这个程序编写的插件源码都放在一个 <a href="https://github.com/printempw/blessing-skin-plugins" target="_blank" rel="external">git repo</a> 中了，每个子文件夹中都是一个独立的插件（因为嫌麻烦所以一股脑给塞进一个仓库里了），并且对每个子文件夹中的代码的修改最后都是在这个统一仓库中提交的。该仓库差不多长这样：</p>
+<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>我为什么会有如本文标题所述这样的需求呢？这是因为我之前把所有为 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="noopener">Blessing Skin</a> 这个程序编写的插件源码都放在一个 <a href="https://github.com/printempw/blessing-skin-plugins" target="_blank" rel="noopener">git repo</a> 中了，每个子文件夹中都是一个独立的插件（因为嫌麻烦所以一股脑给塞进一个仓库里了），并且对每个子文件夹中的代码的修改最后都是在这个统一仓库中提交的。该仓库差不多长这样：</p>
 <pre><code class="text">$ tree
 ├── .git
 ├── avatar-api
@@ -306,7 +306,7 @@
 
       <div class="post-content">
         
-          <p>最近给 Blessing Skin 写了个插件，利用皮肤站本身的账号系统实现了 Yggdrasil API（就是 Mojang 的登录 API），然后配合 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="external">authlib-agent</a> 这个库将启动器（基于 Java 编写的支持正版登录的启动器都行）、Minecraft 游戏、Minecraft 服务端中的 Mojang Yggdrasil API 地址给替换成了自己实现的第三方 Yggdrasil API 地址（字节码替换），从而实现了与正版登录功能几乎完全相同的账户鉴权系统。</p>
+          <p>最近给 Blessing Skin 写了个插件，利用皮肤站本身的账号系统实现了 Yggdrasil API（就是 Mojang 的登录 API），然后配合 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="noopener">authlib-agent</a> 这个库将启动器（基于 Java 编写的支持正版登录的启动器都行）、Minecraft 游戏、Minecraft 服务端中的 Mojang Yggdrasil API 地址给替换成了自己实现的第三方 Yggdrasil API 地址（字节码替换），从而实现了与正版登录功能几乎完全相同的账户鉴权系统。</p>
 <p>通俗地讲，就是我把 Mojang 的正版登录 API 给【劫持】成自己的啦，所以可以像登录正版那样直接用皮肤站的邮箱和密码登录游戏（还支持 Mojang 都不支持的多用户选择哦）。这种外置登录系统的实现应该可以说是比市面上的软件都要完善（毕竟可以直接利用 Minecraft 本身自带的鉴权模块），因此写一篇博文介绍一下这些实现之间的不同之处，顺带记录一下实现 Yggdrasil API 时踩到的坑，算是抛砖引玉了。</p>
 <div class="alert alert-warning"><p><strong>注意</strong>：本文不适合小白及问题解决能力弱的人群阅读。</p>
 </div>
@@ -407,7 +407,7 @@
 <p>直接在主力机上开一个服务器也不是不行，但是我的奔腾 G3258 选手实在是带不动饥荒游戏 + 游戏服务器 + 其他杂七杂八的东西了，所以只好另觅他方，去搞一台 VPS 来开服。而且这里不得不吐槽一下，饥荒联机版独立服务器的配置要求还是比较高的，几个人的小服，再多开几个 Mod，最起码就要 1G 的内存（我那台阿里云宕机好几次，还得去网页控制台强制重启），更不要想开洞穴了。</p>
 <p>现在我拿来开服的是免费试用一个月的京东云（Xeon-E5，2G DDR4，1Mbps 的带宽），不开洞穴，目前看起来还是没什么压力的，延迟丢包率什么的也都可以接受。网上关于开服的教程也不少了，这篇文章也不会过多赘述，差不多就是记录一下主要步骤，以及提一下可能会遇到的坑。所以，想要那种很详细的教程的同学还是绕道吧，或者翻到文章最下面的「参考链接」看看。</p>
 <p>下面的步骤在 64 位 CentOS 7.3 和 Ubuntu 16.04 上测试通过，至于 Windows……我认为实在没有啥必要特别去写，直接从 Steam 客户端就可以打开，操作方便，也没啥坑，看看网上那些教程就可以了。继续阅读之前，我希望你能有一些 Linux 的操作基础，不然会很懵。</p>
-<h2 id="0x01-事前准备"><a href="#0x01-事前准备" class="headerlink" title="0x01 事前准备"></a>0x01 事前准备</h2><p>首先你要有一台装了 Linux 的服务器，配置要求如下（摘自 <a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="external">DST Wiki</a>）：</p>
+<h2 id="0x01-事前准备"><a href="#0x01-事前准备" class="headerlink" title="0x01 事前准备"></a>0x01 事前准备</h2><p>首先你要有一台装了 Linux 的服务器，配置要求如下（摘自 <a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="noopener">DST Wiki</a>）：</p>
 <ul>
 <li>上行带宽：8KBps 一个玩家；</li>
 <li>内存：差不多一个玩家 65Mbytes；</li>
@@ -447,7 +447,7 @@
       <div class="post-content">
         
           <p>Python3 已经发布了九年了，Python 社区却还在用 Python 2.7；而 JavaScript 社区正好相反，大家都已经开始把还没有实现的语言特性用到生产环境中了 (´_ゝ `)</p>
-<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="external">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
+<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="noopener">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
 <h2 id="JavaScript-模块化现状"><a href="#JavaScript-模块化现状" class="headerlink" title="JavaScript 模块化现状"></a>JavaScript 模块化现状</h2><p>随着 JavaScript 越来越广泛的应用，朝着单页应用（SPA）方向发展的网页与代码量的愈发庞大，社区需要一种更好的代码组织形式，这就是模块化：将你的一大坨代码分装为多个不同的模块。</p>
 <p>但是在 ES6 标准出台之前，由于标准的缺失（连 CSS 都有 <code>@import</code>，JavaScript 却连个毛线都没），这几年里 JavaScript 社区里冒出了各种各样的模块化解决方案<del>（群魔乱舞）</del>，懵到一种极致。主要的几种模块化方案举例如下：</p>
 <h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>主要用于服务端，模块同步加载（也因此不适合在浏览器中运行，不过也有 <code>Browserify</code> 之类的转换工具），Node.js 的模块化实现就是基于 CommonJS 规范的，通常用法像这样：</p>
@@ -486,11 +486,11 @@
           <p>一般来说，写博客的都喜欢在页面上加上一个访问计数器，来<del>满足虚荣心</del>显示某篇文章或者整个站点的访问量。这种需求在 WordPress 等动态博客上都是比较容易满足的，安装个插件即可（辣鸡 Ghost 除外），但是对于小部分静态博客来说就比较头疼了。</p>
 <p>目前来看，互联网上的静态博客访问计数器解决方案大致有这么几种：</p>
 <ul>
-<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子</a>」访问计数服务；</li>
+<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>」访问计数服务；</li>
 <li>利用 LeanCloud 平台搭建统计服务。</li>
 </ul>
 <p>其中「不蒜子」是个自称「永久免费使用」的极简网页计数器，仅需两行代码即可为静态博客添加访问计数功能，这种简单的解决方案也受到很多静态博客作者的喜爱。但正如我之前在这篇文章（<a href="https://blessing.studio/add-page-view-counter-for-ghost-blog/">为 Ghost 博客添加页面访问计数器</a>）中所述，不蒜子虽然提供了 <code>site_pv</code>、<code>site_uv</code>、<code>page_pv</code> 等多种统计，但是其并不提供这些服务的开放 API。而我的需求是在「首页」或者其他文章列表页中的每篇文章都要显示各自的访问量，并且需要一个「最受欢迎的文章」功能（按访问量倒序排序）。很可惜不蒜子无法满足我的需求，只好将其 PASS。</p>
-<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="external">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
+<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="noopener">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
 <p>综上，我决定自己写一个网页访问量计数服务。</p>
           <a class="more-link" href="/add-page-view-counter-for-hexo/#more">阅读全文&rarr;</a>
         
@@ -561,8 +561,8 @@
       <div class="post-content">
         
           <p>是的，我又双叒叕换博客程序了。</p>
-<p>话是这样说，其实也没有很频繁啦，上一次从 <a href="https://blessing.studio/hello-ghost-goodbye-wordpress/">WordPress 迁移至 Ghost</a> 已经是一年多前的事了。这次是从 Ghost 迁移至 <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>，一个静态博客生成器。总体来看，我对博客程序的选择是越来越轻<del>（zhuang）</del>量<del>（bi）</del>化了。</p>
-<p>目前，本博客已经完全迁移至 Hexo，包括所有的文章和主题。不过话说回来现在回头去看两年多前写的文章，真的挺尬的，行文风格完全不一样，超尬 (つд⊂) 目前我在用的这个主题（<a href="https://qaq.cat/kotori/100" target="_blank" rel="external">Seventeen</a>）已经陪了我快三年了，之前我把它从 WordPress 移植到 Ghost，现在到了 Hexo 我又把它给移植过来了，我也是爱得深沉啊（笑）</p>
+<p>话是这样说，其实也没有很频繁啦，上一次从 <a href="https://blessing.studio/hello-ghost-goodbye-wordpress/">WordPress 迁移至 Ghost</a> 已经是一年多前的事了。这次是从 Ghost 迁移至 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>，一个静态博客生成器。总体来看，我对博客程序的选择是越来越轻<del>（zhuang）</del>量<del>（bi）</del>化了。</p>
+<p>目前，本博客已经完全迁移至 Hexo，包括所有的文章和主题。不过话说回来现在回头去看两年多前写的文章，真的挺尬的，行文风格完全不一样，超尬 (つд⊂) 目前我在用的这个主题（<a href="https://qaq.cat/kotori/100" target="_blank" rel="noopener">Seventeen</a>）已经陪了我快三年了，之前我把它从 WordPress 移植到 Ghost，现在到了 Hexo 我又把它给移植过来了，我也是爱得深沉啊（笑）</p>
 <p>既然现在迁移完成了，我打算列举一下我迁移的理由，算是个记录。</p>
 <h3 id="一、动态博客的优点"><a href="#一、动态博客的优点" class="headerlink" title="一、动态博客的优点"></a>一、动态博客的优点</h3><p>动态博客肯定是有一些静态博客所无法实现的优点的，不然我之前也不会一直使用动态博客，而没有考虑过使用静态博客了。</p>
 <ul>

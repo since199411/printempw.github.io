@@ -179,14 +179,20 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 528 天前（2016-09-10），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 528 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
+
+
     <div class="post-content">
-      <p>不得不说 Laravel 的 <a href="http://laravel-china.org/docs/5.1/validation" target="_blank" rel="external">Validation</a> 是极好的，非常易于使用，麻麻再也不用担心我要写一大堆验证啦 ~(　^ω^)</p>
+      <p>不得不说 Laravel 的 <a href="http://laravel-china.org/docs/5.1/validation" target="_blank" rel="noopener">Validation</a> 是极好的，非常易于使用，麻麻再也不用担心我要写一大堆验证啦 ~(　^ω^)</p>
 <p>但是这个 Validator 有一个神秘的地方 ( -д-)，正如官方文档所说，它会自动判断当前请求是否为 Ajax 发送的，如果是，则在验证失败的时候返回一个 <code>JsonResponse</code> 响应而不是 <code>RedirectResponse</code> 响应。</p>
 <blockquote>
 <p><strong>但是</strong>，这个 JSON 响应的状态码，是 422。</p>
@@ -195,7 +201,7 @@
 <p><img src="https://img.prinzeugen.net/image.php?di=WYT3" alt=""></p>
 <p>在网上找了一圈，愣是没找着什么好一点的解决方法（全是叫你在 <code>$.ajax.failed</code> 里处理错误的）。</p>
 <a id="more"></a>
-<p>没办法，自己动手丰衣足食，总之先看看文档：<a href="http://laravel-china.org/docs/5.1/validation#自定义闪存的错误消息格式" target="_blank" rel="external">自定义闪存的错误消息格式</a></p>
+<p>没办法，自己动手丰衣足食，总之先看看文档：<a href="http://laravel-china.org/docs/5.1/validation#自定义闪存的错误消息格式" target="_blank" rel="noopener">自定义闪存的错误消息格式</a></p>
 <p>哦哦，看来我们可以在控制器基类中自定义错误的格式，于是我试着在 <code>formatValidationErrors</code> 方法中返回了一个状态码为 200 的 <code>Illuminate\Http\JsonResponse</code>。但是这样是行不通的，这个方法要求我们要返回一个数组，所以我们就不能使用这种小 trick 了（当然如果你愿意直接在这个方法里输出 JSON 文本然后 exit 的话也没事）。</p>
 <p>既然这里没办法了，我们就得从 ExceptionHandler 下手了。众所周知 Laravel 的验证器会抛出一个 <code>ValidationException</code> 异常，此异常在被捕获后会被 Laravel 的基异常处理器给渲染成 Http 响应（判断是否为 Ajax 请求也是在这里做的）。</p>
 <p>找到 Laravel 的基异常处理器 <code>Illuminate\Foundation\Exceptions\Handler</code> 后，我们可以发现对于 <code>ValidationException</code> 这类的异常，Laravel 是直接从里面取出响应返回回去的。也就是说，具体的异常渲染是在 <code>ValidationException</code> 对象内完成的：</p>

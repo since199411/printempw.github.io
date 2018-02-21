@@ -175,7 +175,7 @@
 
       <div class="post-content">
         
-          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=24052290" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2016/01/2016-01-01_04-16-14.jpg" alt="id=24052290"></a></p>
+          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=24052290" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2016/01/2016-01-01_04-16-14.jpg" alt="id=24052290"></a></p>
 
         
       </div>
@@ -294,15 +294,15 @@
 
       <div class="post-content">
         
-          <p>今天看到了 <a href="https://www.anotherhome.net/about" target="_blank" rel="external">AnotherHome</a> 的首页源码，发现了注释里的这玩意：</p>
+          <p>今天看到了 <a href="https://www.anotherhome.net/about" target="_blank" rel="noopener">AnotherHome</a> 的首页源码，发现了注释里的这玩意：</p>
 <p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-49-21.png" alt="antherhome html comment"></p>
 <p>觉得挺有意思的，正好闲着，就写了个用制表符生成字母画的脚本：</p>
 <p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-51-34.png" alt="exec result"></p>
-<p>还是 Python 实现，源码托管于 <a href="https://gist.github.com/printempw/689a1da4b515aa682d4b" target="_blank" rel="external">Gist</a>。</p>
+<p>还是 Python 实现，源码托管于 <a href="https://gist.github.com/printempw/689a1da4b515aa682d4b" target="_blank" rel="noopener">Gist</a>。</p>
 <p>明明不是很复杂的东西，想保存字符画的数据结构时却想了窝好长时间 qwq</p>
 <p>本来是想定义个类，然后生成 A-Z 的实例，可以取出各行内容的，后来想想一个用一个 dict 就好了，key 是大写字母，value 是保存有各字母字符画的各行字符串的 list。</p>
 <p><img src="https://img.blessing.studio/images/2015/12/2015-12-31_14-46-13.png" alt="blessing studio result"></p>
-<p>各位 dalao 见笑了 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
+<p>各位 dalao 见笑了 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
 
         
       </div>
@@ -337,16 +337,16 @@
         
           <p>Python 实现，格式化后文本存储于 <code>hitokoto.txt</code>（使用 <code>\n</code> 做换行符，用记事本打开发现没有换行可不是窝的锅），已保存的一言 ID 保存在 <code>hid.txt</code> 中，带 Save&amp;Load，如果请求到已保存的一言则自动重新请求。本来是想要用数据库的，想想还是算了，反正也没几行（笑）。以后想存数据库的时候，正则一下保存后的格式化文本就好了。</p>
 <p>不过用 Python 写这种小脚本真心方便呢w ~</p>
-<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30-1024x414.png" alt="hitokoto.py screenshot"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30-1024x414.png" alt="hitokoto.py screenshot"></a></p>
 <p>命令行参数（也可以用 <code>--help</code> 查看）：</p>
 <pre><code>-c    请求的一言数量，整数
 -d    请求之间的延迟（秒），浮点数
 -a    是否自动重新请求，布尔值
-</code></pre><p>源码托管于 <a href="https://gist.github.com/printempw/8efc424f8033f7f008ed" target="_blank" rel="external">Gist</a>（打不开请自行解决）。</p>
+</code></pre><p>源码托管于 <a href="https://gist.github.com/printempw/8efc424f8033f7f008ed" target="_blank" rel="noopener">Gist</a>（打不开请自行解决）。</p>
 <p>唔。。最近手生了，写这么点花了将近半天 qwq</p>
 <p>单线程（并不想多线程），服务端又是随机返回，所以保存的数量多了以后，效率会很慢。1000 个请求中，999 个是重复的也很常见 qwq 所以还是挂 vps 上慢慢爬吧</p>
-<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" alt="2"></a></p>
-<p>爬太快的话怪不好意思的 <a href="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" alt="QQ图片20150919235138"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" alt="2"></a></p>
+<p>爬太快的话怪不好意思的 <a href="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" alt="QQ图片20150919235138"></a></p>
 
         
       </div>
@@ -379,7 +379,7 @@
 
       <div class="post-content">
         
-          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=15447116" target="_blank" rel="external"><img src="https://img.prinzeugen.net/image.php?di=9C6I" alt="id=15447116"></a></p>
+          <p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=15447116" target="_blank" rel="noopener"><img src="https://img.prinzeugen.net/image.php?di=9C6I" alt="id=15447116"></a></p>
 <p>哎呀到了圣诞节了呢，时间过得真快。再过几个月就是窝的站点一周年了。老实说窝也不记得是什么时候开始的了，当初心血来潮建博客的时候也没想到能写到现在。</p>
 <p>算了，这些等一周年再感慨吧。</p>
 <p>为了稍微营造点气氛，在首页下了点雪。怕移动设备 CPU 不行，所以其他页面没有下。</p>
@@ -416,7 +416,7 @@
 
       <div class="post-content">
         
-          <p><a href="http://m.hupu.com/bbs/15030309.html" target="_blank" rel="external">【双流警方破获全国首例网络轻小说侵犯著作权案】</a></p>
+          <p><a href="http://m.hupu.com/bbs/15030309.html" target="_blank" rel="noopener">【双流警方破获全国首例网络轻小说侵犯著作权案】</a></p>
 <p>历时俩月，双流警方在省市公安及文化部门支持下，辗转杭州、漳州、合肥、武汉，查实网站“轻之国度”“轻之文库”刊载了未经日本版权方授权的近万部网络轻小说，侵犯了国内已获授权公司的合法权益。团伙成员林某等已被依法逮捕，该案正在进一步侦查中。</p>
 <p>虽然知道大版权时代迟早会波及轻小说，但是没有想到这么快。</p>
 <p>嗯，这下应该是活不了了，默哀。</p>
@@ -475,7 +475,7 @@
 <p>噫，不是说不能端口映射吗？花生壳这啥黑科技？</p>
 <p>首先你要知道，所谓的路由器上设置端口映射，其实就是<strong>将外网访问 NAT 设备某个端口的请求，直接转发给规则中配置的 NAT 网络下的内网设备端口上</strong>。不知道说的是不是够严谨，总之差不多就是这个意思。实现方式有很多，譬如 OpenWRT 上使用的 iptables。</p>
 <p>而花生壳，就是把 <strong>NAT 设备将请求转发到内网机器上 </strong>这一过程及其反向，<strong>用花生壳的服务器</strong>来完成了。</p>
-<p>这样说说可能有些人还是一头雾水，窝画张图来解释下吧：（提到画图歪一下文，安利下 <a href="https://www.gliffy.com" target="_blank" rel="external">Gliffy</a>，贼好用）</p>
+<p>这样说说可能有些人还是一头雾水，窝画张图来解释下吧：（提到画图歪一下文，安利下 <a href="https://www.gliffy.com" target="_blank" rel="noopener">Gliffy</a>，贼好用）</p>
 <p><img src="https://img.blessing.studio/images/2015/12/2015-12-19_12-23-33.png" alt="NAT port forwarding"></p>
 <p>这是普通的路由器端口映射原理，下面是花生壳 “端口映射” 原理：</p>
           <a class="more-link" href="/use-ssh-tunel-to-map-a-lan-minecraft-server-to-wan/#more">阅读全文&rarr;</a>
@@ -510,7 +510,7 @@
 
       <div class="post-content">
         
-          <p>从 <a href="https://www.anotherhome.net/2106" target="_blank" rel="external">Anotherhome</a> 看到了这玩意，看起来挺有趣的，就搞了个在站点侧边栏上 |∀ﾟ</p>
+          <p>从 <a href="https://www.anotherhome.net/2106" target="_blank" rel="noopener">Anotherhome</a> 看到了这玩意，看起来挺有趣的，就搞了个在站点侧边栏上 |∀ﾟ</p>
 <p>后端用的 LWL 写的 PHP 版本，前端自己瞎写的。</p>
 <p>现在依然是可怜的个位数，有看到的顺手点一个呗 (　ﾟ 3ﾟ)</p>
 
@@ -545,7 +545,7 @@
 
       <div class="post-content">
         
-          <p>应该挺多人知道 <a href="http://kalcaddle.com/index.html" target="_blank" rel="external">KodExplorer</a> 吧？一个用 PHP 编写的很棒的在线文件管理器。 因为是文件管理，拥有着 www 用户组的所有权限，自然是一定要用强口令的。然而 KodExplorer 登录页不是用 form 表单提交的，chrome 的自动保存也没用了，每次都输强口令也挺麻烦的，所以写了个脚本一键填写登录表单并提交，放入书签栏即可食用~ KodExplorer 的登录逻辑都在 <code>./static/js/app/src/user/main.js</code> 里，有用的一段在这里：</p>
+          <p>应该挺多人知道 <a href="http://kalcaddle.com/index.html" target="_blank" rel="noopener">KodExplorer</a> 吧？一个用 PHP 编写的很棒的在线文件管理器。 因为是文件管理，拥有着 www 用户组的所有权限，自然是一定要用强口令的。然而 KodExplorer 登录页不是用 form 表单提交的，chrome 的自动保存也没用了，每次都输强口令也挺麻烦的，所以写了个脚本一键填写登录表单并提交，放入书签栏即可食用~ KodExplorer 的登录逻辑都在 <code>./static/js/app/src/user/main.js</code> 里，有用的一段在这里：</p>
 <pre><code class="javascript">var e = function() {
     var e = $(&quot;#username&quot;).val(),
     t = $(&quot;#password&quot;).val(),

@@ -177,9 +177,11 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 240 天前（2017-06-25），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 241 天前（2017-06-25），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
@@ -187,15 +189,15 @@
       <p>一般来说，写博客的都喜欢在页面上加上一个访问计数器，来<del>满足虚荣心</del>显示某篇文章或者整个站点的访问量。这种需求在 WordPress 等动态博客上都是比较容易满足的，安装个插件即可（辣鸡 Ghost 除外），但是对于小部分静态博客来说就比较头疼了。</p>
 <p>目前来看，互联网上的静态博客访问计数器解决方案大致有这么几种：</p>
 <ul>
-<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子</a>」访问计数服务；</li>
+<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>」访问计数服务；</li>
 <li>利用 LeanCloud 平台搭建统计服务。</li>
 </ul>
 <p>其中「不蒜子」是个自称「永久免费使用」的极简网页计数器，仅需两行代码即可为静态博客添加访问计数功能，这种简单的解决方案也受到很多静态博客作者的喜爱。但正如我之前在这篇文章（<a href="https://blessing.studio/add-page-view-counter-for-ghost-blog/">为 Ghost 博客添加页面访问计数器</a>）中所述，不蒜子虽然提供了 <code>site_pv</code>、<code>site_uv</code>、<code>page_pv</code> 等多种统计，但是其并不提供这些服务的开放 API。而我的需求是在「首页」或者其他文章列表页中的每篇文章都要显示各自的访问量，并且需要一个「最受欢迎的文章」功能（按访问量倒序排序）。很可惜不蒜子无法满足我的需求，只好将其 PASS。</p>
-<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="external">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
+<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="noopener">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
 <p>综上，我决定自己写一个网页访问量计数服务。</p>
 <a id="more"></a>
 <h2 id="0x01-技术选型"><a href="#0x01-技术选型" class="headerlink" title="0x01 技术选型"></a>0x01 技术选型</h2><p>前端 <code>increase</code>（访问量自增）、<code>get</code>（获取访问量）等操作用 JavaScript 来写，这没得选，关键是后端。本来打算后端也用 Node.js 来写的，但是想想我 VPS 上还跑着其他 PHP 项目，使用 PHP 的话运维比较方便（不需要再去另外运行 <code>forever</code> 之类的守护进程），而且我对 PHP 也很熟悉，开发效率比 Node、Python 等语言要高。</p>
-<p>之前（2016 年一月份）我写的那个适用于 Ghost 博客的访问计数器（<a href="https://github.com/printempw/ghost-hit-counter" target="_blank" rel="external">printempw/ghost-hit-counter</a>）也是用 PHP 写的，不过当时并没有使用什么框架，直接原生 PHP 肛上去。这次的项目我打算使用 Lumen 这个「为速度而生的 Laravel 框架」，一来之前在开发 Minecraft 皮肤站（<a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">printempw/blessing-skin-server</a>）时已经摸清了 Laravel 那一套，二来 Lumen 在性能强大的同时还能保持 Laravel 高效率开发特性，可以省去不少无用功，专注于业务逻辑本身的开发。</p>
+<p>之前（2016 年一月份）我写的那个适用于 Ghost 博客的访问计数器（<a href="https://github.com/printempw/ghost-hit-counter" target="_blank" rel="noopener">printempw/ghost-hit-counter</a>）也是用 PHP 写的，不过当时并没有使用什么框架，直接原生 PHP 肛上去。这次的项目我打算使用 Lumen 这个「为速度而生的 Laravel 框架」，一来之前在开发 Minecraft 皮肤站（<a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="noopener">printempw/blessing-skin-server</a>）时已经摸清了 Laravel 那一套，二来 Lumen 在性能强大的同时还能保持 Laravel 高效率开发特性，可以省去不少无用功，专注于业务逻辑本身的开发。</p>
 <h2 id="0x02-开发"><a href="#0x02-开发" class="headerlink" title="0x02 开发"></a>0x02 开发</h2><p>事实证明我选择 Lumen 是正确的。</p>
 <p>整个项目包括前端和后端，开发以及测试总共花了我大概三个小时的时间，Lumen 便捷的基础组件让我少走了不少冤枉路：</p>
 <ul>
@@ -208,7 +210,7 @@
 <li>自带超好用的时间处理类库 <code>Carbon</code>；</li>
 <li>开箱即用的异常处理系统以及完整的日志记录，etc.</li>
 </ul>
-<p>成品开源在 GitHub 上（<a href="https://github.com/printempw/hexo-view-counter" target="_blank" rel="external">printempw/hexo-view-counter</a>），采用 GPLv3 协议，欢迎 star 或修改自用，Live Demo 就是这个博客。另外这也是我第一次使用 Atom 编辑器从头开始开发一个项目，一路用下来使用体验还是蛮不错的（之前都用的 Sublime Text3）。</p>
+<p>成品开源在 GitHub 上（<a href="https://github.com/printempw/hexo-view-counter" target="_blank" rel="noopener">printempw/hexo-view-counter</a>），采用 GPLv3 协议，欢迎 star 或修改自用，Live Demo 就是这个博客。另外这也是我第一次使用 Atom 编辑器从头开始开发一个项目，一路用下来使用体验还是蛮不错的（之前都用的 Sublime Text3）。</p>
 <p><img src="https://img.blessing.studio/images/2017/06/25/snipaste_20170624_222645.png" alt="Atom"></p>
 <h2 id="0x03-使用方法"><a href="#0x03-使用方法" class="headerlink" title="0x03 使用方法"></a>0x03 使用方法</h2><p>安装部署方法我不多说，自己去项目 README 看，反正就是 Laravel 那套。而且我顺便魔改了下 Lumen 的框架结构，删掉了一大票目前用不着的东西，同时把入口文件从 <code>/public</code> 子目录移到项目根目录下了，所以 Nginx 用户只需要配置好 URL 重写，Apache 用户啥都不用干就行。</p>
 <p>这个项目只提供基本的 API（具体看 README），其他逻辑需要在博客前端完成，下面贴一下我自己在用的脚本（某些语句依赖于 jQuery，可自行修改）：</p>

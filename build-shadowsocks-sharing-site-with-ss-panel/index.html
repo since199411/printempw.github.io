@@ -28,13 +28,13 @@
 <meta name="generator" content="Hexo" />
 
 
-<meta name="description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta name="description" content="今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配">
 <meta name="keywords" content="shadowsocks,教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可能是最好的 ss-panel 部署教程">
 <meta property="og:url" content="https://blessing.studio/build-shadowsocks-sharing-site-with-ss-panel/index.html">
 <meta property="og:site_name" content="Blessing Studio">
-<meta property="og:description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta property="og:description" content="今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png">
 <meta property="og:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218174949.png">
@@ -51,7 +51,7 @@
 <meta property="og:updated_time" content="2017-02-18T13:58:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可能是最好的 ss-panel 部署教程">
-<meta name="twitter:description" content="为最好的 ss-panel 部署教程献上更新！NETA本文最后更新与 2017-02-08，更新内容详见博文底部。  今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白">
+<meta name="twitter:description" content="今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。 注意，本教程 不是 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配">
 <meta name="twitter:image" content="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png">
 <meta name="twitter:creator" content="@printempw">
 
@@ -188,16 +188,20 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 367 天前（2017-02-18），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 367 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
+
+
     <div class="post-content">
-      <div class="alert alert-info"><p>为最好的 ss-panel 部署教程献上更新！<sup><a href="https://zh.wikipedia.org/zh/%E7%82%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8D%BB%E4%B8%8A%E7%A5%9D%E7%A6%8F%EF%BC%81" target="_blank" rel="external">NETA</a></sup><br>本文最后更新与 2017-02-08，更新内容详见博文底部。</p>
-</div>
-<p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
+      <p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
 <div class="alert alert-warning"><p>注意，本教程 <strong>不是</strong> 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配置，最好可以看得懂一些代码。</p>
 </div>
 <h2 id="一、安装并配置-ss-panel"><a href="#一、安装并配置-ss-panel" class="headerlink" title="一、安装并配置 ss-panel"></a>一、安装并配置 ss-panel</h2><p>本教程打算先配置好前端，当然你想要先配置后端可以拉下去。</p>
@@ -207,14 +211,14 @@
 <li>MySQL 5.5 或更高</li>
 <li>支持 URL 重写的 Web 服务器（Nginx / Apache 均可）</li>
 </ul>
-<p>本教程所使用的环境是 NGINX + PHP 7 + MariaDB 10。当然其他主流 LNMP/LAMP 架构都可以（个人推荐使用 <a href="https://oneinstack.com/" target="_blank" rel="external">OneinStack</a>），确保你的站点可以访问后就继续吧。</p>
-<p>什么？你不知道上面说的那些东西是什么？那你为什么不问问<a href="https://www.google.com/" target="_blank" rel="external">神奇海螺</a>呢？</p>
+<p>本教程所使用的环境是 NGINX + PHP 7 + MariaDB 10。当然其他主流 LNMP/LAMP 架构都可以（个人推荐使用 <a href="https://oneinstack.com/" target="_blank" rel="noopener">OneinStack</a>），确保你的站点可以访问后就继续吧。</p>
+<p>什么？你不知道上面说的那些东西是什么？那你为什么不问问<a href="https://www.google.com/" target="_blank" rel="noopener">神奇海螺</a>呢？</p>
 <hr>
 <p><strong>注意</strong>，接下来的操作大部分都是在【目标服务器】的 shell 中进行的。继续阅读之前，你需要通过 SSH 等工具连接至你的服务器，它一般长这样：</p>
 <p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png" alt="shell example"></p>
 <p>如果你不晓得这是什么，神奇海螺……以下略。</p>
 <a id="more"></a>
-<h3 id="0x02-下载-ss-panel-源码"><a href="#0x02-下载-ss-panel-源码" class="headerlink" title="0x02 下载 ss-panel 源码"></a>0x02 下载 ss-panel 源码</h3><p>ss-panel 的 GitHub 项目地址：<a href="https://github.com/orvice/ss-panel" target="_blank" rel="external">orvice/ss-panel</a></p>
+<h3 id="0x02-下载-ss-panel-源码"><a href="#0x02-下载-ss-panel-源码" class="headerlink" title="0x02 下载 ss-panel 源码"></a>0x02 下载 ss-panel 源码</h3><p>ss-panel 的 GitHub 项目地址：<a href="https://github.com/orvice/ss-panel" target="_blank" rel="noopener">orvice/ss-panel</a></p>
 <p>使用 <code>cd</code> 进入你站点的 web 根目录，从 git 上 clone 源码：</p>
 <pre><code class="bash"># 最前面的美元符号是命令提示符，别把这个给一起输进去了
 $ git clone https://github.com/orvice/ss-panel.git
@@ -224,7 +228,7 @@ $ git clone https://github.com/orvice/ss-panel.git
 <p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218174949.png" alt="directory structure example"></p>
 <h3 id="0x03-配置-ss-panel"><a href="#0x03-配置-ss-panel" class="headerlink" title="0x03 配置 ss-panel"></a>0x03 配置 ss-panel</h3><p>执行完上面的步骤之后，你兴高采烈地访问了你的站点，却得到了无情的 403 Forbidden —— 站点根目录下竟然没有 index.php！</p>
 <p>好吧其实没什么好奇怪的，大部分 MVC 框架都将 <code>index.php</code> 的入口文件放到其他子目录下了，这样做是为了保护根目录下的配置文件等可能会导致信息泄露的敏感文件无法被访问。</p>
-<p>接下来请按照 <a href="https://sspanel.xyz/docs/intro/installation#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE" target="_blank" rel="external">官方文档的说明</a> 正确配置你的 Web 服务器。正确配置后的 NGINX 配置应该长这样：</p>
+<p>接下来请按照 <a href="https://sspanel.xyz/docs/intro/installation#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">官方文档的说明</a> 正确配置你的 Web 服务器。正确配置后的 NGINX 配置应该长这样：</p>
 <p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218180726.png" alt="nginx configuration sample"></p>
 <p>编辑完后重载你的 Web 服务器，然后访问你的站点……于是你得到了一个 500 Internal Server Error（如果你没开启 <code>display_errors</code> 可能看不到详细报错）：</p>
 <pre><code>Warning: require(/home/wwwroot/ss.prinzeugen.net/vendor/autoload.php): failed to open stream: No such file or directory in /home/wwwroot/ss.prinzeugen.net/bootstrap.php on line 18
@@ -258,7 +262,7 @@ db_prefix = &#39;&#39;
 <pre><code>$ chown -R www storage
 </code></pre><p>现在访问你的站点，就可以看到 ss-panel 的首页啦：</p>
 <p><img src="https://ooo.0o0.ooo/2017/02/18/58a82108b285e.png" alt="landing page"></p>
-<h3 id="0x03-进入-ss-panel-后台"><a href="#0x03-进入-ss-panel-后台" class="headerlink" title="0x03 进入 ss-panel 后台"></a>0x03 进入 ss-panel 后台</h3><p>现在访问 <a href="http://your-domain/admin" target="_blank" rel="external">http://your-domain/admin</a> 就可以进入 ss-panel 后台了。</p>
+<h3 id="0x03-进入-ss-panel-后台"><a href="#0x03-进入-ss-panel-后台" class="headerlink" title="0x03 进入 ss-panel 后台"></a>0x03 进入 ss-panel 后台</h3><p>现在访问 <a href="http://your-domain/admin" target="_blank" rel="noopener">http://your-domain/admin</a> 就可以进入 ss-panel 后台了。</p>
 <p>不过细心的你可能会注意到，刚才导入数据表的时候，user 表并没有添加记录，那要咋进管理后台呢？当然你可以在数据库中手动加一条记录，不过作者已经提供了一个更方便的方式：</p>
 <pre><code class="bash">$ php xcat createAdmin
 </code></pre>
@@ -268,8 +272,8 @@ db_prefix = &#39;&#39;
 <p><img src="https://ooo.0o0.ooo/2017/02/18/58a825580f6c3.png" alt="ss-panel dashboard screenshot"></p>
 <p>到这里，作为前端的 ss-panel 就已经配置完成了。下面开始部署作为后端的 <code>shadowsocks-manyuser</code>。</p>
 <hr>
-<h2 id="二、部署并配置-shadowsocks-manyuser"><a href="#二、部署并配置-shadowsocks-manyuser" class="headerlink" title="二、部署并配置 shadowsocks-manyuser"></a>二、部署并配置 shadowsocks-manyuser</h2><p>在本篇教程中我们使用 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="external">fsgmhoward/shadowsocks-py-mu</a> 这个版本的后端。不同于这篇教程原先推荐的 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="external">@mengskysama</a> 版本，这个后端支持使用 MultiUser API 与前端的 ss-panel 进行用户信息交互。</p>
-<p>这个 API 的官方介绍在<a href="https://sspanel.xyz/docs/muapi" target="_blank" rel="external">这里</a>。简单来讲，如果你通过 API 来与前端通信，你就不需要修改后端的数据库配置了，并且可以使用「自定义加密」、「流量记录」等高级功能。下面我<strong>只介绍</strong>使用 API 的方法，另外那个比较麻烦的方法可以在<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#install-instruction-for-database-user" target="_blank" rel="external">这里</a>查看。</p>
+<h2 id="二、部署并配置-shadowsocks-manyuser"><a href="#二、部署并配置-shadowsocks-manyuser" class="headerlink" title="二、部署并配置 shadowsocks-manyuser"></a>二、部署并配置 shadowsocks-manyuser</h2><p>在本篇教程中我们使用 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="noopener">fsgmhoward/shadowsocks-py-mu</a> 这个版本的后端。不同于这篇教程原先推荐的 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="noopener">@mengskysama</a> 版本，这个后端支持使用 MultiUser API 与前端的 ss-panel 进行用户信息交互。</p>
+<p>这个 API 的官方介绍在<a href="https://sspanel.xyz/docs/muapi" target="_blank" rel="noopener">这里</a>。简单来讲，如果你通过 API 来与前端通信，你就不需要修改后端的数据库配置了，并且可以使用「自定义加密」、「流量记录」等高级功能。下面我<strong>只介绍</strong>使用 API 的方法，另外那个比较麻烦的方法可以在<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#install-instruction-for-database-user" target="_blank" rel="noopener">这里</a>查看。</p>
 <h3 id="0x01-安装-shadowsocks-manyuser"><a href="#0x01-安装-shadowsocks-manyuser" class="headerlink" title="0x01 安装 shadowsocks-manyuser"></a>0x01 安装 shadowsocks-manyuser</h3><p>先将代码 clone 到本地：</p>
 <pre><code class="bash">$ git clone https://github.com/fsgmhoward/shadowsocks-py-mu.git
 </code></pre>
@@ -303,7 +307,7 @@ tcp        0      0 0.0.0.0:62111            0.0.0.0:*               LISTEN     
 tcp        0      0 162.233.122.111:62111    115.233.233.140:47177   TIME_WAIT   -            
 tcp        0      0 162.233.122.111:62111    115.233.233.140:47161   TIME_WAIT   -            
 tcp        0      0 162.233.122.111:62111    115.233.233.140:47160   TIME_WAIT   -            
-tcp        0      0 162.233.122.111:62111    115.233.233.140:47157   TIME_WAIT   -
+tcp        0      0 162.233.122.111:62111    115.233.233.140:47157   TIME_WAIT   -            
 </code></pre>
 <p>如果没有来自你的 IP 的 TCP 连接的话，那八成就是防火墙的锅了，执行 iptables 放行你的端口：</p>
 <pre><code class="bash">$ iptables -I INPUT -p tcp -m tcp --dport 你的端口 -j ACCEPT
@@ -319,8 +323,8 @@ $ iptables -I INPUT -p tcp -m tcp --dport 12450: -j ACCEPT
 </code></pre>
 <p>现在再连接 shadowsocks 就应该可以看到 TCP 连接信息了。并且你可以在 ss-mu 后端的输出信息中看到详细的连接日志：</p>
 <p><img src="https://ooo.0o0.ooo/2017/02/18/58a8420faee8c.png" alt="connection log"></p>
-<p>日志格式的详细介绍在这里：<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#explanation-of-the-log-output" target="_blank" rel="external">Explanation of the log output</a>。</p>
-<h2 id="三、配置-ss-manyuser-守护进程以及多节点配置"><a href="#三、配置-ss-manyuser-守护进程以及多节点配置" class="headerlink" title="三、配置 ss-manyuser 守护进程以及多节点配置"></a>三、配置 ss-manyuser 守护进程以及多节点配置</h2><h3 id="0x01-使用-supervisor-监控-ss-manyuser-运行"><a href="#0x01-使用-supervisor-监控-ss-manyuser-运行" class="headerlink" title="0x01 使用 supervisor 监控 ss-manyuser 运行"></a>0x01 使用 supervisor 监控 ss-manyuser 运行</h3><p>如果你只是想让 ss-manyuser 在后台运行的话，可以参考我写的<a href="https://prinzeugen.net/linux-tips-how-to-run-program-on-the-background" target="_blank" rel="external">这篇文章</a>。</p>
+<p>日志格式的详细介绍在这里：<a href="https://github.com/fsgmhoward/shadowsocks-py-mu#explanation-of-the-log-output" target="_blank" rel="noopener">Explanation of the log output</a>。</p>
+<h2 id="三、配置-ss-manyuser-守护进程以及多节点配置"><a href="#三、配置-ss-manyuser-守护进程以及多节点配置" class="headerlink" title="三、配置 ss-manyuser 守护进程以及多节点配置"></a>三、配置 ss-manyuser 守护进程以及多节点配置</h2><h3 id="0x01-使用-supervisor-监控-ss-manyuser-运行"><a href="#0x01-使用-supervisor-监控-ss-manyuser-运行" class="headerlink" title="0x01 使用 supervisor 监控 ss-manyuser 运行"></a>0x01 使用 supervisor 监控 ss-manyuser 运行</h3><p>如果你只是想让 ss-manyuser 在后台运行的话，可以参考我写的<a href="https://prinzeugen.net/linux-tips-how-to-run-program-on-the-background" target="_blank" rel="noopener">这篇文章</a>。</p>
 <p>安装 supervisor （用的是上面安装过的 pip）：</p>
 <pre><code class="bash"># 先安装 pip 包管理器
 $ sudo apt-get install python-pip  # For Debian/Ubuntu
@@ -338,7 +342,7 @@ $ echo_supervisord_conf &gt; /etc/supervisord.conf
 <p>配置 supervisor 以监控 ss-manyuser 运行</p>
 <pre><code class="bash">$ vim /etc/supervisord.conf
 </code></pre>
-<p>在文件尾部（当然也可以<a href="http://supervisord.org/configuration.html" target="_blank" rel="external">新建配置文件</a>，不过这样比较方便）添加如下内容并酌情修改：</p>
+<p>在文件尾部（当然也可以<a href="http://supervisord.org/configuration.html" target="_blank" rel="noopener">新建配置文件</a>，不过这样比较方便）添加如下内容并酌情修改：</p>
 <pre><code class="ini">[program:ss-manyuser]
 command = python /root/shadowsocks-py-mu/shadowsocks/servers.py
 user = root
@@ -359,19 +363,19 @@ root       952   739  0 15:40 ?        00:00:00 python /root/shadowsocks-rm/shad
 <h3 id="0x02-ss-panel-的多节点配置"><a href="#0x02-ss-panel-的多节点配置" class="headerlink" title="0x02 ss-panel 的多节点配置"></a>0x02 ss-panel 的多节点配置</h3><p>其实多节点也没咋玄乎，说白了就是多个后端共用一个前端而已。而且我们的后端是使用 Mu API 来与前端进行交互的，所以多节点的配置就更简单了：只要把所有后端的 <code>config.py</code> 中的 <code>API_URL</code> 和 <code>API_PASS</code> 都改成一样即可（记得 <code>API_ENABLED = True</code>）。</p>
 <h2 id="四、写在后面"><a href="#四、写在后面" class="headerlink" title="四、写在后面"></a>四、写在后面</h2><p>其他可用的前端：</p>
 <ul>
-<li><a href="https://github.com/esdeathlove/ss-panel-v3-mod" target="_blank" rel="external">esdeathlove/ss-panel-v3-mod</a>，修改版的 ss-panel，修改了蛮多东西的，有兴趣的朋友可以去看看，他那边安装说明都写得很详细了；</li>
-<li><a href="https://github.com/sendya/shadowsocks-panel" target="_blank" rel="external">sendya/shadowsocks-panel</a>，另外一个全新的 ss-manyuser 前端，有用户等级、套餐、支付等功能，不支持使用 Mu API，部署教程在<a href="https://github.com/sendya/shadowsocks-panel/wiki/Shadowsocks-Panel-%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B" target="_blank" rel="external">这里</a>。</li>
+<li><a href="https://github.com/esdeathlove/ss-panel-v3-mod" target="_blank" rel="noopener">esdeathlove/ss-panel-v3-mod</a>，修改版的 ss-panel，修改了蛮多东西的，有兴趣的朋友可以去看看，他那边安装说明都写得很详细了；</li>
+<li><a href="https://github.com/sendya/shadowsocks-panel" target="_blank" rel="noopener">sendya/shadowsocks-panel</a>，另外一个全新的 ss-manyuser 前端，有用户等级、套餐、支付等功能，不支持使用 Mu API，部署教程在<a href="https://github.com/sendya/shadowsocks-panel/wiki/Shadowsocks-Panel-%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">这里</a>。</li>
 </ul>
 <p>其他可用的后端：</p>
 <ul>
-<li><a href="https://github.com/catpie/ss-go-mu" target="_blank" rel="external">shadowsocks-go mu</a>，Go 语言实现，性能比 Python 版好，也支持 Mu API；</li>
-<li><a href="https://github.com/shadowsocksr/shadowsocksr" target="_blank" rel="external">shadowsocksR manyuser</a> SSR 版本，见仁见智。</li>
+<li><a href="https://github.com/catpie/ss-go-mu" target="_blank" rel="noopener">shadowsocks-go mu</a>，Go 语言实现，性能比 Python 版好，也支持 Mu API；</li>
+<li><a href="https://github.com/shadowsocksr/shadowsocksr" target="_blank" rel="noopener">shadowsocksR manyuser</a> SSR 版本，见仁见智。</li>
 </ul>
 <p>这几个后端的部署方法大同小异，我这里就不再赘述了。</p>
 <h4 id="文章更新日志"><a href="#文章更新日志" class="headerlink" title="文章更新日志"></a>文章更新日志</h4><ul>
 <li>2017-02-18</li>
-<li>根据评论区推荐将后端由 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="external">mengskysama/shadowsocks-rm/manyuser</a> 切换至 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="external">fsgmhoward/shadowsocks-py-mu</a>；</li>
-<li>所有后端配置均改用 <a href="https://sspanel.xyz/docs/muapi/v2" target="_blank" rel="external">Mu API v2</a> 的方法；</li>
+<li>根据评论区推荐将后端由 <a href="https://github.com/mengskysama/shadowsocks-rm/tree/manyuser" target="_blank" rel="noopener">mengskysama/shadowsocks-rm/manyuser</a> 切换至 <a href="https://github.com/fsgmhoward/shadowsocks-py-mu" target="_blank" rel="noopener">fsgmhoward/shadowsocks-py-mu</a>；</li>
+<li>所有后端配置均改用 <a href="https://sspanel.xyz/docs/muapi/v2" target="_blank" rel="noopener">Mu API v2</a> 的方法；</li>
 <li>使用了更加严谨的文法。</li>
 </ul>
 <hr>

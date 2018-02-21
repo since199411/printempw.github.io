@@ -175,16 +175,18 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 246 天前（2017-06-18），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 247 天前（2017-06-18），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
     <div class="post-content">
       <p>是的，我又双叒叕换博客程序了。</p>
-<p>话是这样说，其实也没有很频繁啦，上一次从 <a href="https://blessing.studio/hello-ghost-goodbye-wordpress/">WordPress 迁移至 Ghost</a> 已经是一年多前的事了。这次是从 Ghost 迁移至 <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>，一个静态博客生成器。总体来看，我对博客程序的选择是越来越轻<del>（zhuang）</del>量<del>（bi）</del>化了。</p>
-<p>目前，本博客已经完全迁移至 Hexo，包括所有的文章和主题。不过话说回来现在回头去看两年多前写的文章，真的挺尬的，行文风格完全不一样，超尬 (つд⊂) 目前我在用的这个主题（<a href="https://qaq.cat/kotori/100" target="_blank" rel="external">Seventeen</a>）已经陪了我快三年了，之前我把它从 WordPress 移植到 Ghost，现在到了 Hexo 我又把它给移植过来了，我也是爱得深沉啊（笑）</p>
+<p>话是这样说，其实也没有很频繁啦，上一次从 <a href="https://blessing.studio/hello-ghost-goodbye-wordpress/">WordPress 迁移至 Ghost</a> 已经是一年多前的事了。这次是从 Ghost 迁移至 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>，一个静态博客生成器。总体来看，我对博客程序的选择是越来越轻<del>（zhuang）</del>量<del>（bi）</del>化了。</p>
+<p>目前，本博客已经完全迁移至 Hexo，包括所有的文章和主题。不过话说回来现在回头去看两年多前写的文章，真的挺尬的，行文风格完全不一样，超尬 (つд⊂) 目前我在用的这个主题（<a href="https://qaq.cat/kotori/100" target="_blank" rel="noopener">Seventeen</a>）已经陪了我快三年了，之前我把它从 WordPress 移植到 Ghost，现在到了 Hexo 我又把它给移植过来了，我也是爱得深沉啊（笑）</p>
 <p>既然现在迁移完成了，我打算列举一下我迁移的理由，算是个记录。</p>
 <h3 id="一、动态博客的优点"><a href="#一、动态博客的优点" class="headerlink" title="一、动态博客的优点"></a>一、动态博客的优点</h3><p>动态博客肯定是有一些静态博客所无法实现的优点的，不然我之前也不会一直使用动态博客，而没有考虑过使用静态博客了。</p>
 <ul>
@@ -199,7 +201,7 @@
 <p>我最开始选择它就是因为受够了臃肿的 WordPress 而看中了 Ghost 的简洁。但是这一年使用下来，我对 Ghost 的热情也渐渐冷却，对它感到不爽的地方也多了起来。说到底，作为一个普通的用户来看，我认为 Ghost 并没有实现多少<strong>「只有动态博客才能做到」</strong>的功能。</p>
 <ul>
 <li>孱弱的主题系统。是的，如果你开发过 Ghost 主题，你就会感到 Ghost 的主题功能是有多么的鶸（以下情况截止至 Ghost 的 0.11.9 版，即 2017-05-07，也许 Ghost 之后的版本会有所改善）。<ul>
-<li>在 Handlebars 模板中，你只能使用 Ghost 提供的有限变量，你甚至无法在 <a href="https://themes.ghost.org/v0.11.9/docs/if" target="_blank" rel="external">if statement</a> 中使用稍微复杂一些的表达式（当然，你也可以称赞这是遵循逻辑与视图分离）；</li>
+<li>在 Handlebars 模板中，你只能使用 Ghost 提供的有限变量，你甚至无法在 <a href="https://themes.ghost.org/v0.11.9/docs/if" target="_blank" rel="noopener">if statement</a> 中使用稍微复杂一些的表达式（当然，你也可以称赞这是遵循逻辑与视图分离）；</li>
 <li>用户自定义？不存在的，用户在不修改主题文件的前提下能修改的就只有博客标题、LOGO 等基本信息以及导航栏。而且导航栏标题中的 HTML 标签永远都会被转义，不修改 Ghost 源码关不掉，想放个图标都不行；</li>
 <li>小工具、换主题颜色、换 Schema？直接改主题或者 Ghost 的源码去吧，否则你没有任何方法为你的 Ghost 主题添加一个自定义配置文件，因为你根本读取不到。</li>
 </ul>
@@ -211,7 +213,7 @@
 <li>虽是打着简洁轻便优美的名头，但是在我看来 Ghost 整体已经日渐臃肿，尤其是 1.0 Alpha 版，看源码看得我一个头两个大。当然，你也可以说是我太low，不懂它的架构优雅😀</li>
 <li>Markdown 支持不好，渲染经常出问题，而且连个表格都没得插；</li>
 </ul>
-<p>虽然 Ghost 有这么多不完善的地方，但毕竟人家还处在 0.x 的版本号阶段嘛，也不是不能理解，因此我也愿意继续使用它，等待它慢慢成长完善。但是后来我在试用 Ghost 1.0 Alpha 的早期版本时（当时 Alpha 页面上介绍的是 <em>Brand New Editor</em>，我挺心动的），我惊讶地发现 Ghost 团队在 Alpha 甚至做出了<strong>【取消 Markdown 编辑器改为普通富文本编辑器】</strong>的神奇决定……虽然半个月前的 <a href="https://github.com/TryGhost/Ghost/releases/tag/1.0.0-alpha.21" target="_blank" rel="external">Alpha.21</a> 已经重新回归了 markdown-only 编辑器，而且换了个新的 Markdown renderer（官方自己也承认原来的渲染器有着 <em>a whole heap of syntax bugs</em>）。但是很可惜，当我得知这条消息时，我已经完成了博客的迁移工作 ‾\_(ツ)_/‾</p>
+<p>虽然 Ghost 有这么多不完善的地方，但毕竟人家还处在 0.x 的版本号阶段嘛，也不是不能理解，因此我也愿意继续使用它，等待它慢慢成长完善。但是后来我在试用 Ghost 1.0 Alpha 的早期版本时（当时 Alpha 页面上介绍的是 <em>Brand New Editor</em>，我挺心动的），我惊讶地发现 Ghost 团队在 Alpha 甚至做出了<strong>【取消 Markdown 编辑器改为普通富文本编辑器】</strong>的神奇决定……虽然半个月前的 <a href="https://github.com/TryGhost/Ghost/releases/tag/1.0.0-alpha.21" target="_blank" rel="noopener">Alpha.21</a> 已经重新回归了 markdown-only 编辑器，而且换了个新的 Markdown renderer（官方自己也承认原来的渲染器有着 <em>a whole heap of syntax bugs</em>）。但是很可惜，当我得知这条消息时，我已经完成了博客的迁移工作 ‾\_(ツ)_/‾</p>
 <h3 id="三、市面上其他的动态博客"><a href="#三、市面上其他的动态博客" class="headerlink" title="三、市面上其他的动态博客"></a>三、市面上其他的动态博客</h3><p>我也有想过换成其他的动态博客，但苦于找不到合适的。</p>
 <ul>
 <li><strong>WordPress</strong>：臃肿，运行速度慢，架构落后；</li>
@@ -242,7 +244,7 @@
 <li>我自认为不需要通过写一个博客程序的方式来巩固我的知识以及展示「我会○○技能哦」，维护也麻烦。写个博客程序不难，但我希望写一些更有意义的玩意儿；</li>
 <li><strong>懒</strong>。</li>
 </ul>
-<h3 id="七、我依然坚持独立博客的理由"><a href="#七、我依然坚持独立博客的理由" class="headerlink" title="七、我依然坚持独立博客的理由"></a>七、我依然坚持独立博客的理由</h3><p>引用阮一峰老师所言<sup><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="external">[source]</a></sup>：</p>
+<h3 id="七、我依然坚持独立博客的理由"><a href="#七、我依然坚持独立博客的理由" class="headerlink" title="七、我依然坚持独立博客的理由"></a>七、我依然坚持独立博客的理由</h3><p>引用阮一峰老师所言<sup><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="noopener">[source]</a></sup>：</p>
 <blockquote>
 <p>喜欢写 Blog 的人，会经历三个阶段。</p>
 <p>第一阶段，刚接触 Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
@@ -256,7 +258,7 @@
 <li>Medium、简书之类的平台虽然可以专注于写作，但是不好进行自定义与功能的添加，个性化功能过于局限，样式模板千篇一律，<del>不好装逼</del>；</li>
 <li>并没有觉得维护独立博客很麻烦，专注产出内容之余折腾下搭建、模板，也挺有意思的 ;)</li>
 </ul>
-<p>最后引用一句 <a href="https://www.farbox.com/" target="_blank" rel="external">Farbox</a> 首页上我很喜欢的一段话：</p>
+<p>最后引用一句 <a href="https://www.farbox.com/" target="_blank" rel="noopener">Farbox</a> 首页上我很喜欢的一段话：</p>
 <blockquote>
 <p>博客的意义</p>
 <p>除了记录生活，博客让作者变得平静、幸福、以及更优秀，结交到性情相近的朋友，甚至让薪资涨幅超过不写博客的一些人。</p>

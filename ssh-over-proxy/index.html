@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 751 天前（2016-01-30），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 752 天前（2016-01-30），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 752 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -188,8 +194,8 @@
 <p>这次 ConoHa 把我被 DDoS 的 VPS 所有对外连接 DROP 了。最开始是所有的连接都 DROP，只有控制台的 VNC 才连的上。连上以后只能 Ping 到内网。</p>
 <p>所幸后来放宽了 DROP，日本的 IP 可以访问了。于是借用了同学的搭建于 ConoHa 的 Shadowsocks，准备把数据备份下来（ConoHa 删除被 D 主机不是一次两次了）。</p>
 <p>那么要怎么样才能通过代理进行 SSH 连接呢？窝起先以为是像 curl 那样提供了参数，不曾想 man ssh 未果，只好 Google 解决方法。不过大部分都是搜到了 SSH 代理的教程，找了挺久的，为了让后来人少走弯路，遂记录一下。</p>
-<p>下面介绍的是 connect 的使用方法，Corkscrew 可以看<a href="http://www.techrepublic.com/blog/linux-and-open-source/using-corkscrew-to-tunnel-ssh-over-http/" target="_blank" rel="external">这篇</a>。</p>
-<h3 id="0x01-下载并安装-connect"><a href="#0x01-下载并安装-connect" class="headerlink" title="0x01 下载并安装 connect"></a>0x01 下载并安装 connect</h3><p>这是 connect 的 Bitbucket <a href="https://bitbucket.org/gotoh/connect/src" target="_blank" rel="external">项目地址</a>。</p>
+<p>下面介绍的是 connect 的使用方法，Corkscrew 可以看<a href="http://www.techrepublic.com/blog/linux-and-open-source/using-corkscrew-to-tunnel-ssh-over-http/" target="_blank" rel="noopener">这篇</a>。</p>
+<h3 id="0x01-下载并安装-connect"><a href="#0x01-下载并安装-connect" class="headerlink" title="0x01 下载并安装 connect"></a>0x01 下载并安装 connect</h3><p>这是 connect 的 Bitbucket <a href="https://bitbucket.org/gotoh/connect/src" target="_blank" rel="noopener">项目地址</a>。</p>
 <p>如果你是 Linux/Mac 用户，克隆项目到本地（然而窝不用 Mercurial），编译安装：</p>
 <pre><code class="bash">$ hg clone https://bitbucket.org/gotoh/connect 
 $ cd connect 
@@ -199,7 +205,7 @@ $ make &amp;&amp; make install
 <pre><code class="bash">$ gcc connect.c -o connect 
 $ cp connect /usr/local/bin
 </code></pre>
-<p>如果你是 Windows 下的 Cygwin 用户，直接下载发行的<a href="https://bitbucket.org/gotoh/connect/downloads" target="_blank" rel="external">二进制文件</a>到 <code>C:/Windows</code> 中即可</p>
+<p>如果你是 Windows 下的 Cygwin 用户，直接下载发行的<a href="https://bitbucket.org/gotoh/connect/downloads" target="_blank" rel="noopener">二进制文件</a>到 <code>C:/Windows</code> 中即可</p>
 <h3 id="0x02-配置-SSH"><a href="#0x02-配置-SSH" class="headerlink" title="0x02 配置 SSH"></a>0x02 配置 SSH</h3><p>如果你使用的是 socks5 代理（Shadowsocks），添加这两行到 <code>~/.ssh/config</code></p>
 <pre><code>Host * 
     ProxyCommand connect -H 127.0.0.1:1080 %h %p

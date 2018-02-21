@@ -178,16 +178,22 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 680 天前（2016-04-11），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 680 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
+
+
     <div class="post-content">
-      <p>窝现在在用的这个伪春菜插件，似乎没有加入判断是否移动端的逻辑，然而移动页面上的伪春菜体验超级差，低分辨率设备甚至出现被糊一脸且点不到隐藏的情况 <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
+      <p>窝现在在用的这个伪春菜插件，似乎没有加入判断是否移动端的逻辑，然而移动页面上的伪春菜体验超级差，低分辨率设备甚至出现被糊一脸且点不到隐藏的情况 <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
 <p>虽然咱不会 php 但也只好借助咕狗大神的力量自力更生了</p>
-<p>看了看插件源码，折腾出解决方案如下 <a href="https://img.blessing.studio/images/2015/05/20150503124308.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/20150503124308.jpg" alt="20150503124308"></a>，都是修改插件中的 <code>sm-weichuncai.php</code></p>
+<p>看了看插件源码，折腾出解决方案如下 <a href="https://img.blessing.studio/images/2015/05/20150503124308.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/20150503124308.jpg" alt="20150503124308"></a>，都是修改插件中的 <code>sm-weichuncai.php</code></p>
 <p>一、插入 <code>isMobile()</code> 判断函数</p>
 <pre><code class="php">/**
  * 是否移动端访问访问

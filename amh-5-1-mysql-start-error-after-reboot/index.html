@@ -182,8 +182,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 947 天前（2015-07-18），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 948 天前（2015-07-18），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 948 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -191,19 +197,19 @@
     <div class="post-content">
       <p>今天咱在 ssh 中执行 reboot 后，发现 wordpress、amh 都连不上 mysql 数据库</p>
 <p><span class="lang:default decode:true  crayon-inline ">amh mysql status</span>  查看发现 mysql 没有在运行，遂 <span class="lang:default decode:true  crayon-inline ">amh mysql start</span>  启动 mysql</p>
-<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
-<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="external"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
+<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
+<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="noopener"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
 <ol>
 <li><strong>df -h</strong>  看磁盘是否有空间；</li>
 <li><strong>ls -l /home/usrdata/mysql*</strong>  目录是否有权限；</li>
 <li>检测 <strong>my.cnf</strong> 配置是否正确(与是否有多余其它的)；</li>
 </ol>
 <p>一条一条试过去，咱的硬盘还充足，目录权限也没错</p>
-<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
 <p>最后在 <del>万策尽きた</del> 的时候，咱抱着最后希望 <span class="lang:default decode:true  crayon-inline ">vim /etc/mysql/my.cnf</span> 了</p>
-<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
-<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
-<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
+<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
+<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
+<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
 <p>可喜可贺，可喜可贺</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>

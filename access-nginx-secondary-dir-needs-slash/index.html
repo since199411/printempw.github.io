@@ -177,17 +177,23 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 680 天前（2016-04-11），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 680 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
       <p>今天咱重新在 vps 上部署贴吧云签到的时候，发现：</p>
-<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="external">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
-<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="external">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
-<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
+<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
+<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
+<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
 <p>常见做法：在 rewrite 规则中加入</p>
 <pre><code class="nginx">if (-d $request_filename) { 
     rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent; 

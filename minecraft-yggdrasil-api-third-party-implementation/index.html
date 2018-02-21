@@ -181,14 +181,16 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 195 天前（2017-08-08），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 196 天前（2017-08-08），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+
+
     <div class="post-content">
-      <p>最近给 Blessing Skin 写了个插件，利用皮肤站本身的账号系统实现了 Yggdrasil API（就是 Mojang 的登录 API），然后配合 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="external">authlib-agent</a> 这个库将启动器（基于 Java 编写的支持正版登录的启动器都行）、Minecraft 游戏、Minecraft 服务端中的 Mojang Yggdrasil API 地址给替换成了自己实现的第三方 Yggdrasil API 地址（字节码替换），从而实现了与正版登录功能几乎完全相同的账户鉴权系统。</p>
+      <p>最近给 Blessing Skin 写了个插件，利用皮肤站本身的账号系统实现了 Yggdrasil API（就是 Mojang 的登录 API），然后配合 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="noopener">authlib-agent</a> 这个库将启动器（基于 Java 编写的支持正版登录的启动器都行）、Minecraft 游戏、Minecraft 服务端中的 Mojang Yggdrasil API 地址给替换成了自己实现的第三方 Yggdrasil API 地址（字节码替换），从而实现了与正版登录功能几乎完全相同的账户鉴权系统。</p>
 <p>通俗地讲，就是我把 Mojang 的正版登录 API 给【劫持】成自己的啦，所以可以像登录正版那样直接用皮肤站的邮箱和密码登录游戏（还支持 Mojang 都不支持的多用户选择哦）。这种外置登录系统的实现应该可以说是比市面上的软件都要完善（毕竟可以直接利用 Minecraft 本身自带的鉴权模块），因此写一篇博文介绍一下这些实现之间的不同之处，顺带记录一下实现 Yggdrasil API 时踩到的坑，算是抛砖引玉了。</p>
 <div class="alert alert-warning"><p><strong>注意</strong>：本文不适合小白及问题解决能力弱的人群阅读。</p>
 </div>
@@ -209,27 +211,27 @@
 <h2 id="二、外置登录系统"><a href="#二、外置登录系统" class="headerlink" title="二、外置登录系统"></a>二、外置登录系统</h2><p>正是这样的需求催生了不少 Minecraft 的「外置登录插件」、「网页登录」等等软件（而且人气都挺高的），我随手在 MCBBS 上一搜就有很多类似的产品，用啥语言写的都有：<em>MadAuth、WebLogin、BeeLogin、WebRegister、冰棂登陆系统……</em></p>
 <p>这些软件的原理就是将原本的登录鉴权这一步骤从游戏里抽出来了，将其放到启动器 or 网页上去，而服务端插件的功能就只剩下「查询数据库中用户的登录状态，决定是否放行」：</p>
 <p><img src="https://img.blessing.studio/images/2017/08/04/Minecraft.png" alt="原理图"></p>
-<p><em>▲随手画的示意流程图，这里推荐一下  <a href="https://www.processon.com/" target="_blank" rel="external">ProcessOn</a> 这个在线作图网站，很好用 ;)</em></p>
+<p><em>▲随手画的示意流程图，这里推荐一下  <a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a> 这个在线作图网站，很好用 ;)</em></p>
 <p>似乎也挺好的，不是吗？那我今天要说的「自行实现 Yggdrasil API」方法，和这些现成的方式有什么不一样呢？</p>
 <h2 id="三、自行实现-Yggdrasil-API"><a href="#三、自行实现-Yggdrasil-API" class="headerlink" title="三、自行实现 Yggdrasil API"></a>三、自行实现 Yggdrasil API</h2><p>继续看下去之前，首先你要知道 Mojang 正版的 Minecraft 是怎样登录的。Mojang 专门定义了一个用于鉴权的 API，Mojang 旗下的游戏（Minecraft、Scrolls 等）都是用的这一套 API 来正版验证的 —— 这一套 API 的名字就叫做 Yggdrasil（即北欧神话里的世界树，<del>这名字可真几把炫酷</del>）。</p>
 <p>正版登录的好处就不用我说了吧？再也不用担心假人压测、自带外置登录（启动器里账号密码登录）、自带皮肤加载（不需要安装 CSL、USM 等皮肤补丁了）、Tab 栏显示头像……可以说，Minecraft 自带的 Yggdrasil API 鉴权系统比上面的那些什么登录插件啊什么外置登录的功能强多了，所以正版服务器（<code>online_mode=true</code>）也不用担心那些破事，因为官方的这一套鉴权系统以及很完善了。</p>
 <p>那么问题来了，盗版用户要怎样才能把 Mojang 为正版开发的 Yggdrasil API 系统拿来用呢？</p>
-<h3 id="3-1-基本原理"><a href="#3-1-基本原理" class="headerlink" title="3.1 基本原理"></a>3.1 基本原理</h3><p>这里必须感谢 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="external">to2mbn/authlib-agent</a> 这个项目，正是因为这个项目，我接下来描述的方法才成为可能。是的，方法很简单，Minecraft 虽然把 Mojang 官方的 Yggdrasil API 地址（<code>https://authserver.mojang.com</code>）给写死在源码里了，但是既然 Minecraft 是基于 JVM 的应用程序，我们就可以通过字节码替换的方法将官方的 API 地址替换成我们自己实现的 API 地址。</p>
+<h3 id="3-1-基本原理"><a href="#3-1-基本原理" class="headerlink" title="3.1 基本原理"></a>3.1 基本原理</h3><p>这里必须感谢 <a href="https://github.com/to2mbn/authlib-agent/" target="_blank" rel="noopener">to2mbn/authlib-agent</a> 这个项目，正是因为这个项目，我接下来描述的方法才成为可能。是的，方法很简单，Minecraft 虽然把 Mojang 官方的 Yggdrasil API 地址（<code>https://authserver.mojang.com</code>）给写死在源码里了，但是既然 Minecraft 是基于 JVM 的应用程序，我们就可以通过字节码替换的方法将官方的 API 地址替换成我们自己实现的 API 地址。</p>
 <p>以下内容援引自 authlib-agent 的 wiki：</p>
 <blockquote>
 <p>authlib-agent 是一个高可靠性, 高适用性, 用于 Minecraft 的, 游戏外登录及皮肤解决方案. 支持 Minecraft1.7+, Craftbukkit, Spigot, Bungeecord 等. 通过对正版登录 API 的重定向, 实现了一个功能和正版几乎一样的游戏外登录系统.</p>
 </blockquote>
 <p>不过既然要把官方 API 地址替换成我们自己的，我们就得自己实现一个和官方 API 其他地方都一样的 API，也就是，<strong>仿造出一个第三方 Yggdrasil API 出来</strong>。</p>
 <h3 id="3-2-解决方案"><a href="#3-2-解决方案" class="headerlink" title="3.2 解决方案"></a>3.2 解决方案</h3><p>可以说这个系统中，就是「开发完整实现了 Yggdrasil API 的后端」这一步最难了。为啥捏？这个服务端不止要实现用户的认证、皮肤获取，你还得实现用户的注册、登录、角色管理、皮肤上传、皮肤库等等七七八八的功能吧？你还得给这些功能套上一个好看的界面吧，不然你让你的玩家怎么使用？你还得来个后台管理页面吧，不然管理员怎么进行用户管理、封禁等操作？</p>
-<p>authlib-agent 官方也提供了一个 Java 编写的后端 <a href="https://github.com/to2mbn/authlib-agent/tree/master/yggdrasil-backend" target="_blank" rel="external">yggdrasil-backend</a>，虽然完整实现了 Yggdrasil API，但是它并没有提供直观的管理网页，只提供了一套 RESTful API，所以距离实装要求还是差得比较远的。</p>
-<p>要重头开发一套这样的系统是非常非常够呛的，不过幸运的是，我之前一直在持续开发的 Minecraft 皮肤站 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="external">Blessing Skin Server</a>，这个项目的 v3 版本<strong>正好</strong>就满足的这些要求 —— 友好的用户界面、完善的用户系统、强大的后台管理、附带皮肤上传管理展示功能，再加上我之前开发的<a href="https://blessing.studio/laravel-plugin-system-1/">插件系统</a>（开发这玩意真是个正确的决定，一劳永逸啊） ，这让我可以很方便地开发一个插件出来，直接基于现成的皮肤站用户系统实现 Yggdrasil API。</p>
+<p>authlib-agent 官方也提供了一个 Java 编写的后端 <a href="https://github.com/to2mbn/authlib-agent/tree/master/yggdrasil-backend" target="_blank" rel="noopener">yggdrasil-backend</a>，虽然完整实现了 Yggdrasil API，但是它并没有提供直观的管理网页，只提供了一套 RESTful API，所以距离实装要求还是差得比较远的。</p>
+<p>要重头开发一套这样的系统是非常非常够呛的，不过幸运的是，我之前一直在持续开发的 Minecraft 皮肤站 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="noopener">Blessing Skin Server</a>，这个项目的 v3 版本<strong>正好</strong>就满足的这些要求 —— 友好的用户界面、完善的用户系统、强大的后台管理、附带皮肤上传管理展示功能，再加上我之前开发的<a href="https://blessing.studio/laravel-plugin-system-1/">插件系统</a>（开发这玩意真是个正确的决定，一劳永逸啊） ，这让我可以很方便地开发一个插件出来，直接基于现成的皮肤站用户系统实现 Yggdrasil API。</p>
 <p><img src="https://i.loli.net/2017/08/04/59846283822ac.png" alt="API"></p>
 <h3 id="3-3-如何使用"><a href="#3-3-如何使用" class="headerlink" title="3.3 如何使用"></a>3.3 如何使用</h3><p>讲了那么多，那么到底该怎么使用呢？</p>
 <ol>
-<li>安装好 <a href="https://github.com/printempw/blessing-skin-server/" target="_blank" rel="external">Blessing Skin Server</a>（请参照安装说明）；</li>
-<li>下载我开发的 <a href="https://coding.net/u/printempw/p/blessing-skin-plugins/git/tree/master/yggdrasil-api" target="_blank" rel="external"><code>yggdrasil-api</code></a> 插件，解压放入皮肤站 <code>plugins</code> 文件夹内，并在后台「插件管理」中启用本插件；</li>
+<li>安装好 <a href="https://github.com/printempw/blessing-skin-server/" target="_blank" rel="noopener">Blessing Skin Server</a>（请参照安装说明）；</li>
+<li>下载我开发的 <a href="https://coding.net/u/printempw/p/blessing-skin-plugins/git/tree/master/yggdrasil-api" target="_blank" rel="noopener"><code>yggdrasil-api</code></a> 插件，解压放入皮肤站 <code>plugins</code> 文件夹内，并在后台「插件管理」中启用本插件；</li>
 <li>编译 authlib-agent 中的 javaagent，并且将配置项中的 API 地址改成 <code>http://{你的站点地址}/api/yggdrasil</code>；</li>
-<li>参照 authlib-agent 的 <a href="https://github.com/to2mbn/authlib-agent/wiki/Deployment-Guide#%E6%97%A0forge%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%8A%A0%E8%BD%BDauthlibagent" target="_blank" rel="external">wiki 页面</a>，正确加载编译好的 jar（注意，启动器、游戏、服务端都要这样 hack，否则会造成无法登录）；</li>
+<li>参照 authlib-agent 的 <a href="https://github.com/to2mbn/authlib-agent/wiki/Deployment-Guide#%E6%97%A0forge%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%8A%A0%E8%BD%BDauthlibagent" target="_blank" rel="noopener">wiki 页面</a>，正确加载编译好的 jar（注意，启动器、游戏、服务端都要这样 hack，否则会造成无法登录）；</li>
 <li>大功告成。</li>
 </ol>
 <p>以上步骤完成后你将得到什么？</p>
@@ -240,7 +242,7 @@
 </ul>
 <p>这还不够多吗？</p>
 <p>而且你还可以自己修改 HMCL 等开源启动器的源码，在启动时自动注入 <code>-javaagent</code> 参数，更加方便，还能得到一个服务器专用启动器，逼格更高了（笑）</p>
-<h3 id="3-4-实现效果"><a href="#3-4-实现效果" class="headerlink" title="3.4 实现效果"></a>3.4 实现效果</h3><p>皮肤站的用户管理系统、皮肤系统、后台界面之类的我就不截图了，有兴趣可以去 MCBBS 的 <a href="http://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=552877" target="_blank" rel="external">发布帖</a> 上感受一下。</p>
+<h3 id="3-4-实现效果"><a href="#3-4-实现效果" class="headerlink" title="3.4 实现效果"></a>3.4 实现效果</h3><p>皮肤站的用户管理系统、皮肤系统、后台界面之类的我就不截图了，有兴趣可以去 MCBBS 的 <a href="http://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=552877" target="_blank" rel="noopener">发布帖</a> 上感受一下。</p>
 <p><img src="https://img.blessing.studio/images/2017/08/04/imageac07f.png" alt="网页管理"></p>
 <p><em>▲在皮肤站「角色管理」中可添加多个角色</em></p>
 <p><img src="https://img.blessing.studio/images/2017/08/04/image.png" alt="多角色选择"></p>
@@ -248,7 +250,7 @@
 <p><img src="https://i.loli.net/2017/08/04/5984671f87c40.png" alt="游戏"></p>
 <p>▲游戏内的显示效果</p>
 <h2 id="四、Yggdrasil-API-踩坑记录"><a href="#四、Yggdrasil-API-踩坑记录" class="headerlink" title="四、Yggdrasil API 踩坑记录"></a>四、Yggdrasil API 踩坑记录</h2><p>下面记录一些自己实现 Yggdrasil API 时踩到的坑，毕竟 wiki.vg 里并不会提到这些在自己实现 API 时需要注意的东西（提到的大部分都是使用 API 时应该要注意的），所以我也只能摸着石头过河，踩了不少坑，这里记录一下，希望能帮到后来人。</p>
-<p>基础的 API 定义之类的我就不说了，下面主要讲一些 <a href="http://wiki.vg/Authentication" target="_blank" rel="external">文档</a> 里没怎么提到的东西。</p>
+<p>基础的 API 定义之类的我就不说了，下面主要讲一些 <a href="http://wiki.vg/Authentication" target="_blank" rel="noopener">文档</a> 里没怎么提到的东西。</p>
 <h3 id="4-1-登录与鉴权"><a href="#4-1-登录与鉴权" class="headerlink" title="4.1 登录与鉴权"></a>4.1 登录与鉴权</h3><p>用过正版 Minecraft 的登录系统的同学应该都知道，一般只有在初次登录游戏或者太久没有开过游戏的情况下，启动器才会要求你输入账号密码，其他情况下都是可以直接点击登录并启动游戏的。</p>
 <p>但这并不是因为启动器记下了你的密码，相反，启动器保存的是 Mojang 认证服务器返回的 AccessToken。如果你曾经观察过启动器启动游戏时所用的启动参数，你就能发现其实 Minecraft 游戏本体其实只拿到了角色名、角色 Profile 对应的 UUID 以及上面提到的 AccessToken 而已。可以说，只要拿到这个 AccessToken 就可以进行几乎所有的操作了。</p>
 <pre><code class="text">--username 621sama
@@ -268,7 +270,7 @@
 </code></pre>
 <p>AccessToken 刚签发时处于「有效」状态，经过一段时间后（服务端自行设置）变成「暂时失效」状态。在这种状态下的 AccessToken 是无法进入任何开启了正版验证的服务器的（也就是 <code>/join</code> API 不认），但是该令牌还是能拿来请求 <code>/refresh</code> API，这会签发一个全新的处于「有效」状态的 AccessToken 并返回给客户端。</p>
 <p>但是如果处于「暂时失效」状态的 AccessToken 再放置一段时间后就会完全失效（一般的实现就是从 Redis 令牌桶中删掉该令牌），处于「无效」状态的 AccessToken 是无法进行任何操作的，只能让用户重新输入密码并请求 <code>/authenticate</code> API 以获取一个新的 AccessToken。</p>
-<h4 id="4-2-2-Token-的格式"><a href="#4-2-2-Token-的格式" class="headerlink" title="4.2.2 Token 的格式"></a>4.2.2 Token 的格式</h4><p>Yggdrasil API 中的 <code>clientToken</code>、<code>accessToken</code>、<code>id</code> 等字段的格式都是一大串 16 进制数字和 <code>-</code> 连字符组成的字符串，让人看起来很懵。其实这样的字符串格式就是 <strong>通用唯一识别码</strong>（<a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81" target="_blank" rel="external">Universally Unique Identifier</a>）标准，也就是我们经常听到的 UUID 了。标准形式的 UUID 包含 32 位 16 进制数字，并且由连字符分割成形式为 8-4-4-4-12 的字符串，就像这样：</p>
+<h4 id="4-2-2-Token-的格式"><a href="#4-2-2-Token-的格式" class="headerlink" title="4.2.2 Token 的格式"></a>4.2.2 Token 的格式</h4><p>Yggdrasil API 中的 <code>clientToken</code>、<code>accessToken</code>、<code>id</code> 等字段的格式都是一大串 16 进制数字和 <code>-</code> 连字符组成的字符串，让人看起来很懵。其实这样的字符串格式就是 <strong>通用唯一识别码</strong>（<a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81" target="_blank" rel="noopener">Universally Unique Identifier</a>）标准，也就是我们经常听到的 UUID 了。标准形式的 UUID 包含 32 位 16 进制数字，并且由连字符分割成形式为 8-4-4-4-12 的字符串，就像这样：</p>
 <pre><code># 至于如何生成 UUID，各个语言一般都有对应的库，搜一下就有了
 550e8400-e29b-41d4-a716-446655440000
 </code></pre><p>虽然文档中没说，但是 API 请求以及响应的 <code>clientToken</code> 以及 <code>accessToken</code> 都是用的这样的标准形式。然而，需要注意的是，玩家 Profile 中的 <code>id</code> 字段格式是<strong>不带连字符</strong>的。下面拿 wiki.vg 中的 <code>/authenticate</code> 请求中的实例响应讲解一下：</p>
@@ -328,7 +330,7 @@
 }
 </code></pre>
 <p>好吧好吧，看到这么多字符先别懵，<code>value</code> 和 <code>signature</code> 字段的内容都是 BASE64 编码过的，解码后 <code>value</code> 字段就是个普通的 JSON 而已。至于 JSON 里是什么内容，就自己去看 wiki 吧。</p>
-<h4 id="4-5-2-数字签名"><a href="#4-5-2-数字签名" class="headerlink" title="4.5.2 数字签名"></a>4.5.2 数字签名</h4><p>需要注意的是上述 Profile 中的 <code>signature</code> 字段。顾名思义，这个字段就是 <code>value</code> 字段的数字签名。虽然官方 API 只有在指定 <code>unsigned=false</code> 时才会返回带签名的 Profile，但是目前（截至本文发布） authlib-agent 在服务端未返回数字签名时会出现<a href="https://github.com/printempw/blessing-skin-server/issues/81" target="_blank" rel="external">神秘的错误</a>，所以还是默认返回 <code>signature</code> 字段来得好。</p>
+<h4 id="4-5-2-数字签名"><a href="#4-5-2-数字签名" class="headerlink" title="4.5.2 数字签名"></a>4.5.2 数字签名</h4><p>需要注意的是上述 Profile 中的 <code>signature</code> 字段。顾名思义，这个字段就是 <code>value</code> 字段的数字签名。虽然官方 API 只有在指定 <code>unsigned=false</code> 时才会返回带签名的 Profile，但是目前（截至本文发布） authlib-agent 在服务端未返回数字签名时会出现<a href="https://github.com/printempw/blessing-skin-server/issues/81" target="_blank" rel="noopener">神秘的错误</a>，所以还是默认返回 <code>signature</code> 字段来得好。</p>
 <p>至于数字签名如何生成，其实就是用的 OpenSSL 内置的签名算法。在编译 authlib-agent 时就会生成一组 OpenSSL 密钥对，直接把生成的 RSA 私钥 <code>key.pem</code> 拿来用就可以了。各个平台都有 OpenSSL 库的实现，我这里贴一下 PHP 的示例代码：</p>
 <pre><code class="php">$privateKeyPath = __DIR__.&#39;/key.pem&#39;;
 
@@ -352,7 +354,7 @@ openssl_free_key($key);
 return base64_encode($sign);
 </code></pre>
 <p>其他语言大同小异，我就不多赘述了。</p>
-<h4 id="4-5-3-加载材质"><a href="#4-5-3-加载材质" class="headerlink" title="4.5.3 加载材质"></a>4.5.3 加载材质</h4><p>拿到角色 Profile，并且验证了数字签名后（签名不对的话不会加载的），Minecraft 游戏就会根据 Profile 中指定的皮肤、披风图片 URL 加载材质。需要注意的是，Minecraft 自带的 authlib 是只会加载 Mojang 官方域名下的材质的（白名单之外的材质地址是不会被加载的），这也是为什么需要 CustomSkinLoader 等皮肤 Mod 的原因。不过 <a href="https://github.com/to2mbn/authlib-agent/blob/master/configure.sh" target="_blank" rel="external">authlib-agent</a> 自带了 authlib 的 hack，在编译的时候可以直接指定材质加载白名单即可：</p>
+<h4 id="4-5-3-加载材质"><a href="#4-5-3-加载材质" class="headerlink" title="4.5.3 加载材质"></a>4.5.3 加载材质</h4><p>拿到角色 Profile，并且验证了数字签名后（签名不对的话不会加载的），Minecraft 游戏就会根据 Profile 中指定的皮肤、披风图片 URL 加载材质。需要注意的是，Minecraft 自带的 authlib 是只会加载 Mojang 官方域名下的材质的（白名单之外的材质地址是不会被加载的），这也是为什么需要 CustomSkinLoader 等皮肤 Mod 的原因。不过 <a href="https://github.com/to2mbn/authlib-agent/blob/master/configure.sh" target="_blank" rel="noopener">authlib-agent</a> 自带了 authlib 的 hack，在编译的时候可以直接指定材质加载白名单即可：</p>
 <pre><code class="shell"># configure.sh
 #
 # 要加入到 authlib 的白名单的域名的结尾
@@ -421,12 +423,12 @@ POST /profilerepo
 GET  /username2profile/{username}
 </code></pre><h2 id="五、后记"><a href="#五、后记" class="headerlink" title="五、后记"></a>五、后记</h2><p>上周折腾了好几天这玩意，写篇博文记录一下，既能理清自己的思路，还有可能帮到后来人<del>（花时间研究了东西，却没人知道，多亏啊）</del>，何乐而不为呢 :P</p>
 <h3 id="5-1-参考链接"><a href="#5-1-参考链接" class="headerlink" title="5.1 参考链接"></a>5.1 参考链接</h3><ul>
-<li><a href="http://wiki.vg/Authentication" target="_blank" rel="external">http://wiki.vg/Authentication</a></li>
-<li><a href="http://wiki.vg/Protocol_Encryption#Authentication" target="_blank" rel="external">http://wiki.vg/Protocol_Encryption#Authentication</a></li>
-<li><a href="http://wiki.vg/Mojang_API" target="_blank" rel="external">http://wiki.vg/Mojang_API</a></li>
-<li><a href="https://github.com/to2mbn/authlib-agent/wiki" target="_blank" rel="external">https://github.com/to2mbn/authlib-agent/wiki</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81" target="_blank" rel="external">https://zh.wikipedia.org/wiki/通用唯一识别码</a></li>
-<li><a href="http://xbgtalk.biz/2015/11/03/php-rsa-encode-decode-sign/" target="_blank" rel="external">php-rsa - 加密解密和签名</a></li>
+<li><a href="http://wiki.vg/Authentication" target="_blank" rel="noopener">http://wiki.vg/Authentication</a></li>
+<li><a href="http://wiki.vg/Protocol_Encryption#Authentication" target="_blank" rel="noopener">http://wiki.vg/Protocol_Encryption#Authentication</a></li>
+<li><a href="http://wiki.vg/Mojang_API" target="_blank" rel="noopener">http://wiki.vg/Mojang_API</a></li>
+<li><a href="https://github.com/to2mbn/authlib-agent/wiki" target="_blank" rel="noopener">https://github.com/to2mbn/authlib-agent/wiki</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/通用唯一识别码</a></li>
+<li><a href="http://xbgtalk.biz/2015/11/03/php-rsa-encode-decode-sign/" target="_blank" rel="noopener">php-rsa - 加密解密和签名</a></li>
 <li><a href="blessing-skin-plugins/yggdrasil-api">blessing-skin-plugins/yggdrasil-api</a></li>
 </ul>
 

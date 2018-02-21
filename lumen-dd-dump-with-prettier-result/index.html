@@ -179,15 +179,17 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 254 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 255 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
     <div class="post-content">
       <p>做开发的，免不了要和调试打交道。单说 PHP，有的人直接 <code>echo</code>，有的人用 <code>print_r()</code>，有的人用 <code>var_dump()</code>，还有的人直接上 Xdebug，用啥的都有。</p>
-<p>如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— <code>dd()</code> 和 <code>dump()</code>。这两个函数都能够输出变量的值，不同的是 <code>dd()</code> 在输出变量值后会停止脚本的执行，而 <code>dump()</code> 不会。它们的使用方法可参照官方文档：<a href="https://laravel.com/docs/5.4/helpers#method-dd" target="_blank" rel="external">Helpers - Laravel Documentation</a>。</p>
+<p>如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— <code>dd()</code> 和 <code>dump()</code>。这两个函数都能够输出变量的值，不同的是 <code>dd()</code> 在输出变量值后会停止脚本的执行，而 <code>dump()</code> 不会。它们的使用方法可参照官方文档：<a href="https://laravel.com/docs/5.4/helpers#method-dd" target="_blank" rel="noopener">Helpers - Laravel Documentation</a>。</p>
 <p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214238.png" alt="Laravel dd() 输出示例"></p>
 <p>什么？哦，上帝！真是见鬼！怎么会有人在 Laravel 中还在用 <code>echo</code> + <code>die()</code>？好家伙，我敢打赌，他一定没有好好看文档，我向圣母玛利亚保证。如果让我看到这群愚蠢的土拨鼠，看在上帝的份上，我会用靴子狠狠地踢他们的屁股，我发誓我绝对会。</p>
 <a id="more"></a>
@@ -195,7 +197,7 @@
 <p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214933.png" alt="Lumen dd() 输出示例"></p>
 <p>淦！这不就是 <code>var_dump()</code> 吗？为毛在 Laravel 上输出那么漂亮，在 Lumen 上就无法使用了呢？</p>
 <p>正是因为 Lumen 是个微框架。</p>
-<p>作为一个为速度而生的微框架（全栈框架 Laravel 的性能问题一直是为人所诟病的），它把能精简的东西都尽量精简了。Laravel 那个漂亮的 <code>dd()</code> 输出实际上是依赖于 Symfony 的 <a href="http://symfony.com/doc/current/components/var_dumper.html" target="_blank" rel="external"><code>VarDumper</code></a> 组件，Laravel 默认预装了该组件，而 Lumen 没有。</p>
+<p>作为一个为速度而生的微框架（全栈框架 Laravel 的性能问题一直是为人所诟病的），它把能精简的东西都尽量精简了。Laravel 那个漂亮的 <code>dd()</code> 输出实际上是依赖于 Symfony 的 <a href="http://symfony.com/doc/current/components/var_dumper.html" target="_blank" rel="noopener"><code>VarDumper</code></a> 组件，Laravel 默认预装了该组件，而 Lumen 没有。</p>
 <p><strong>那么解决方法就很简单了，只需重新安装该组件即可</strong>：</p>
 <pre><code>$ composer require symfony/var-dumper
 </code></pre><p>安装完成后就可以在 Lumen 中看到和 Laravel 一样的调试输出，而且 <code>dump()</code> 函数也可以使用了。</p>

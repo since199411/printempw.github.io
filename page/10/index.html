@@ -176,18 +176,18 @@
       <div class="post-content">
         
           <p>babun 内建的 zsh 默认使用的是 <code>babun</code> 主题，就长这样：</p>
-<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" alt="babun1"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" alt="babun1"></a></p>
 <p>换主题时看中了 oh-my-zsh 默认主题 <code>robbyrussell</code>，然而这个主题并没有窝喜欢的 <code>$</code> 提示符，只好自己动手修改啦</p>
 <p>这是修改后的效果：</p>
-<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" alt="babun2"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" alt="babun2"></a></p>
 <p>关于 zsh 自定义前缀，网上似乎没有中文教程呢，有时间的话翻译一下吧（有生之年</p>
-<p><a href="http://code.tutsplus.com/tutorials/how-to-customize-your-command-prompt--net-24083" target="_blank" rel="external">How to Customize Your Command Prompt</a></p>
+<p><a href="http://code.tutsplus.com/tutorials/how-to-customize-your-command-prompt--net-24083" target="_blank" rel="noopener">How to Customize Your Command Prompt</a></p>
 <p>这是修改后的主题内容：</p>
 <p>local ret_status=”%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)” PROMPT=’${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}%{$reset_color%}%{$fg_bold[blue]%}$ %{$reset_color%}’ ZSH_THEME_GIT_PROMPT_PREFIX=”git:(%{$fg[red]%}” ZSH_THEME_GIT_PROMPT_SUFFIX=”%{$reset_color%}” ZSH_THEME_GIT_PROMPT_DIRTY=”%{$fg[blue]%}) %{$fg[yellow]%}✗ %{$reset_color%}” ZSH_THEME_GIT_PROMPT_CLEAN=”%{$fg[blue]%})”</p>
 <p>在 <code>~/.oh-my-zsh/themes</code> 下新建个以 <code>.zsh-theme</code> 为扩展名的文件，把上面的内容复制进去。</p>
-<p>或者你可以直接 <span class="lang:sh decode:true crayon-inline ">$ wget <a href="https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme" target="_blank" rel="external">https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme</a></span></p>
+<p>或者你可以直接 <span class="lang:sh decode:true crayon-inline ">$ wget <a href="https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme" target="_blank" rel="noopener">https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme</a></span></p>
 <p>然后编辑 <code>~/.zshrc</code>，将 <code>ZSH_THEME</code> 改为所修改主题的文件名</p>
-<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" alt="zshrc"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" alt="zshrc"></a></p>
 <p>重启终端就可以看到效果辣 XDD</p>
 
         
@@ -221,26 +221,26 @@
 
       <div class="post-content">
         
-          <p><a href="https://img.blessing.studio/images/2015/11/2015-11-15_15-34-59.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/11/2015-11-15_15-34-59.jpg" alt="_20151115_233355"></a></p>
+          <p><a href="https://img.blessing.studio/images/2015/11/2015-11-15_15-34-59.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-15_15-34-59.jpg" alt="_20151115_233355"></a></p>
 <p>以前对字体的了解也就是知道衬线和无衬线字体的区别这种程度而已，最近看了些文章，涨了些姿势，写篇文章分享<del>（除草）</del>下。</p>
 <p>关于字体排印学（typography）：</p>
 <blockquote>
 <p>字体排印学，或字体排印，又称“文字设计”，是一种涉及对字体、字号、缩进、行间距、字符间距进行设计、安排等方法来进行排版的一种工艺。</p>
-<p>—— 引自 <a href="https://zh.m.wikipedia.org/zh/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6" target="_blank" rel="external">Wikipedia</a></p>
+<p>—— 引自 <a href="https://zh.m.wikipedia.org/zh/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6" target="_blank" rel="noopener">Wikipedia</a></p>
 </blockquote>
 <p>先来科普下 <strong>字体</strong> 和 <strong>字型</strong> 之间的区别吧：</p>
 <blockquote>
 <p>字体（font）是指某套具有同样样式、尺寸的字形；字型（typeface）则是一或多个 font 在一或多个尺寸的集合，例如一整套用于内文的宋体5号字、一整套用于标题的10号字就叫一套字型。</p>
-<p>—— 引自 <a href="https://zh.m.wikipedia.org/wiki/%E5%AD%97%E4%BD%93" target="_blank" rel="external">Wikipedia</a></p>
+<p>—— 引自 <a href="https://zh.m.wikipedia.org/wiki/%E5%AD%97%E4%BD%93" target="_blank" rel="noopener">Wikipedia</a></p>
 </blockquote>
 <p>嘛，不过大陆和香港、湾湾的翻译是不一样的，要注意哦。</p>
 <p>说是写篇文章，其实也就是分享几个链接，最近贼忙，也没时间写篇科普文 qwq</p>
 <p>嘛，等有时间了要把博客现在的 noto sans + Georgia 换掉，准备把正文的西文换成无衬线人文主义字体，标题用衬线字体。正文暂定 Alegreya Sans，标题打算用 EB Garamond 或者是 Alegreya 的 Small Cap 版。除了内容，阅读体验也是很重要的哦。</p>
 <p>下面分享些网页设计中的字体应用技巧之类的：</p>
-<p><a href="http://m.devstore.cn/essay/essayInfo/997.html" target="_blank" rel="external">关注设计细节 如何选择合适的英文字体</a></p>
-<p><a href="http://blog.justfont.com/2014/06/google-fonts-1/" target="_blank" rel="external">Google fonts 的字體（serif 篇）</a></p>
-<p><a href="http://www.zhihu.com/question/19680724" target="_blank" rel="external">网页设计中最常用的字体有哪些？</a></p>
-<p><a href="https://zh.m.wikipedia.org/zh/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6" target="_blank" rel="external">字体排印学中的可读性和易读性</a></p>
+<p><a href="http://m.devstore.cn/essay/essayInfo/997.html" target="_blank" rel="noopener">关注设计细节 如何选择合适的英文字体</a></p>
+<p><a href="http://blog.justfont.com/2014/06/google-fonts-1/" target="_blank" rel="noopener">Google fonts 的字體（serif 篇）</a></p>
+<p><a href="http://www.zhihu.com/question/19680724" target="_blank" rel="noopener">网页设计中最常用的字体有哪些？</a></p>
+<p><a href="https://zh.m.wikipedia.org/zh/%E5%AD%97%E4%BD%93%E6%8E%92%E5%8D%B0%E5%AD%A6" target="_blank" rel="noopener">字体排印学中的可读性和易读性</a></p>
 
         
       </div>
@@ -273,7 +273,7 @@
 
       <div class="post-content">
         
-          <p>周一上午就传来一个悲伤的消息，81Produce <a href="http://www.hexieshe.com/651861/" target="_blank" rel="external">在官网发布讣告</a>，旗下声优松来未佑已于10月27日在疗养院中因肺炎去世，享年只有 38 岁。</p>
+          <p>周一上午就传来一个悲伤的消息，81Produce <a href="http://www.hexieshe.com/651861/" target="_blank" rel="noopener">在官网发布讣告</a>，旗下声优松来未佑已于10月27日在疗养院中因肺炎去世，享年只有 38 岁。</p>
 <p>听到这个消息，满脑子都是 <em>Sister,Friend,Lover</em> 这首歌。</p>
 <p><img src="https://img.blessing.studio/images/2015/11/2015-11-02_13-38-27.jpg" alt="20151102_213407"></p>
 <p><img src="https://img.blessing.studio/images/2015/11/2015-11-02_13-44-42-1024x560.jpg" alt="pixiv_27041800"></p>
@@ -311,7 +311,7 @@
       <div class="post-content">
         
           <p>标题是不是写的有点绕呢~</p>
-<p>因为 ST3 内置的 python build system，是使用 cmd 的命令的，然而窝的 Python 配置啊，pip 安装的库啊都是在 babun 里安装的 python 中配置的。（babun <a href="http://babun.github.io/" target="_blank" rel="external">是个啥</a>？）因为 ST3 的 <code>Ctrl + B</code> 很好用，懒得切出去终端里执行了，所以需要自定义 ST3 的 <code>build system</code> 以使用 babun 内置 python3 来运行 python 脚本。</p>
+<p>因为 ST3 内置的 python build system，是使用 cmd 的命令的，然而窝的 Python 配置啊，pip 安装的库啊都是在 babun 里安装的 python 中配置的。（babun <a href="http://babun.github.io/" target="_blank" rel="noopener">是个啥</a>？）因为 ST3 的 <code>Ctrl + B</code> 很好用，懒得切出去终端里执行了，所以需要自定义 ST3 的 <code>build system</code> 以使用 babun 内置 python3 来运行 python 脚本。</p>
 <p>首先先找到你的 babun 的 bin 目录，一般都位于这个目录下：</p>
 <p>C:\Users\your-uname.babun\cygwin\bin\</p>
 <p>其中的 <code>your-uname</code> 替换成你自己的 windows 用户名</p>
@@ -324,7 +324,7 @@
 <p>注意使用 <code>\\\</code> 转义反斜杠。另外 babun 中 <code>/bin/python3.4m.exe</code> 这个请酌情而定。</p>
 <p>babun 默认内置的是 python 2.7，可以使用 <code>$ pact install python3</code>，使用 <code>$ ls -al /usr/bin/ |grep python</code> 来查看所安装的 python 版本可执行文件。</p>
 <p>最终效果如下：</p>
-<p><a href="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" alt="final"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" alt="final"></a></p>
 
         
       </div>
@@ -358,10 +358,10 @@
       <div class="post-content">
         
           <p>以前似乎看到过这样的样式，但是忘记保存了。于是到处去翻，发现维基百科有类似的样式，但是。。</p>
-<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" alt="screenshot1"></a></p>
-<p>WTF，明明俩伪类就可以解决的。。 <a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" alt="emotion1"></a></p>
-<p>想起 <a href="https://typeblog.net/life/2015/08/21/long-live-shadowsocks.html" target="_blank" rel="external">Long Live Shadowsocks</a> 这篇文章里似乎有类似的样式，于是去看了看，但还不是窝想要的效果</p>
-<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" alt="screenshot2"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" alt="screenshot1"></a></p>
+<p>WTF，明明俩伪类就可以解决的。。 <a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" alt="emotion1"></a></p>
+<p>想起 <a href="https://typeblog.net/life/2015/08/21/long-live-shadowsocks.html" target="_blank" rel="noopener">Long Live Shadowsocks</a> 这篇文章里似乎有类似的样式，于是去看了看，但还不是窝想要的效果</p>
+<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" alt="screenshot2"></a></p>
 <p>然后就各种找资料，仿照着东拼西凑搞成了差不多满意的样式 qwq</p>
 <blockquote>
 <p><em>The quick brown fox jumps over the lazy dog</em></p>
@@ -369,8 +369,8 @@
 <p>嘛，还算不赖吧~ </p>
 <p>blockquote { margin-bottom: 7px; quotes: “\201C” “\201D”; padding: 2em 25px 2em 30px; position: relative; overflow: hidden; } blockquote:before { content: open-quote; font-size: 3em; position: absolute; left: 0; top: 0 } blockquote:after { content: close-quote; font-size: 3em; line-height: 1; position: absolute; right: 0; bottom: 0 }</p>
 <p>参考资料：</p>
-<p><a href="https://css-tricks.com/almanac/properties/q/quotes/" target="_blank" rel="external">https://css-tricks.com/almanac/properties/q/quotes/</a></p>
-<p><a href="http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote" target="_blank" rel="external">http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote</a></p>
+<p><a href="https://css-tricks.com/almanac/properties/q/quotes/" target="_blank" rel="noopener">https://css-tricks.com/almanac/properties/q/quotes/</a></p>
+<p><a href="http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote" target="_blank" rel="noopener">http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote</a></p>
 
         
       </div>
@@ -442,8 +442,8 @@
 <h3 id="11-28-2014"><a href="#11-28-2014" class="headerlink" title="11.28, 2014"></a>11.28, 2014</h3><p>Electronic Frontier Foundation, University of Michigan, Mozilla 启动了 Let’s Encrypt 项目，旨在为安全网站提供免费的 SSL/TLS 证书。</p>
 <h3 id="3-x-2015"><a href="#3-x-2015" class="headerlink" title="3.x, 2015"></a>3.x, 2015</h3><p>窝得知了这个伟大的项目，并开始关注</p>
 <h3 id="9-14-2015"><a href="#9-14-2015" class="headerlink" title="9.14, 2015"></a>9.14, 2015</h3><p>Let’s Encrypt 项目发行了第一个证书，并向 Mozilla、Google、Microsoft 和Apple 递交了root CA 申请。</p>
-<p>via(<a href="https://prinzeugen.net/lets-encrypt-project-published-the-first-ca/" target="_blank" rel="external">./lets-encrypt-project-published-the-first-ca/</a>)</p>
-<h3 id="10-19-2015"><a href="#10-19-2015" class="headerlink" title="10.19, 2015"></a>10.19, 2015</h3><p>Let’s Encrypt 项目已获得 IdenTrust 的 cross-signatures，其根证书已经可以被主流浏览器所信任，现在访问 <a href="https://helloworld.letsencrypt.org/" target="_blank" rel="external">https://helloworld.letsencrypt.org/</a> 已经不会再被提示该站点证书不受信任。( <a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="external">via</a> )</p>
+<p>via(<a href="https://prinzeugen.net/lets-encrypt-project-published-the-first-ca/" target="_blank" rel="noopener">./lets-encrypt-project-published-the-first-ca/</a>)</p>
+<h3 id="10-19-2015"><a href="#10-19-2015" class="headerlink" title="10.19, 2015"></a>10.19, 2015</h3><p>Let’s Encrypt 项目已获得 IdenTrust 的 cross-signatures，其根证书已经可以被主流浏览器所信任，现在访问 <a href="https://helloworld.letsencrypt.org/" target="_blank" rel="noopener">https://helloworld.letsencrypt.org/</a> 已经不会再被提示该站点证书不受信任。( <a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="noopener">via</a> )</p>
 <hr>
 <p>或许有一天，Let’s Encrypt 项目真的可以实现</p>
 <blockquote>
@@ -451,9 +451,9 @@
 </blockquote>
 <p>我盼望着那一天的到来。</p>
 <p>参考资料：</p>
-<p><a href="https://en.m.wikipedia.org/wiki/Let%27s_Encrypt" target="_blank" rel="external">https://en.m.wikipedia.org/wiki/Let%27s_Encrypt</a></p>
-<p><a href="https://letsencrypt.org/2015/09/14/our-first-cert.html" target="_blank" rel="external">https://letsencrypt.org/2015/09/14/our-first-cert.html</a></p>
-<p><a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="external">https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html</a></p>
+<p><a href="https://en.m.wikipedia.org/wiki/Let%27s_Encrypt" target="_blank" rel="noopener">https://en.m.wikipedia.org/wiki/Let%27s_Encrypt</a></p>
+<p><a href="https://letsencrypt.org/2015/09/14/our-first-cert.html" target="_blank" rel="noopener">https://letsencrypt.org/2015/09/14/our-first-cert.html</a></p>
+<p><a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="noopener">https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html</a></p>
 
         
       </div>
@@ -570,7 +570,7 @@
       <div class="post-content">
         
           <p><img src="https://img.blessing.studio/images/2015/10/2015-10-03_14-22-59.png" alt="new_logo_colorful"></p>
-<p>依然是从路人女主得到的灵感<del datetime="2015-10-03T12:43:08+00:00">抄袭</del>。感谢颜老师给窝指了条笔刷的明路 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
+<p>依然是从路人女主得到的灵感<del datetime="2015-10-03T12:43:08+00:00">抄袭</del>。感谢颜老师给窝指了条笔刷的明路 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
 <p>彩色这张边缘有点锯齿是因为懒得再格栅化了，直接魔棒涂的后果。嘛，反正又不用这张（笑</p>
 <p><img src="https://img.prinzeugen.net/logo_scp_thin_large.png" alt=""></p>
 <p><img src="https://img.prinzeugen.net/new_logo.png" alt=""></p>

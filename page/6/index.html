@@ -250,7 +250,7 @@
           <p>又踩到坑了，稍微记录一下 ( ・_ゝ・)</p>
 <p>我在 Ajax 上传文件时是用的构建 <code>FormData</code> 对象的方法，构建完之后我很自然的打算从对象里面取出值来做验证，StackOverflow 里搜了一下之后就知道了有 <code>FormData.get()</code> 这个方法，我也没想太多就直接用了，并且在我本地环境（Chrome 51）上没有任何问题。</p>
 <p>前天把 beta 版的 v3 皮肤站上线测试了，今天就有人发邮件给我，竟然是 <code>FormData.get()</code> 这个语句报错了，提示 <code>e.get is not a function</code>，当时我就知道八成又是兼容性问题了 ( `д´)</p>
-<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="external">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
+<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="noopener">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
 
         
       </div>
@@ -283,8 +283,8 @@
 
       <div class="post-content">
         
-          <p>最近在网易云音乐找到了很多很棒的歌，准备找个 HTML5 的播放器挂到博客上去。以前我的博客也是有音乐播放器的，用的是 WordPress 的一个叫 <a href="https://wordpress.org/plugins/wp-player/" target="_blank" rel="external">WP-Player</a> 的插件。后来转到 Ghost 的时候就把以前文章里的插件短代码删掉了，也没有再搞播放器了。</p>
-<p>今天正好心血来潮，于是去 GitHub 上搜了下，看中了 DIYGod 做的 HTML5 音乐播放器 <a href="https://github.com/DIYgod/APlayer" target="_blank" rel="external">APlayer</a>。UI 之类的也很对我胃口于是就马上拿来用了。</p>
+          <p>最近在网易云音乐找到了很多很棒的歌，准备找个 HTML5 的播放器挂到博客上去。以前我的博客也是有音乐播放器的，用的是 WordPress 的一个叫 <a href="https://wordpress.org/plugins/wp-player/" target="_blank" rel="noopener">WP-Player</a> 的插件。后来转到 Ghost 的时候就把以前文章里的插件短代码删掉了，也没有再搞播放器了。</p>
+<p>今天正好心血来潮，于是去 GitHub 上搜了下，看中了 DIYGod 做的 HTML5 音乐播放器 <a href="https://github.com/DIYgod/APlayer" target="_blank" rel="noopener">APlayer</a>。UI 之类的也很对我胃口于是就马上拿来用了。</p>
 <p>配置 APlayer 的播放列表需要提供一个数组，数组里放存放了歌曲信息的字典，大概像这样：</p>
           <a class="more-link" href="/generate-aplayer-config-from-netease-automatically/#more">阅读全文&rarr;</a>
         
@@ -394,7 +394,7 @@
       <div class="post-content">
         
           <p>说实话今年四月的百合番并不是让我很满意，不过还好有 7 月的「NEW GAME!」做萌豚饲料 |∀` )</p>
-<p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=57681432" target="_blank" rel="external"><img src="https://ooo.0o0.ooo/2016/07/14/57872cadd4f50.jpg" alt="Pixiv ID 57681432"></a></p>
+<p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=57681432" target="_blank" rel="noopener"><img src="https://ooo.0o0.ooo/2016/07/14/57872cadd4f50.jpg" alt="Pixiv ID 57681432"></a></p>
 <p>没有 NEW GAME 看我要死了<br><img src="https://ooo.0o0.ooo/2016/07/14/57872e05b37cf.jpg" alt=""></p>
 
         
@@ -429,7 +429,7 @@
       <div class="post-content">
         
           <p>众所周知，PHP 作为一门弱类型的语言，是无法直接实现像 C++，Java 那样的函数重载的。然而在某些情况下，这就非常蛋疼了。不过我们可以用一些奇技淫巧来实现「伪函数重载」。</p>
-<h3 id="一、使用-func-get-args-函数"><a href="#一、使用-func-get-args-函数" class="headerlink" title="一、使用 func_get_args() 函数"></a>一、使用 <code>func_get_args()</code> 函数</h3><p><a href="http://php.net/manual/zh/function.func-get-args.php" target="_blank" rel="external"><code>func_get_args()</code></a> 函数可以获取函数参数列表的数组，我们就可以利用一下这个特性啦。</p>
+<h3 id="一、使用-func-get-args-函数"><a href="#一、使用-func-get-args-函数" class="headerlink" title="一、使用 func_get_args() 函数"></a>一、使用 <code>func_get_args()</code> 函数</h3><p><a href="http://php.net/manual/zh/function.func-get-args.php" target="_blank" rel="noopener"><code>func_get_args()</code></a> 函数可以获取函数参数列表的数组，我们就可以利用一下这个特性啦。</p>
           <a class="more-link" href="/implement-function-reloading-in-php/#more">阅读全文&rarr;</a>
         
       </div>
@@ -465,7 +465,6 @@
           <p>今天上午去看了《大鱼海棠》这部电影，颇有感触，在这里写点东西。毕竟只是观后感，并不是影评，所以也不会过多评价。</p>
 <p><img src="https://ooo.0o0.ooo/2016/07/20/5790145051c40.jpg" alt="movie post"></p>
 <p>这部电影我在初中的时候就看过它的预告片了，直到现在我高三了才上映，不愧是跳票之王（笑</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
           <a class="more-link" href="/big-fish-begonia/#more">阅读全文&rarr;</a>
         
       </div>

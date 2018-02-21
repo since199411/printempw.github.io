@@ -184,37 +184,43 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 906 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 907 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 907 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
       <p>W3 Total Cache 是个很好的 WordPress 缓存插件，提供页面数据库等等的硬盘缓存和 memcached 缓存，比 WP Super Cache 不知道高到哪里去了（笑，然而这个极好的插件却。。</p>
-<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 <p>忍着不适将其配置好后马上开始着手替换这破图标。第一步自然是搜索引擎大法，遗憾的是都没有人写类似的文章。。难道用 W3TC 的强迫症只有窝这么一个吗。没办法了，自己动手，丰衣足食。</p>
 <p>想到的第一个办法是替换图标源文件。审查元素发现是在 <em>w3-total-cache/pub/img/w3tc-sprite.png</em>，</p>
-<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
+<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
 <p>把插件下载下来，shell 下执行 <span class="lang:sh decode:true crayon-inline">find .|xargs grep -ri “w3tc-sprite.png” -l</span>  /<em> <a href="#1">坑1</a> </em>/，定位到引用此图标的文件 <em>./lib/W3/Plugin/TotalCacheAdmin.php</em> ，再定位至</p>
 <p>#toplevel_page_w3tc_dashboard .wp-menu-image { background: url(&lt;?php echo plugins_url(‘w3-total-cache/pub/img/w3tc-sprite.png’)?&gt;) no-repeat 0 -32px !important; }</p>
 <p>还有一大段差不多的代码窝就不贴了，将其注释掉（聪明点，别一大块注释，不然会有奇怪的错误 </p>
 <p>这段代码是自定义当添加侧边栏菜单的函数</p>
 <p>add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );</p>
-<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="external">这里</a><span style="line-height: 1.5;">。</span></p>
-<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="external">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
+<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="noopener">这里</a><span style="line-height: 1.5;">。</span></p>
+<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="noopener">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
 <p>具体使用方法就是在 $icon_url 参数位置填上 <span class="lang:default decode:true  crayon-inline ">‘dashicons-admin-generic’</span> //<a href="#2">坑2</a></p>
 <p>再次查找使用了 add_menu_page 函数的文件 <span class="lang:sh decode:true  crayon-inline ">find .|xargs grep -ri “add_menu_page” -l</span> ，可以看到是在 <em>./lib/W3/Menus.php</em> 里调用的，调用代码是这样的：</p>
 <p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’, ‘’, ‘div’);</p>
 <p>将其替换成这样：</p>
 <p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’,’’,’dashicons-admin-generic’, ‘div’);</p>
 <p>坑2注意，WP 官方给的函数中参数有 7 个，但是 W3TC 中只用了 6 个。咱当时将那个空引号替换后发现没生效还以为是窝哪里搞错了又到处寻找解决方法。。。（扶额 ，估计那个空引号是 $function 吧，窝具体也没深入了解</p>
-<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
-<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
+<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
+<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
 <p>关于坑一：</p>
-<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

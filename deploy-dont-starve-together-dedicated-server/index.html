@@ -182,9 +182,11 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 220 天前（2017-07-15），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 221 天前（2017-07-15），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
+
+
 
 
 
@@ -194,7 +196,7 @@
 <p>直接在主力机上开一个服务器也不是不行，但是我的奔腾 G3258 选手实在是带不动饥荒游戏 + 游戏服务器 + 其他杂七杂八的东西了，所以只好另觅他方，去搞一台 VPS 来开服。而且这里不得不吐槽一下，饥荒联机版独立服务器的配置要求还是比较高的，几个人的小服，再多开几个 Mod，最起码就要 1G 的内存（我那台阿里云宕机好几次，还得去网页控制台强制重启），更不要想开洞穴了。</p>
 <p>现在我拿来开服的是免费试用一个月的京东云（Xeon-E5，2G DDR4，1Mbps 的带宽），不开洞穴，目前看起来还是没什么压力的，延迟丢包率什么的也都可以接受。网上关于开服的教程也不少了，这篇文章也不会过多赘述，差不多就是记录一下主要步骤，以及提一下可能会遇到的坑。所以，想要那种很详细的教程的同学还是绕道吧，或者翻到文章最下面的「参考链接」看看。</p>
 <p>下面的步骤在 64 位 CentOS 7.3 和 Ubuntu 16.04 上测试通过，至于 Windows……我认为实在没有啥必要特别去写，直接从 Steam 客户端就可以打开，操作方便，也没啥坑，看看网上那些教程就可以了。继续阅读之前，我希望你能有一些 Linux 的操作基础，不然会很懵。</p>
-<h2 id="0x01-事前准备"><a href="#0x01-事前准备" class="headerlink" title="0x01 事前准备"></a>0x01 事前准备</h2><p>首先你要有一台装了 Linux 的服务器，配置要求如下（摘自 <a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="external">DST Wiki</a>）：</p>
+<h2 id="0x01-事前准备"><a href="#0x01-事前准备" class="headerlink" title="0x01 事前准备"></a>0x01 事前准备</h2><p>首先你要有一台装了 Linux 的服务器，配置要求如下（摘自 <a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="noopener">DST Wiki</a>）：</p>
 <ul>
 <li>上行带宽：8KBps 一个玩家；</li>
 <li>内存：差不多一个玩家 65Mbytes；</li>
@@ -293,7 +295,7 @@ $ ./dontstarve_dedicated_server_nullrenderer
 </tr>
 </tbody>
 </table>
-<p>其他的参数我就不一一说明了，具体的参数列表可以在<a href="http://forums.kleientertainment.com/topic/64743-dedicated-server-command-line-options-guide/" target="_blank" rel="external">这里</a>查看。举个栗子：</p>
+<p>其他的参数我就不一一说明了，具体的参数列表可以在<a href="http://forums.kleientertainment.com/topic/64743-dedicated-server-command-line-options-guide/" target="_blank" rel="noopener">这里</a>查看。举个栗子：</p>
 <pre><code class="shell"># 同时启动主世界服务器和洞穴服务器
 $ ./dontstarve_dedicated_server_nullrenderer -console -cluster MyClusterName -shard Master
 $ ./dontstarve_dedicated_server_nullrenderer -console -cluster MyClusterName -shard Caves
@@ -366,14 +368,14 @@ Documents\Klei\DoNotStarveTogether
 </code></pre>
 <p>配置文件的内容可参考饥荒论坛的文档或下方「参考链接」。</p>
 <h2 id="0x07-参考链接"><a href="#0x07-参考链接" class="headerlink" title="0x07 参考链接"></a>0x07 参考链接</h2><ul>
-<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=687261496" target="_blank" rel="external">从 steam 客户端建房 到 linux 建立服务器</a></li>
-<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=382584094" target="_blank" rel="external">DST Dedicated Server 服务器配置教程</a> 👈这篇的内容有些过期了</li>
-<li><a href="https://www.nevermoe.com/?p=695" target="_blank" rel="external">Don’t Starve Together（饥荒）服务器搭建</a></li>
-<li><a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="external">Guides/Don’t Starve Together Dedicated Servers</a> 👈DST Wiki</li>
-<li><a href="https://www.linode.com/docs/game-servers/install-dont-starve-together-game-server-on-ubuntu" target="_blank" rel="external">Install Don’t Starve Together Game Server on Ubuntu 14.04</a></li>
-<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=590565473" target="_blank" rel="external">How to setup dedicated server with cave on Linux</a> 👈洋文，很详尽，推荐</li>
-<li><a href="http://blog.ttionya.com/article-1235.html" target="_blank" rel="external">饥荒联机独立服务器搭建教程（三）：配置篇</a> 👈不知道配置文件怎么填的看这个</li>
-<li><a href="http://forums.kleientertainment.com/topic/64743-dedicated-server-command-line-options-guide/" target="_blank" rel="external">Dedicated Server Command Line Options Guide</a></li>
+<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=687261496" target="_blank" rel="noopener">从 steam 客户端建房 到 linux 建立服务器</a></li>
+<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=382584094" target="_blank" rel="noopener">DST Dedicated Server 服务器配置教程</a> 👈这篇的内容有些过期了</li>
+<li><a href="https://www.nevermoe.com/?p=695" target="_blank" rel="noopener">Don’t Starve Together（饥荒）服务器搭建</a></li>
+<li><a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="noopener">Guides/Don’t Starve Together Dedicated Servers</a> 👈DST Wiki</li>
+<li><a href="https://www.linode.com/docs/game-servers/install-dont-starve-together-game-server-on-ubuntu" target="_blank" rel="noopener">Install Don’t Starve Together Game Server on Ubuntu 14.04</a></li>
+<li><a href="http://steamcommunity.com/sharedfiles/filedetails/?id=590565473" target="_blank" rel="noopener">How to setup dedicated server with cave on Linux</a> 👈洋文，很详尽，推荐</li>
+<li><a href="http://blog.ttionya.com/article-1235.html" target="_blank" rel="noopener">饥荒联机独立服务器搭建教程（三）：配置篇</a> 👈不知道配置文件怎么填的看这个</li>
+<li><a href="http://forums.kleientertainment.com/topic/64743-dedicated-server-command-line-options-guide/" target="_blank" rel="noopener">Dedicated Server Command Line Options Guide</a></li>
 </ul>
 <p><img src="https://img.blessing.studio/images/2017/07/16/QQ20170714161422.png" alt="小偷背包"></p>
 <p>最后，祝诸君游戏愉快 ;)</p>

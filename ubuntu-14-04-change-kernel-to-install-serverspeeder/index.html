@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 716 天前（2016-03-05），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 717 天前（2016-03-05），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 717 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -188,17 +194,17 @@
 <h3 id="1-查看当前系统内核"><a href="#1-查看当前系统内核" class="headerlink" title="1.查看当前系统内核"></a>1.查看当前系统内核</h3><p>一般 ssh 登录信息页就可以看到内核信息了，比如窝是：</p>
 <p><em>Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.16.0-36-generic i686)</em></p>
 <p>或者使用 <code>uname -r</code>  查看</p>
-<h3 id="2-安装新内核"><a href="#2-安装新内核" class="headerlink" title="2.安装新内核"></a>2.安装新内核</h3><p>锐速支持的内核可以在<a href="http://my.serverspeeder.com/ls.do?m=availables" target="_blank" rel="external">这里</a>查看，窝要安装的是 <em>3.13.0-24-generic</em></p>
+<h3 id="2-安装新内核"><a href="#2-安装新内核" class="headerlink" title="2.安装新内核"></a>2.安装新内核</h3><p>锐速支持的内核可以在<a href="http://my.serverspeeder.com/ls.do?m=availables" target="_blank" rel="noopener">这里</a>查看，窝要安装的是 <em>3.13.0-24-generic</em></p>
 <pre><code>$ sudo apt-get install linux-image-extra-3.13.0-24-generic
 </code></pre><h3 id="3-卸载其他内核"><a href="#3-卸载其他内核" class="headerlink" title="3.卸载其他内核"></a>3.卸载其他内核</h3><p>查看系统现有内核 </p>
-<pre><code>$ dpkg -l|grep linux-image
+<pre><code>$ dpkg -l|grep linux-image  
 </code></pre><p>卸载列出的其他内核：</p>
 <pre><code>$ sudo apt-get purge linux-image-3.16.0-36-generic linux-image-extra-3.16.0-36-generic
 </code></pre><h3 id="4-更新-grub-系统引导文件并重启"><a href="#4-更新-grub-系统引导文件并重启" class="headerlink" title="4.更新 grub 系统引导文件并重启"></a>4.更新 grub 系统引导文件并重启</h3><pre><code>$ sudo update-grub 
 $ sudo reboot
 </code></pre><p>不出意外的话重启后启用的就是新的内核了~</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" alt="kernel"></a></p>
-<p>安装锐速请看<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="external">这篇博文</a>~ (σﾟ∀ﾟ)σ</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" alt="kernel"></a></p>
+<p>安装锐速请看<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="noopener">这篇博文</a>~ (σﾟ∀ﾟ)σ</p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

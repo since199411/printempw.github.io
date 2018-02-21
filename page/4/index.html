@@ -253,10 +253,10 @@
 <li>当你需要它的时候激活它，不需要它的时候禁用/删除它；</li>
 <li>无论是激活还是禁用都不影响系统核心模块的运行。</li>
 </ul>
-<p>也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 <a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E4%BB%B6" target="_blank" rel="external">中文 WikiPedia</a>。</p>
-<p>虽然现在网上有很多 PHP 的插件机制的实现（当然我指的是英文内容，中文关于 PHP 插件机制的搜出来现在还是那么点破文章），譬如 <a href="https://github.com/FoolCode/Plugin" target="_blank" rel="external">FoolCode/Plugin</a>，或者 WordPress 的插件实现。</p>
+<p>也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 <a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">中文 WikiPedia</a>。</p>
+<p>虽然现在网上有很多 PHP 的插件机制的实现（当然我指的是英文内容，中文关于 PHP 插件机制的搜出来现在还是那么点破文章），譬如 <a href="https://github.com/FoolCode/Plugin" target="_blank" rel="noopener">FoolCode/Plugin</a>，或者 WordPress 的插件实现。</p>
 <p>不过我今天想介绍的是如何使用 Laravel 的服务容器、事件机制等功能来实现一个比较优雅的插件机制。</p>
-<p><em>Greatly inspired by <a href="https://github.com/flarum/core/tree/master/src/Extension" target="_blank" rel="external">Flarum</a></em>，在此致谢 ヾ(´ωﾟ｀)</p>
+<p><em>Greatly inspired by <a href="https://github.com/flarum/core/tree/master/src/Extension" target="_blank" rel="noopener">Flarum</a></em>，在此致谢 ヾ(´ωﾟ｀)</p>
           <a class="more-link" href="/laravel-plugin-system-1/#more">阅读全文&rarr;</a>
         
       </div>
@@ -294,7 +294,7 @@
 <p>最开始我尝试了传统方法，即动态创建一个 <code>&lt;script&gt;</code> 标签并添加到文档流中。然而却得到了一个这个错误：</p>
 <pre><code>Failed to execute &#39;write&#39; on &#39;Document&#39;: It isn&#39;t possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
 </code></pre><p>看来动态加载的 js 文件中是不允许写文档流的。而不巧的是 Gist 提供的 embed js 正是使用 <code>document.write</code> 来实现的。</p>
-<p>在网上找了一下，虽然也有些利用 <code>iframe</code> 的解决方法，譬如：<a href="https://gist.github.com/jeremiahlee/1748966" target="_blank" rel="external">Dynamic Gist Embedding</a>，但都感觉不咋好<del>（嫌麻烦）</del></p>
+<p>在网上找了一下，虽然也有些利用 <code>iframe</code> 的解决方法，譬如：<a href="https://gist.github.com/jeremiahlee/1748966" target="_blank" rel="noopener">Dynamic Gist Embedding</a>，但都感觉不咋好<del>（嫌麻烦）</del></p>
 <p>后来，我在 SegmentFault 的动态预览 Gist 的功能上发现了，Gist 竟然能够提供 JSONP 式的回调！</p>
 <p>调用方法只要把 Gist 给你的 embed js 的地址最后的 <code>.js</code> 改为 <code>.json?callback=xxx</code> 即可（完全没查到 (((　ﾟдﾟ)))</p>
 <hr>
@@ -404,11 +404,10 @@
 
       <div class="post-content">
         
-          <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="external">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
+          <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="noopener">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
 <p>我到现在也还是搞不懂那到底是正常流量还是 CC 攻击。。难道正常用户会每秒请求 20+ 次 Json Profile 吗？又不是天天退/进游戏玩 <img src="https://moepic.org/images/2016/10/02/c066215f622f0bf2fe7ee9625955e343.jpg" alt="emotion"></p>
-<p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="external">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="external">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
+<p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="noopener">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="noopener">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
 <p>正好最近国庆放假（虽然只有四天），我就抽了点时间出来研究了一下如何给我的皮肤站套一层缓存 ( ・_ゝ・)</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
           <a class="more-link" href="/use-nginx-proxy-to-cache-dynamic-content/#more">阅读全文&rarr;</a>
         
       </div>

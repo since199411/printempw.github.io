@@ -175,8 +175,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 901 天前（2015-09-03），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 901 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -213,7 +219,8 @@ function hitokoto() {
 $chosen = hitokoto(); 
 header(&#39;Content-Type:text/javascript;charset=utf-8&#39;); 
 
-echo &quot;function hitokoto(){document.write(&#39;$chosen&#39;);}&quot;;
+echo &quot;function hitokoto(){document.write(&#39;$chosen&#39;);}&quot;; 
+
 </code></pre><p>大概就是这样。随便在 html 中插入如下代码即可输出一言：</p>
 <pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;echo.php&quot;&gt;&lt;/script&gt; 
 &lt;p id=&quot;hitokoto&quot;&gt;

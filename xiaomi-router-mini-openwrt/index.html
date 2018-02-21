@@ -186,42 +186,48 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
-    <p>本文最后更新于 906 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  <div class="alert alert-warning expired-message">
+    <p>本文最后更新于 907 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 907 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
-      <p>再也受不了 sabi 小米面向小白优化的 rom 了，咱怎么说也算半个 geek 嘛 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
+      <p>再也受不了 sabi 小米面向小白优化的 rom 了，咱怎么说也算半个 geek 嘛 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
 <p>而且原生 rom 确实太辣鸡，好好一个 OpenWRT 给整成什么样了。。于是参考网上教程刷了个 PandoraBox ，姑且写一篇博文记录一下吧~</p>
-<h3 id="拿到路由器的-ssh-权限"><a href="#拿到路由器的-ssh-权限" class="headerlink" title="拿到路由器的 ssh 权限"></a>拿到路由器的 ssh 权限</h3><p>小米大概是为了不让小白瞎搞还是什么原因默认关闭了 ssh 权限，请先去 <a href="https://d.miwifi.com/rom/ssh" target="_blank" rel="external">这里</a> 解锁 ssh 权限。</p>
-<p>（顺带一提窝没好好看说明，在上电的时候操作结果等了这家伙2次 reset <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a>）</p>
+<h3 id="拿到路由器的-ssh-权限"><a href="#拿到路由器的-ssh-权限" class="headerlink" title="拿到路由器的 ssh 权限"></a>拿到路由器的 ssh 权限</h3><p>小米大概是为了不让小白瞎搞还是什么原因默认关闭了 ssh 权限，请先去 <a href="https://d.miwifi.com/rom/ssh" target="_blank" rel="noopener">这里</a> 解锁 ssh 权限。</p>
+<p>（顺带一提窝没好好看说明，在上电的时候操作结果等了这家伙2次 reset <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a>）</p>
 <a id="more"></a>
 <h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><ul>
-<li>ssh 工具（推荐 chrome 应用 <a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo" target="_blank" rel="external">Secure Shell</a> ）</li>
+<li>ssh 工具（推荐 chrome 应用 <a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo" target="_blank" rel="noopener">Secure Shell</a> ）</li>
 <li>scp 工具（GUI 推荐WINSCP绿色版）</li>
 </ul>
 <p>顺带安利一波 Babun，windows 下最好用且好看的终端，没有之一</p>
-<p>先试一试 ssh 权限：shell 运行 <span class="lang:default decode:true  crayon-inline ">ssh root@miwifi.com</span> ，密码是解锁时给的 root 密码（注意输入密码时是不会显示的哦</p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-12-52.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-12-52.png" alt="20150627180705"></a></p>
+<p>先试一试 ssh 权限：shell 运行 <span class="lang:default decode:true  crayon-inline ">ssh <a href="mailto:root@miwifi.com" target="_blank" rel="noopener">root@miwifi.com</a></span> ，密码是解锁时给的 root 密码（注意输入密码时是不会显示的哦</p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-12-52.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-12-52.png" alt="20150627180705"></a></p>
 <p>这样就可以正常在路由器上执行 shell 命令了，开艹吧~</p>
-<h3 id="刷PandoraBox"><a href="#刷PandoraBox" class="headerlink" title="刷PandoraBox"></a>刷PandoraBox</h3><p>cd进入你rom文件所在地 （啊，忘了说了，在 <a href="http://downloads.openwrt.org.cn/PandoraBox/Xiaomi-Mini-R1CM/stable/" target="_blank" rel="external">这里</a> 下载rom）</p>
+<h3 id="刷PandoraBox"><a href="#刷PandoraBox" class="headerlink" title="刷PandoraBox"></a>刷PandoraBox</h3><p>cd进入你rom文件所在地 （啊，忘了说了，在 <a href="http://downloads.openwrt.org.cn/PandoraBox/Xiaomi-Mini-R1CM/stable/" target="_blank" rel="noopener">这里</a> 下载rom）</p>
 <p>然后把 rom scp 过去（也可以 WINSCP 里拖过去</p>
-<p>scp PandoraBox-ralink-mt7620-xiaomi-mini-squashfs-sysupgrade-r1024-20150608.bin root@miwifi.com:/tmp/</p>
+<p>scp PandoraBox-ralink-mt7620-xiaomi-mini-squashfs-sysupgrade-r1024-20150608.bin <a href="mailto:root@miwifi.com" target="_blank" rel="noopener">root@miwifi.com</a>:/tmp/</p>
 <p>会要求口令，输入即可</p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_11-53-15.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_11-53-15-1024x95.png" alt="20150627195229"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_11-53-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_11-53-15-1024x95.png" alt="20150627195229"></a></p>
 <p>然后 ssh 进去，执行（如果有奇怪的错误请把 firmware 改成 OS1）</p>
 <p>mtd -r write /tmp/PandoraBox-ralink-mt7620-xiaomi-mini-squashfs-sysupgrade-r463-20150228.bin firmware</p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-00-24.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-00-24.png" alt="20150627195957"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-00-24.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-00-24.png" alt="20150627195957"></a></p>
 <p>期间 [] 中会一直 w 啊 e 啊得变来变去，不用慌，多等一会儿，成功刷入后会自动重启</p>
-<p>顺带一提重启之后路由器灯变成了骚紫 <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-18-49.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-18-49.jpg" alt="IMG_20150627_201629"></a></p>
+<p>顺带一提重启之后路由器灯变成了骚紫 <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-18-49.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-18-49.jpg" alt="IMG_20150627_201629"></a></p>
 <p>还有，默认的root密码是 <span class="lang:default decode:true  crayon-inline">admin</span>  唷</p>
 <hr>
-<p>最后放一张 PandoraBox 后台和 ssh 吧 <a href="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" alt="QQ图片20150606223914"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-05-13.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-05-13-1024x576.png" alt="屏幕截图(61)"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-06-09.png" target="_blank" rel="external"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-06-09-1024x580.png" alt="20150627200144"></a></p>
+<p>最后放一张 PandoraBox 后台和 ssh 吧 <a href="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" alt="QQ图片20150606223914"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-05-13.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-05-13-1024x576.png" alt="屏幕截图(61)"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_12-06-09.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_12-06-09-1024x580.png" alt="20150627200144"></a></p>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
     </div>

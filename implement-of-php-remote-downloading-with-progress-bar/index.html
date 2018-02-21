@@ -177,8 +177,14 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 451 天前（2016-11-26），其中的信息可能已经有所发展或是发生改变。</p>
+  </div>
+
+
+
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 451 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
@@ -215,10 +221,10 @@
 <p>实例代码用了 <code>fopen</code> 和循环 <code>fwrite</code> 写入一个 chunk 的数据到临时文件，这是借鉴了 KODExplorer 远程下载的函数，在此致谢。另外也有通过 <code>curl_setopt($ch, CURLOPT_FILE, $fp);</code> 给 cURL 设置一个文件句柄的方法，但是我没有测试成功，希望各位也能试一试。</p>
 <p>以上。</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
-<li><a href="http://php.net/manual/zh/function.flush.php" target="_blank" rel="external">PHP: flush - Manual</a> 的「说明」部分</li>
-<li><a href="https://forums.phpfreaks.com/topic/201119-php-progress-bar/" target="_blank" rel="external">PHP progress bar - PHP Coding Help - PHP Freaks</a></li>
-<li><a href="http://stackoverflow.com/questions/2832010/what-is-output-buffering" target="_blank" rel="external">What is output buffering? - Stack Overflow</a></li>
-<li><a href="https://github.com/kalcaddle/KODExplorer/blob/master/lib/function/file.function.php#L697" target="_blank" rel="external">KODExplorer/file.function.php at master
+<li><a href="http://php.net/manual/zh/function.flush.php" target="_blank" rel="noopener">PHP: flush - Manual</a> 的「说明」部分</li>
+<li><a href="https://forums.phpfreaks.com/topic/201119-php-progress-bar/" target="_blank" rel="noopener">PHP progress bar - PHP Coding Help - PHP Freaks</a></li>
+<li><a href="http://stackoverflow.com/questions/2832010/what-is-output-buffering" target="_blank" rel="noopener">What is output buffering? - Stack Overflow</a></li>
+<li><a href="https://github.com/kalcaddle/KODExplorer/blob/master/lib/function/file.function.php#L697" target="_blank" rel="noopener">KODExplorer/file.function.php at master
 </a></li>
 </ul>
 

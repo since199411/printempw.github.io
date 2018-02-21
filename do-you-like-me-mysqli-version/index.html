@@ -175,19 +175,25 @@
     
 
 
-  <div class="alert alert-warning expired-warning">
+  <div class="alert alert-warning expired-message">
     <p>本文最后更新于 752 天前（2016-01-30），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 752 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
+
+
     <div class="post-content">
-      <p>这次升级 PHP7，一切顺利，到了恢复站点数据的时候，发现<a href="https://prinzeugen.net/do-you-like-me/" target="_blank" rel="external">上次搞的</a> “Do you like me?” 不工作了。看了日志发现是 <code>mysql_connect()</code> 这个函数的问题。</p>
+      <p>这次升级 PHP7，一切顺利，到了恢复站点数据的时候，发现<a href="https://prinzeugen.net/do-you-like-me/" target="_blank" rel="noopener">上次搞的</a> “Do you like me?” 不工作了。看了日志发现是 <code>mysql_connect()</code> 这个函数的问题。</p>
 <p>看了下文档，原来在 PHP7 中全面移除了 <code>mysql_</code> 系列函数，转而使用 <code>mysqli</code> 或者 PDO。。fuck 劳资皮肤站里都是 mysql_ 系列函数啊啊</p>
 <p>上次偷懒用的 LWL12 写的，看来他也没想到这种情况呢。遂使用 mysqli 重写之。</p>
 <p>mysqli 改为以面向对象的方式操作数据库，而不是 <code>mysql_</code> 系列函数的面向过程，这点倒是挺好的。</p>
-<p>不知道为何原来 LWL12 写的版本单独使用了一个表来存投票数，可能是怕效率问题。不过 <code>SELECT COUNT(*)</code> 在没有指定 WHICH 的时候效率还是蛮高的，参见：<a href="https://www.zhihu.com/question/19641756" target="_blank" rel="external">知乎：mysql select count(*) 与 select count(id) 两个执行效率怎样？</a></p>
-<p>其实也没改多少，另外把建表的 SQL 也顺便封装在文件里了，托管在 <a href="https://gist.github.com/printempw/48920748b328bacead1b" target="_blank" rel="external">Gist</a> 上。</p>
+<p>不知道为何原来 LWL12 写的版本单独使用了一个表来存投票数，可能是怕效率问题。不过 <code>SELECT COUNT(*)</code> 在没有指定 WHICH 的时候效率还是蛮高的，参见：<a href="https://www.zhihu.com/question/19641756" target="_blank" rel="noopener">知乎：mysql select count(*) 与 select count(id) 两个执行效率怎样？</a></p>
+<p>其实也没改多少，另外把建表的 SQL 也顺便封装在文件里了，托管在 <a href="https://gist.github.com/printempw/48920748b328bacead1b" target="_blank" rel="noopener">Gist</a> 上。</p>
 <script src="//work.prinzeugen.net/gist/48920748b328bacead1b.js"></script>
 
       <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
