@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 569 天前（2016-11-01），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 611 天前（2016-11-01），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 569 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 611 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>GitHub Gist 应该也是很多人都在用的功能了，我也喜欢把一些大段的代码块贴上去而不是直接写在博文里。</p>
 <p>但是 Gist 的 embed js 是在页面加载的时候就直接开始加载了的，所以或多或少还是对网页的性能有所影响。受上次搞的「点击加载 Disqus」启发，我也准备写一个点击加载 Gist。</p>
 <p>最开始我尝试了传统方法，即动态创建一个 <code>&lt;script&gt;</code> 标签并添加到文档流中。然而却得到了一个这个错误：</p>
@@ -281,6 +286,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

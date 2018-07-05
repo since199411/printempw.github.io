@@ -180,18 +180,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 996 天前（2015-08-31），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 1038 天前（2015-08-31），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 996 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 1038 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-上-vps，apt-get"><span class="toc-text">ssh 上 vps，apt-get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-shadowsocks-json-（咱用的是vim"><span class="toc-text">编辑 /etc/shadowsocks.json （咱用的是vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-supervisor-conf-d-shadowsocks-conf"><span class="toc-text">编辑 /etc/supervisor/conf.d/shadowsocks.conf`</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-default-supervisor-，在最后一行添加"><span class="toc-text">编辑 /etc/default/supervisor ，在最后一行添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行-supervisor"><span class="toc-text">运行 supervisor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过以下命令管理-shadowsocks-进程"><span class="toc-text">通过以下命令管理 shadowsocks 进程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#此时还需要更改下-iptables-设置"><span class="toc-text">此时还需要更改下 iptables 设置</span></a></li></ol>
+      </div>
+      
       <p><strong>UPDATE：</strong>窝基于此教程的内容写了个一一键安装脚本，具体可以<a href="https://prinzeugen.net/shadowsocks-install-shell/" target="_blank" rel="noopener">看这里</a>。</p>
 <hr>
 <p>就在刚才咱买的ss服务过期了，vps又买到了，自然是在vps上搭个ss来爬墙 <img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></p>
@@ -302,6 +307,18 @@ iptables-save
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-上-vps，apt-get"><span class="toc-text">ssh 上 vps，apt-get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-shadowsocks-json-（咱用的是vim"><span class="toc-text">编辑 /etc/shadowsocks.json （咱用的是vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-supervisor-conf-d-shadowsocks-conf"><span class="toc-text">编辑 /etc/supervisor/conf.d/shadowsocks.conf`</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑-etc-default-supervisor-，在最后一行添加"><span class="toc-text">编辑 /etc/default/supervisor ，在最后一行添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行-supervisor"><span class="toc-text">运行 supervisor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过以下命令管理-shadowsocks-进程"><span class="toc-text">通过以下命令管理 shadowsocks 进程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#此时还需要更改下-iptables-设置"><span class="toc-text">此时还需要更改下 iptables 设置</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

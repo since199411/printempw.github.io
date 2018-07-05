@@ -180,18 +180,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 754 天前（2016-04-29），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 796 天前（2016-04-29），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 754 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 796 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#教程目录：（点击展开）"><span class="toc-text">教程目录：（点击展开）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装所需环境"><span class="toc-text">一、安装所需环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Node-js"><span class="toc-text">1.1 Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Nginx-Apache，Mysql"><span class="toc-text">1.2 Nginx/Apache，Mysql</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、下载安装-Ghost"><span class="toc-text">二、下载安装 Ghost</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-建立-Ghost-所使用的-mysql-数据库"><span class="toc-text">2.1 建立 Ghost 所使用的 mysql 数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-下载-Ghost-最新版本-v0-6-4"><span class="toc-text">2.2 下载 Ghost 最新版本 v0.6.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-安装-Ghost"><span class="toc-text">2.3 安装 Ghost</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、配置-Ghost"><span class="toc-text">三、配置 Ghost</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-使你的-Ghost-可以被外网访问"><span class="toc-text">3.1 使你的 Ghost 可以被外网访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-使你的-Ghost-持久运行"><span class="toc-text">3.2 使你的 Ghost 持久运行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-使用-Supervisor"><span class="toc-text">1) 使用 Supervisor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-使用-forever"><span class="toc-text">2) 使用 forever</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-配置-nginx-使-ghost-可以使用域名访问"><span class="toc-text">3.3 配置 nginx 使 ghost 可以使用域名访问</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对于手动安装-nginx-的用户"><span class="toc-text">1) 对于手动安装 nginx 的用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-对于lnmp-一键包以及各类面板使用者："><span class="toc-text">2) 对于lnmp 一键包以及各类面板使用者：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Ghost-优化"><span class="toc-text">四、Ghost 优化</span></a></li></ol>
+      </div>
+      
       <div class="alert alert-danger"><p>本文已废弃。<br>排版的错误是由于 WordPress 转换至 Ghost 文章所致，懒得改了（笑</p>
 </div>
 <p>虽然说网上有很多部署 Ghost 的教程了，官方<a href="http://docs.ghost.org/zh/installation/" target="_blank" rel="noopener">中文文档</a>也已经很完善了。但看了大多数的教程，都感觉叙述了太多冗余内容，譬如说 安装并配置 nginx、apache、mysql 等，甚至有些还教了如何使用 ssh。窝这里希望写的是干净、优雅、易懂的教程，并标出容易踩坑的地方。</p>
@@ -370,6 +375,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#教程目录：（点击展开）"><span class="toc-text">教程目录：（点击展开）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装所需环境"><span class="toc-text">一、安装所需环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Node-js"><span class="toc-text">1.1 Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Nginx-Apache，Mysql"><span class="toc-text">1.2 Nginx/Apache，Mysql</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、下载安装-Ghost"><span class="toc-text">二、下载安装 Ghost</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-建立-Ghost-所使用的-mysql-数据库"><span class="toc-text">2.1 建立 Ghost 所使用的 mysql 数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-下载-Ghost-最新版本-v0-6-4"><span class="toc-text">2.2 下载 Ghost 最新版本 v0.6.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-安装-Ghost"><span class="toc-text">2.3 安装 Ghost</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、配置-Ghost"><span class="toc-text">三、配置 Ghost</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-使你的-Ghost-可以被外网访问"><span class="toc-text">3.1 使你的 Ghost 可以被外网访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-使你的-Ghost-持久运行"><span class="toc-text">3.2 使你的 Ghost 持久运行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-使用-Supervisor"><span class="toc-text">1) 使用 Supervisor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-使用-forever"><span class="toc-text">2) 使用 forever</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-配置-nginx-使-ghost-可以使用域名访问"><span class="toc-text">3.3 配置 nginx 使 ghost 可以使用域名访问</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-对于手动安装-nginx-的用户"><span class="toc-text">1) 对于手动安装 nginx 的用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-对于lnmp-一键包以及各类面板使用者："><span class="toc-text">2) 对于lnmp 一键包以及各类面板使用者：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Ghost-优化"><span class="toc-text">四、Ghost 优化</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

@@ -178,18 +178,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 375 天前（2017-05-14），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 417 天前（2017-05-14），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 375 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 417 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>最近把版本库里 <code>.env.example</code> 的 <code>APP_ENV</code> 字段值从原来的 <code>local</code> 改为了 <code>production</code>，原意是为了更好的区分开发和生产环境。</p>
 <p>然而今天在主机壳的虚拟主机上测试我的程序的时候（准备把演示站搬过去），却出现了奇怪的问题——数据库 Migration  不管用了。</p>
 <p>我是在控制器里通过调用 <code>Artisan::call(&#39;migrate&#39;)</code> 来执行数据库迁移操作的（毕竟虚拟主机哪来的 shell 访问），但是这次这条命令竟然没有执行任何事务。</p>
@@ -314,6 +319,18 @@ protected function getDefaultConfirmCallback()
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

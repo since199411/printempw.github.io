@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 1117 天前（2015-05-03），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 1159 天前（2015-05-03），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 1117 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 1159 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用插件"><span class="toc-text">使用插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#麻烦点的方法"><span class="toc-text">麻烦点的方法</span></a></li></ol>
+      </div>
+      
       <h3 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h3><p><a href="https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/" target="_blank" rel="noopener">Easy Updates Manager</a></p>
 <h3 id="麻烦点的方法"><a href="#麻烦点的方法" class="headerlink" title="麻烦点的方法"></a>麻烦点的方法</h3><p>将下面的代码添加到主题目录下的 <code>functions.php</code> 中 <code>?&gt;</code> 之前的任意位置：</p>
 <pre><code class="php">add_filter(&#39;pre_site_transient_update_core&#39;, create_function(&#39;$a&#39;, “return null;”));
@@ -279,6 +284,18 @@ remove_action(&#39;admin_init&#39;, &#39;_maybe_update_themes&#39;);
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用插件"><span class="toc-text">使用插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#麻烦点的方法"><span class="toc-text">麻烦点的方法</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

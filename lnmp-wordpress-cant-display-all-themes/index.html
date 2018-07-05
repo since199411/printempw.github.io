@@ -181,18 +181,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 999 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 1041 天前（2015-08-28），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 999 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 1041 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-编辑-php-ini"><span class="toc-text">1.编辑 php.ini</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-查找-scandir"><span class="toc-text">2.查找 scandir</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-重启-php-fpm"><span class="toc-text">3.重启 php-fpm</span></a></li></ol>
+      </div>
+      
       <p>wordpress搬到vps上后，后台主题页只剩下一个默认的 Twenty Fifteen 了</p>
 <p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a> ，搜索了一下发现原因是 php 禁用了 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">scandir</span>  函数</p>
 <p>依照如下方法启用即可：</p>
@@ -281,6 +286,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-编辑-php-ini"><span class="toc-text">1.编辑 php.ini</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-查找-scandir"><span class="toc-text">2.查找 scandir</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-重启-php-fpm"><span class="toc-text">3.重启 php-fpm</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

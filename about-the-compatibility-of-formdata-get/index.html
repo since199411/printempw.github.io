@@ -178,18 +178,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 667 天前（2016-07-26），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 709 天前（2016-07-26），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 667 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 709 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>又踩到坑了，稍微记录一下 ( ・_ゝ・)</p>
 <p>我在 Ajax 上传文件时是用的构建 <code>FormData</code> 对象的方法，构建完之后我很自然的打算从对象里面取出值来做验证，StackOverflow 里搜了一下之后就知道了有 <code>FormData.get()</code> 这个方法，我也没想太多就直接用了，并且在我本地环境（Chrome 51）上没有任何问题。</p>
 <p>前天把 beta 版的 v3 皮肤站上线测试了，今天就有人发邮件给我，竟然是 <code>FormData.get()</code> 这个语句报错了，提示 <code>e.get is not a function</code>，当时我就知道八成又是兼容性问题了 ( `д´)</p>
@@ -274,6 +279,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

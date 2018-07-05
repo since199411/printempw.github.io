@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 604 天前（2016-09-26），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 646 天前（2016-09-26），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 604 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 646 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p><code>String.prototype.endsWith()</code> 这个方法是 ECMA6 新加入的，而我当初随手 Google 了一下，也没怎么看就直接用上去了，直到我今天在一台破手机上测试的时候发现有个用到这个方法的值神秘地变成了 <code>undefined</code> ( ´_ゝ`)</p>
 <p>我记得上次好像也是这样随手搜索导致使用了不兼容的函数 ( -д-) <del>论面向搜索引擎编程的坏处</del></p>
 <p>不过我们还是可以通过扩展 <code>String</code> 的原型来实现在不支持的浏览器上使用这个方法：</p>
@@ -288,6 +293,18 @@ if (!String.prototype.endsWith) {
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 994 天前（2015-09-03），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 1036 天前（2015-09-03），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 994 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 1036 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>以前只是启用了数据库缓存与对象缓存，没有启用页面缓存。不得不说 PHP 执行效率真是够慢，网页加载时间几乎都是被 TTFB 拖慢了，最起码 3s+。不过最开始也没有太在意，而且之前窝是使用自己写的一个输出一言的插件，在页面侧边栏用 <code>hitokoto_get();</code> 输出的，但是这样的话就不能启用 page cache 了，因为 php 输出的页面内容会被缓存掉。这样的解决方法就是使用 javascript 输出一言。但是如果像以前那样把一言数组写在 js 里的话会很大，而且一点也不优雅（笑）。早就有了想调用 php 输出 js 的想法了，昨天终于克服了懒癌写了一下。虽然只是很简单的功能就是了。。</p>
 <p>下面贴一下具体 php 实现（一言数组只截取了一部分）：</p>
 <pre><code>&lt;?php 
@@ -308,6 +313,18 @@ echo &quot;function hitokoto(){document.write(&#39;$chosen&#39;);}&quot;;
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

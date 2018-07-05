@@ -179,14 +179,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 346 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 388 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 388 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>把默认的图片上传地址改成了 <code>img.prinzeugen.net</code>，但是原来的文章中所有的图片引用都失效了</p>
 <p>本来想不会要一篇一篇改过去吧 <img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="表情1"> 不过还好想起来可以改数据库</p>
 <p>总之就是替换数据库里所有 <code>www.prinzeugen.net/wp-contents/uploads</code> 为 <code>img.prinzeugen.net/uploads</code> 就可以了，但是窝是 SQL 渣（只是学 SQLite 时知道一点），于是查了下 SQL 基本语法的 REPLACE，总算是搞好啦 <img src="https://img.blessing.studio/images/2015/05/20150503124308.jpg" alt="表情2">，下面是解决方法：</p>
@@ -280,6 +289,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

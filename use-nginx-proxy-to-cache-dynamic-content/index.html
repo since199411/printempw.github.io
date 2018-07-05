@@ -179,18 +179,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 597 天前（2016-10-04），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 639 天前（2016-10-04），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 597 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 639 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、Cache-Control-HTTP-头"><span class="toc-text">一、Cache-Control HTTP 头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、Set-Cookie-HTTP-头"><span class="toc-text">二、Set-Cookie HTTP 头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、反代可能会造成的后端协议判断错误"><span class="toc-text">三、反代可能会造成的后端协议判断错误</span></a></li></ol>
+      </div>
+      
       <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="noopener">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
 <p>我到现在也还是搞不懂那到底是正常流量还是 CC 攻击。。难道正常用户会每秒请求 20+ 次 Json Profile 吗？又不是天天退/进游戏玩 <img src="https://moepic.org/images/2016/10/02/c066215f622f0bf2fe7ee9625955e343.jpg" alt="emotion"></p>
 <p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="noopener">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="noopener">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
@@ -340,6 +345,18 @@ server {
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、Cache-Control-HTTP-头"><span class="toc-text">一、Cache-Control HTTP 头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、Set-Cookie-HTTP-头"><span class="toc-text">二、Set-Cookie HTTP 头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、反代可能会造成的后端协议判断错误"><span class="toc-text">三、反代可能会造成的后端协议判断错误</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

@@ -181,14 +181,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 347 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 389 天前（2017-06-11），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 389 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p><a href="https://github.com/filp/whoops" target="_blank" rel="noopener">filp/whoops</a> 这个错误处理类库有什么好处我这里就不赘述了，谁用谁知道。</p>
 <p>Laravel 在 4.x 时代是有集成了 whoops 的，但是在 5.x 去掉了。不过作为一个 out-of-the-box 的错误处理类库，我们依然可以很方便地将 whoops 带回 Laravel 中。</p>
 <p>网上有很多文章都讲述了 Laravel 使用 whoops 的方法，但总有些小问题（像是代码太丑了啊，代码太丑了啊之类的）。其中我认为最优雅的实现是这篇文章所描述的：<a href="https://mattstauffer.co/blog/bringing-whoops-back-to-laravel-5" target="_blank" rel="noopener">Bringing Whoops Back to Laravel 5</a>，我下面的也是基于他给出的代码修改的。</p>
@@ -354,6 +363,18 @@ protected function renderExceptionInBrief(Exception $e)
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

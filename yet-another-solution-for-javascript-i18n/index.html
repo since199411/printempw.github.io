@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 615 天前（2016-09-16），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 657 天前（2016-09-16），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 615 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 657 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>现在 Blessing Skin Server 的 HTML 模板是使用 Laravel 自带的本地化来实现多语言支持的，并且使用了 <a href="https://github.com/Devitek/laravel-yaml-translation" target="_blank" rel="noopener">devitek/yaml-translation</a> 这个包把 Laravel 语言文件从默认的 PHP 数组形式改为 YAML 格式的文件。</p>
 <p>不得不说数组形式的语言文件简直反人类好吗，一大堆 <code>=&gt;</code> 看的眼晕。。YAML 大法好！(ゝ∀･)</p>
 <p>回到正题。虽然 HTML 模板里的国际化是解决了，但是整个应用中需要国际化的地方可不止 HTML 模板，同时还有 JavaScript。但是静态的脚本文件中总不能内嵌 PHP 吧，所以我们得搞个单独的解决方案。</p>
@@ -351,6 +356,18 @@ trans(&#39;user.changeNickName&#39;, { new_nickname: &#39;FUCK&#39; });
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

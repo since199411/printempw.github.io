@@ -178,18 +178,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 573 天前（2016-10-27），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 615 天前（2016-10-27），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 573 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 615 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>众所周知 MTK（联发科）的大部分机器都是没有 <code>fastboot</code> 模式的，也就意味着不能进行普通的依赖于 <code>fastboot</code> 系列命令的线刷模式。普通来讲这也没啥特别大的影响，毕竟刷 <code>recovery</code> 可以直接系统里拿到 root 后用工具刷，救砖有 MTK 专用的线刷工具<del>（这玩意的驱动坑的不行）</del>。</p>
 <p>但是，在一些<strong>神秘</strong>的状况下，我<del>们</del>有可能会被没有 <code>fastboot</code> 的情况下坑到。</p>
 <p>这次我想刷的是「朵唯 iSuper S1」，用的是 MTK6589 芯片组。按照惯例刷机之前首先要把 <code>Recovery</code> 换掉以刷入第三方 ROM 包。照理来说这块是没有问题的，但是不知道为什么，市面上的 Root 工具能够让手机拿到 Root 权限，但是在手机上安装权限管理应用时均告失败，也是迷的不行。</p>
@@ -302,6 +307,18 @@ dd if=/mnt/sdcard2/recovery.img of=/dev/recovery
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

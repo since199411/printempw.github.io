@@ -189,18 +189,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 459 天前（2017-02-18），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 501 天前（2017-02-18），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 459 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 501 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装并配置-ss-panel"><span class="toc-text">一、安装并配置 ss-panel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-环境要求"><span class="toc-text">0x01 环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-下载-ss-panel-源码"><span class="toc-text">0x02 下载 ss-panel 源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-配置-ss-panel"><span class="toc-text">0x03 配置 ss-panel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-进入-ss-panel-后台"><span class="toc-text">0x03 进入 ss-panel 后台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、部署并配置-shadowsocks-manyuser"><span class="toc-text">二、部署并配置 shadowsocks-manyuser</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-安装-shadowsocks-manyuser"><span class="toc-text">0x01 安装 shadowsocks-manyuser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-配置-shadowsocks-manyuser"><span class="toc-text">0x02 配置 shadowsocks-manyuser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-常见错误-FAQ"><span class="toc-text">0x03 常见错误 FAQ</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、配置-ss-manyuser-守护进程以及多节点配置"><span class="toc-text">三、配置 ss-manyuser 守护进程以及多节点配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-使用-supervisor-监控-ss-manyuser-运行"><span class="toc-text">0x01 使用 supervisor 监控 ss-manyuser 运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-ss-panel-的多节点配置"><span class="toc-text">0x02 ss-panel 的多节点配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、写在后面"><span class="toc-text">四、写在后面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章更新日志"><span class="toc-text">文章更新日志</span></a></li></ol></li></ol></li></ol>
+      </div>
+      
       <p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
 <div class="alert alert-warning"><p>注意，本教程 <strong>不是</strong> 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配置，最好可以看得懂一些代码。</p>
 </div>
@@ -462,6 +467,18 @@ root       952   739  0 15:40 ?        00:00:00 python /root/shadowsocks-rm/shad
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装并配置-ss-panel"><span class="toc-text">一、安装并配置 ss-panel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-环境要求"><span class="toc-text">0x01 环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-下载-ss-panel-源码"><span class="toc-text">0x02 下载 ss-panel 源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-配置-ss-panel"><span class="toc-text">0x03 配置 ss-panel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-进入-ss-panel-后台"><span class="toc-text">0x03 进入 ss-panel 后台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、部署并配置-shadowsocks-manyuser"><span class="toc-text">二、部署并配置 shadowsocks-manyuser</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-安装-shadowsocks-manyuser"><span class="toc-text">0x01 安装 shadowsocks-manyuser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-配置-shadowsocks-manyuser"><span class="toc-text">0x02 配置 shadowsocks-manyuser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-常见错误-FAQ"><span class="toc-text">0x03 常见错误 FAQ</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、配置-ss-manyuser-守护进程以及多节点配置"><span class="toc-text">三、配置 ss-manyuser 守护进程以及多节点配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-使用-supervisor-监控-ss-manyuser-运行"><span class="toc-text">0x01 使用 supervisor 监控 ss-manyuser 运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-ss-panel-的多节点配置"><span class="toc-text">0x02 ss-panel 的多节点配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、写在后面"><span class="toc-text">四、写在后面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章更新日志"><span class="toc-text">文章更新日志</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 641 天前（2016-08-21），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 683 天前（2016-08-21），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 641 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 683 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>今早起来准备修一个 Blessing Skin Server 的 BUG 的时候，打开演示站发现慢到没朋友，最起码要 60s+ 才会有响应。当时我也没多想，觉着大概是 DO 线路又抽风了，然后挂上代理访问演示站，但依然是无响应。这时候我开始觉得不对劲了，SSH 连上 VPS，top 一看，诶哟，90% 的 CPU 占用，清一色的 php-fpm 进程。</p>
 <p>当时我就有点方了，去 DO 的控制台看了下图表，CPU 从上午十点左右开始就一直是爆满状态。再去看了一下 <code>netstat</code>，有几个 <code>SYN_RECV</code> 和一大票 <code>ESTABLISHED</code>，我就觉得有可能是被 cc 了。</p>
 <p>随后去看了一下 Nginx 的访问日志，发现从早上开始就一直有人不断地 <code>HEAD /</code> 请求，排查了一下最后发现请求的是 <code>skin.prinzeugen.net</code> 这个域名，也就是 Blessing Skin Server 的演示站点。</p>
@@ -314,6 +319,18 @@ GET:  Total 7662 ips.
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

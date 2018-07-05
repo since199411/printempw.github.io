@@ -178,18 +178,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 543 天前（2016-11-26），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 585 天前（2016-11-26），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 543 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 585 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-原理"><span class="toc-text">0x01 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-概述"><span class="toc-text">0x02 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-后端"><span class="toc-text">0x03 后端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-前端"><span class="toc-text">0x04 前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-效果-amp-总结"><span class="toc-text">0x05 效果 &amp; 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol></li></ol>
+      </div>
+      
       <p>PHP 实现远程下载文件到服务端并不是什么新鲜玩意，用 <code>cURL</code>、<code>file_get_contents</code>、<code>fopen</code> 等都能够轻易实现。</p>
 <p>但是这几种常规的方法都是在一个线程内下载文件，等文件下载完毕以后才能返回 HTTP 响应。所造成的结果就是用户在页面上点击「下载到服务器」按钮后，会看到空白页和加载的小菊花转啊转，转好久之后才出现「下载成功」的页面。</p>
 <p>当然，我上面所举例的情况是只使用纯粹的表单 POST 发送请求的情况。现在的话就算再不济也一般会使用 <code>ajax</code> 发送请求，然后在前台放个加载动画，等收到下载成功的回应之后再进行下一步操作。</p>
@@ -307,6 +312,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-原理"><span class="toc-text">0x01 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-概述"><span class="toc-text">0x02 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-后端"><span class="toc-text">0x03 后端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-前端"><span class="toc-text">0x04 前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-效果-amp-总结"><span class="toc-text">0x05 效果 &amp; 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

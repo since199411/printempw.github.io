@@ -176,14 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 342 天前（2017-06-15），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 384 天前（2017-06-15），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
+  <div class="alert alert-danger expired-message">
+    <p>请注意，本文最后更新于 384 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+  </div>
+
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取特定分类下的文章"><span class="toc-text">获取特定分类下的文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
+      </div>
+      
       <p>今天在将博客主题移植至 Hexo 时，想要获取某个分类（Category）或者标签（Tag）下的所有文章（准确来说是想获得文章总数），在使用中文关键词搜索时，没有获得任何有用的信息（或许是我搜索姿势不对）。换用英文关键词「hexo category all posts」后搜索到了所需的信息，遂决定写一篇文章记录一下，希望能帮到后来人。</p>
 <h3 id="获取特定分类下的文章"><a href="#获取特定分类下的文章" class="headerlink" title="获取特定分类下的文章"></a>获取特定分类下的文章</h3><pre><code class="javascript">let result = site.categories.findOne({name: &#39;example&#39;})
 </code></pre>
@@ -287,6 +296,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取特定分类下的文章"><span class="toc-text">获取特定分类下的文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

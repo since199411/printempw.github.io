@@ -176,18 +176,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 634 天前（2016-08-27），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 676 天前（2016-08-27），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 634 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 676 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        
+      </div>
+      
       <p>因为一些原因，我准备把 Blessing Skin 的框架换成 Laravel 了（之前是自己搭建的一个框架），但是在模板迁移的时候遇到了一点问题。</p>
 <p>之前我是使用的 <a href="https://github.com/XiaoLer/blade" target="_blank" rel="noopener">XiaoLer/blade</a> 这个从 Laravel 中抽离出来的 Blade 模板引擎，并且自定义为使用 <code>.tpl</code> 文件后缀。你问为啥不用默认的 <code>.blade.php</code> 而是用这个 Smarty 的模板扩展名？能有啥，好看呗 :-D</p>
 <p>不过之前我是直接调用 <code>FileViewFinder</code> 类的 <code>addExtension</code> 方法来添加扩展名的，但是在 Laravel 里就不能这样了。你总不能在 <code>Illuminate\View</code> 加几句话吧？</p>
@@ -327,6 +332,18 @@ protected $extensions = [&#39;blade.php&#39; =&gt; &#39;blade&#39;, &#39;php&#39
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">

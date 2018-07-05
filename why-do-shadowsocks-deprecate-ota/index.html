@@ -179,18 +179,23 @@
 
 
   <div class="alert alert-warning expired-message">
-    <p>本文最后更新于 375 天前（2017-05-14），其中的信息可能已经有所发展或是发生改变。</p>
+    <p>本文最后更新于 417 天前（2017-05-14），其中的信息可能已经有所发展或是发生改变。</p>
   </div>
 
 
 
   <div class="alert alert-danger expired-message">
-    <p>请注意，本文最后更新于 375 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
+    <p>请注意，本文最后更新于 417 天前，文中信息极有可能已经过期且不再适用于现阶段。</p>
   </div>
 
 
 
     <div class="post-content">
+      
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、OTA-是什么"><span class="toc-text">一、OTA 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、原协议的弱点"><span class="toc-text">二、原协议的弱点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-shadowsocks-协议"><span class="toc-text">2.1 shadowsocks 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-原协议的缺陷"><span class="toc-text">2.2 原协议的缺陷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-主动探测的原理"><span class="toc-text">2.2.1 主动探测的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-防范主动探测"><span class="toc-text">2.2.2 防范主动探测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、OTA-闪亮登场"><span class="toc-text">三、OTA 闪亮登场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-OTA-协议"><span class="toc-text">3.1 OTA 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-OTA-的缺陷"><span class="toc-text">3.2 OTA 的缺陷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、新协议-AEAD"><span class="toc-text">四、新协议 AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-之前协议的缺陷汇总分析"><span class="toc-text">4.1 之前协议的缺陷汇总分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-AEAD-是啥"><span class="toc-text">4.2 AEAD 是啥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-新协议支持的-AEAD-算法"><span class="toc-text">4.3 新协议支持的 AEAD 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-新协议的优缺点"><span class="toc-text">4.4 新协议的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、写在后面"><span class="toc-text">五、写在后面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、参考链接"><span class="toc-text">六、参考链接</span></a></li></ol>
+      </div>
+      
       <p>前些天，shadowsocks 提出了 SIP004 草案，旨在使用 <code>AEAD 算法</code> 取代原先的不安全的 <code>流加密 + OTA</code>，并弃用了一次性验证 (OTA)。</p>
 <p>新协议的提出对于 shadowsocks 是一个非常非常重大的改进，因此我写了这篇博文为看不懂洋文的<span title="pong">朋</span>友们科普一下「为什么 OTA 会被这么快被弃用」以及「为什么应该使用新协议」。</p>
 <h2 id="一、OTA-是什么"><a href="#一、OTA-是什么" class="headerlink" title="一、OTA 是什么"></a>一、OTA 是什么</h2><p>OTA（One Time Auth，<a href="https://shadowsocks.org/en/spec/one-time-auth.html" target="_blank" rel="noopener">一次性验证</a>），是之前 shadowsocks 为了增强安全性，抵抗 CCA（Chosen-ciphertext Attack，<a href="https://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E5%AF%86%E6%96%87%E6%94%BB%E5%87%BB" target="_blank" rel="noopener">选择密文攻击</a>）而加入的实验性功能。</p>
@@ -377,6 +382,18 @@
   <div id="sb">
     
 <div id="sbpin">
+  
+  
+  <div class="clf widget-item widget-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="textwidget">
+      <div class="toc-container">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、OTA-是什么"><span class="toc-text">一、OTA 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、原协议的弱点"><span class="toc-text">二、原协议的弱点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-shadowsocks-协议"><span class="toc-text">2.1 shadowsocks 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-原协议的缺陷"><span class="toc-text">2.2 原协议的缺陷</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-主动探测的原理"><span class="toc-text">2.2.1 主动探测的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-防范主动探测"><span class="toc-text">2.2.2 防范主动探测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、OTA-闪亮登场"><span class="toc-text">三、OTA 闪亮登场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-OTA-协议"><span class="toc-text">3.1 OTA 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-OTA-的缺陷"><span class="toc-text">3.2 OTA 的缺陷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、新协议-AEAD"><span class="toc-text">四、新协议 AEAD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-之前协议的缺陷汇总分析"><span class="toc-text">4.1 之前协议的缺陷汇总分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-AEAD-是啥"><span class="toc-text">4.2 AEAD 是啥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-新协议支持的-AEAD-算法"><span class="toc-text">4.3 新协议支持的 AEAD 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-新协议的优缺点"><span class="toc-text">4.4 新协议的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、写在后面"><span class="toc-text">五、写在后面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、参考链接"><span class="toc-text">六、参考链接</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+  
+
   
   <div class="clf widget-item widget_text">
     <div class="textwidget">
