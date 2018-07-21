@@ -170,6 +170,48 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/generate-incremental-update-package-with-git/">使用 Git 生成增量更新包</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>上次有人叫我在 Blessing Skin 每次升级的时候带上一个增量更新包，只包含所有上一个版本后修改过的文件。</p>
+<p>我听到这个需求，最开始想到的是使用 <code>git diff --name-only</code>，加上这个参数后可以只显示 commit 之间修改过的文件名，然后就可以用管道通给 zip 之类的程序来压缩。</p>
+<p>去网上搜了搜，发现还有<a href="http://www.cnblogs.com/lhb25/p/10-useful-advanced-git-commands.html" target="_blank" rel="noopener">更简单的方法</a>：</p>
+<pre><code class="shell">$ git archive -o ../latest.zip NEW_COMMIT_ID $(git diff --name-only OLD_COMMIT_ID NEW_COMMIT_ID)
+</code></pre>
+<p>这是用了 <code>git archieve</code> 命令，本质上和我上面说的也差不离。</p>
+<p>如果你打了 tag，就可以写成这样：</p>
+<pre><code class="shell">$ git archive -o ../latest.zip HEAD $(git diff --name-only v3.0.1 HEAD)
+</code></pre>
+<p>是不是很方便呢 |∀` )</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-11</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="generate-incremental-update-package-with-git/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Git/">Git</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/start-to-use-sougou-pinyin/">开始使用搜狗拼音输入法</a>
       </h2>
 
@@ -488,47 +530,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/konosuba-9-aka-no-shukumei/">「为美好的世界献上祝福」第⑨卷 红之宿命</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>我买的实体书还在路上呢，翻译倒是先出来了，现在我的心情很复杂 <img src="https://img.prinzeugen.net/image.php?di=E0G2" alt="emotion 1"> </p>
-<p>konosuba 厨的爆肝力真可怕</p>
-<p><img src="https://ooo.0o0.ooo/2016/07/20/5790133e49b50.jpg" alt="cover preview"></p>
-          <a class="more-link" href="/konosuba-9-aka-no-shukumei/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-04</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="konosuba-9-aka-no-shukumei/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/">Next</a>
       </div>
     </nav>
   </div>

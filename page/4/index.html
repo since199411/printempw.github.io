@@ -170,6 +170,44 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/use-certbot-to-renew-lets-encrypt-certificates/">使用 Certbot 更新 Let's Encrypt 证书</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>Let’s Encrypt 证书即将过期时会给你发送邮件，这个还是比较贴心的。这样也就不会陷入证书过期却没发现的尴尬境地（Let’s Encrypt 的证书只有 90 天的有效期）。</p>
+<p><img src="https://img.blessing.studio/images/2017/06/11/2826714bc9645e4b9828433b8e674800.png" alt="2826714bc9645e4b9828433b8e674800.png"></p>
+<p>以前我写过使用 Certbot 这个工具<a href="https://prinzeugen.net/use-certbot-to-issue-lets-encrypt-certificates/" target="_blank" rel="noopener">申请证书的文章</a>，而同样使用这个工具更新证书只需要一行命令：</p>
+<pre><code class="shell">certbot renew --post-hook &quot;service nginx reload&quot;
+</code></pre>
+<p><code>certbot</code> 这个脚本的位置呀名称啥的自己看着改，对于我来说是 <code>./certbot-auto</code>。加了个钩子可以让它在证书更新更新完毕后重载 Nginx 配置来更新证书。</p>
+          <a class="more-link" href="/use-certbot-to-renew-lets-encrypt-certificates/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-12-10</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="use-certbot-to-renew-lets-encrypt-certificates/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/Let-s-Encrypt/">Let's Encrypt</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/implement-of-php-remote-downloading-with-progress-bar/">PHP 远程文件下载的进度条实现</a>
       </h2>
 
@@ -518,49 +556,12 @@ if (!String.prototype.endsWith) {
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-laravel-redirector-to-redirect-to-any-url/">使用 Laravel 的 RedirectResponse 重定向至任意 URL</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>Laravel 允许我们在控制器中返回一个 <code>Illuminate\Http\RedirectResponse</code> 的实例来执行重定向。根据文档，我们可以通过 <code>redirect()</code> 帮助函数或者 <code>Redirect</code> Facade 来生成实例，并且可以方便得重定向至命名路由、控制器行为等。</p>
-<blockquote>
-<p>但如果我们想要重定向至自定义 URL 呢？</p>
-</blockquote>
-<p>对于这样的需求，Laravel 官方的文档是<strong>完全</strong>没有提及的（至少到目前 5.3 是这样），所以估计很多人都是自己实现了一个使用 <code>header()</code> 或者 <code>&lt;meta http-equiv=&#39;Refresh&#39; content=&#39;&#39;&gt;</code> 的重定向函数（包括以前的我）。</p>
-          <a class="more-link" href="/use-laravel-redirector-to-redirect-to-any-url/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-09-24</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-laravel-redirector-to-redirect-to-any-url/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">Next</a>
       </div>
     </nav>
   </div>

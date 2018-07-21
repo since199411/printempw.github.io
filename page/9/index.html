@@ -170,6 +170,54 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/blessing-skin-server-0-1/">Blessing Skin Server 0.1 —— 开源 PHP Minecraft 皮肤站</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p><img src="https://img.blessing.studio/images/2016/01/2016-01-03_05-22-44.png" alt="bss upload"></p>
+<p>很久以前就有想写一个皮肤站的想法了，但是苦于没有时间且 PHP、前端的 coding 都不熟练，所以一直搁置着，当作一个目标。</p>
+<p>恰逢前几周稍微有点时间（其实是克服了懒癌），就写了一个皮肤站的原型。PHP + MySQL，表单 POST 数据，基本的登录/注册/上传 功能还是实现了的。但是前端完全没有写，全是 webkit 的默认样式。</p>
+<p>不过盼星星盼月亮终于等到了元旦假期（连上周末三天），于是把整个项目重构了一下，并且用鞋拔子写了个稍微能看的页面。</p>
+<p>前端页面引用的资源/库均位于根目录下的 <code>/assets</code> 和 <code>/libs</code>，这是不知道从哪里学来的，总之觉得这样挺好的就这样放了（笑）</p>
+<p>然后是实现了全站 Ajax，登录/注册 均 POST 请求 <code>check.php</code> 返回 json，加入了 SQL 注入防护（虽然还没有 sqlmap 测试过），加入了基于 IP 的注册数量限制，支持保存 cookie，token 验证自动登录。token 就是使用普通的用于验证的不可逆算法得到（用户名 + MD5 密码 + 盐，MD5 二次加密）。</p>
+<p>Ajax 文件上传带 token POST 请求 <code>upload.php</code>，同样返回 json，上次后的文件位于 <code>/uploads</code>。（其实窝觉着这俩可以放一个文件里的）</p>
+<p><code>user.php</code> 为用户页面，本来是想用 php 路由到 <code>/user</code> 和 <code>/admin</code> 等子目录的，但是想想还是算了。因为窝对路由之类的理解并不多，边查边写的话窝也没有那么多时间了。准备放在下一个版本里。</p>
+<p><code>user.php</code> 中使用了 djazz 的 <a href="http://djazz.se/apps/MinecraftSkin/" target="_blank" rel="noopener">Minecraft Skin Previewer</a> 实现 3D 皮肤预览（就是 skinme 使用的那个），窝将其封装了一下放入了 three.msp.js 中，可以使用类似 <code>MSP.getStatus()</code>、<code>MSP.changeSkin()</code> 的接口来访问。</p>
+<p>后端就没啥出彩的地方了（话说前端也没有吧），所有使用了数据库连接的操作均封装为函数放在 <code>connect.php</code> 里面。不过感觉这个放根目录不合适就是了。</p>
+<p><code>config.php</code> 中定义了数据库连接信息，站点名称等常量以供调用。这是从 WordPress 那学来的（笑</p>
+<p>遗憾的是由于没有时间，后台管理页面还没写，目前只能通过自己管理数据库和文件的方式来管理用户。而且现在的数据表结构也不支持后台管理 qwq</p>
+<p>而且前端的 JS 和 CSS 都写得乱糟糟的，CSS 选择器一半是 id 一般是 class，文件关系也没处理好，没有响应式设计，有些地方还用了绝对定位 <img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" alt="emotion1"> </p>
+<p>不过由于时间所限，这些都放到下一个版本吧~</p>
+<hr>
+<p>项目开源在 <a href="https://github.com/printempw/blessing-skin-server" target="_blank" rel="noopener">GitHub</a> 上，欢迎 Pull Request~ 在线演示：<a href="https://skin.prinzeugen.net/" target="_blank" rel="noopener">https://skin.prinzeugen.net/</a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-01-03</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="blessing-skin-server-0-1/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Minecraft/">Minecraft</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/皮肤站/">皮肤站</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/happy-newyear/">新年快乐～</a>
       </h2>
 
@@ -536,80 +584,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/one-key-fill-kodexplorer-login-form/">[User Script] 自动填写 KodExplorer 登录表单</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>应该挺多人知道 <a href="http://kalcaddle.com/index.html" target="_blank" rel="noopener">KodExplorer</a> 吧？一个用 PHP 编写的很棒的在线文件管理器。 因为是文件管理，拥有着 www 用户组的所有权限，自然是一定要用强口令的。然而 KodExplorer 登录页不是用 form 表单提交的，chrome 的自动保存也没用了，每次都输强口令也挺麻烦的，所以写了个脚本一键填写登录表单并提交，放入书签栏即可食用~ KodExplorer 的登录逻辑都在 <code>./static/js/app/src/user/main.js</code> 里，有用的一段在这里：</p>
-<pre><code class="javascript">var e = function() {
-    var e = $(&quot;#username&quot;).val(),
-    t = $(&quot;#password&quot;).val(),
-    a = $(&quot;input[name=rember_password]&quot;).attr(&quot;checked&quot;) ? 1 : 0,
-    i = &quot;./index.php?user/loginSubmit&amp;name=&quot; + urlEncode(e) + &quot;&amp;check_code=&quot; + $(&quot;input.check_code&quot;).val() + &quot;&amp;password=&quot; + urlEncode(t) + &quot;&amp;rember_password=&quot; + a;
-    window.location.href = i
-};
-$(&quot;#username&quot;).focus(),
-$(&quot;#submit&quot;).bind(&quot;click&quot;, e),
-$(&quot;#username,#password,input.check_code&quot;).keyEnter(e)
-</code></pre>
-<p>关键行已高亮标出（话说明文 POST 密码真的好吗。。），下面是脚本代码（Greasemonkey 用户脚本）：</p>
-<pre><code class="javascript">// ==UserScript==
-// @name         KodExplorer Auto Login
-// @namespace    https://prinzeugen.net/
-// @version      0.1
-// @description  自动登录 Kodexplorer
-// @author       printempw
-// @match        https://prinzeugen.net:12450/kodexplorer-14012/index.php?user/login
-// @grant        none
-// ==/UserScript==
-/* jshint -W097 */
-&#39;use strict&#39;;
-
-var username = &quot;root&quot;;
-var password = &quot;NAKAkoi2411explorer&quot;;  // 自己修改
-var remberPasswd = document.getElementById(&quot;username&quot;) ? 1 : 0;
-var url = &quot;./index.php?user/loginSubmit&amp;name=&quot; + encodeURIComponent(username) + &quot;&amp;check_code=&quot; + &quot;&amp;password=&quot; + encodeURIComponent(password) + &quot;&amp;rember_password=&quot; + remberPasswd;
-window.location.href = url;
-</code></pre>
-<h3 id="更新日志："><a href="#更新日志：" class="headerlink" title="更新日志："></a>更新日志：</h3><p>2015-12-31 使用 User Script 重写</p>
-<p>以下为原来的书签版本：</p>
-<p>压缩后可以放到书签栏里的版本（记得自己修改用户名，密码）：</p>
-<pre><code class="javascript">javascript:var u=&quot;&quot;,p=&quot;&quot;,rp=document.getElementById(&quot;username&quot;)?1:0,url=&quot;./index.php?user/loginSubmit&amp;name=&quot;+urlEncode(u)+&quot;&amp;check_code=&quot;+&quot;&amp;password=&quot;+urlEncode(p)+&quot;&amp;rember_password=&quot;+rp;window.location.href=url;
-</code></pre>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-12-06</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="one-key-fill-kodexplorer-login-form/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/8/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/8/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/">Next</a>
       </div>
     </nav>
   </div>

@@ -170,6 +170,54 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/build-shadowsocks-sharing-site-with-ss-panel/">可能是最好的 ss-panel 部署教程</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
+<div class="alert alert-warning"><p>注意，本教程 <strong>不是</strong> 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配置，最好可以看得懂一些代码。</p>
+</div>
+<h2 id="一、安装并配置-ss-panel"><a href="#一、安装并配置-ss-panel" class="headerlink" title="一、安装并配置 ss-panel"></a>一、安装并配置 ss-panel</h2><p>本教程打算先配置好前端，当然你想要先配置后端可以拉下去。</p>
+<h3 id="0x01-环境要求"><a href="#0x01-环境要求" class="headerlink" title="0x01 环境要求"></a>0x01 环境要求</h3><p>作为前端的 ss-panel 是使用 PHP 编写的网页应用程序，它对你的主机运行环境有一定的要求。</p>
+<ul>
+<li>PHP 5.6 或更高</li>
+<li>MySQL 5.5 或更高</li>
+<li>支持 URL 重写的 Web 服务器（Nginx / Apache 均可）</li>
+</ul>
+<p>本教程所使用的环境是 NGINX + PHP 7 + MariaDB 10。当然其他主流 LNMP/LAMP 架构都可以（个人推荐使用 <a href="https://oneinstack.com/" target="_blank" rel="noopener">OneinStack</a>），确保你的站点可以访问后就继续吧。</p>
+<p>什么？你不知道上面说的那些东西是什么？那你为什么不问问<a href="https://www.google.com/" target="_blank" rel="noopener">神奇海螺</a>呢？</p>
+<hr>
+<p><strong>注意</strong>，接下来的操作大部分都是在【目标服务器】的 shell 中进行的。继续阅读之前，你需要通过 SSH 等工具连接至你的服务器，它一般长这样：</p>
+<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png" alt="shell example"></p>
+<p>如果你不晓得这是什么，神奇海螺……以下略。</p>
+          <a class="more-link" href="/build-shadowsocks-sharing-site-with-ss-panel/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="build-shadowsocks-sharing-site-with-ss-panel/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>, <a class="tag-link" href="/tag/教程/">教程</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/long-live-shadowsocks/">Long live shadowsocks</a>
       </h2>
 
@@ -571,49 +619,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/about-shadowsocks-r/">关于 ShadowsocksR</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>以前一直不知道 有 shadowsocks-r 这个项目的存在，直到今天 @clowwindy 在 issue 里提到。去看了一下 SSR 的 GitHub 项目，大致可以算 shadowsocks 的加强版，在 ss-windows 的基础上添加了一些比较实用的功能。具体可以看 SSR 项目的 <a href="https://github.com/breakwa11/shadowsocks-rss/blob/master/readme.md" target="_blank" rel="noopener">README</a>。  </p>
-<p>但是，作者 fork 了以 GPL 协议开源的 shadowsocks-windows，进行修改并闭源发布，虽然作者承诺以后将会开源，但还是违反了 GPL 协议，昨天 clowwindy 发火了 <a href="https://github.com/shadowsocks/shadowsocks-windows/issues/293#issuecomment-132253168" target="_blank" rel="noopener">@GitHub issue</a> </p>
-<p>现在 SSR 作者已将其开源并宣布停止更新。</p>
-<hr>
-<p>窝对此不予置评，也许 SSR 作者的本意并不是想破坏开源的生态环境，而是不熟悉开源协议等问题。具体事情经过可以翻一下两个项目的 issue。</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-08-20</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="about-shadowsocks-r/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/14/">Next</a>
       </div>
     </nav>
   </div>

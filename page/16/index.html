@@ -170,6 +170,53 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/ubuntu-14-04-change-kernel-to-install-serverspeeder/">Ubuntu 14.04 更换内核以安装锐速</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>想安装锐速，然而窝的俩 VPS 内核都不被锐速支持，只好自己更改内核。DigitalOcean 可以直接在控制面板里更改内核，然而 ConoHa 的控制面板就没有那么强大了，要靠窝们自己手动修改内核 (´_ゝ)</p>
+<h3 id="1-查看当前系统内核"><a href="#1-查看当前系统内核" class="headerlink" title="1.查看当前系统内核"></a>1.查看当前系统内核</h3><p>一般 ssh 登录信息页就可以看到内核信息了，比如窝是：</p>
+<p><em>Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.16.0-36-generic i686)</em></p>
+<p>或者使用 <code>uname -r</code>  查看</p>
+<h3 id="2-安装新内核"><a href="#2-安装新内核" class="headerlink" title="2.安装新内核"></a>2.安装新内核</h3><p>锐速支持的内核可以在<a href="http://my.serverspeeder.com/ls.do?m=availables" target="_blank" rel="noopener">这里</a>查看，窝要安装的是 <em>3.13.0-24-generic</em></p>
+<pre><code>$ sudo apt-get install linux-image-extra-3.13.0-24-generic
+</code></pre><h3 id="3-卸载其他内核"><a href="#3-卸载其他内核" class="headerlink" title="3.卸载其他内核"></a>3.卸载其他内核</h3><p>查看系统现有内核 </p>
+<pre><code>$ dpkg -l|grep linux-image  
+</code></pre><p>卸载列出的其他内核：</p>
+<pre><code>$ sudo apt-get purge linux-image-3.16.0-36-generic linux-image-extra-3.16.0-36-generic
+</code></pre><h3 id="4-更新-grub-系统引导文件并重启"><a href="#4-更新-grub-系统引导文件并重启" class="headerlink" title="4.更新 grub 系统引导文件并重启"></a>4.更新 grub 系统引导文件并重启</h3><pre><code>$ sudo update-grub 
+$ sudo reboot
+</code></pre><p>不出意外的话重启后启用的就是新的内核了~</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-02_05-51-37.png" alt="kernel"></a></p>
+<p>安装锐速请看<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="noopener">这篇博文</a>~ (σﾟ∀ﾟ)σ</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-02</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="ubuntu-14-04-change-kernel-to-install-serverspeeder/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/锐速/">锐速</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/use-serverspeeder-to-speed-up-your-shadowsocks/">使用锐速对 TCP 连接提速加速 Shadowsocks</a>
       </h2>
 
@@ -584,61 +631,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/windows-10130-plus-cant-be-installed-on-g3258/">已证实 G3258 无法安装 Windows 10130+ （附暂时解决方法</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <h3 id="UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core"><a href="#UPDATE：已找到完美解决方法，请移步-https-prinzeugen-net-win10-rtm-enable-g3258-dual-core" class="headerlink" title="UPDATE：已找到完美解决方法，请移步 https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/"></a><strong>UPDATE：</strong>已找到完美解决方法，请移步 <a href="https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/" target="_blank" rel="noopener">https://prinzeugen.net/win10-rtm-enable-g3258-dual-core/</a></h3><hr>
-<p>昨天晚上窝就下载了OEM 泄露的 win10 RTM iso，因为 Windows Update 一直升级失败，挂着安装。。然后就出现了错误</p>
-<blockquote>
-<p>无法安装 Windows 10</p>
-<p>0xC1900101 – 0X20017</p>
-<p>在 BOOT 操作过程中的 SAFE_OS 阶段，安装失败，出现错误</p>
-</blockquote>
-<p>但是太晚了就懒得折腾也没觉得多大点事儿就睡觉了。今早起来再次安装依然 same error。</p>
-<p>窝当时心里挺慌，觉得大概是 iso 的问题，遂下载了 10240 的 iso（NOW ON 10130），然而还是同样的错误。尝试全新安装，USB Boot，HDD Boot 全都是 same error。看来自己是无法解决了，遂使用搜索引擎（已百度搜过但是没有有效解决方法。</p>
-<p>搜索了大概 30 min+（Google 关键词 <strong>BOOT SAFE_OS</strong>，百度 pass），看了所有相关的 Microsoft Community 的文章（鹰文），唯一有用的是发现不止窝一个，有很多人有同样的错误。里面的 MS 帮助人员也列出了一些解决措施，包括 set EDB (<a href="http://www.webopedia.com/TERM/E/Execute_Disable_Bit.html" target="_blank" rel="noopener">Execute Disable Bit</a>) to Enable 之类的，但是没什么卵用。</p>
-<p>继续 Google 和在 pcbeta 之类的论坛搜索，发现也有人发帖说 Install Windows 10166 on G3258 failed，窝一看就觉得大概是这个了，帖子描述的错误码和症状和窝一模一样而且窝也是 Intel G3258 on E85m motherboard。</p>
-<p>遂再次 Google 之，又看了一大堆 MS community 的文，最后锁定搜索关键词为 <strong>Windows 10 G3258</strong></p>
-<p>可以看到有很多出现此问题的人，描述的内容也都是 0xC1900101 – 0X20017 而且10130 及之前都是 no problem</p>
-<p>其中最有用的帖子大概是这个：<a href="https://social.technet.microsoft.com/Forums/en-US/15d85ab2-9fc5-4683-96d6-7770a40284d4/windows-10-new-builds-wont-boot?forum=WinPreview2014Setup" target="_blank" rel="noopener">Windows 10 – new builds won’t boot</a></p>
-<h3 id="所以目前唯一的解决办法就是在-BIOS-中将-CPU-核心数调为-1"><a href="#所以目前唯一的解决办法就是在-BIOS-中将-CPU-核心数调为-1" class="headerlink" title="所以目前唯一的解决办法就是在 BIOS 中将 CPU 核心数调为 1"></a>所以目前唯一的解决办法就是在 BIOS 中将 CPU 核心数调为 1</h3><p>但是将双核 U 调成单核这吃了屎一般的感觉。。只好等 MS 在 29th 的发布了，如果还没有解决的话窝估计要投奔 linux 的怀抱了</p>
-<p>目前没有在主用 PC 上装 elementray OS freya 就是怕双亲用不习惯。。想艹黑苹果但是 G3258 好像也会有奇怪的问题。。</p>
-<p>真是多灾多难呐， G3258。</p>
-          <a class="more-link" href="/windows-10130-plus-cant-be-installed-on-g3258/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-25</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="windows-10130-plus-cant-be-installed-on-g3258/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Windows/">Windows</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/15/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/15/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/17/">Next</a>
       </div>
     </nav>
   </div>

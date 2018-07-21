@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/droped-third-party-analysis-service/">已弃用第三方统计代码</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>原因同上次所说，不待见国内统计代码，Google Analytics 在大陆又不稳定。上次搞的 <a href="https://prinzeugen.net/build-a-reverse-proxy-of-google-analytics/" target="_blank" rel="noopener">GA 反代</a> 没卵用：</p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-30-53.png" alt="GA"></a></p>
+<p>现已弃用。一直在用 wordpress 的 slimstat 插件，还是挺不错的哦</p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-38-08.png" alt="1"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-12_09-34-01.png" alt="2"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-09-13</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="droped-third-party-analysis-service/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/kabedon-shi-tai-series-of-idol-master-cinderella/">偶像大师 灰姑娘女孩 的「壁ドンしたい」系列</a>
       </h2>
 
@@ -573,60 +610,12 @@ echo &quot;function hitokoto(){document.write(&#39;$chosen&#39;);}&quot;;
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/build-shadowsocks-sharing-site-with-ss-panel/">可能是最好的 ss-panel 部署教程</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天折腾了好久 ss-panel，期间遇到了一些奇奇怪怪的问题，但是网上都没有好的解决方法。网上那么多教程有些是写得笼统，有些还是瞎复制的。由此萌生了想要写一篇配置 ss-panel 和 ss-manyuser 的教程，希望能够帮到需要的人。</p>
-<div class="alert alert-warning"><p>注意，本教程 <strong>不是</strong> 图文并茂的面向小白的教程，窝希望你能够有足够的 Linux 操作经验再来看这篇教程。至少你需要熟悉 ssh 连接，熟悉 Web 环境的配置，最好可以看得懂一些代码。</p>
-</div>
-<h2 id="一、安装并配置-ss-panel"><a href="#一、安装并配置-ss-panel" class="headerlink" title="一、安装并配置 ss-panel"></a>一、安装并配置 ss-panel</h2><p>本教程打算先配置好前端，当然你想要先配置后端可以拉下去。</p>
-<h3 id="0x01-环境要求"><a href="#0x01-环境要求" class="headerlink" title="0x01 环境要求"></a>0x01 环境要求</h3><p>作为前端的 ss-panel 是使用 PHP 编写的网页应用程序，它对你的主机运行环境有一定的要求。</p>
-<ul>
-<li>PHP 5.6 或更高</li>
-<li>MySQL 5.5 或更高</li>
-<li>支持 URL 重写的 Web 服务器（Nginx / Apache 均可）</li>
-</ul>
-<p>本教程所使用的环境是 NGINX + PHP 7 + MariaDB 10。当然其他主流 LNMP/LAMP 架构都可以（个人推荐使用 <a href="https://oneinstack.com/" target="_blank" rel="noopener">OneinStack</a>），确保你的站点可以访问后就继续吧。</p>
-<p>什么？你不知道上面说的那些东西是什么？那你为什么不问问<a href="https://www.google.com/" target="_blank" rel="noopener">神奇海螺</a>呢？</p>
-<hr>
-<p><strong>注意</strong>，接下来的操作大部分都是在【目标服务器】的 shell 中进行的。继续阅读之前，你需要通过 SSH 等工具连接至你的服务器，它一般长这样：</p>
-<p><img src="https://img.blessing.studio/images/2017/02/18/QQ20170218173516.png" alt="shell example"></p>
-<p>如果你不晓得这是什么，神奇海螺……以下略。</p>
-          <a class="more-link" href="/build-shadowsocks-sharing-site-with-ss-panel/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-08-27</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="build-shadowsocks-sharing-site-with-ss-panel/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>, <a class="tag-link" href="/tag/教程/">教程</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/11/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/13/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/11/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/13/">Next</a>
       </div>
     </nav>
   </div>

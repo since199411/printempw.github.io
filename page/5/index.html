@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/use-laravel-redirector-to-redirect-to-any-url/">使用 Laravel 的 RedirectResponse 重定向至任意 URL</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>Laravel 允许我们在控制器中返回一个 <code>Illuminate\Http\RedirectResponse</code> 的实例来执行重定向。根据文档，我们可以通过 <code>redirect()</code> 帮助函数或者 <code>Redirect</code> Facade 来生成实例，并且可以方便得重定向至命名路由、控制器行为等。</p>
+<blockquote>
+<p>但如果我们想要重定向至自定义 URL 呢？</p>
+</blockquote>
+<p>对于这样的需求，Laravel 官方的文档是<strong>完全</strong>没有提及的（至少到目前 5.3 是这样），所以估计很多人都是自己实现了一个使用 <code>header()</code> 或者 <code>&lt;meta http-equiv=&#39;Refresh&#39; content=&#39;&#39;&gt;</code> 的重定向函数（包括以前的我）。</p>
+          <a class="more-link" href="/use-laravel-redirector-to-redirect-to-any-url/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-09-24</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="use-laravel-redirector-to-redirect-to-any-url/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/use-certbot-to-issue-lets-encrypt-certificates/">使用 Certbot 自动签发 Let's Encrypt 证书</a>
       </h2>
 
@@ -499,54 +536,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/generate-incremental-update-package-with-git/">使用 Git 生成增量更新包</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>上次有人叫我在 Blessing Skin 每次升级的时候带上一个增量更新包，只包含所有上一个版本后修改过的文件。</p>
-<p>我听到这个需求，最开始想到的是使用 <code>git diff --name-only</code>，加上这个参数后可以只显示 commit 之间修改过的文件名，然后就可以用管道通给 zip 之类的程序来压缩。</p>
-<p>去网上搜了搜，发现还有<a href="http://www.cnblogs.com/lhb25/p/10-useful-advanced-git-commands.html" target="_blank" rel="noopener">更简单的方法</a>：</p>
-<pre><code class="shell">$ git archive -o ../latest.zip NEW_COMMIT_ID $(git diff --name-only OLD_COMMIT_ID NEW_COMMIT_ID)
-</code></pre>
-<p>这是用了 <code>git archieve</code> 命令，本质上和我上面说的也差不离。</p>
-<p>如果你打了 tag，就可以写成这样：</p>
-<pre><code class="shell">$ git archive -o ../latest.zip HEAD $(git diff --name-only v3.0.1 HEAD)
-</code></pre>
-<p>是不是很方便呢 |∀` )</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-08-11</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="generate-incremental-update-package-with-git/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Git/">Git</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/6/">Next</a>
       </div>
     </nav>
   </div>

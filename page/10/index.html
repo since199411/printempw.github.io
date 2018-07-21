@@ -170,6 +170,74 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/one-key-fill-kodexplorer-login-form/">[User Script] 自动填写 KodExplorer 登录表单</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>应该挺多人知道 <a href="http://kalcaddle.com/index.html" target="_blank" rel="noopener">KodExplorer</a> 吧？一个用 PHP 编写的很棒的在线文件管理器。 因为是文件管理，拥有着 www 用户组的所有权限，自然是一定要用强口令的。然而 KodExplorer 登录页不是用 form 表单提交的，chrome 的自动保存也没用了，每次都输强口令也挺麻烦的，所以写了个脚本一键填写登录表单并提交，放入书签栏即可食用~ KodExplorer 的登录逻辑都在 <code>./static/js/app/src/user/main.js</code> 里，有用的一段在这里：</p>
+<pre><code class="javascript">var e = function() {
+    var e = $(&quot;#username&quot;).val(),
+    t = $(&quot;#password&quot;).val(),
+    a = $(&quot;input[name=rember_password]&quot;).attr(&quot;checked&quot;) ? 1 : 0,
+    i = &quot;./index.php?user/loginSubmit&amp;name=&quot; + urlEncode(e) + &quot;&amp;check_code=&quot; + $(&quot;input.check_code&quot;).val() + &quot;&amp;password=&quot; + urlEncode(t) + &quot;&amp;rember_password=&quot; + a;
+    window.location.href = i
+};
+$(&quot;#username&quot;).focus(),
+$(&quot;#submit&quot;).bind(&quot;click&quot;, e),
+$(&quot;#username,#password,input.check_code&quot;).keyEnter(e)
+</code></pre>
+<p>关键行已高亮标出（话说明文 POST 密码真的好吗。。），下面是脚本代码（Greasemonkey 用户脚本）：</p>
+<pre><code class="javascript">// ==UserScript==
+// @name         KodExplorer Auto Login
+// @namespace    https://prinzeugen.net/
+// @version      0.1
+// @description  自动登录 Kodexplorer
+// @author       printempw
+// @match        https://prinzeugen.net:12450/kodexplorer-14012/index.php?user/login
+// @grant        none
+// ==/UserScript==
+/* jshint -W097 */
+&#39;use strict&#39;;
+
+var username = &quot;root&quot;;
+var password = &quot;NAKAkoi2411explorer&quot;;  // 自己修改
+var remberPasswd = document.getElementById(&quot;username&quot;) ? 1 : 0;
+var url = &quot;./index.php?user/loginSubmit&amp;name=&quot; + encodeURIComponent(username) + &quot;&amp;check_code=&quot; + &quot;&amp;password=&quot; + encodeURIComponent(password) + &quot;&amp;rember_password=&quot; + remberPasswd;
+window.location.href = url;
+</code></pre>
+<h3 id="更新日志："><a href="#更新日志：" class="headerlink" title="更新日志："></a>更新日志：</h3><p>2015-12-31 使用 User Script 重写</p>
+<p>以下为原来的书签版本：</p>
+<p>压缩后可以放到书签栏里的版本（记得自己修改用户名，密码）：</p>
+<pre><code class="javascript">javascript:var u=&quot;&quot;,p=&quot;&quot;,rp=document.getElementById(&quot;username&quot;)?1:0,url=&quot;./index.php?user/loginSubmit&amp;name=&quot;+urlEncode(u)+&quot;&amp;check_code=&quot;+&quot;&amp;password=&quot;+urlEncode(p)+&quot;&amp;rember_password=&quot;+rp;window.location.href=url;
+</code></pre>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-12-06</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="one-key-fill-kodexplorer-login-form/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/customize-zsh-prompt/">自定义 Zsh 提示符</a>
       </h2>
 
@@ -560,49 +628,12 @@
 
     </article>
   
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/site-logo-changed/">换了站点 LOGO 辣</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p><img src="https://img.blessing.studio/images/2015/10/2015-10-03_14-22-59.png" alt="new_logo_colorful"></p>
-<p>依然是从路人女主得到的灵感<del datetime="2015-10-03T12:43:08+00:00">抄袭</del>。感谢颜老师给窝指了条笔刷的明路 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
-<p>彩色这张边缘有点锯齿是因为懒得再格栅化了，直接魔棒涂的后果。嘛，反正又不用这张（笑</p>
-<p><img src="https://img.prinzeugen.net/logo_scp_thin_large.png" alt=""></p>
-<p><img src="https://img.prinzeugen.net/new_logo.png" alt=""></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-10-04</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="site-logo-changed/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
 
   
   <div id="p-nav" class="clf">
     <nav class="navigation pagination" role="navigation">
       <div class="nav-links">
-          <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/">Next</a>
+          <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/11/">Next</a>
       </div>
     </nav>
   </div>
