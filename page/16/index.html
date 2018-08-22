@@ -170,6 +170,67 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/adjust-blog/">对博客进行了稍微的调教</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>主要变化有：<span style="color: #bdbdbd;"><del>（反正也没人看</del></span></p>
+<ol>
+<li><p>删除了以前的一些无意义转载文章</p>
+</li>
+<li><p>更改站点默认英文字体为 Georgia</p>
+</li>
+<li><p>字体颜色改为 #444</p>
+</li>
+<li><p>footer 文字改得更有逼格了</p>
+</li>
+<li><p>重新撰写了 <a href="https://prinzeugen.net/about/" target="_blank" rel="noopener">关于</a> 页面</p>
+</li>
+</ol>
+<hr>
+<p><strong>UPDATE:</strong> 例行维护完成，这次的变化：</p>
+<ol>
+<li><p>font-size 调大了 1px，现在是 15px</p>
+</li>
+<li><p>line-weight 调大，现在是 1.8</p>
+</li>
+<li><p>文字阴影调整为 text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.22);</p>
+</li>
+<li><p>改变了浏览器升级提醒的样式，不再支持 IE9 以前的版本</p>
+</li>
+<li><p>服务器清理冗余数据、配置微调等</p>
+</li>
+<li><p>增进了阅读体验（大概</p>
+</li>
+</ol>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-03</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="adjust-blog/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/ubuntu-14-04-change-kernel-to-install-serverspeeder/">Ubuntu 14.04 更换内核以安装锐速</a>
       </h2>
 
@@ -583,48 +644,6 @@ $ sudo reboot
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/nginx-rewrite/">使用 nginx rewrite 实现域名自动跳转</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>咱是全站 ssl 加密的，自然不能让访客以 http 协议明文访问。要实现 http 访问自动重定向至 https，可以使用 nginx 的 rewrite 语句。</p>
-<p>虽然咱是早就实现了，但是最近由于种种原因重新配置时又要再去搜索，遂写篇文章备忘。</p>
-<p><strong>http 跳转到 https：</strong></p>
-<p>rewrite ^(.*)$  https://$host$1 permanent;</p>
-<p><strong>带 www 域名跳转到根域名：</strong></p>
-<p>if ($host ~<em> <a href="http://www.prinzeugen.net" target="_blank" rel="noopener">www.prinzeugen.net</a>) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="noopener">https://prinzeugen.net/$1</a> permanent; }</p>
-<p>顺带一提如果需要这几句话的地方比较多，可以写个 conf 直接 include，举个栗子：</p>
-<p>在 rewrite.conf 中写上上面的语句，然后在 <strong>nginx.conf</strong> 中写一句：</p>
-<p>include /home/wwwroot/lnmp/rewrite.conf;</p>
-<p>就可以了。BTW，如果是 amh 面板用户，在 amhrewrite 模块中加入上面的语句就好了。</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-26</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="nginx-rewrite/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Nginx/">Nginx</a>
     
   </span>
 </div>

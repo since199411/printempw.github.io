@@ -170,6 +170,50 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/hackers-and-painters-reading-note/">《黑客与画家》读书笔记</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>利用零散时间读完了《黑客与画家：硅谷创业之父 Paul Graham 文集》这本书，收获颇多。不过说是读书笔记，其实只是把一些觉得好的段落记录一下而已。这里不得不吐槽一下 Kindle 自带的标注功能：</p>
+<ul>
+<li>所有标注内容都以纯文本形式存储在一个 <code>My Clippings.txt</code> 文件里；</li>
+<li>记录格式很神秘，得用特殊工具处理（<a href="http://www.clippings.io/" target="_blank" rel="noopener">Clippings</a>），比较蛋痛；</li>
+<li>只是个本地功能，不会自动同步到云端；</li>
+<li>无法在 Kindle 上舒爽地查看所有剪贴内容；</li>
+<li>就算你在书中把原标注删除了也还会留一份在 <code>My Clippings.txt</code> 文件里；</li>
+<li>最近 Kindle 固件升级，段落标注体验更屎了……</li>
+</ul>
+<p>不过阅读体验还是很不错的，所以原谅你。</p>
+<p><img src="https://img.blessing.studio/images/2017/04/29/20170429183338.png" alt="Amazon"></p>
+<p><em>▲中亚上 Kindle 书籍大多数都很便宜</em></p>
+          <a class="more-link" href="/hackers-and-painters-reading-note/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/essay/">随笔</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-04-29</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="hackers-and-painters-reading-note/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/读书笔记/">读书笔记</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/long-live-rss/">Long Live RSS：有感于微广场之死</a>
       </h2>
 
@@ -511,55 +555,6 @@ url(&#39;user/profile&#39;)
   <span class="pmt pms fa-clock-o">2016-12-17</span>
   <span class="pmt pms fa-eye">
     <span id="post-view" data="modify-root-url-and-schema-manually-in-generated-url-by-laravel-url-function/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/solution-for-artisan-call-migrate-not-working-when-app-env-is-production/">Artisan::call('migrate') 在 APP_ENV 为 production 时不工作的解决方法</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>最近把版本库里 <code>.env.example</code> 的 <code>APP_ENV</code> 字段值从原来的 <code>local</code> 改为了 <code>production</code>，原意是为了更好的区分开发和生产环境。</p>
-<p>然而今天在主机壳的虚拟主机上测试我的程序的时候（准备把演示站搬过去），却出现了奇怪的问题——数据库 Migration  不管用了。</p>
-<p>我是在控制器里通过调用 <code>Artisan::call(&#39;migrate&#39;)</code> 来执行数据库迁移操作的（毕竟虚拟主机哪来的 shell 访问），但是这次这条命令竟然没有执行任何事务。</p>
-<p>通过 <code>Artisan</code> 执行 <code>Command</code> 的简化流程大概是像这样的：</p>
-<pre><code>Illuminate\Foundation\Console\Kernel
-↓
-Illuminate\Console\Application
-↓
-Illuminate\Console\Command
-↓
-Illuminate\Container\Container
-↓
-// 这个就是执行 Artisan::call(&#39;migrate&#39;) 时调用的类
-Illuminate\Database\Console\Migrations\MigrateCommand
-↓
-……
-</code></pre><p>经过一段时间的排查，最后锁定了是在 <code>MigrateCommand</code> 这个类停止继续往下执行的，即接下来的脚本都没有被执行到，也就是说问题就出在 <code>MigrateCommand</code> 这里。</p>
-          <a class="more-link" href="/solution-for-artisan-call-migrate-not-working-when-app-env-is-production/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-12-13</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="solution-for-artisan-call-migrate-not-working-when-app-env-is-production/">Loading</span> Hits
   </span>
   <span class="pmt pms extra fa-tag">
     

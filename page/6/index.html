@@ -170,6 +170,41 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/have-been-ddos-and-cc-attacked/">喜闻乐见被 DDoS + CC 攻击</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今早起来准备修一个 Blessing Skin Server 的 BUG 的时候，打开演示站发现慢到没朋友，最起码要 60s+ 才会有响应。当时我也没多想，觉着大概是 DO 线路又抽风了，然后挂上代理访问演示站，但依然是无响应。这时候我开始觉得不对劲了，SSH 连上 VPS，top 一看，诶哟，90% 的 CPU 占用，清一色的 php-fpm 进程。</p>
+<p>当时我就有点方了，去 DO 的控制台看了下图表，CPU 从上午十点左右开始就一直是爆满状态。再去看了一下 <code>netstat</code>，有几个 <code>SYN_RECV</code> 和一大票 <code>ESTABLISHED</code>，我就觉得有可能是被 cc 了。</p>
+<p>随后去看了一下 Nginx 的访问日志，发现从早上开始就一直有人不断地 <code>HEAD /</code> 请求，排查了一下最后发现请求的是 <code>skin.prinzeugen.net</code> 这个域名，也就是 Blessing Skin Server 的演示站点。</p>
+          <a class="more-link" href="/have-been-ddos-and-cc-attacked/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-21</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="have-been-ddos-and-cc-attacked/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/运维/">运维</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/generate-incremental-update-package-with-git/">使用 Git 生成增量更新包</a>
       </h2>
 
@@ -489,41 +524,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/PHP/">PHP</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/big-fish-begonia/">「大鱼海棠」观后感</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天上午去看了《大鱼海棠》这部电影，颇有感触，在这里写点东西。毕竟只是观后感，并不是影评，所以也不会过多评价。</p>
-<p><img src="https://ooo.0o0.ooo/2016/07/20/5790145051c40.jpg" alt="movie post"></p>
-<p>这部电影我在初中的时候就看过它的预告片了，直到现在我高三了才上映，不愧是跳票之王（笑</p>
-          <a class="more-link" href="/big-fish-begonia/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-08</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="big-fish-begonia/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>
     
   </span>
 </div>

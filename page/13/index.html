@@ -170,6 +170,60 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/add-pagination-for-wordpress/">为 Wordpress 主题添加文章分页功能</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>这篇文章应该算是 定制 <em>Seventeen</em> 主题第二弹吧。第一弹 <a href="https://prinzeugen.net/remove-border-of-img-in-theme-seventeen/" target="_blank" rel="noopener">在这里</a>。</p>
+<p>最近经常写长文章，但是文章太长的话就难以选择标题的尺寸了，很为难。今天早上听群里人说 wordpress 自带文章分页功能，遂 Google 之，发现只需要在文章中插入 <span class="lang:default decode:true crayon-inline">&lt;!–nextpage–&gt;</span>  就可以实现分页了。</p>
+<p>但是，想要启用这个功能还需要在主题的 <em>single.php</em> 中的 <span class="lang:php decode:true crayon-inline">&lt;?php the_content(); ?&gt;</span>  后加入</p>
+<p>&lt;?php wp_link_pages(); ?&gt;</p>
+<p>才可以实现文章分页功能。</p>
+<p><strong>注意</strong>，有可能你主题的 <em>single.php</em> 中只包含了主循环体而没有明显的输出 content，这种情况还请随机应变。可以看看都没有 content，post 之类的字眼。</p>
+<p>但是如果只是这样的话，是完全没有定义样式的，简直是丑的可以 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a>。遂自定义其样式：</p>
+<p>注意，以下 CSS 仅适用于 <em>Seventeen</em> 主题，其他主题还请自行撰写样式。</p>
+<p>将上述的 <code>&lt;!–?php wp_link_pages(); ?–&gt;</code> 替换为：</p>
+<p>&lt;?php wp_link_pages(array(‘before’ =&gt; ‘<div class="pagenavi hentry">分页阅读：’, ‘after’ =&gt; ‘’, ‘next_or_number’ =&gt; ‘next’, ‘previouspagelink’ =&gt; ‘<span class="page-numbers page-previous"></span>‘, ‘nextpagelink’ =&gt; “”)); wp_link_pages(array(‘before’ =&gt; ‘’, ‘after’ =&gt; ‘’, ‘next_or_number’ =&gt; ‘number’, ‘link_before’ =&gt;’<span class="page-numbers">‘, ‘link_after’=&gt;’</span>‘)); wp_link_pages(array(‘before’ =&gt; ‘’, ‘after’ =&gt; ‘</div>‘, ‘next_or_number’ =&gt; ‘next’, ‘previouspagelink’ =&gt; ‘’, ‘nextpagelink’ =&gt; ‘<span class="page-numbers page-next"></span>‘)); ?&gt;</p>
+<p>然后随便在哪里插入如下 CSS 代码：</p>
+<p>.page-numbers { display: inline-block; line-height: 48px; padding: 0 14px; font-size: 17px; } .page-previous, .page-next { font-size: 17px; font-family: ‘FontAwesome’; height: 48px; line-height: 48px; position: relative; width: 48px; } .page-next::before { content: “\f105”; } .page-previous::before { content: “\f104”; } .pagenavi { text-align:center; padding:6px; } .pagenavi &gt; a { color: #A0A0A0; }</p>
+<p>这样就可以看在 Seventeen 主题上看到漂亮优雅的文章分页栏辣~</p>
+<p>顺带一提如果在 Seventeen 主题中还是像上面那样将 PHP 代码插入到 single.php 中的话，pagination 是会出现在 文章标签 之下的，很丑。</p>
+<p>这时候需要将上面的 PHP 代码添加至 <em>content.php</em> 的输出 tags 代码 <span class="lang:php decode:true crayon-inline ">&lt;?php the_tags(); ?&gt;</span>  的前面。<br> 最终效果请查看本文章底部：</p>
+<h2 id="这是第二页"><a href="#这是第二页" class="headerlink" title="这是第二页"></a>这是第二页</h2><p> 这是第三页哟  </p>
+<p> 这是第四页。。  </p>
+<p> 够了吧这么多页了诶  </p>
+<p> 再来一页好了 qwq  </p>
+<p> 这是最后一页了  </p>
+<p> 窝是认真的</p>
+<p>BOOM~</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="add-pagination-for-wordpress/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/build-shadowsocks-sharing-site-with-ss-panel/">可能是最好的 ss-panel 部署教程</a>
       </h2>
 
@@ -578,41 +632,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/disappearance-of-v2ex-shadowsocks-node/">V2EX shadowsocks 节点的消失</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今早突然发现进不去，不过似乎昨天就有迹象了，昨天晚上进不去一个别人回复的贴了，当时感觉很奇怪也没多想，现在一想那个贴就是 ss 节点下的。今早去看了 Chamber 节点，果然是被消失了。估计是为了 9.3 的审查吧。  </p>
-<p>为 shadowsocks 节点默哀。  </p>
-<p>FREEDOM UNDER THE CENSORSHIP.</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-08-21</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="disappearance-of-v2ex-shadowsocks-node/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>, <a class="tag-link" href="/tag/审查制度/">审查制度</a>
     
   </span>
 </div>

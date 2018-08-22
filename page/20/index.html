@@ -170,6 +170,48 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/android-develop-enviromnent/">Android 集成开发环境搭建</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>嘛，反正网上教程那么多，窝就随便写一些权当记录好了~</p>
+<hr>
+<h3 id="首先，你需要-JDK（Java-Development-Kit）7"><a href="#首先，你需要-JDK（Java-Development-Kit）7" class="headerlink" title="首先，你需要 JDK（Java Development Kit）7+"></a>首先，你需要 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">JDK</a>（Java Development Kit）7+</h3><p>然后一路 next，安装后要配置环境变量：</p>
+<p>计算机 -&gt; 属性 -&gt; 高级系统设置 -&gt; 高级 -&gt; 环境变量</p>
+<ul>
+<li>系统变量 -&gt; 新建 JAVA_HOME 变量 ，变量值填写jdk的安装目录<br>（窝是 <code>C:\Program Files\Java\jdk1.8.0_45</code>)</li>
+<li>系统变量 -&gt; 寻找 Path 变量→编辑，在变量值最后输入<br><code>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</code><br>（注意原来Path的变量值末尾有没有 <code>;</code> 号，如果没有，先输入 <code>;</code> 号再输入上面的代码）</li>
+<li>系统变量 -&gt; 新建 CLASSPATH 变量，变量值填写（注意最前面有一点）<br><code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar</code></li>
+</ul>
+<p>环境变量配置完毕~
+          <a class="more-link" href="/android-develop-enviromnent/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-06-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="android-develop-enviromnent/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Android/">Android</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/windows-change-cmd-font/">Windows 更改 cmd 字体</a>
       </h2>
 
@@ -486,64 +528,6 @@ remove_action(&#39;admin_init&#39;, &#39;_maybe_update_themes&#39;);
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/吐槽/">吐槽</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/hyakujyou-of-621sama/">621sama 的一百条</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <div class="alert alert-warning"><p><strong>立此存照</strong>。本条目原为博客的「关于」页面，现「关于」页面已经重写，故本条目废弃，不再更新（条目建立于 2015-03-28，最后一次更新于 2017-05-19）。</p>
-</div>
-<ol>
-<li><p>这个创意是从别人那抄来的</p>
-</li>
-<li><p>621 是窝贴吧 ID 前三个字</p>
-<ul>
-<li><del>叫我 621sama！</del> (´∀((☆ミつ</li>
-</ul>
-</li>
-<li><p>此用户认为中英文混输打空格是基本</p>
-<ul>
-<li>2016.10 推荐阅读<a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener">「中文文案排版指北」</a></li>
-<li>2017.5 推荐 Chrome 扩展<a href="http://" target="_blank" rel="noopener">「为什么你们就是不能加个空格呢？」</a></li>
-</ul>
-</li>
-<li><p>你们继续黑吧 ，窝是不会放弃 <strong>chrome 大法</strong> 的</p>
-</li>
-<li><p><em>printempw</em> 也是此用户的常用 ID</p>
-</li>
-<li><p>没错这个 <em>此用户</em> 也是从别的地方抄来的</p>
-<ul>
-<li>2016.10 说实话我都忘记哪抄来的了</li>
-</ul>
-</li>
-</ol>
-          <a class="more-link" href="/hyakujyou-of-621sama/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      未分类
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-03-28</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="hyakujyou-of-621sama/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      无标签
     
   </span>
 </div>

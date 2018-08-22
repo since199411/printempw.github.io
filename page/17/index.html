@@ -170,6 +170,48 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/nginx-rewrite/">使用 nginx rewrite 实现域名自动跳转</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>咱是全站 ssl 加密的，自然不能让访客以 http 协议明文访问。要实现 http 访问自动重定向至 https，可以使用 nginx 的 rewrite 语句。</p>
+<p>虽然咱是早就实现了，但是最近由于种种原因重新配置时又要再去搜索，遂写篇文章备忘。</p>
+<p><strong>http 跳转到 https：</strong></p>
+<p>rewrite ^(.*)$  https://$host$1 permanent;</p>
+<p><strong>带 www 域名跳转到根域名：</strong></p>
+<p>if ($host ~<em> <a href="http://www.prinzeugen.net" target="_blank" rel="noopener">www.prinzeugen.net</a>) { rewrite ^/(.</em>)$ <a href="https://prinzeugen.net/$1" target="_blank" rel="noopener">https://prinzeugen.net/$1</a> permanent; }</p>
+<p>顺带一提如果需要这几句话的地方比较多，可以写个 conf 直接 include，举个栗子：</p>
+<p>在 rewrite.conf 中写上上面的语句，然后在 <strong>nginx.conf</strong> 中写一句：</p>
+<p>include /home/wwwroot/lnmp/rewrite.conf;</p>
+<p>就可以了。BTW，如果是 amh 面板用户，在 amhrewrite 模块中加入上面的语句就好了。</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-26</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="nginx-rewrite/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Nginx/">Nginx</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/windows-10130-plus-cant-be-installed-on-g3258/">已证实 G3258 无法安装 Windows 10130+ （附暂时解决方法</a>
       </h2>
 
@@ -586,50 +628,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/WordPress/">WordPress</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/access-nginx-secondary-dir-needs-slash/">nginx 二级目录不加入 / 无法访问的解决方法</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天咱重新在 vps 上部署贴吧云签到的时候，发现：</p>
-<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
-<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
-<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
-<p>常见做法：在 rewrite 规则中加入</p>
-<pre><code class="nginx">if (-d $request_filename) { 
-    rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent; 
-}
-</code></pre>
-<p>更佳的替代方法：修改 ngnix.conf 中</p>
-<pre><code>optimize_server_names off; ＃优化服务器名称：关 
-server_name_in_redirect off; ＃服务器名称重定向：关
-</code></pre>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-17</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="access-nginx-secondary-dir-needs-slash/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Nginx/">Nginx</a>
     
   </span>
 </div>

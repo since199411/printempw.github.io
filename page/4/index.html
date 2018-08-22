@@ -170,6 +170,55 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/solution-for-artisan-call-migrate-not-working-when-app-env-is-production/">Artisan::call('migrate') 在 APP_ENV 为 production 时不工作的解决方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>最近把版本库里 <code>.env.example</code> 的 <code>APP_ENV</code> 字段值从原来的 <code>local</code> 改为了 <code>production</code>，原意是为了更好的区分开发和生产环境。</p>
+<p>然而今天在主机壳的虚拟主机上测试我的程序的时候（准备把演示站搬过去），却出现了奇怪的问题——数据库 Migration  不管用了。</p>
+<p>我是在控制器里通过调用 <code>Artisan::call(&#39;migrate&#39;)</code> 来执行数据库迁移操作的（毕竟虚拟主机哪来的 shell 访问），但是这次这条命令竟然没有执行任何事务。</p>
+<p>通过 <code>Artisan</code> 执行 <code>Command</code> 的简化流程大概是像这样的：</p>
+<pre><code>Illuminate\Foundation\Console\Kernel
+↓
+Illuminate\Console\Application
+↓
+Illuminate\Console\Command
+↓
+Illuminate\Container\Container
+↓
+// 这个就是执行 Artisan::call(&#39;migrate&#39;) 时调用的类
+Illuminate\Database\Console\Migrations\MigrateCommand
+↓
+……
+</code></pre><p>经过一段时间的排查，最后锁定了是在 <code>MigrateCommand</code> 这个类停止继续往下执行的，即接下来的脚本都没有被执行到，也就是说问题就出在 <code>MigrateCommand</code> 这里。</p>
+          <a class="more-link" href="/solution-for-artisan-call-migrate-not-working-when-app-env-is-production/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-12-13</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="solution-for-artisan-call-migrate-not-working-when-app-env-is-production/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/use-certbot-to-renew-lets-encrypt-certificates/">使用 Certbot 更新 Let's Encrypt 证书</a>
       </h2>
 
@@ -498,58 +547,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Minecraft/">Minecraft</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/browser-compatibility-of-string-prototype-endswith/">String.prototype.endsWith() 的浏览器兼容性问题</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p><code>String.prototype.endsWith()</code> 这个方法是 ECMA6 新加入的，而我当初随手 Google 了一下，也没怎么看就直接用上去了，直到我今天在一台破手机上测试的时候发现有个用到这个方法的值神秘地变成了 <code>undefined</code> ( ´_ゝ`)</p>
-<p>我记得上次好像也是这样随手搜索导致使用了不兼容的函数 ( -д-) <del>论面向搜索引擎编程的坏处</del></p>
-<p>不过我们还是可以通过扩展 <code>String</code> 的原型来实现在不支持的浏览器上使用这个方法：</p>
-<pre><code>/**
- * 代码来自 MDN
- * 
- * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
- */
-
-if (!String.prototype.endsWith) {
-  String.prototype.endsWith = function(searchString, position) {
-      var subjectString = this.toString();
-      if (typeof position !== &#39;number&#39; || !isFinite(position) || Math.floor(position) !== position || position &gt; subjectString.length) {
-        position = subjectString.length;
-      }
-      position -= searchString.length;
-      var lastIndex = subjectString.lastIndexOf(searchString, position);
-      return lastIndex !== -1 &amp;&amp; lastIndex === position;
-  };
-}
-</code></pre>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-09-26</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="browser-compatibility-of-string-prototype-endswith/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>

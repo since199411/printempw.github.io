@@ -170,6 +170,50 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/access-nginx-secondary-dir-needs-slash/">nginx 二级目录不加入 / 无法访问的解决方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天咱重新在 vps 上部署贴吧云签到的时候，发现：</p>
+<p><a href="https://prinzeugen.net/cloudsign" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign</a> 无法访问，直接跳转到根域名首页去了</p>
+<p>加入 <code>/</code> 即：<a href="https://prinzeugen.net/cloudsign/" target="_blank" rel="noopener">https://prinzeugen.net/cloudsign/</a> 就可以访问了</p>
+<p>但这样也太 tm 坑爹了吧 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> ，遂查找到解决方法如下：</p>
+<p>常见做法：在 rewrite 规则中加入</p>
+<pre><code class="nginx">if (-d $request_filename) { 
+    rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent; 
+}
+</code></pre>
+<p>更佳的替代方法：修改 ngnix.conf 中</p>
+<pre><code>optimize_server_names off; ＃优化服务器名称：关 
+server_name_in_redirect off; ＃服务器名称重定向：关
+</code></pre>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-17</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="access-nginx-secondary-dir-needs-slash/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Nginx/">Nginx</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/https-get/">姑且是艹上了 https 。。。</a>
       </h2>
 
@@ -541,52 +585,6 @@ Swap: 0 0 0
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/PayPal/">PayPal</a>, <a class="tag-link" href="/tag/VPS/">VPS</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/chrome-on-5-0-website-icon/">Chrome on 5.0+ 应用标题栏上的网站图标</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>Android 5.0+ 上的 chrome 开启合并标签页和应用后，最近应用列表中，标题栏上会显示一个图标：</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-07_15-19-03.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-07_15-19-03-576x1024.png" alt="Screenshot_2015-07-07-23-17-47"></a></p>
-<p>咱当时还以为是shortcut icon但是并不是 <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a></p>
-<p>看着V2EX呀github呀andy都有，就去看了一下他们的网站源码</p>
-<p>发现共同点是在shortcut icon的标签下都有一个叫apple-touch-icon的<link></p>
-<p>搜索了一下：</p>
-<blockquote>
-<p>在iPhone,iPad,iTouch的safari上可以使用添加到主屏按钮将网站添加到主屏幕上。<br> apple-touch-icon是IOS设备的私有标签，如果设置了相应apple-touch-icon标签，则添加到主屏上的图标会使用指定的图片。</p>
-</blockquote>
-<p>不过没找到关于chrome的，但是窝在head中加入如下link就可以显示chrome上的图标了~</p>
-<link rel="apple-touch-icon" href="/pics/purplesuit.jpg">
-
-
-
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-08</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="chrome-on-5-0-website-icon/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Android/">Android</a>, <a class="tag-link" href="/tag/Chrome/">Chrome</a>
     
   </span>
 </div>

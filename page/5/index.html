@@ -170,6 +170,58 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/browser-compatibility-of-string-prototype-endswith/">String.prototype.endsWith() 的浏览器兼容性问题</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p><code>String.prototype.endsWith()</code> 这个方法是 ECMA6 新加入的，而我当初随手 Google 了一下，也没怎么看就直接用上去了，直到我今天在一台破手机上测试的时候发现有个用到这个方法的值神秘地变成了 <code>undefined</code> ( ´_ゝ`)</p>
+<p>我记得上次好像也是这样随手搜索导致使用了不兼容的函数 ( -д-) <del>论面向搜索引擎编程的坏处</del></p>
+<p>不过我们还是可以通过扩展 <code>String</code> 的原型来实现在不支持的浏览器上使用这个方法：</p>
+<pre><code>/**
+ * 代码来自 MDN
+ * 
+ * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+ */
+
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(searchString, position) {
+      var subjectString = this.toString();
+      if (typeof position !== &#39;number&#39; || !isFinite(position) || Math.floor(position) !== position || position &gt; subjectString.length) {
+        position = subjectString.length;
+      }
+      position -= searchString.length;
+      var lastIndex = subjectString.lastIndexOf(searchString, position);
+      return lastIndex !== -1 &amp;&amp; lastIndex === position;
+  };
+}
+</code></pre>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-09-26</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="browser-compatibility-of-string-prototype-endswith/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/use-laravel-redirector-to-redirect-to-any-url/">使用 Laravel 的 RedirectResponse 重定向至任意 URL</a>
       </h2>
 
@@ -495,41 +547,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/have-been-ddos-and-cc-attacked/">喜闻乐见被 DDoS + CC 攻击</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今早起来准备修一个 Blessing Skin Server 的 BUG 的时候，打开演示站发现慢到没朋友，最起码要 60s+ 才会有响应。当时我也没多想，觉着大概是 DO 线路又抽风了，然后挂上代理访问演示站，但依然是无响应。这时候我开始觉得不对劲了，SSH 连上 VPS，top 一看，诶哟，90% 的 CPU 占用，清一色的 php-fpm 进程。</p>
-<p>当时我就有点方了，去 DO 的控制台看了下图表，CPU 从上午十点左右开始就一直是爆满状态。再去看了一下 <code>netstat</code>，有几个 <code>SYN_RECV</code> 和一大票 <code>ESTABLISHED</code>，我就觉得有可能是被 cc 了。</p>
-<p>随后去看了一下 Nginx 的访问日志，发现从早上开始就一直有人不断地 <code>HEAD /</code> 请求，排查了一下最后发现请求的是 <code>skin.prinzeugen.net</code> 这个域名，也就是 Blessing Skin Server 的演示站点。</p>
-          <a class="more-link" href="/have-been-ddos-and-cc-attacked/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-08-21</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="have-been-ddos-and-cc-attacked/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/运维/">运维</a>
     
   </span>
 </div>
