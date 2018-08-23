@@ -170,6 +170,45 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/do-you-like-me-mysqli-version/">使用 MySQLi 重写 Do you like me</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>这次升级 PHP7，一切顺利，到了恢复站点数据的时候，发现<a href="https://prinzeugen.net/do-you-like-me/" target="_blank" rel="noopener">上次搞的</a> “Do you like me?” 不工作了。看了日志发现是 <code>mysql_connect()</code> 这个函数的问题。</p>
+<p>看了下文档，原来在 PHP7 中全面移除了 <code>mysql_</code> 系列函数，转而使用 <code>mysqli</code> 或者 PDO。。fuck 劳资皮肤站里都是 mysql_ 系列函数啊啊</p>
+<p>上次偷懒用的 LWL12 写的，看来他也没想到这种情况呢。遂使用 mysqli 重写之。</p>
+<p>mysqli 改为以面向对象的方式操作数据库，而不是 <code>mysql_</code> 系列函数的面向过程，这点倒是挺好的。</p>
+<p>不知道为何原来 LWL12 写的版本单独使用了一个表来存投票数，可能是怕效率问题。不过 <code>SELECT COUNT(*)</code> 在没有指定 WHICH 的时候效率还是蛮高的，参见：<a href="https://www.zhihu.com/question/19641756" target="_blank" rel="noopener">知乎：mysql select count(*) 与 select count(id) 两个执行效率怎样？</a></p>
+<p>其实也没改多少，另外把建表的 SQL 也顺便封装在文件里了，托管在 <a href="https://gist.github.com/printempw/48920748b328bacead1b" target="_blank" rel="noopener">Gist</a> 上。</p>
+<script src="//work.prinzeugen.net/gist/48920748b328bacead1b.js"></script>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-01-23</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="do-you-like-me-mysqli-version/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/shoshin-wasuru-bekarazu/">不忘初心，方得始终</a>
       </h2>
 
@@ -539,57 +578,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-ssh-tunel-to-map-a-lan-minecraft-server-to-wan/">使用 SSH 隧道将内网 Minecraft 服务器映射至公网（NAT 穿透）</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>唔，似乎刷新了窝博客中最长标题记录呢 <img src="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" alt="表情"></p>
-<p>不过想不到其他又短又可以明确表述意思的标题了，话说这个应该叫映射吗，感觉有点不妥呢。。嘛，先这样吧。</p>
-<p>标题会不会把你绕晕了呢？少安毋躁，窝等会慢慢说。</p>
-<p>为什么要写这个呢？主要是为了记录一下配置 SSH 端口转发时的坑，也好让后来人少踩点坑。当时真的是走了不少弯路，折腾了好长时间（虽然一大部分时间都是因为叫别人操作的延迟 qwq）</p>
-<div class="alert alert-info"><p>注意，这篇文章可能会有一些你看不懂得词汇，窝会尽量都说明一下，但主要还是要靠你的学习能力（其实窝觉着能靠搜索引擎找到这篇文章的人学习能力都不会差吧~）</p>
-</div>
-<p>那么，文章正式开始吧~</p>
-<hr>
-<p>那么这个标题到底是什么意思呢？首先来了解一下如下概念吧：</p>
-<h3 id="内网-Minecraft-服务器"><a href="#内网-Minecraft-服务器" class="headerlink" title="内网 Minecraft 服务器"></a>内网 Minecraft 服务器</h3><p>所谓 内网 Minecraft 服务器，就是架设在内网机器上的 MC 服务器，这些机器的最大特点，那就是 <strong>不能从外网直接访问</strong>。</p>
-<p>不能直接访问的原因有很多，最大的原因就是 <strong>没有公网 IP，经过多级 NAT，没有修改 NAT 设备（例如路由器）配置的权限</strong> 之类。举个栗子，就像校园网，公司网络这样的。不同于普通家庭 PC 开服，校园网完全访问不到上级 NAT 设备，更不要提什么配置端口转发之类的了，所以很多人就这样放弃了开服，或者使用 花生壳，NAT123 之类的 “端口映射” 软件。</p>
-<p>那么这类软件的原理是什么呢？</p>
-<h3 id="花生壳端口映射的原理"><a href="#花生壳端口映射的原理" class="headerlink" title="花生壳端口映射的原理"></a>花生壳端口映射的原理</h3><p>用过所谓 花生壳 内网版 的都知道，开启了端口映射后，你就可以从花生壳那里拿到一个类似于 <code>diaoxiancheng.6655.la:24000</code> 这样的地址，访问这个地址就相当于直接访问内网机器上的端口了。</p>
-<p>噫，不是说不能端口映射吗？花生壳这啥黑科技？</p>
-<p>首先你要知道，所谓的路由器上设置端口映射，其实就是<strong>将外网访问 NAT 设备某个端口的请求，直接转发给规则中配置的 NAT 网络下的内网设备端口上</strong>。不知道说的是不是够严谨，总之差不多就是这个意思。实现方式有很多，譬如 OpenWRT 上使用的 iptables。</p>
-<p>而花生壳，就是把 <strong>NAT 设备将请求转发到内网机器上 </strong>这一过程及其反向，<strong>用花生壳的服务器</strong>来完成了。</p>
-<p>这样说说可能有些人还是一头雾水，窝画张图来解释下吧：（提到画图歪一下文，安利下 <a href="https://www.gliffy.com" target="_blank" rel="noopener">Gliffy</a>，贼好用）</p>
-<p><img src="https://img.blessing.studio/images/2015/12/2015-12-19_12-23-33.png" alt="NAT port forwarding"></p>
-<p>这是普通的路由器端口映射原理，下面是花生壳 “端口映射” 原理：</p>
-          <a class="more-link" href="/use-ssh-tunel-to-map-a-lan-minecraft-server-to-wan/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-12-20</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-ssh-tunel-to-map-a-lan-minecraft-server-to-wan/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Minecraft/">Minecraft</a>, <a class="tag-link" href="/tag/SSH/">SSH</a>, <a class="tag-link" href="/tag/网络技术/">网络技术</a>
     
   </span>
 </div>

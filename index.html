@@ -170,6 +170,46 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/migrate-to-github-pages/">博客迁移至 GitHub Pages</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>就在刚才，我把博客完全迁移到了 GitHub Pages 上。</p>
+<p>为啥呢？简单来说，就是我懒得维护服务器了。</p>
+<p>去年十月份，我为博客添加了 <a href="https://blessing.studio/deploy-hexo-blog-automatically-with-travis-ci/">Travis CI 自动构建流程</a>，发布新博文只需要把 Markdown 源码 push 至 GitHub 上的仓库，CI 会帮我自动完成后续的所有步骤，很适合我这种懒人。</p>
+<p>在我的 CI 脚本中，博客构建完毕后会把构建结果 <a href="https://github.com/printempw/printempw.github.io/blob/source/.travis/deploy.sh#L19" target="_blank" rel="noopener">同时推送</a> 至 GitHub Pages 和我自己的服务器。由于我之前一直是在自有服务器上部署的动态博客程序（WordPress、Ghost），一直用下来也没什么不妥，所以当时我也只是把 GitHub Pages 当成一个备胎，博客域名依然是解析到自有服务器上的。</p>
+<p>但是最近我想了想，把博客部署在自己的服务器上，有几点不好：</p>
+<p>首先是服务可用率。我是个穷屌，只有一台 DigitalOcean $5 的机器，既没有负载均衡，也没有冗余服务器。如果这台机器宕掉了，那博客就只能跟着下线，谁也访问不了。而且事实上我的服务器就有好几次莫名其妙出现过 Kernel Panic，收到监控报警后只能灰溜溜地去登录控制台重启服务器。</p>
+<p>另外就是，我想在这个世界上留下点什么东西。如果博客放在我自己的服务器上的话，假如我出了啥三长两短、服务器久了没人管理，那我的博客很有可能就烟消云散了，多难过啊。</p>
+<p>不过当然啦，要是那么在意这个的话，我就去用 Medium 这类写作平台，而不是自建独立博客了。我觉得 GitHub Pages 这类托管服务算是一个不错的平衡点，既保留了独立博客的风格，又不用特别去担心服务器的问题，自己只用操心内容就够了，挺不错的。</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-08-24</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="migrate-to-github-pages/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/the-difference-between-cli-terminal-shell-tty/">命令行界面 (CLI)、终端 (Terminal)、Shell、TTY，傻傻分不清楚？</a>
       </h2>
 
@@ -547,47 +587,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/前端/">前端</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/add-page-view-counter-for-hexo/">为 Hexo 博客添加页面访问计数器</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>一般来说，写博客的都喜欢在页面上加上一个访问计数器，来<del>满足虚荣心</del>显示某篇文章或者整个站点的访问量。这种需求在 WordPress 等动态博客上都是比较容易满足的，安装个插件即可（辣鸡 Ghost 除外），但是对于小部分静态博客来说就比较头疼了。</p>
-<p>目前来看，互联网上的静态博客访问计数器解决方案大致有这么几种：</p>
-<ul>
-<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>」访问计数服务；</li>
-<li>利用 LeanCloud 平台搭建统计服务。</li>
-</ul>
-<p>其中「不蒜子」是个自称「永久免费使用」的极简网页计数器，仅需两行代码即可为静态博客添加访问计数功能，这种简单的解决方案也受到很多静态博客作者的喜爱。但正如我之前在这篇文章（<a href="https://blessing.studio/add-page-view-counter-for-ghost-blog/">为 Ghost 博客添加页面访问计数器</a>）中所述，不蒜子虽然提供了 <code>site_pv</code>、<code>site_uv</code>、<code>page_pv</code> 等多种统计，但是其并不提供这些服务的开放 API。而我的需求是在「首页」或者其他文章列表页中的每篇文章都要显示各自的访问量，并且需要一个「最受欢迎的文章」功能（按访问量倒序排序）。很可惜不蒜子无法满足我的需求，只好将其 PASS。</p>
-<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="noopener">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
-<p>综上，我决定自己写一个网页访问量计数服务。</p>
-          <a class="more-link" href="/add-page-view-counter-for-hexo/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-06-25</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="add-page-view-counter-for-hexo/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/博客/">博客</a>
     
   </span>
 </div>

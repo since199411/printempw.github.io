@@ -170,6 +170,44 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/php-namespace-autoload-and-implementation/">PHP 命名空间自动加载与实现</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>Blessing Skin Server 也经过蛮长时间的开发了，但是类文件都只是简单的堆放在同一个文件夹中。虽然我知道有命名空间这玩意，但是总共就几个类，也不是很有必要。</p>
+<p>然而在上周加入了数据对接之后，<code>includes</code> 文件夹就开始爆满了：</p>
+<p><img src="https://img.prinzeugen.net/image.php?di=3G97" alt="includes dir"></p>
+<p>这尼玛还怎么忍？必须命名空间走起啊。</p>
+<p>然而我只是知道有这玩意，在框架里也用过，但是并不知道如何实现对其的自动加载。</p>
+<p>于是我去网上看了一些自动加载的实例，然后自己写了一个自动加载。说实话刚看到的时候还是有点迷的，所以在这里记录一下。由于我的项目是用类名与文件名相同的方式来组织存储的，所以就懒得管 PSR-4 啦（笑）。</p>
+          <a class="more-link" href="/php-namespace-autoload-and-implementation/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-03-18</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="php-namespace-autoload-and-implementation/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/how-to-connect-to-custom-mysql-port-for-eloquent-orm-connection/">Eloquent ORM Connection 无法自定义 MySQL 连接端口的解决办法</a>
       </h2>
 
@@ -570,45 +608,6 @@ $ cp connect /usr/local/bin
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/do-you-like-me-mysqli-version/">使用 MySQLi 重写 Do you like me</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>这次升级 PHP7，一切顺利，到了恢复站点数据的时候，发现<a href="https://prinzeugen.net/do-you-like-me/" target="_blank" rel="noopener">上次搞的</a> “Do you like me?” 不工作了。看了日志发现是 <code>mysql_connect()</code> 这个函数的问题。</p>
-<p>看了下文档，原来在 PHP7 中全面移除了 <code>mysql_</code> 系列函数，转而使用 <code>mysqli</code> 或者 PDO。。fuck 劳资皮肤站里都是 mysql_ 系列函数啊啊</p>
-<p>上次偷懒用的 LWL12 写的，看来他也没想到这种情况呢。遂使用 mysqli 重写之。</p>
-<p>mysqli 改为以面向对象的方式操作数据库，而不是 <code>mysql_</code> 系列函数的面向过程，这点倒是挺好的。</p>
-<p>不知道为何原来 LWL12 写的版本单独使用了一个表来存投票数，可能是怕效率问题。不过 <code>SELECT COUNT(*)</code> 在没有指定 WHICH 的时候效率还是蛮高的，参见：<a href="https://www.zhihu.com/question/19641756" target="_blank" rel="noopener">知乎：mysql select count(*) 与 select count(id) 两个执行效率怎样？</a></p>
-<p>其实也没改多少，另外把建表的 SQL 也顺便封装在文件里了，托管在 <a href="https://gist.github.com/printempw/48920748b328bacead1b" target="_blank" rel="noopener">Gist</a> 上。</p>
-<script src="//work.prinzeugen.net/gist/48920748b328bacead1b.js"></script>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-01-23</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="do-you-like-me-mysqli-version/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>

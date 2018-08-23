@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/add-extensions-for-blade-in-laravel/">为 Blade 模板引擎添加新文件扩展名</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>因为一些原因，我准备把 Blessing Skin 的框架换成 Laravel 了（之前是自己搭建的一个框架），但是在模板迁移的时候遇到了一点问题。</p>
+<p>之前我是使用的 <a href="https://github.com/XiaoLer/blade" target="_blank" rel="noopener">XiaoLer/blade</a> 这个从 Laravel 中抽离出来的 Blade 模板引擎，并且自定义为使用 <code>.tpl</code> 文件后缀。你问为啥不用默认的 <code>.blade.php</code> 而是用这个 Smarty 的模板扩展名？能有啥，好看呗 :-D</p>
+<p>不过之前我是直接调用 <code>FileViewFinder</code> 类的 <code>addExtension</code> 方法来添加扩展名的，但是在 Laravel 里就不能这样了。你总不能在 <code>Illuminate\View</code> 加几句话吧？</p>
+<p>去 Google 搜索了下，没发现有可以很方便使用的方法（当然是搜的鹰文，说不定是我姿势不对），就只好自己找了。</p>
+<p>首先先从 <code>View</code> Facade 入手，可以看到它是从服务容器中解析出了 <code>view</code> 这个绑定。继续往下找，打开 <code>Illuminate\View\ViewServiceProvider</code>，看看 View 的服务提供者到底是把啥给绑定到 <code>view</code> 上去了：</p>
+          <a class="more-link" href="/add-extensions-for-blade-in-laravel/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="add-extensions-for-blade-in-laravel/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/have-been-ddos-and-cc-attacked/">喜闻乐见被 DDoS + CC 攻击</a>
       </h2>
 
@@ -490,40 +527,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/implement-function-reloading-in-php/">PHP 实现函数重载（伪）</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>众所周知，PHP 作为一门弱类型的语言，是无法直接实现像 C++，Java 那样的函数重载的。然而在某些情况下，这就非常蛋疼了。不过我们可以用一些奇技淫巧来实现「伪函数重载」。</p>
-<h3 id="一、使用-func-get-args-函数"><a href="#一、使用-func-get-args-函数" class="headerlink" title="一、使用 func_get_args() 函数"></a>一、使用 <code>func_get_args()</code> 函数</h3><p><a href="http://php.net/manual/zh/function.func-get-args.php" target="_blank" rel="noopener"><code>func_get_args()</code></a> 函数可以获取函数参数列表的数组，我们就可以利用一下这个特性啦。</p>
-          <a class="more-link" href="/implement-function-reloading-in-php/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-12</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="implement-function-reloading-in-php/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>

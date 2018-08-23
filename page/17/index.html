@@ -170,6 +170,58 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/wordpress-comment-mail-notify/">开启 Wordpress 评论回复邮件通知</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>以前就注意到 wp 有这个功能了，可以在评论被回复时发邮件通知评论者，是个增强用户粘性的好方法。然而窝这犄角旮旯的能来几个人就不错了，哪有人闲得蛋疼来评论呢，所以咱也就没在意。</p>
+<p>然而就在昨天，窝的博客迎来了激动人心的历史上的跨越：</p>
+<h3 id="有窝不认识的人发表了评论！"><a href="#有窝不认识的人发表了评论！" class="headerlink" title="有窝不认识的人发表了评论！"></a>有窝不认识的人发表了评论！</h3><p>woc 窝当时心里真激动啊，这是评论者的一小步是人博客的一大步啊<a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>窝当时就抄起键盘准备回复，突然一想没有邮件通知玩个卵啊</p>
+<p>遂搜索了一大堆方法，其中也踩了不少坑，在这里记录一下。</p>
+<p>原生 wp 的邮件发送是使用 php 的 mail() 函数，这点在后台登陆页的忘记密码处可以得知。你可以在 <a href="http://www.yahei.net/" target="_blank" rel="noopener">探针</a> 里查看你的 mail() 函数是否启用。使用 mail() 函数的方法请自行搜索。</p>
+<p>首先去找一个启用 SMTP 的插件，这里推荐 Easy WP SMTP。配置不多说，请自行搞到能收到测试邮件。</p>
+<p>如果你的主题自带回复提醒的话现在就可以测试一下了 // <a href="#1">坑1</a></p>
+<p>对于没有这个功能主题，打开开主题的 function.php ，在合适位置加入如下代码：</p>
+<p>//评论回复邮件 function comment_mail_notify($comment_id) { $comment = get_comment($comment_id); $parent_id = $comment-&gt;comment_parent ? $comment-&gt;comment_parent : ‘’; $spam_confirmed = $comment-&gt;comment_approved; if (($parent_id != ‘’) &amp;&amp; ($spam_confirmed != ‘spam’)) { $wp_email = ‘reply@’ . preg_replace(‘#^www.#’, ‘’, strtolower($_SERVER[‘SERVER_NAME’])); //发件人邮件地址 $to = trim(get_comment($parent_id)-&gt;comment_author_email); $subject = ‘有人回复你在 ‘ . get_option(“blogname”) . ‘ 上的评论辣’; //酌情更改 $message = ‘<table style="width: 99.8%;height:99.8% "><tbody><tr><td style="background:#FAFAFA url(https://files.prinzeugen.net/Resources/pics/mail_background.png)"><div style="background-color:white;border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;width:500px;margin:50px auto;color:#555555;font-family:Century Gothic,Trebuchet MS,Hiragino Sans GB,微软雅黑,Microsoft Yahei,Tahoma,Helvetica,Arial,SimSun,sans-serif;font-size:12px;"> <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;"><span style="color: #12ADDB;font-weight: bold;">&gt; </span>您在<a style="text-decoration:none;color: #12ADDB;" href="' . get_option('home') . '"> ‘ . get_option(‘blogname’) . ‘ </a>博客上的留言有回复啦！</h2> <div style="padding:0 12px 0 12px;margin-top:18px"><p>‘ . trim(get_comment($parent_id)-&gt;comment_author) . ‘ ，您曾在文章《’ . get_the_title($comment-&gt;comment_post_ID) . ‘》上发表评论:</p> <p style="background-color: #f5f5f5;border: 0px solid #DDD;padding: 10px 15px;margin:18px 0">‘ . nl2br(get_comment($parent_id)-&gt;comment_content) . ‘</p> <p>‘ . trim($comment-&gt;comment_author) . ‘ 给您的回复如下:</p> <p style="background-color: #f5f5f5;border: 0px solid #DDD;padding: 10px 15px;margin:18px 0">‘ . nl2br($comment-&gt;comment_content) . ‘</p> <p>您可以点击 <a style="text-decoration:none; color:#12addb" href="' . htmlspecialchars(get_comment_link($parent_id)) . '">查看回复的完整內容 </a>。欢迎再次光临 <a style="text-decoration:none; color:#12addb" href="' . get_option('home') . '">‘ . get_option(‘blogname’) . ‘ </a>。</p> <p>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ</p> </div></div></td></tr></tbody></table>‘; $from = “From: \”” . get_option(‘blogname’) . “\” &lt;$wp_email&gt;”; $headers = “$from\nContent-Type: text/html; charset=” . get_option(‘blog_charset’) . “\n”; wp_mail( $to, $subject, $message, $headers ); //echo ‘mail to ‘, $to, ‘<br> ‘ , $subject, $message; // for testing } } add_action(‘comment_post’, ‘comment_mail_notify’); //窝还以为设置完 SMTP 后还要一些别的设置，没想到这里用了 wp 钩子就已经解决了（扶额</p>
+<p>代码的意思看看函数名变量名之类的就可以懂了吧~</p>
+<p>初次使用请将代码底部的 echo 反注释，方便调试</p>
+<p>成功后发送的邮件大概是这样的：</p>
+<p><table style="width: 99.8%; height: 99.8%;"><tbody><tr><td style="background: #FAFAFA url('https://files.prinzeugen.net/Resources/pics/mail_background.png');"><div style="background-color: white; border-top: 2px solid #12ADDB; box-shadow: 0 1px 3px #AAAAAA; line-height: 180%; padding: 0 15px 12px; width: 500px; margin: 50px auto; color: #555555; font-family: Century Gothic,Trebuchet MS,Hiragino Sans GB,微软雅黑,Microsoft Yahei,Tahoma,Helvetica,Arial,SimSun,sans-serif; font-size: 12px;"></div></td></tr></tbody></table></p>
+<h2 id="gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！"><a href="#gt-您在-ゝω·-☆-kira-博客上的留言有回复啦！" class="headerlink" title="&gt; 您在 (ゝω·)~☆ kira 博客上的留言有回复啦！"></a><span style="color: #12addb; font-weight: bold;">&gt; </span>您在<a href="https://prinzeugen.net" target="_blank" rel="noopener"> (ゝω·)~☆ kira </a>博客上的留言有回复啦！</h2><div style="padding: 0 12px 0 12px; margin-top: 18px;">printempw ，您曾在文章《关于》上发表评论:<br><br>TEST FOR MAIL<br><br>printempw 给您的回复如下:<br><br>FXCK U MAN<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-88" target="_blank" rel="noopener">查看回复的完整內容 </a>。欢迎再次光临 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira </a>。<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div>想要更改邮件样式请自行更改 <strong>$message</strong> 内的内容，窝也贴一段别的样式<br><br>$message = ‘<div style="border-right:#666666 1px solid;border-radius:8px;color:#111;font-size:12px;width:702px;border-bottom:#666666 1px solid;font-family:微软雅黑,arial;margin:10px auto 0px;border-top:#666666 1px solid;border-left:#666666 1px solid"><div class="adM"> </div><div style="width:100%;background:#666666;min-height:60px;color:white;border-radius:6px 6px 0 0"><span style="line-height:60px;min-height:60px;margin-left:30px;font-size:12px">您在 <a style="color:#00bbff;font-weight:600;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 上的留言有回复啦！</span> </div> <div style="margin:0px auto;width:90%"> <p>‘ . trim(get_comment($parent_id)-&gt;comment_author) . ‘, 您好!</p> <p>您于’ . trim(get_comment($parent_id)-&gt;comment_date) . ‘ 在文章《’ . get_the_title($comment-&gt;comment_post_ID) . ‘》上发表评论: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br(get_comment($parent_id)-&gt;comment_content) . ‘</p> <p>‘ . trim($comment-&gt;comment_author) . ‘ 于’ . trim($comment-&gt;comment_date) . ‘ 给您的回复如下: </p> <p style="border-bottom:#ddd 1px solid;border-left:#ddd 1px solid;padding-bottom:20px;background-color:#eee;margin:15px 0px;padding-left:20px;padding-right:20px;border-top:#ddd 1px solid;border-right:#ddd 1px solid;padding-top:20px">‘ . nl2br($comment-&gt;comment_content) . ‘</p> <p>您可以点击 <a style="color:#00bbff;text-decoration:none" href="' . htmlspecialchars(get_comment_link($parent_id)) . '" target="_blank">查看回复的完整內容</a></p> <p>感谢你对 <a style="color:#00bbff;text-decoration:none" href="' . get_option('home') . '" target="_blank">‘ . get_option(‘blogname’) . ‘</a> 的关注，欢迎再次光临~(｀･ω･)</p><p>（此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ）</p></div></div>‘;<br><br>这是预览：<br><br><div style="border-radius: 8px; color: #111; font-size: 12px; width: 702px; font-family: 微软雅黑,arial; margin: 10px auto 0px; border: #666666 1px solid;"><div style="width: 100%; background: #666666; min-height: 60px; color: white; border-radius: 6px 6px 0 0;"><span style="line-height: 60px; min-height: 60px; margin-left: 30px; font-size: 12px;">您在 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira</a> 上的留言有回复啦！</span></div><div style="margin: 0px auto; width: 90%;">H, 您好!<br><br>您于2015-07-26 14:29:42 在文章《关于》上发表评论:<br><br>AAA I WANT A MAIL<br><br>printempw 于2015-07-26 15:10:35 给您的回复如下:<br><br>蛤<br><br>您可以点击 <a href="https://prinzeugen.net/about/#comment-81" target="_blank" rel="noopener">查看回复的完整內容</a><br><br>感谢你对 <a href="https://prinzeugen.net" target="_blank" rel="noopener">(ゝω·)~☆ kira</a> 的关注，欢迎再次光临~(｀･ω･)<br><br>此邮件由系统自动发出，就算你回复了窝也不会回复你哟 ﾟ∀ﾟ)σ<br><br></div></div> 
+
+<p>//关于坑1</p>
+<p>应该是窝主题里的函数哪里出了问题害的窝 SMTP 不行 mail() 也不行折腾了一下午（扶额</p>
+<p>如果你明明 SMTP 可以发件但是收不到回复邮件的话，可以在这个函数顶上写个 wp_mail() （参数自己看）来调试</p>
+<p>上面的是在别处扒来的，不过这样的话那个评论复选框就没用了呢 <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a> 等有时间窝在把判断逻辑也写进去</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="wordpress-comment-mail-notify/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/nginx-rewrite/">使用 nginx rewrite 实现域名自动跳转</a>
       </h2>
 
@@ -590,44 +642,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/Shell/">Shell</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-v2ex-gravatar-cdn/">替换 Wordpress 的 Gravatar 为 v2ex 的 Gravatar CDN</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天咱逛 v2 时突然发现原来 v2 的 gravatar cdn 是可以公开调用的<a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
-<p>正巧咱艹上了 https ，v2 的 gravatar cdn 又是支持 ssl 的，就懒得自己搭了 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
-<p>只要在主题的 function.php 中的 php 结束标签之前加入如下代码即可：</p>
-<p>/<em>替换为v2ex的Gravatar CDN</em>/ function getV2exAvatar($avatar) { $avatar = str_replace(array(“<a href="http://www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)" target="_blank" rel="noopener">www.gravatar.com/avatar&quot;,&quot;0.gravatar.com/avatar&quot;,&quot;1.gravatar.com/avatar&quot;,&quot;2.gravatar.com/avatar&quot;),&quot;cdn.v2ex.com/gravatar&quot;,$avatar)</a>; return $avatar; } add_filter(‘get_avatar’, ‘getV2exAvatar’);</p>
-<p>如果尼的主题已经自带 gravatar 爬墙，但是都不支持 ssl （像窝一样 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
-<p>就在function.php中查找 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">$avatar</span> 关键字，随机应变替换即可</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-17</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-v2ex-gravatar-cdn/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/WordPress/">WordPress</a>
     
   </span>
 </div>

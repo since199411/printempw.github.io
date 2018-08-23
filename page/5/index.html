@@ -170,6 +170,41 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/awesome-minecraft-shader/">劳资也是开得起 Minecraft 光影的男人辣！</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>这次国庆去电脑城摸了块 GTX750（原先的 9800GT 实在是烂得不行了）和一块新硬盘回来，克隆完硬盘后就迫不及待地给 MC 打上了 <code>GLSL Shader Mod</code>。玩了一会后我的表情是这样的：<img src="https://img.blessing.studio/images/2017/06/10/c066215f622f0bf2fe7ee9625955e343.jpg" alt="表情1"></p>
+<p>不得不说上了光影之后的 MC <strong>根本不是一个游戏啊</strong>！</p>
+<p><img src="https://img.blessing.studio/images/2017/06/10/95e7cf170b0d4f5fbe87e97360faacb9.png" alt="Screenshot1"></p>
+          <a class="more-link" href="/awesome-minecraft-shader/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-10-02</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="awesome-minecraft-shader/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Minecraft/">Minecraft</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/browser-compatibility-of-string-prototype-endswith/">String.prototype.endsWith() 的浏览器兼容性问题</a>
       </h2>
 
@@ -510,43 +545,6 @@ if (!String.prototype.endsWith) {
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/add-extensions-for-blade-in-laravel/">为 Blade 模板引擎添加新文件扩展名</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>因为一些原因，我准备把 Blessing Skin 的框架换成 Laravel 了（之前是自己搭建的一个框架），但是在模板迁移的时候遇到了一点问题。</p>
-<p>之前我是使用的 <a href="https://github.com/XiaoLer/blade" target="_blank" rel="noopener">XiaoLer/blade</a> 这个从 Laravel 中抽离出来的 Blade 模板引擎，并且自定义为使用 <code>.tpl</code> 文件后缀。你问为啥不用默认的 <code>.blade.php</code> 而是用这个 Smarty 的模板扩展名？能有啥，好看呗 :-D</p>
-<p>不过之前我是直接调用 <code>FileViewFinder</code> 类的 <code>addExtension</code> 方法来添加扩展名的，但是在 Laravel 里就不能这样了。你总不能在 <code>Illuminate\View</code> 加几句话吧？</p>
-<p>去 Google 搜索了下，没发现有可以很方便使用的方法（当然是搜的鹰文，说不定是我姿势不对），就只好自己找了。</p>
-<p>首先先从 <code>View</code> Facade 入手，可以看到它是从服务容器中解析出了 <code>view</code> 这个绑定。继续往下找，打开 <code>Illuminate\View\ViewServiceProvider</code>，看看 View 的服务提供者到底是把啥给绑定到 <code>view</code> 上去了：</p>
-          <a class="more-link" href="/add-extensions-for-blade-in-laravel/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-08-27</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="add-extensions-for-blade-in-laravel/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>

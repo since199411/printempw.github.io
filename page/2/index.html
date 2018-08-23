@@ -170,6 +170,47 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/add-page-view-counter-for-hexo/">为 Hexo 博客添加页面访问计数器</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>一般来说，写博客的都喜欢在页面上加上一个访问计数器，来<del>满足虚荣心</del>显示某篇文章或者整个站点的访问量。这种需求在 WordPress 等动态博客上都是比较容易满足的，安装个插件即可（辣鸡 Ghost 除外），但是对于小部分静态博客来说就比较头疼了。</p>
+<p>目前来看，互联网上的静态博客访问计数器解决方案大致有这么几种：</p>
+<ul>
+<li>使用「<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>」访问计数服务；</li>
+<li>利用 LeanCloud 平台搭建统计服务。</li>
+</ul>
+<p>其中「不蒜子」是个自称「永久免费使用」的极简网页计数器，仅需两行代码即可为静态博客添加访问计数功能，这种简单的解决方案也受到很多静态博客作者的喜爱。但正如我之前在这篇文章（<a href="https://blessing.studio/add-page-view-counter-for-ghost-blog/">为 Ghost 博客添加页面访问计数器</a>）中所述，不蒜子虽然提供了 <code>site_pv</code>、<code>site_uv</code>、<code>page_pv</code> 等多种统计，但是其并不提供这些服务的开放 API。而我的需求是在「首页」或者其他文章列表页中的每篇文章都要显示各自的访问量，并且需要一个「最受欢迎的文章」功能（按访问量倒序排序）。很可惜不蒜子无法满足我的需求，只好将其 PASS。</p>
+<p>至于使用 LeanCloud 的方法（详情参见<a href="http://crescentmoon.info/2014/12/11/popular-widget/" target="_blank" rel="noopener">这篇博文</a>），其实是利用了这个平台所提供的「数据存储」后端功能，大部分逻辑都在前端完成，而 LeanCloud 只负责存储数据。但是，这个现成的访问计数程序也不支持输出「最受欢迎的文章」功能，只能自己实现。而且，既然我已经有了 VPS，那我为啥还要去弄个 LeanCloud 呢？</p>
+<p>综上，我决定自己写一个网页访问量计数服务。</p>
+          <a class="more-link" href="/add-page-view-counter-for-hexo/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-06-25</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="add-page-view-counter-for-hexo/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/twitter-account-has-been-locked/">Twitter 账号被锁定是种怎样的体验</a>
       </h2>
 
@@ -499,44 +540,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Shell/">Shell</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/about-xu-xiaodong/">谈谈徐晓东：又一位敢于说真话的人倒下了</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>前些天某 MMA（Mixed Martial Arts，综合格斗）狂人徐晓东 20 秒打倒雷公太极创始人「雷雷」的事在中国互联网上传得火热，在大家唇枪舌剑讨论传统武术时，徐晓东又爆出许多武林界造假行为，并对各大传统武术门派下了战书。</p>
-<p>如果只是击败了雷雷一人（这家伙曾被央视介绍为「十大民间武林高手」），那也倒是还好。其他譬如陈氏太极都跳出来声明其无法代表太极门派所以不作数，雷雷本人也表示自己在这场对决中<a href="http://qiwen.lu/33959.html" target="_blank" rel="noopener">没有用内力</a>，因为他担心打完之后进派出所（笑）。</p>
-<p>事情到这里，那些到处收徒的武林门派「大师」都是些什么货色大家都已经心知肚明：腐朽不堪的武林，师傅徒有虚名，弟子心照不宣，一个个江湖老炮心里盘算着金钱、名声。</p>
-<p>如果徐晓东就此收手，那大家表面上笑笑，也就过去了。毕竟在这个信息过剩的互联网时代，人们对某件事的关注总是会被快速地冲淡。</p>
-<p>但是徐晓冬这个揍了大师雷雷的莽汉，还在直播中口无遮拦，大肆爆料行业中的「潜规则」与造假行为。他喊话全武林，高举「武术打假」的大旗要挑战各门各派的「大师」。</p>
-<p>于是各位「大师」们慌了，生怕自己被看破金身。但是一介莽夫愣头青徐晓东，又怎能拗得过整个武林的老江湖呢？</p>
-          <a class="more-link" href="/about-xu-xiaodong/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-05-09</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="about-xu-xiaodong/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/政治/">政治</a>
     
   </span>
 </div>

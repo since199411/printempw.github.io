@@ -170,6 +170,40 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/implement-function-reloading-in-php/">PHP 实现函数重载（伪）</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>众所周知，PHP 作为一门弱类型的语言，是无法直接实现像 C++，Java 那样的函数重载的。然而在某些情况下，这就非常蛋疼了。不过我们可以用一些奇技淫巧来实现「伪函数重载」。</p>
+<h3 id="一、使用-func-get-args-函数"><a href="#一、使用-func-get-args-函数" class="headerlink" title="一、使用 func_get_args() 函数"></a>一、使用 <code>func_get_args()</code> 函数</h3><p><a href="http://php.net/manual/zh/function.func-get-args.php" target="_blank" rel="noopener"><code>func_get_args()</code></a> 函数可以获取函数参数列表的数组，我们就可以利用一下这个特性啦。</p>
+          <a class="more-link" href="/implement-function-reloading-in-php/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-07-12</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="implement-function-reloading-in-php/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/big-fish-begonia/">「大鱼海棠」观后感</a>
       </h2>
 
@@ -485,44 +519,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Android/">Android</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/php-namespace-autoload-and-implementation/">PHP 命名空间自动加载与实现</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>Blessing Skin Server 也经过蛮长时间的开发了，但是类文件都只是简单的堆放在同一个文件夹中。虽然我知道有命名空间这玩意，但是总共就几个类，也不是很有必要。</p>
-<p>然而在上周加入了数据对接之后，<code>includes</code> 文件夹就开始爆满了：</p>
-<p><img src="https://img.prinzeugen.net/image.php?di=3G97" alt="includes dir"></p>
-<p>这尼玛还怎么忍？必须命名空间走起啊。</p>
-<p>然而我只是知道有这玩意，在框架里也用过，但是并不知道如何实现对其的自动加载。</p>
-<p>于是我去网上看了一些自动加载的实例，然后自己写了一个自动加载。说实话刚看到的时候还是有点迷的，所以在这里记录一下。由于我的项目是用类名与文件名相同的方式来组织存储的，所以就懒得管 PSR-4 啦（笑）。</p>
-          <a class="more-link" href="/php-namespace-autoload-and-implementation/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-03-18</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="php-namespace-autoload-and-implementation/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>
