@@ -36,7 +36,7 @@
 <meta property="og:site_name" content="Blessing Studio">
 <meta property="og:description" content="诸君，好久不见。 为什么突然想写这样一篇文章呢？其实是因为在最近计划发布的一篇关于 WSL (Windows Subsystem for Linux) 的博文中，我打算对终端模拟器、Shell 的选择与配置进行一些说明。不过对于刚接触 Linux 或者刚接触命令行界面的同学，可能会有些难以理解它们之间的区别（事实上我当初也是这样）。 虽然这个话题已是老生常谈，搜索一下应该也能找到大把的相关文章。不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img.blessing.studio/images/2018/08/22/dele_cli.jpg">
+<meta property="og:image" content="https://img.blessing.studio/images/2018/08/24/the_matrix_screenshot.jpg">
 <meta property="og:image" content="https://img.blessing.studio/images/2018/08/22/ASR-33_2.jpg">
 <meta property="og:image" content="https://img.blessing.studio/images/2018/08/22/console_and_terminal.jpg">
 <meta property="og:image" content="https://img.blessing.studio/images/2018/08/22/DEC_VT100_terminal.jpg">
@@ -50,7 +50,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令行界面 (CLI)、终端 (Terminal)、Shell、TTY，傻傻分不清楚？">
 <meta name="twitter:description" content="诸君，好久不见。 为什么突然想写这样一篇文章呢？其实是因为在最近计划发布的一篇关于 WSL (Windows Subsystem for Linux) 的博文中，我打算对终端模拟器、Shell 的选择与配置进行一些说明。不过对于刚接触 Linux 或者刚接触命令行界面的同学，可能会有些难以理解它们之间的区别（事实上我当初也是这样）。 虽然这个话题已是老生常谈，搜索一下应该也能找到大把的相关文章。不">
-<meta name="twitter:image" content="https://img.blessing.studio/images/2018/08/22/dele_cli.jpg">
+<meta name="twitter:image" content="https://img.blessing.studio/images/2018/08/24/the_matrix_screenshot.jpg">
 <meta name="twitter:creator" content="@printempw">
 
 
@@ -212,8 +212,8 @@
 <p>—— 摘自 <a href="https://zh.wikipedia.org/wiki/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2" target="_blank" rel="noopener">Wikipedia</a></p>
 </blockquote>
 <p>相信大家对于影视作品中出现的那种，某黑客/程序员/安全专家坐在电脑前猛敲键盘、屏幕上放眼望去全是滚动的字符的场景不会感到陌生。这种靠一行行命令的输入输出进行交互的用户界面，就叫做命令行界面。</p>
-<p><img src="https://img.blessing.studio/images/2018/08/22/dele_cli.jpg" alt="dele_cli"></p>
-<p><em>▲ 日剧「人生删除事务所」剧照</em></p>
+<p><img src="https://img.blessing.studio/images/2018/08/24/the_matrix_screenshot.jpg" alt="the_matrix_screenshot"></p>
+<p><em>▲ 电影「黑客帝国」剧照</em></p>
 <p>在图形用户界面 (GUI) 已经完全普及的今天，普通用户在日常使用电脑的过程中几乎不用手动输入任何命令，大部分操作都是点点鼠标就能完成，而熟练使用命令行操作似乎已经成为高逼格的代名词。</p>
 <p>但事实上，现在依然有着很多的软件开发者、系统管理员，或者是高级用户在使用命令行界面操作计算机。其中很大一个原因，就是效率：在熟记命令的前提下，使用命令行界面往往要比使用图形用户界面来得快。</p>
 <p>举个栗子，我要把当前目录下的（包括嵌套的子目录）所有 <code>*.tpl</code> 文件的后缀名修改为 <code>*.blade.php</code>，如果不使用命令行，该怎么做？手动修改肯定不至于，但也得去网上找找相关软件，得要注意下载来源是否靠谱（像我这样有点洁癖的选手还得去找绿色版），下载后还要手动指定文件路径、重命名模板……</p>
