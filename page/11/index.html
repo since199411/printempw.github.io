@@ -170,6 +170,54 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/lets-encrypt-now-we-are-trusted/">Let's Encrypt: Now we are Trusted</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>从今天 Google Now 的推送得知 Let’s Encrypt 项目的根证书已经被信任，遂整理下时间轴，以示纪念。</p>
+<h3 id="11-28-2014"><a href="#11-28-2014" class="headerlink" title="11.28, 2014"></a>11.28, 2014</h3><p>Electronic Frontier Foundation, University of Michigan, Mozilla 启动了 Let’s Encrypt 项目，旨在为安全网站提供免费的 SSL/TLS 证书。</p>
+<h3 id="3-x-2015"><a href="#3-x-2015" class="headerlink" title="3.x, 2015"></a>3.x, 2015</h3><p>窝得知了这个伟大的项目，并开始关注</p>
+<h3 id="9-14-2015"><a href="#9-14-2015" class="headerlink" title="9.14, 2015"></a>9.14, 2015</h3><p>Let’s Encrypt 项目发行了第一个证书，并向 Mozilla、Google、Microsoft 和Apple 递交了root CA 申请。</p>
+<p>via(<a href="https://prinzeugen.net/lets-encrypt-project-published-the-first-ca/" target="_blank" rel="noopener">./lets-encrypt-project-published-the-first-ca/</a>)</p>
+<h3 id="10-19-2015"><a href="#10-19-2015" class="headerlink" title="10.19, 2015"></a>10.19, 2015</h3><p>Let’s Encrypt 项目已获得 IdenTrust 的 cross-signatures，其根证书已经可以被主流浏览器所信任，现在访问 <a href="https://helloworld.letsencrypt.org/" target="_blank" rel="noopener">https://helloworld.letsencrypt.org/</a> 已经不会再被提示该站点证书不受信任。( <a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="noopener">via</a> )</p>
+<hr>
+<p>或许有一天，Let’s Encrypt 项目真的可以实现</p>
+<blockquote>
+<p><em>Bringing secure connections to every corner of the Web.</em></p>
+</blockquote>
+<p>我盼望着那一天的到来。</p>
+<p>参考资料：</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Let%27s_Encrypt" target="_blank" rel="noopener">https://en.m.wikipedia.org/wiki/Let%27s_Encrypt</a></p>
+<p><a href="https://letsencrypt.org/2015/09/14/our-first-cert.html" target="_blank" rel="noopener">https://letsencrypt.org/2015/09/14/our-first-cert.html</a></p>
+<p><a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html" target="_blank" rel="noopener">https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html</a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/essay/">随笔</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-10-21</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="lets-encrypt-now-we-are-trusted/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/Let-s-Encrypt/">Let's Encrypt</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/some-bullshit/">除除草与将来的计划</a>
       </h2>
 
@@ -560,61 +608,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-arp-spoofing-to-forbid-accessing-internet-on-other-devices-under-the-same-lan/">使用 ARP 欺骗禁止同一局域网下的设备访问网络</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>几天前窝们宿舍拿中继蹭对面 WiFi 的事儿被几个大嘴巴说漏了，引来一堆人蹭网，于是速度就慢如狗爬了。。</p>
-<p>于是拿出中继的那只就给窝说，有个叫 WiFi 杀手 的 APP，可以让蹭网的不能上网。</p>
-<p>窝当时就震惊了，woc 还有这么的 dio 的东西，问了下原理，结果他也讲不出个所以然来，似乎还说啥 DNS 污染。这完全不对嘛，应该是假冒网关之类的吧。遂 Google 之：</p>
-<blockquote>
-<p>WiFi 杀手的工作原理使用了ARP 欺骗的原理，假冒 ARP 回复来欺骗同一 WiFi 网络上的其他设备，让它们以为你的 Android 手机是网关，然后 WiFiKill 丢掉它们的网络包。</p>
-</blockquote>
-<p>唔。。ARP 欺骗啊，窝记得几年前有看过这个的资料（在窝还在使用三六蛋的时候）。这里给出维基百科上关于 <a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">ARP</a> 和 <a href="https://zh.wikipedia.org/wiki/ARP%E6%AC%BA%E9%A8%99" target="_blank" rel="noopener">ARP 欺骗</a> 的页面。</p>
-<p>那么这个啥 WiFi 杀手到底是个啥黑科技呢？窝就来通俗的讲讲吧～</p>
-<p>ARP 协议是拿来干啥的呢？就是将一个网络层地址（譬如 IPv4 地址）转换为数据链路物理地址（MAC 地址）。</p>
-<p>那么估计你应该懂了吧？ARP 欺骗的原理就是伪造 ARP 回复报文。举个栗子（栗子中的 A，B 即为 IP，位置即为 MAC 地址：</p>
-<blockquote>
-<p>A 要和局域网中的 B 通信，于是在 LAN 中发了个广播：“我是 A，地址是 123，B，你丫在哪？”。如果是正常情况下，其他人看到广播会保持沉默，等到 B 收到广播后，他就会回应给 A：“A，我是 B，劳资地址是 234，找我干啥？” 于是可以进行通信。</p>
-</blockquote>
-<p>然而，在受到 ARP 欺骗的局域网中，情况就会是这样子。。</p>
-<blockquote>
-<p>A 要和 B 通信，发了个广播找 B 的 MAC 地址：“B，你在哪儿？”，然后就在 B 回应之前，同一局域网下恶意满满的主机 C 以迅雷不及掩耳盗铃之势抢答道：“窝是 B，MAC 地址是 450 哟～☆ ”。然而傻傻的 A 并不会验证 ARP 回复的真实性，就在地址簿上写上：“IP：B，MAC 地址：450” 供通信用，然后主机 A 尝试对 B 进行 IP 通信，就喜闻乐见地错误啦。</p>
-</blockquote>
-<p>ARP 欺骗大☆成★功～</p>
-<p>这就是 WiFi 杀手的原理，如果欺骗的是网关的 MAC 地址的话就会导致无法访问网络了。那么要如何防范呢？Android 平台上也有许多防御 ARP 欺骗的应用，有需要可以去找下。也可以手动清空 ARP 缓存表（在攻击者长时间跑着 ARP 欺骗程序的情况下没卵用</p>
-<p>顺带一提窝是不太提倡使用 WiFi 杀手这类应用呢。</p>
-<p>BTW，ARP 缓存表一般会在设备重启后清空哦～可以在手机终端中使用 <code>cat /proc/net/arp</code> 来查看你设备的 ARP 表</p>
-<p><a href="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-18_14-46-04.jpg" alt="image" title="wp-1442587367872"></a></p>
-<p>PS. 今天是窝博客第一次达到文章和评论数量相等哦～（虽然有一半评论是窝的 qwq</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-09-18</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-arp-spoofing-to-forbid-accessing-internet-on-other-devices-under-the-same-lan/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/网络技术/">网络技术</a>
     
   </span>
 </div>

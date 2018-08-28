@@ -170,6 +170,62 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/">替换 W3 Total Cache 在 Wordpress 后台侧边栏图标的方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>W3 Total Cache 是个很好的 WordPress 缓存插件，提供页面数据库等等的硬盘缓存和 memcached 缓存，比 WP Super Cache 不知道高到哪里去了（笑，然而这个极好的插件却。。</p>
+<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+<p>忍着不适将其配置好后马上开始着手替换这破图标。第一步自然是搜索引擎大法，遗憾的是都没有人写类似的文章。。难道用 W3TC 的强迫症只有窝这么一个吗。没办法了，自己动手，丰衣足食。</p>
+<p>想到的第一个办法是替换图标源文件。审查元素发现是在 <em>w3-total-cache/pub/img/w3tc-sprite.png</em>，</p>
+<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
+<p>把插件下载下来，shell 下执行 <span class="lang:sh decode:true crayon-inline">find .|xargs grep -ri “w3tc-sprite.png” -l</span>  /<em> <a href="#1">坑1</a> </em>/，定位到引用此图标的文件 <em>./lib/W3/Plugin/TotalCacheAdmin.php</em> ，再定位至</p>
+<p>#toplevel_page_w3tc_dashboard .wp-menu-image { background: url(&lt;?php echo plugins_url(‘w3-total-cache/pub/img/w3tc-sprite.png’)?&gt;) no-repeat 0 -32px !important; }</p>
+<p>还有一大段差不多的代码窝就不贴了，将其注释掉（聪明点，别一大块注释，不然会有奇怪的错误 </p>
+<p>这段代码是自定义当添加侧边栏菜单的函数</p>
+<p>add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );</p>
+<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="noopener">这里</a><span style="line-height: 1.5;">。</span></p>
+<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="noopener">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
+<p>具体使用方法就是在 $icon_url 参数位置填上 <span class="lang:default decode:true  crayon-inline ">‘dashicons-admin-generic’</span> //<a href="#2">坑2</a></p>
+<p>再次查找使用了 add_menu_page 函数的文件 <span class="lang:sh decode:true  crayon-inline ">find .|xargs grep -ri “add_menu_page” -l</span> ，可以看到是在 <em>./lib/W3/Menus.php</em> 里调用的，调用代码是这样的：</p>
+<p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’, ‘’, ‘div’);</p>
+<p>将其替换成这样：</p>
+<p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’,’’,’dashicons-admin-generic’, ‘div’);</p>
+<p>坑2注意，WP 官方给的函数中参数有 7 个，但是 W3TC 中只用了 6 个。咱当时将那个空引号替换后发现没生效还以为是窝哪里搞错了又到处寻找解决方法。。。（扶额 ，估计那个空引号是 $function 吧，窝具体也没深入了解</p>
+<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
+<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
+<p>关于坑一：</p>
+<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/wordpress-comment-mail-notify/">开启 Wordpress 评论回复邮件通知</a>
       </h2>
 
@@ -563,85 +619,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/MySQL/">MySQL</a>, <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/运维/">运维</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/linux-shell-frequently-used-command/">Linux shell 常用命令备忘</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>暑假以来好像天天都在搞 vps ，本来只用过 linux 图形界面的窝也可以比较熟练地使用 shell 了 （天天对着终端艹 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ，于是整理了一些 shell 常用命令如下：</p>
-<p><strong>ls  [OPTION]  [FILE]</strong>     显示目录内容</p>
-<p>-a            显示以 . 开头的文件（root 用户默认带此参数</p>
-<p>-l             列出文件具体信息</p>
-<p><strong>cp  [OPTION]  SOURCE  DIRECTORY</strong>     复制文件</p>
-<p>-f             强制</p>
-<p>-p            复制属性</p>
-<p>-i             文件存在时再次确认</p>
-<p>-r             递归复制</p>
-<p><strong>cd [dir]</strong>     进入目录</p>
-<p><strong>mv  [OPTION]  SOURCE  DIRECTORY</strong>    移动文件 / 重命名</p>
-<p>-f             强制</p>
-<p>-i             文件存在时再次确认</p>
-<p><strong>rm  [OPTION]  FILE</strong>    删除文件</p>
-<p>-f             强制</p>
-<p>-i             再次确认</p>
-<p>-r             递归删除</p>
-<p><strong><span class="crayon-i">pwd</span></strong>      查看当前目录路径</p>
-<p><strong>vim  [OPTION]  FILE</strong>      vim文本编辑器，只在此写出基本用法</p>
-<p>在命令模式（即进入 vim 默认的模式）中按 i 或者 Ins 键进入插入模式</p>
-<p>插入模式中可以自由编辑文件。按 Esc 退出插入模式。</p>
-<p>命令模式中输入  <span class="lang:default decode:true  crayon-inline ">:q!</span>  不保存强制退出；  <span class="lang:default decode:true  crayon-inline">:wq</span>  保存并退出；   <span class="lang:default decode:true  crayon-inline">:w</span>  保存 ；<span class="lang:default decode:true  crayon-inline">/word</span>  搜索 word，<span class="lang:default decode:true  crayon-inline ">n</span>  下一条符合的记录；</p>
-<p><strong>clear</strong>      清屏 / Ctrl + L</p>
-<p><strong>alias  [name]=[value]</strong>       指令别名</p>
-<p>e.g. $ alias cls=’clear’</p>
-<p>UPDATE：</p>
-<p><strong>wget  [OPTION]  [URL]</strong>   远程下载你懂的</p>
-<p> -c,  –continue         继续下载上次未下载完的文件</p>
-<p><strong>passwd  [LOGIN]</strong>    修改密码</p>
-<p><strong>tar  [OPTION]  [FILE]</strong>          tar解压</p>
-<p>-x, –extract, –get       extract files from an archive</p>
-<p>-v, –verbose              verbosely list files processed</p>
-<p>-f, –file=ARCHIVE         use archive file or device ARCHIVE</p>
-<p><strong>unzip [-opts]  file[.zip]  [-d exdir]</strong>          zip解压</p>
-<p>-o  覆盖已存在文件</p>
-<p>-d  指定解压缩到的目录</p>
-<p><strong>ps  [options] </strong>         查询进程状态</p>
-<p>-a                   all with tty, except session leaders</p>
-<p>-u, U, –user <uid>  effective user id or name</uid></p>
-<p> x                   processes without controlling ttys</p>
-<p>e.g. ps -aux | grep nginx        在所有进程中，查找nginx的进程</p>
-<p><strong>kill  [-n signum]  pid</strong>         根据进程号杀死进程</p>
-<p><strong>top</strong>        查看程序的cpu，内存使用情况</p>
-<p><strong>free -m</strong>      查看内存，swap使用情况</p>
-<p><strong>netstat -ntl</strong>      查看端口占用情况</p>
-<hr>
-<p>就先写这么点吧~ <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-18</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="linux-shell-frequently-used-command/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/Shell/">Shell</a>
     
   </span>
 </div>

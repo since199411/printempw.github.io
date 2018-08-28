@@ -170,6 +170,42 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/use-nginx-proxy-to-cache-dynamic-content/">使用 Nginx 反代并缓存动态内容</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>因为着实没想到一个皮肤站竟然会有这么大的并发（好吧其实也不大，QPS 大概 50 左右），所以我之前 开发/部署 Blessing Skin Server 的时候是完全没考虑到缓存优化的。直到后来出现了 <a href="https://prinzeugen.net/have-been-ddos-and-cc-attacked/" target="_blank" rel="noopener">神秘的高并发</a>（QPS 上 200）导致皮肤站宕机我才意识到缓存的重要性。</p>
+<p>我到现在也还是搞不懂那到底是正常流量还是 CC 攻击。。难道正常用户会每秒请求 20+ 次 Json Profile 吗？又不是天天退/进游戏玩 <img src="https://moepic.org/images/2016/10/02/c066215f622f0bf2fe7ee9625955e343.jpg" alt="emotion"></p>
+<p>虽然当时我就花了一点时间给 Json Profile 和皮肤预览之类的地方 <a href="https://prinzeugen.net/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/" target="_blank" rel="noopener">加上了缓存</a>，但是由于这些缓存方案都是在 Laravel 层之上的，所以框架的性能依旧是硬伤。试了下 <a href="https://github.com/StoneGroup/stone" target="_blank" rel="noopener">Stone</a><br>之类的优化措施也没什么卵效果，再加上我学业也忙了起来，这个问题就被搁置了。</p>
+<p>正好最近国庆放假（虽然只有四天），我就抽了点时间出来研究了一下如何给我的皮肤站套一层缓存 ( ・_ゝ・)</p>
+          <a class="more-link" href="/use-nginx-proxy-to-cache-dynamic-content/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-10-04</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="use-nginx-proxy-to-cache-dynamic-content/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Nginx/">Nginx</a>, <a class="tag-link" href="/tag/运维/">运维</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/awesome-minecraft-shader/">劳资也是开得起 Minecraft 光影的男人辣！</a>
       </h2>
 
@@ -508,43 +544,6 @@ if (!String.prototype.endsWith) {
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/分享/">分享</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/">同时使用 Laravel Elixir 和同名自定义 Gulp Task 时的坑</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天上午我把 Blessing Skin Server 的框架改为了 Laravel，到处修修改改一会后终于可以跑起来了。因为我之前也是使用的 Blade 模板引擎和与 Illuminate\Routing 语法类似的路由库，所以迁移过程还算是挺无痛的。</p>
-<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="noopener">Laravel Elixir</a>。</p>
-<p>改写原来 gulpfile.js 中的原生 Gulp Tasks 到 Laravel Elixir 的模式并不算麻烦，常用的 task 都有集成，并且通过链式调用的方式依次执行各个 Task。</p>
-<p>改写好后，直接运行 <code>$ gulp</code> 即可执行所有的 elixir tasks，并且执行完毕后还会有详细的表格报告和 Toast 通知，非常的方便。</p>
-<p>但是，不知道是我的姿势不对还是怎么回事，我没有找到能够把一个目录下所有的 css/js 文件压缩后复制到另一个目录的 elixir task，无奈之下只好写成原生的 Gulp Task，并且使用 elixir 的 <code>mix.task()</code> 方法来调用：</p>
-          <a class="more-link" href="/using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-08-28</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>

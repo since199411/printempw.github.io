@@ -170,6 +170,51 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/build-a-reverse-proxy-of-google-analytics/">撸了一个 Google Analytics 的反代</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <div class="alert alert-warning"><p>没什么用，可以不用看了，不要浪费你宝贵的生命。仅为记录这次折腾。</p>
+</div>
+<div class="alert alert-success"><p><strong>Upadte:</strong> 已找到 Google Analytics 的统计信息 POST <a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/reference" target="_blank" rel="noopener">协议</a>，等有时间会把统计搬到后端去，敬请期待。<del>咕咕咕</del></p>
+</div>
+<p><del>虽然 Google Analytics 已经没有被墙了，但是访问速度时好时坏，实在是不敢恭维：</del></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-31_01-15-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-31_01-15-27.png" alt="fucking speed"></a></p>
+<p><del>但是对于那些国内统计又无感，所以搭建了一个 GA 的 <a href="https://ga.prinzeugen.net/" target="_blank" rel="noopener">反代</a> 给自己用。</del></p>
+<p><del>在追踪代码里把域名替换一下就好了。所幸 GA 没有什么坑爹的验证机制。。</del></p>
+<p><del><a href="https://img.blessing.studio/images/2015/08/2015-08-31_01-22-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-31_01-22-15-1024x284.png" alt="GA"></a></del></p>
+<div class="alert alert-danger"><p><strong>但是！</strong> 使用反代的追踪代码会导致你失去访客的 IP 地址！虽然其他信息譬如语言，分辨率还是保留的。所以并没有什么琴梨用 (´∀((☆ミつ。<code>X-Real-IP $remote_addr</code> 之类的也没用，正在找解决方法。想要用就用吧。</p>
+</div>
+<p>下面的内容是给那些做反向代理但是想要替换首页的人准备的：</p>
+<p>记录一下窝踩的坑，希望能帮到其他人。</p>
+          <a class="more-link" href="/build-a-reverse-proxy-of-google-analytics/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-31</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="build-a-reverse-proxy-of-google-analytics/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/折腾/">折腾</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/translate-terrafirmacraft-wiki-guide/">开坑翻译 群峦传说 Wiki Guide</a>
       </h2>
 
@@ -562,72 +607,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>, <a class="tag-link" href="/tag/转载/">转载</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/set-up-ghost-blogging-platform-on-ubuntu-server/">在 Ubuntu 服务器上部署 Ghost 博客程序</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <div class="alert alert-danger"><p>本文已废弃。<br>排版的错误是由于 WordPress 转换至 Ghost 文章所致，懒得改了（笑</p>
-</div>
-<p>虽然说网上有很多部署 Ghost 的教程了，官方<a href="http://docs.ghost.org/zh/installation/" target="_blank" rel="noopener">中文文档</a>也已经很完善了。但看了大多数的教程，都感觉叙述了太多冗余内容，譬如说 安装并配置 nginx、apache、mysql 等，甚至有些还教了如何使用 ssh。窝这里希望写的是干净、优雅、易懂的教程，并标出容易踩坑的地方。</p>
-<h2 id="教程目录：（点击展开）"><a href="#教程目录：（点击展开）" class="headerlink" title="教程目录：（点击展开）"></a>教程目录：（点击展开）</h2><ul>
-<li><strong>一、安装所需环境</strong></li>
-<li>1.1 Node.js</li>
-<li>1.2 Nginx/Apache，Mysql</li>
-<li><strong>二、下载安装 Ghost</strong></li>
-<li>2.1 建立 Ghost 所使用的 mysql 数据库</li>
-<li>2.2 下载 Ghost 最新版本 v0.6.4</li>
-<li>2.3 安装 Ghost</li>
-<li><strong>三、配置 Ghost</strong></li>
-<li>3.1 使你的 Ghost 可以被外网访问</li>
-<li>3.2 使你的 Ghost 持久运行</li>
-<li>3.3 配置 nginx 使 ghost 可以使用域名访问</li>
-<li><strong>四、Ghost 优化</strong></li>
-</ul>
-<p>页内标签跳转等有空再做吧~</p>
-<hr>
-<p>本教程所使用的环境以及所需材料：</p>
-<ul>
-<li>Ubuntu 14.04 VPS 或其他</li>
-<li>一颗折腾的心</li>
-<li>熟练运用搜索引擎的技能</li>
-</ul>
-<h2 id="一、安装所需环境"><a href="#一、安装所需环境" class="headerlink" title="一、安装所需环境"></a>一、安装所需环境</h2><h3 id="1-1-Node-js"><a href="#1-1-Node-js" class="headerlink" title="1.1 Node.js"></a>1.1 Node.js</h3><p>Ghost 构建于 Node.js 平台之上，支持 0.10.* 版本（最新稳定版）的 Node.js。</p>
-<p><strong>什么是 Node.js ？</strong></p>
-<blockquote>
-<p>Node.js 是一个开放源代码、跨平台的、用于服务器端和网络应用的运行环境。Node.js 应用用 JavaScript 语言写成，在 Node.js 运行时运行。Node.js 主要用于编写像 Web 服务器一样的网络应用，提供事件驱动和非阻塞 I/O API，可优化应用程序的吞吐量和规模。 From <a href="https://zh.wikipedia.org/wiki/Node.js" target="_blank" rel="noopener">Wikipedia</a></p>
-</blockquote>
-<p>顺带一提 Node.js 的衍生版本 io.js 也可以，这里就不介绍了。</p>
-<p>直接使用软件包管理器安装 Node.js 即可</p>
-<p>$ sudo apt-get install node.js nodejs-legacy npm</p>
-<p>安装完成后可以使用 <span class="lang:default decode:true crayon-inline ">node -v</span>  和 <span class="lang:default decode:true crayon-inline ">npm -v</span>  查看版本信息 </p>
-          <a class="more-link" href="/set-up-ghost-blogging-platform-on-ubuntu-server/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-08-22</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="set-up-ghost-blogging-platform-on-ubuntu-server/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Ghost/">Ghost</a>, <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/博客/">博客</a>
     
   </span>
 </div>

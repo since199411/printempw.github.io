@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/how-could-i-use-es6-modules-in-production/">我 TMD 到底要怎样才能在生产环境中用上 ES6 模块化？</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>Python3 已经发布了九年了，Python 社区却还在用 Python 2.7；而 JavaScript 社区正好相反，大家都已经开始把还没有实现的语言特性用到生产环境中了 (´_ゝ `)</p>
+<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="noopener">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
+<h2 id="JavaScript-模块化现状"><a href="#JavaScript-模块化现状" class="headerlink" title="JavaScript 模块化现状"></a>JavaScript 模块化现状</h2><p>随着 JavaScript 越来越广泛的应用，朝着单页应用（SPA）方向发展的网页与代码量的愈发庞大，社区需要一种更好的代码组织形式，这就是模块化：将你的一大坨代码分装为多个不同的模块。</p>
+<p>但是在 ES6 标准出台之前，由于标准的缺失（连 CSS 都有 <code>@import</code>，JavaScript 却连个毛线都没），这几年里 JavaScript 社区里冒出了各种各样的模块化解决方案<del>（群魔乱舞）</del>，懵到一种极致。主要的几种模块化方案举例如下：</p>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>主要用于服务端，模块同步加载（也因此不适合在浏览器中运行，不过也有 <code>Browserify</code> 之类的转换工具），Node.js 的模块化实现就是基于 CommonJS 规范的，通常用法像这样：</p>
+          <a class="more-link" href="/how-could-i-use-es6-modules-in-production/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-07-06</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="how-could-i-use-es6-modules-in-production/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/前端/">前端</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/add-page-view-counter-for-hexo/">为 Hexo 博客添加页面访问计数器</a>
       </h2>
 
@@ -504,42 +541,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/耳机/">耳机</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/">使用 ffmpeg 拼接 bilibili 客户端所下载的分段 flv 视频</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。</p>
-<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>前些天我关注的某 <a href="http://space.bilibili.com/15810/#!/" target="_blank" rel="noopener">气人主播</a> 在 bilibili 上传了《盗贼之海》（<em>Sea of Thieves</em>）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P</p>
-<p><img src="https://img.blessing.studio/images/2017/05/13/20170513185210.png" alt="感谢这位pong友"></p>
-<p>然而这位pong友上传的是 bilibili 客户端的下载（缓存）格式，虽然放在手机的 <code>/Android/data/tv.danmaku.bili/download</code> 目录下就可以被客户端直接识别，但是想要在电脑上直接播放就没那么容易了。</p>
-          <a class="more-link" href="/use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-05-13</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-ffmpeg-to-concat-flv-videos-downloaded-by-bilibili-client/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Shell/">Shell</a>
     
   </span>
 </div>

@@ -170,6 +170,49 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/wpupdateblock/">关闭 WordPress 更新提示</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <h3 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h3><p><a href="https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/" target="_blank" rel="noopener">Easy Updates Manager</a></p>
+<h3 id="麻烦点的方法"><a href="#麻烦点的方法" class="headerlink" title="麻烦点的方法"></a>麻烦点的方法</h3><p>将下面的代码添加到主题目录下的 <code>functions.php</code> 中 <code>?&gt;</code> 之前的任意位置：</p>
+<pre><code class="php">add_filter(&#39;pre_site_transient_update_core&#39;, create_function(&#39;$a&#39;, “return null;”));
+add_filter(&#39;pre_site_transient_update_plugins&#39;, create_function(&#39;$a&#39;, “return null;”));
+add_filter(&#39;pre_site_transient_update_themes&#39;, create_function(&#39;$a&#39;, “return null;”));
+remove_action(&#39;admin_init&#39;, &#39;_maybe_update_core&#39;); remove_action(&#39;admin_init&#39;, &#39;_maybe_update_plugins&#39;);
+remove_action(&#39;admin_init&#39;, &#39;_maybe_update_themes&#39;);
+</code></pre>
+<p>以下代码添加至 <code>wp-config.php</code>：</p>
+<pre><code class="php">define( &#39;AUTOMATIC_UPDATER_DISABLED&#39;, true );
+</code></pre>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-05-01</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="wpupdateblock/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/分享/">分享</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/ie6/">学校机房的ie6..</a>
       </h2>
 

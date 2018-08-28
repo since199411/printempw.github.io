@@ -170,6 +170,72 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/set-up-ghost-blogging-platform-on-ubuntu-server/">在 Ubuntu 服务器上部署 Ghost 博客程序</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <div class="alert alert-danger"><p>本文已废弃。<br>排版的错误是由于 WordPress 转换至 Ghost 文章所致，懒得改了（笑</p>
+</div>
+<p>虽然说网上有很多部署 Ghost 的教程了，官方<a href="http://docs.ghost.org/zh/installation/" target="_blank" rel="noopener">中文文档</a>也已经很完善了。但看了大多数的教程，都感觉叙述了太多冗余内容，譬如说 安装并配置 nginx、apache、mysql 等，甚至有些还教了如何使用 ssh。窝这里希望写的是干净、优雅、易懂的教程，并标出容易踩坑的地方。</p>
+<h2 id="教程目录：（点击展开）"><a href="#教程目录：（点击展开）" class="headerlink" title="教程目录：（点击展开）"></a>教程目录：（点击展开）</h2><ul>
+<li><strong>一、安装所需环境</strong></li>
+<li>1.1 Node.js</li>
+<li>1.2 Nginx/Apache，Mysql</li>
+<li><strong>二、下载安装 Ghost</strong></li>
+<li>2.1 建立 Ghost 所使用的 mysql 数据库</li>
+<li>2.2 下载 Ghost 最新版本 v0.6.4</li>
+<li>2.3 安装 Ghost</li>
+<li><strong>三、配置 Ghost</strong></li>
+<li>3.1 使你的 Ghost 可以被外网访问</li>
+<li>3.2 使你的 Ghost 持久运行</li>
+<li>3.3 配置 nginx 使 ghost 可以使用域名访问</li>
+<li><strong>四、Ghost 优化</strong></li>
+</ul>
+<p>页内标签跳转等有空再做吧~</p>
+<hr>
+<p>本教程所使用的环境以及所需材料：</p>
+<ul>
+<li>Ubuntu 14.04 VPS 或其他</li>
+<li>一颗折腾的心</li>
+<li>熟练运用搜索引擎的技能</li>
+</ul>
+<h2 id="一、安装所需环境"><a href="#一、安装所需环境" class="headerlink" title="一、安装所需环境"></a>一、安装所需环境</h2><h3 id="1-1-Node-js"><a href="#1-1-Node-js" class="headerlink" title="1.1 Node.js"></a>1.1 Node.js</h3><p>Ghost 构建于 Node.js 平台之上，支持 0.10.* 版本（最新稳定版）的 Node.js。</p>
+<p><strong>什么是 Node.js ？</strong></p>
+<blockquote>
+<p>Node.js 是一个开放源代码、跨平台的、用于服务器端和网络应用的运行环境。Node.js 应用用 JavaScript 语言写成，在 Node.js 运行时运行。Node.js 主要用于编写像 Web 服务器一样的网络应用，提供事件驱动和非阻塞 I/O API，可优化应用程序的吞吐量和规模。 From <a href="https://zh.wikipedia.org/wiki/Node.js" target="_blank" rel="noopener">Wikipedia</a></p>
+</blockquote>
+<p>顺带一提 Node.js 的衍生版本 io.js 也可以，这里就不介绍了。</p>
+<p>直接使用软件包管理器安装 Node.js 即可</p>
+<p>$ sudo apt-get install node.js nodejs-legacy npm</p>
+<p>安装完成后可以使用 <span class="lang:default decode:true crayon-inline ">node -v</span>  和 <span class="lang:default decode:true crayon-inline ">npm -v</span>  查看版本信息 </p>
+          <a class="more-link" href="/set-up-ghost-blogging-platform-on-ubuntu-server/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-22</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="set-up-ghost-blogging-platform-on-ubuntu-server/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Ghost/">Ghost</a>, <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/pray-for-clowwindy/">@clowwindy 已经被抓去喝茶了</a>
       </h2>
 
@@ -570,49 +636,6 @@ If you would like to configure email alerts, you can change the value from actio
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/政治/">政治</a>, <a class="tag-link" href="/tag/转载/">转载</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/wanna-move-back-to-conoha/">打算搬回 ConoHa 了</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>关于站点搬迁的文章已经写了两篇了。。</p>
-<p><a href="https://prinzeugen.net/move-to-conoha-tokyo/" target="_blank" rel="noopener">DigitalOcean -&gt; ConoHa</a>， <a href="https://prinzeugen.net/move-back-to-digitalocean-nyc-3/" target="_blank" rel="noopener">ConoHa -&gt; DigitalOcean</a></p>
-<hr>
-<p>今天估计是 DigitalOcean 抽风了，到 NYC3 的延迟瞬间爆满，下午的时候一度出现过丢包率 75% 的情况，ssh 都连不上（现在的 ping 稳定在 300ms 左右）。窝受不了了就回去看了看上次被窝放置 play 的 conoha，ping 了一下竟然才 90ms+，当时窝就震惊了，难道是 conoha 的优化还是说那群流量矿石党走了？被 conoha 杀了也有可能（笑</p>
-<p>总之 conoha 到窝这得速度突然起飞了，http 下载可以飙到 2M/s+，全国 ping 数据也比 DO 好看多了。于是重装了 conoha VPS 的系统，<a href="https://prinzeugen.net/use-serverspeeder-to-speed-up-your-shadowsocks/" target="_blank" rel="noopener">安装了锐速</a>，scp 一下速度简直叼炸天  <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-37-11-1024x206.png" alt="scp"></a><br> 对比了一下 DO NYC3 的破数据，窝果断准备换啊，而且 conoha 配置比 DO 好，还比 DO 便宜，现在线路也没问题了，那为什么不换呢~ <a href="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_12-42-14.jpg" alt="em1"></a>  下面贴一下现在 DigitalOcean 和 ConoHa 各自的全国 ping </p>
-<p>DigitalOcean NYC3：</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-09-55.png" alt="main"></a></p>
-<p>ConoHa Tokyo：</p>
-<p><a href="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-12_13-11-40.png" alt="conoha"></a></p>
-<p>不过还是先观望一下，希望不要过几天 conoha 又抽风。现在先准备下，配置好 web 环境</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-08-13</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="wanna-move-back-to-conoha/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/博客/">博客</a>
     
   </span>
 </div>

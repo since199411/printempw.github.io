@@ -170,6 +170,46 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/add-notepad-plus-plus-to-context-menu/">添加 Notepad++ 至右键菜单的几种方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>作为一名即将开学的计算机系 <a href="https://blessing.studio/check-in-2018-07/">准大学生</a>，笔记本电脑总归是要有一台的。于是上星期我入手了 <a href="https://twitter.com/printempw/status/1030043615983104000" target="_blank" rel="noopener">小米游戏本顶配版</a>（i7-8750H + 16G + GTX 1066），最近正在重新折腾开发环境，这篇文章要解决的问题也是在此过程中出现的。</p>
+<p>至于为什么要买小米的本子，主要是因为它的「游戏本性能 + 商务本外观」这一点正戳中我好球区。不过这几天使用下来，只能说缺点确实不少，有购买意愿的朋友需谨慎。在 Twitter 上搜索 <code>小米游戏本 from:printempw</code> 就能看到我发的吐槽简评，如果之后有时间的话也打算专门写篇评测（咕咕咕）。</p>
+<p>回到正题。因为以前家里的电脑是全家共用的所以没什么，不过最近有了自己的电脑，我的软件洁癖就上来了：<strong>有<a href="https://zh.wikipedia.org/wiki/%E7%B6%A0%E8%89%B2%E8%BB%9F%E9%AB%94" target="_blank" rel="noopener">绿色版</a>（便携软件，Portable Application）的绝不用安装版，国产软件一律扔沙盒运行。</strong></p>
+<p>看起来有点偏执，不过我就属于那种想把自己设备中的一切纳入可控范围内的人。Windows 在这点上就很讨厌，尤其是注册表的设计，比类 Unix 系统难管理了不是一点半点。在手机上也是一样，不能解锁 bootloader 的 Android 机器我绝对不会购买，AppOps、Magisk、<a href="https://play.google.com/store/apps/details?id=moe.shizuku.redirectstorage" target="_blank" rel="noopener">存储重定向</a> 等工具更是必备。虽然我也没偏执到「每条指令运行都需要我的许可」那种程度，不过至少，我的设备必须听我的话，我说什么不能做那就是不能做，你他娘的不能给我自作主张（比如 Windows <a href="https://www.zhihu.com/question/271414438" target="_blank" rel="noopener">广受诟病的自动更新机制</a>、某些臭名昭著的国产软件扫描用户硬盘等）。为什么？<strong>因为是我在用电脑，不是电脑用我。</strong></p>
+<p>好了言归正传（没错，本博客就是有在进入正题之前瞎扯一通的习惯）。</p>
+<p><a href="https://notepad-plus-plus.org/" target="_blank" rel="noopener">Notepad++</a> 是一款我很喜欢的文本编辑器，除了写代码和写文章外的一般文本编辑工作我都是使用它完成的，配置新电脑时自然不能少了它。我下载的是 Portable 便携版，不过也正因如此，原本在 Installer 中通过选项可以添加的 <em>Edit with Notepad++</em> 右键菜单项也没有了（此操作需要写注册表）。</p>
+<p>因为这个右键菜单还蛮好用的，所以我打算把它找回来。</p>
+<p><img src="https://img.blessing.studio/images/2018/08/29/npp-context-menu-demo.png" alt="npp-context-menu-demo"></p>
+          <a class="more-link" href="/add-notepad-plus-plus-to-context-menu/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-08-29</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="add-notepad-plus-plus-to-context-menu/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Windows/">Windows</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/migrate-to-github-pages/">博客迁移至 GitHub Pages</a>
       </h2>
 
@@ -550,43 +590,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>, <a class="tag-link" href="/tag/Linux/">Linux</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/how-could-i-use-es6-modules-in-production/">我 TMD 到底要怎样才能在生产环境中用上 ES6 模块化？</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>Python3 已经发布了九年了，Python 社区却还在用 Python 2.7；而 JavaScript 社区正好相反，大家都已经开始把还没有实现的语言特性用到生产环境中了 (´_ゝ `)</p>
-<p>虽然这种奇妙情况的形成与 JavaScript 自身早期的设计缺陷以及浏览器平台的特殊性质都有关系，但也确实能够体现出 JavaScript 社区的技术栈迭代是有多么屌快。如果你昏迷个一年半载再去看前端圈，可能社区的主流技术栈已经变得它妈都不认识了（如果你没什么实感，可以看看<a href="https://zhuanlan.zhihu.com/p/22782487" target="_blank" rel="noopener">《在 2016 年学习 JavaScript 是一种怎样的体验》</a>这篇文章，你会感受到的，你会的）。</p>
-<h2 id="JavaScript-模块化现状"><a href="#JavaScript-模块化现状" class="headerlink" title="JavaScript 模块化现状"></a>JavaScript 模块化现状</h2><p>随着 JavaScript 越来越广泛的应用，朝着单页应用（SPA）方向发展的网页与代码量的愈发庞大，社区需要一种更好的代码组织形式，这就是模块化：将你的一大坨代码分装为多个不同的模块。</p>
-<p>但是在 ES6 标准出台之前，由于标准的缺失（连 CSS 都有 <code>@import</code>，JavaScript 却连个毛线都没），这几年里 JavaScript 社区里冒出了各种各样的模块化解决方案<del>（群魔乱舞）</del>，懵到一种极致。主要的几种模块化方案举例如下：</p>
-<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>主要用于服务端，模块同步加载（也因此不适合在浏览器中运行，不过也有 <code>Browserify</code> 之类的转换工具），Node.js 的模块化实现就是基于 CommonJS 规范的，通常用法像这样：</p>
-          <a class="more-link" href="/how-could-i-use-es6-modules-in-production/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-07-06</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="how-could-i-use-es6-modules-in-production/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/前端/">前端</a>
     
   </span>
 </div>

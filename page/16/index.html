@@ -170,6 +170,62 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/remove-folders-from-this-pc-windows-10-rtm/">去掉 Windows 10 RTM 此电脑中的六个文件夹</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>在 win10 早期版本相信大家都是用类似于<a href="http://bbs.pcbeta.com/viewthread-1393590-1-2.html" target="_blank" rel="noopener">这个帖子</a>中的方法去掉那几个文件夹的，</p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-04_03-17-24.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-04_03-17-24.png" alt="20150804110847"></a></p>
+<p>但是窝今天在 Win10 RTM 上再次使用此方法时发现此方法失效了</p>
+<hr>
+<p>按照原方法定位至 NameSpace 时，发现此注册表项下的子项变得比以前更多了 <img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-04_03-21-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-04_03-21-27.png" alt="20150804105233"></a> <em>原来是只有 6 项的，现在有 11 项 </em></p>
+<p>按照旧方法删除掉指定的六个文件夹后发现没什么卵用，只是去掉了一个“桌面”文件夹而已</p>
+<p><span class="collapseomatic " id="id2175" tabindex="" title="【点击展开查看图片】">【点击展开查看图片】</span><div class="collapseomatic_content " id="target-id2175"><a href="https://img.blessing.studio/images/2015/08/2015-08-04_03-21-54.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-04_03-21-54.png" alt="20150804105718"></a> <a href="https://img.blessing.studio/images/2015/08/2015-08-04_03-20-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-04_03-20-27.png" alt="20150804105726"></a> </div></p>
+<p> 然而将这些全部文件夹去掉以后就可以将文件夹全部删掉。但是窝要的是删除一部分文件夹啊！这尼玛地图炮用不得啊 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a></p>
+<p>于是自己一个一个试过去，然后也是摸索出了哪个项对应哪个文件夹的关系，但是完成后 Google 了以下，发现也已经有好多人找到了解决方法（并没有找到中文文章，中文搜索结果全是无关的东西）那窝就来做 Google 收录的第一篇中文解决方法吧~</p>
+<p>以下内容均翻译自<a href="http://bjtechnews.org/2015/07/29/removing-those-ignoring-folders-from-this-pc-in-windows-10/" target="_blank" rel="noopener">此文章</a>，有删改，窝自己的就不贴了 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a> </p>
+<p><strong>#注意：以下内容均表示在</strong></p>
+<p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\</p>
+<p><strong>中需要删除的项名称</strong></p>
+<hr>
+<p><em>#删除“桌面”文件夹</em><br> {B4BFCC3A-DB2C-424C-B029-7FE99A87C641}</p>
+<p>//“桌面”文件夹只有一个项，这就是上面问题的解释</p>
+<p><em>#删除“文档”文件夹</em><br> {A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}<br> {d3162b92-9365-467a-956b-92703aca08af}</p>
+<p><em>#删除“下载”文件夹</em><br> {374DE290-123F-4565-9164-39C4925E467B}<br> {088e3905-0323-4b02-9826-5d99428e115f}</p>
+<p><em>#删除“音乐”文件夹</em><br> {1CF1260C-4DD0-4ebb-811F-33C572699FDE}<br> {3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}</p>
+<p><em>#删除“图片”文件夹</em><br> {3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}<br> {24ad3ad4-a569-4530-98e1-ab02f9417aa8}</p>
+<p><em>#删除“视频”文件夹</em><br> {A0953C92-50DC-43bf-BE83-3742FED03C9C}<br> {f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}</p>
+<hr>
+<p>最后附上成果图~ <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a><br><a href="https://img.blessing.studio/images/2015/08/2015-08-04_03-48-07.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-04_03-48-07.png" alt="20150804114759"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/essay/">随笔</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-04</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="remove-folders-from-this-pc-windows-10-rtm/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Windows/">Windows</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/win10-rtm-enable-g3258-dual-core/">Win10 下完美启用 G3258 双核的方法</a>
       </h2>
 
@@ -585,62 +641,6 @@ $ sudo reboot
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Https/">Https</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/">替换 W3 Total Cache 在 Wordpress 后台侧边栏图标的方法</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>W3 Total Cache 是个很好的 WordPress 缓存插件，提供页面数据库等等的硬盘缓存和 memcached 缓存，比 WP Super Cache 不知道高到哪里去了（笑，然而这个极好的插件却。。</p>
-<h3 id="TMD-在侧边栏上的图标和其他的-没！对！齐！"><a href="#TMD-在侧边栏上的图标和其他的-没！对！齐！" class="headerlink" title="TMD 在侧边栏上的图标和其他的 没！对！齐！"></a>TMD 在侧边栏上的图标和其他的 没！对！齐！</h3><h3 id="还-TM-是彩！色！的！Fucking-Colorfuuuuul"><a href="#还-TM-是彩！色！的！Fucking-Colorfuuuuul" class="headerlink" title="还 TM 是彩！色！的！Fucking Colorfuuuuul !"></a>还 TM 是彩！色！的！Fucking Colorfuuuuul !</h3><p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_06-58-45.png" alt="W3"></a> 看看这破玩意儿，卧槽这尼玛果断不能忍啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
-<p>忍着不适将其配置好后马上开始着手替换这破图标。第一步自然是搜索引擎大法，遗憾的是都没有人写类似的文章。。难道用 W3TC 的强迫症只有窝这么一个吗。没办法了，自己动手，丰衣足食。</p>
-<p>想到的第一个办法是替换图标源文件。审查元素发现是在 <em>w3-total-cache/pub/img/w3tc-sprite.png</em>，</p>
-<p>包含了 mouseover 和 mouseout 的两种图标，还有个 <em>w3tc-sprite-retina.png</em> 适用于高分辨率。。<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 尼玛这搞个 dio 啊搞起来麻烦死了啊混蛋，还是用从代码下手吧</p>
-<p>把插件下载下来，shell 下执行 <span class="lang:sh decode:true crayon-inline">find .|xargs grep -ri “w3tc-sprite.png” -l</span>  /<em> <a href="#1">坑1</a> </em>/，定位到引用此图标的文件 <em>./lib/W3/Plugin/TotalCacheAdmin.php</em> ，再定位至</p>
-<p>#toplevel_page_w3tc_dashboard .wp-menu-image { background: url(&lt;?php echo plugins_url(‘w3-total-cache/pub/img/w3tc-sprite.png’)?&gt;) no-repeat 0 -32px !important; }</p>
-<p>还有一大段差不多的代码窝就不贴了，将其注释掉（聪明点，别一大块注释，不然会有奇怪的错误 </p>
-<p>这段代码是自定义当添加侧边栏菜单的函数</p>
-<p>add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );</p>
-<p><span style="line-height: 1.5;">没有指定 $icon_url 时的 CSS 。具体原文在</span><a href="http://codex.wordpress.org/Function_Reference/add_menu_page" target="_blank" rel="noopener">这里</a><span style="line-height: 1.5;">。</span></p>
-<p>注释掉保存后刷新页面可以看到侧边栏的骰子图标不见了。接下来就要自定义图标了。这里窝用的是 WordPress 中的图标字体，具体都有什么可以看<a href="https://developer.wordpress.org/resource/dashicons/#admin-generic" target="_blank" rel="noopener">这里</a>。窝用了 dashicons-admin-generic 的齿轮图标</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-19-01.png" alt="gear"></a></p>
-<p>具体使用方法就是在 $icon_url 参数位置填上 <span class="lang:default decode:true  crayon-inline ">‘dashicons-admin-generic’</span> //<a href="#2">坑2</a></p>
-<p>再次查找使用了 add_menu_page 函数的文件 <span class="lang:sh decode:true  crayon-inline ">find .|xargs grep -ri “add_menu_page” -l</span> ，可以看到是在 <em>./lib/W3/Menus.php</em> 里调用的，调用代码是这样的：</p>
-<p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’, ‘’, ‘div’);</p>
-<p>将其替换成这样：</p>
-<p>add_menu_page(<strong>(‘Performance’, ‘w3-total-cache’), </strong>(‘Performance’, ‘w3-total-cache’), ‘manage_options’, ‘w3tc_dashboard’,’’,’dashicons-admin-generic’, ‘div’);</p>
-<p>坑2注意，WP 官方给的函数中参数有 7 个，但是 W3TC 中只用了 6 个。咱当时将那个空引号替换后发现没生效还以为是窝哪里搞错了又到处寻找解决方法。。。（扶额 ，估计那个空引号是 $function 吧，窝具体也没深入了解</p>
-<p>总之将其这样替换后，图标问题是已经完美解决了 <a href="https://img.blessing.studio/images/2015/03/20150329080245.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/20150329080245.jpg" alt="20150329080245"></a></p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_07-31-16.png" alt="dekita"></a> 唯一的问题就是不知道为啥图标到最后去了。。</p>
-<p>难道是 css 定位出问题了。。嘛，能用就行了 <a href="https://img.blessing.studio/images/2015/03/i_f25.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></a> 总算了却窝心头一桩大事</p>
-<p>关于坑一：</p>
-<p>吗的窝本来不知道用 find 一个文件一个文件翻过去找的窝好苦啊 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-27</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
     
   </span>
 </div>

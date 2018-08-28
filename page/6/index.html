@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/">同时使用 Laravel Elixir 和同名自定义 Gulp Task 时的坑</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天上午我把 Blessing Skin Server 的框架改为了 Laravel，到处修修改改一会后终于可以跑起来了。因为我之前也是使用的 Blade 模板引擎和与 Illuminate\Routing 语法类似的路由库，所以迁移过程还算是挺无痛的。</p>
+<p>迁移稍微告一段落后，我就准备使用一下以前一直很想用的 Laravel 对常用 Gulp Task 的封装：<a href="https://www.laravel.com/docs/5.2/elixir" target="_blank" rel="noopener">Laravel Elixir</a>。</p>
+<p>改写原来 gulpfile.js 中的原生 Gulp Tasks 到 Laravel Elixir 的模式并不算麻烦，常用的 task 都有集成，并且通过链式调用的方式依次执行各个 Task。</p>
+<p>改写好后，直接运行 <code>$ gulp</code> 即可执行所有的 elixir tasks，并且执行完毕后还会有详细的表格报告和 Toast 通知，非常的方便。</p>
+<p>但是，不知道是我的姿势不对还是怎么回事，我没有找到能够把一个目录下所有的 css/js 文件压缩后复制到另一个目录的 elixir task，无奈之下只好写成原生的 Gulp Task，并且使用 elixir 的 <code>mix.task()</code> 方法来调用：</p>
+          <a class="more-link" href="/using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/add-extensions-for-blade-in-laravel/">为 Blade 模板引擎添加新文件扩展名</a>
       </h2>
 
@@ -492,41 +529,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/holy-new-game/">「NEW GAME!」真好看啊</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>说实话今年四月的百合番并不是让我很满意，不过还好有 7 月的「NEW GAME!」做萌豚饲料 |∀` )</p>
-<p><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=57681432" target="_blank" rel="noopener"><img src="https://ooo.0o0.ooo/2016/07/14/57872cadd4f50.jpg" alt="Pixiv ID 57681432"></a></p>
-<p>没有 NEW GAME 看我要死了<br><img src="https://ooo.0o0.ooo/2016/07/14/57872e05b37cf.jpg" alt=""></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-14</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="holy-new-game/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>
     
   </span>
 </div>

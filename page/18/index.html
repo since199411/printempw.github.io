@@ -170,6 +170,85 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/linux-shell-frequently-used-command/">Linux shell 常用命令备忘</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>暑假以来好像天天都在搞 vps ，本来只用过 linux 图形界面的窝也可以比较熟练地使用 shell 了 （天天对着终端艹 <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ，于是整理了一些 shell 常用命令如下：</p>
+<p><strong>ls  [OPTION]  [FILE]</strong>     显示目录内容</p>
+<p>-a            显示以 . 开头的文件（root 用户默认带此参数</p>
+<p>-l             列出文件具体信息</p>
+<p><strong>cp  [OPTION]  SOURCE  DIRECTORY</strong>     复制文件</p>
+<p>-f             强制</p>
+<p>-p            复制属性</p>
+<p>-i             文件存在时再次确认</p>
+<p>-r             递归复制</p>
+<p><strong>cd [dir]</strong>     进入目录</p>
+<p><strong>mv  [OPTION]  SOURCE  DIRECTORY</strong>    移动文件 / 重命名</p>
+<p>-f             强制</p>
+<p>-i             文件存在时再次确认</p>
+<p><strong>rm  [OPTION]  FILE</strong>    删除文件</p>
+<p>-f             强制</p>
+<p>-i             再次确认</p>
+<p>-r             递归删除</p>
+<p><strong><span class="crayon-i">pwd</span></strong>      查看当前目录路径</p>
+<p><strong>vim  [OPTION]  FILE</strong>      vim文本编辑器，只在此写出基本用法</p>
+<p>在命令模式（即进入 vim 默认的模式）中按 i 或者 Ins 键进入插入模式</p>
+<p>插入模式中可以自由编辑文件。按 Esc 退出插入模式。</p>
+<p>命令模式中输入  <span class="lang:default decode:true  crayon-inline ">:q!</span>  不保存强制退出；  <span class="lang:default decode:true  crayon-inline">:wq</span>  保存并退出；   <span class="lang:default decode:true  crayon-inline">:w</span>  保存 ；<span class="lang:default decode:true  crayon-inline">/word</span>  搜索 word，<span class="lang:default decode:true  crayon-inline ">n</span>  下一条符合的记录；</p>
+<p><strong>clear</strong>      清屏 / Ctrl + L</p>
+<p><strong>alias  [name]=[value]</strong>       指令别名</p>
+<p>e.g. $ alias cls=’clear’</p>
+<p>UPDATE：</p>
+<p><strong>wget  [OPTION]  [URL]</strong>   远程下载你懂的</p>
+<p> -c,  –continue         继续下载上次未下载完的文件</p>
+<p><strong>passwd  [LOGIN]</strong>    修改密码</p>
+<p><strong>tar  [OPTION]  [FILE]</strong>          tar解压</p>
+<p>-x, –extract, –get       extract files from an archive</p>
+<p>-v, –verbose              verbosely list files processed</p>
+<p>-f, –file=ARCHIVE         use archive file or device ARCHIVE</p>
+<p><strong>unzip [-opts]  file[.zip]  [-d exdir]</strong>          zip解压</p>
+<p>-o  覆盖已存在文件</p>
+<p>-d  指定解压缩到的目录</p>
+<p><strong>ps  [options] </strong>         查询进程状态</p>
+<p>-a                   all with tty, except session leaders</p>
+<p>-u, U, –user <uid>  effective user id or name</uid></p>
+<p> x                   processes without controlling ttys</p>
+<p>e.g. ps -aux | grep nginx        在所有进程中，查找nginx的进程</p>
+<p><strong>kill  [-n signum]  pid</strong>         根据进程号杀死进程</p>
+<p><strong>top</strong>        查看程序的cpu，内存使用情况</p>
+<p><strong>free -m</strong>      查看内存，swap使用情况</p>
+<p><strong>netstat -ntl</strong>      查看端口占用情况</p>
+<hr>
+<p>就先写这么点吧~ <a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-34-38.jpg" alt="QQ图片20150621133428"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-18</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="linux-shell-frequently-used-command/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/Shell/">Shell</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/use-v2ex-gravatar-cdn/">替换 Wordpress 的 Gravatar 为 v2ex 的 Gravatar CDN</a>
       </h2>
 
@@ -547,41 +626,6 @@ Swap: 0 0 0
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/vps-get/">蛤蛤蛤咱有VPS辣</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p><a href="https://img.blessing.studio/images/2015/07/2015-07-08_10-33-42.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-08_10-33-42.png" alt="ubuntu vps"></a><br><a href="https://img.blessing.studio/images/2015/07/2015-07-08_08-54-05.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-08_08-54-05-1024x374.png" alt="20150708165332"></a><br> 明天就把博客搬到vps上去~ <a href="https://img.blessing.studio/images/2015/06/2015-06-04_23-31-30.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-04_23-31-30.jpg" alt="QQ图片20150605073119"></a></p>
-<p>如果忘记使用邀请码链接注册没拿到10刀的话，可以在settings里填写<a href="http://blog.getspool.com/236/digitalocean-coupons-free-credit-promo-codes/" target="_blank" rel="noopener">promo code</a>拿到10刀</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-08_11-04-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-08_11-04-53.png" alt="promo code"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-09</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="vps-get/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/VPS/">VPS</a>
     
   </span>
 </div>
