@@ -170,6 +170,54 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/amh-5-1-mysql-start-error-after-reboot/">VPS 软重启后 amh 5.1 mysql 启动错误的解决方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天咱在 ssh 中执行 reboot 后，发现 wordpress、amh 都连不上 mysql 数据库</p>
+<p><span class="lang:default decode:true  crayon-inline ">amh mysql status</span>  查看发现 mysql 没有在运行，遂 <span class="lang:default decode:true  crayon-inline ">amh mysql start</span>  启动 mysql</p>
+<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
+<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="noopener"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
+<ol>
+<li><strong>df -h</strong>  看磁盘是否有空间；</li>
+<li><strong>ls -l /home/usrdata/mysql*</strong>  目录是否有权限；</li>
+<li>检测 <strong>my.cnf</strong> 配置是否正确(与是否有多余其它的)；</li>
+</ol>
+<p>一条一条试过去，咱的硬盘还充足，目录权限也没错</p>
+<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
+<p>最后在 <del>万策尽きた</del> 的时候，咱抱着最后希望 <span class="lang:default decode:true  crayon-inline ">vim /etc/mysql/my.cnf</span> 了</p>
+<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
+<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
+<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
+<p>可喜可贺，可喜可贺</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-18</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="amh-5-1-mysql-start-error-after-reboot/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/MySQL/">MySQL</a>, <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/运维/">运维</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/linux-shell-frequently-used-command/">Linux shell 常用命令备忘</a>
       </h2>
 
@@ -579,53 +627,6 @@ Swap: 0 0 0
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/记录/">记录</a>, <a class="tag-link" href="/tag/运维/">运维</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/vps-ubuntu-shadowsocks/">VPS 部署 shadowsocks 服务器</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p><strong>UPDATE：</strong>窝基于此教程的内容写了个一一键安装脚本，具体可以<a href="https://prinzeugen.net/shadowsocks-install-shell/" target="_blank" rel="noopener">看这里</a>。</p>
-<hr>
-<p>就在刚才咱买的ss服务过期了，vps又买到了，自然是在vps上搭个ss来爬墙 <img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></p>
-<h3 id="ssh-上-vps，apt-get"><a href="#ssh-上-vps，apt-get" class="headerlink" title="ssh 上 vps，apt-get"></a>ssh 上 vps，apt-get</h3><pre><code>apt-get install python-pip m2crypto supervisor pip install shadowsocks
-</code></pre><p><img src="https://img.blessing.studio/images/2015/07/2015-07-08_09-49-56.png" alt="20150708170216"></p>
-<h3 id="编辑-etc-shadowsocks-json-（咱用的是vim"><a href="#编辑-etc-shadowsocks-json-（咱用的是vim" class="headerlink" title="编辑 /etc/shadowsocks.json （咱用的是vim"></a>编辑 <code>/etc/shadowsocks.json</code> （咱用的是vim</h3><p><code>vim /etc/shadowsocks.json</code> ip、端口、密码自己填</p>
-<pre><code>{
-    &quot;server&quot;:&quot;123.123.123.123&quot;,
-    &quot;server_port&quot;:62121,
-    &quot;local_port&quot;:1080,
-    &quot;password&quot;:&quot;my password&quot;,
-    &quot;timeout&quot;:600,
-    &quot;method&quot;:&quot;aes-256-cfb&quot;
-}
-</code></pre>
-          <a class="more-link" href="/vps-ubuntu-shadowsocks/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-09</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="vps-ubuntu-shadowsocks/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
     
   </span>
 </div>

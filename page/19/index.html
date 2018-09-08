@@ -170,6 +170,53 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/vps-ubuntu-shadowsocks/">VPS 部署 shadowsocks 服务器</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p><strong>UPDATE：</strong>窝基于此教程的内容写了个一一键安装脚本，具体可以<a href="https://prinzeugen.net/shadowsocks-install-shell/" target="_blank" rel="noopener">看这里</a>。</p>
+<hr>
+<p>就在刚才咱买的ss服务过期了，vps又买到了，自然是在vps上搭个ss来爬墙 <img src="https://img.blessing.studio/images/2015/03/i_f25.png" alt="i_f25"></p>
+<h3 id="ssh-上-vps，apt-get"><a href="#ssh-上-vps，apt-get" class="headerlink" title="ssh 上 vps，apt-get"></a>ssh 上 vps，apt-get</h3><pre><code>apt-get install python-pip m2crypto supervisor pip install shadowsocks
+</code></pre><p><img src="https://img.blessing.studio/images/2015/07/2015-07-08_09-49-56.png" alt="20150708170216"></p>
+<h3 id="编辑-etc-shadowsocks-json-（咱用的是vim"><a href="#编辑-etc-shadowsocks-json-（咱用的是vim" class="headerlink" title="编辑 /etc/shadowsocks.json （咱用的是vim"></a>编辑 <code>/etc/shadowsocks.json</code> （咱用的是vim</h3><p><code>vim /etc/shadowsocks.json</code> ip、端口、密码自己填</p>
+<pre><code>{
+    &quot;server&quot;:&quot;123.123.123.123&quot;,
+    &quot;server_port&quot;:62121,
+    &quot;local_port&quot;:1080,
+    &quot;password&quot;:&quot;my password&quot;,
+    &quot;timeout&quot;:600,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;
+}
+</code></pre>
+          <a class="more-link" href="/vps-ubuntu-shadowsocks/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-09</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="vps-ubuntu-shadowsocks/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/shadowsocks/">shadowsocks</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/vps-get/">蛤蛤蛤咱有VPS辣</a>
       </h2>
 
@@ -592,47 +639,6 @@ arch ramips_24kec 400
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/hitokoto-api/">一言的API现在很火啊</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>我的妈一言API速度也太慢了吧，放在more前面整个网站的速度都被拖慢了<a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a>  </p>
-<p>但是因为主题CSS的关系，超链接样式在侧边栏工具上表现不好  </p>
-<p>窝又不会PHP，下次有时间写个JSON解析扒到咱的js里吧~  </p>
-<p><a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-271.png" alt="i_f33"></a></p>
-<p>我说怎么这么像，原来窝上次看的宅言API的前端是抄一言的啊，窝还以为改名了呢</p>
-<script src="http://api.hitokoto.us/rand?encode=js&charset=utf-8" type="text/javascript"></script>
-
-<div id="hitokoto"><script>hitokoto()</script></div>
-
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-06-20</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="hitokoto-api/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/博客/">博客</a>
     
   </span>
 </div>

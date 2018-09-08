@@ -170,6 +170,43 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/optimize-read-write-options-with-laravel-service-container/">使用 Laravel 的服务容器来优化读写数据库中的 options</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>这篇文章应该算是心得体会一类的吧，因为并没有什么卵用（笑</p>
+<p>就像前两篇文章说的一样，在我把项目框架改为 Laravel 后，自然要最大限度地利用 Laravel 的特性来提升我们应用的性能<del>（虽然使用 Laravel 本身就是在降低性能了）</del>，并且让我们的代码看起来更优雅 <del>装逼</del>。</p>
+<p>其中我们可以最方便地利用的一个特性就是 Laravel 的服务容器了。在这里我不多赘述 Service Container 是个啥，想了解的可以自行搜索。不想了解的就只要大致知道它是个可以 绑定/取出 实例的东西就好了（当然服务容器可不止这么点功能）。</p>
+<p>相信很多 Web 应用都会在数据库建立一个 <code>options</code> 表来储存一些用户的配置信息，而为了方便，我们通常会封装一个 <code>Option</code> 类来方便地进行数据的 <code>get</code>、<code>set</code> 操作。而通常的做法是把这些操作做成类内静态方法来调用。</p>
+<p>但是这样的弊端就是每一次的操作都要去查询数据库，这对于性能还是有挺大影响的，尤其是在一次响应中要使用很多 options 的情况下。</p>
+          <a class="more-link" href="/optimize-read-write-options-with-laravel-service-container/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="optimize-read-write-options-with-laravel-service-container/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/分享/">分享</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/using-laravel-elixir-and-custom-gulp-task-with-same-name-simultaneously/">同时使用 Laravel Elixir 和同名自定义 Gulp Task 时的坑</a>
       </h2>
 
@@ -489,46 +526,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Python/">Python</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/about-compatibility-of-js-default-parameters/">关于 JavaScript 的函数默认参数的兼容性</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>最近在写 Blessing Skin Server V3 的前端的时候，定义带可选参数的函数的时候经常这样定义：</p>
-<pre><code>function showModal(msg, title = &quot;Messgae&quot;, type = &quot;default&quot;) {
-    var btn_type = (type != &quot;default&quot;) ? &quot;btn-outline&quot; : &quot;btn-primary&quot;;
-    var dom = &#39;/* 省略 */&#39;;
-    $(dom).modal();
-}
-</code></pre><p>因为 PHP 写多了，也就想当然的认为 Js 的默认参数也是这样写的，而且 PC 上的测试也是一切正常，所以也没多想什么。</p>
-<p>然而今天我在一台手机上测试的时候，发现事件没有绑定上，找了好久原因（因为手机没有控制台也不能设置断点，只好用最原始的办法在可能出问题的行上加上 <code>alert(&#39;fuck&#39;)</code> 来调试）也只是把出错的函数找了出来，却死活看不出有哪里不对 <img src="https://img.prinzeugen.net/image.php?di=E0G2" alt="emotion"></p>
-          <a class="more-link" href="/about-compatibility-of-js-default-parameters/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-21</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="about-compatibility-of-js-default-parameters/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>

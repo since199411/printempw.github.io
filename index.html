@@ -170,6 +170,44 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/wsl-guide/">WSL 配置指北：打造 Windows 最强命令行</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>在两年前的八月，Microsoft 正式发布了 Windows 10 Anniversary Update 周年更新（它还有着 RS1，Version 1607，Build 14393 等一大堆别名）。其中最让包括我在内的众多开发者感到兴奋的特性之一，就是 WSL（Windows Subsystem for Linux，当时还叫 Bash on Ubuntu on Windows）的正式加入。</p>
+<p><strong>在 Windows 上原生运行 Linux 可执行文件，牛逼疯了！</strong></p>
+<p>然而 Bug10 也不是浪得虚名，原本只提供给 Insider 的 WSL 在正式发布后依然问题多多（不仅 zsh、tmux 等工具无法使用，网络相关的操作更是一概欠奉，还有各种各样 <a href="https://twitter.com/printempw/status/927862325280772096" target="_blank" rel="noopener">奇妙的 BUG</a>），基本没有可用性，我在尝鲜了一段时间后也不得不重回 Cygwin 的怀抱。不过好消息是，在之后的更新中，<a href="https://blogs.msdn.microsoft.com/commandline/2017/04/11/windows-10-creators-update-whats-new-in-bashwsl-windows-console/" target="_blank" rel="noopener">这些 BUG 都已被逐一消灭</a>。</p>
+<p>经过了两年的发展，WSL 已经<a href="https://twitter.com/printempw/status/927898980385677312" target="_blank" rel="noopener">足够成熟</a>，我也是时候完成这篇<a href="https://twitter.com/printempw/status/928656863310200832" target="_blank" rel="noopener">一咕再咕</a>的博文了。</p>
+<p>（开学在即，仓促成文，如有谬误，还请指正。）</p>
+<p><img src="https://img.blessing.studio/images/2018/09/08/get-wsl.png" alt="get-wsl"></p>
+          <a class="more-link" href="/wsl-guide/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-09-08</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="wsl-guide/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/CLI/">CLI</a>, <a class="tag-link" href="/tag/WSL/">WSL</a>, <a class="tag-link" href="/tag/Windows/">Windows</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/add-notepad-plus-plus-to-context-menu/">添加 Notepad++ 至右键菜单的几种方法</a>
       </h2>
 
@@ -546,50 +584,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/deploy-dont-starve-together-dedicated-server/">饥荒联机版独立服务器搭建踩坑记录</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>最近和几个同学一起联机玩饥荒（Don’t Starve Together），虽然饥荒游戏本身就可以直接创建房间让别人加入，但还是有诸多不便驱使我去开一个饥荒的独立服务端（Dedicated Server），其中最主要的就是 ——「<strong>你退了游戏其他人就玩不了了</strong>」。</p>
-<p>本来家里还有一个用旧主板和以前换下的配件攒成的二奶机，安装的是 Elementary OS，确实可以拿来跑饥荒服务器（以前还拿它跑过 MC 服务器），但是不幸的是，由于我直接把主板硬盘之类的一股脑塞在牛奶盒子里放在窗边还不加盖儿，一个雨后的下午，我推开家门后发现那个被我当做机箱的牛奶盒子已经开始积水了……前略，天国的 Pegatron IPX31-GS (・_ゝ・)</p>
-<p>直接在主力机上开一个服务器也不是不行，但是我的奔腾 G3258 选手实在是带不动饥荒游戏 + 游戏服务器 + 其他杂七杂八的东西了，所以只好另觅他方，去搞一台 VPS 来开服。而且这里不得不吐槽一下，饥荒联机版独立服务器的配置要求还是比较高的，几个人的小服，再多开几个 Mod，最起码就要 1G 的内存（我那台阿里云宕机好几次，还得去网页控制台强制重启），更不要想开洞穴了。</p>
-<p>现在我拿来开服的是免费试用一个月的京东云（Xeon-E5，2G DDR4，1Mbps 的带宽），不开洞穴，目前看起来还是没什么压力的，延迟丢包率什么的也都可以接受。网上关于开服的教程也不少了，这篇文章也不会过多赘述，差不多就是记录一下主要步骤，以及提一下可能会遇到的坑。所以，想要那种很详细的教程的同学还是绕道吧，或者翻到文章最下面的「参考链接」看看。</p>
-<p>下面的步骤在 64 位 CentOS 7.3 和 Ubuntu 16.04 上测试通过，至于 Windows……我认为实在没有啥必要特别去写，直接从 Steam 客户端就可以打开，操作方便，也没啥坑，看看网上那些教程就可以了。继续阅读之前，我希望你能有一些 Linux 的操作基础，不然会很懵。</p>
-<h2 id="0x01-事前准备"><a href="#0x01-事前准备" class="headerlink" title="0x01 事前准备"></a>0x01 事前准备</h2><p>首先你要有一台装了 Linux 的服务器，配置要求如下（摘自 <a href="http://dontstarve.wikia.com/wiki/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="noopener">DST Wiki</a>）：</p>
-<ul>
-<li>上行带宽：8KBps 一个玩家；</li>
-<li>内存：差不多一个玩家 65Mbytes；</li>
-<li>CPU：没太大要求</li>
-</ul>
-<p>需要注意的是，饥荒联机版的服务器对内存的要求其实挺大的，亲测只开 Overworld 不开洞穴，空载 RAM 占用约 800MB，再加上差不多 65MB 一个玩家，开 Mod 还会占用更多，所以还是要衡量一下机器的配置。</p>
-          <a class="more-link" href="/deploy-dont-starve-together-dedicated-server/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-07-15</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="deploy-dont-starve-together-dedicated-server/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>, <a class="tag-link" href="/tag/Linux/">Linux</a>
     
   </span>
 </div>

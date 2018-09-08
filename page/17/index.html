@@ -170,6 +170,45 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/hacg-ssl/">琉璃神社也艹上了 SSL</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天去看看的时候发现闭站维护了，没多大在意，结果一瞟发现竟然是 https <a href="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-17_03-28-41.jpg" alt="20150717112829"></a></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-50-53.png" alt="hacg"></a> <a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-52-35.png" alt="ssl"></a></p>
+<p>证书是和窝一样的 Wosign Class1 免费证书</p>
+<p>SSL 大法好，麻麻再也不用担心被抓关键词辣 <a href="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-24_09-19-27.png" alt="i_f16"></a></p>
+<p><strong>UPDATE：</strong>琉璃神社能访问了，再一瞟。。</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-27_10-55-39.png" alt="CLOUDFLARE"></a></p>
+<p>woc <em>CloudFlare</em> <a href="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/05/2015-05-31_10-01-03.jpg" alt="QQ图片20150531180053"></a> 看来 H 萌是被 D 怕了</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="hacg-ssl/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Https/">Https</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/">替换 W3 Total Cache 在 Wordpress 后台侧边栏图标的方法</a>
       </h2>
 
@@ -571,54 +610,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/amh-5-1-mysql-start-error-after-reboot/">VPS 软重启后 amh 5.1 mysql 启动错误的解决方法</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天咱在 ssh 中执行 reboot 后，发现 wordpress、amh 都连不上 mysql 数据库</p>
-<p><span class="lang:default decode:true  crayon-inline ">amh mysql status</span>  查看发现 mysql 没有在运行，遂 <span class="lang:default decode:true  crayon-inline ">amh mysql start</span>  启动 mysql</p>
-<p>结果报！错！了！<a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> ：</p>
-<p><strong>The server quit without updating PID file</strong><div class="collapseomatic_content " id="target-id6542"><a href="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" target="_blank" rel="noopener"><img src="https://ww4.sinaimg.cn/large/ec03501dgw1eu76x1zgmtj20tj0hak99.jpg" alt="图好大"></a><br></div>amh 论坛上说有三种可能</p>
-<ol>
-<li><strong>df -h</strong>  看磁盘是否有空间；</li>
-<li><strong>ls -l /home/usrdata/mysql*</strong>  目录是否有权限；</li>
-<li>检测 <strong>my.cnf</strong> 配置是否正确(与是否有多余其它的)；</li>
-</ol>
-<p>一条一条试过去，咱的硬盘还充足，目录权限也没错</p>
-<p>然而窝以为咱没修改过配置所以和 my.cnf 没关系，就没检查，又在 amh 论坛上查找无果 <a href="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-15_14-49-46.jpg" alt="20150715224933"></a></p>
-<p>最后在 <del>万策尽きた</del> 的时候，咱抱着最后希望 <span class="lang:default decode:true  crayon-inline ">vim /etc/mysql/my.cnf</span> 了</p>
-<p>一看竟然发现里面的 <strong>socket = /var/run/mysqld/mysqld.sock</strong> ！！！<a href="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-21_05-40-30.gif" alt="QQ图片20150621134022"></a></p>
-<p>woc 原来就是这 sabi <a href="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-11_13-57-54.jpg" alt="20150711215742"></a> 估计是装什么模块的时候被重写了</p>
-<p>于是 <span class="lang:default decode:true  crayon-inline ">rm -f /etc/mysql/my.cnf</span>  后，<span class="lang:default decode:true  crayon-inline  ">amh mysql start</span>  终于不报错了<a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a></p>
-<p>可喜可贺，可喜可贺</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-18</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="amh-5-1-mysql-start-error-after-reboot/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/MySQL/">MySQL</a>, <a class="tag-link" href="/tag/VPS/">VPS</a>, <a class="tag-link" href="/tag/运维/">运维</a>
     
   </span>
 </div>

@@ -170,6 +170,46 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/about-compatibility-of-js-default-parameters/">关于 JavaScript 的函数默认参数的兼容性</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>最近在写 Blessing Skin Server V3 的前端的时候，定义带可选参数的函数的时候经常这样定义：</p>
+<pre><code>function showModal(msg, title = &quot;Messgae&quot;, type = &quot;default&quot;) {
+    var btn_type = (type != &quot;default&quot;) ? &quot;btn-outline&quot; : &quot;btn-primary&quot;;
+    var dom = &#39;/* 省略 */&#39;;
+    $(dom).modal();
+}
+</code></pre><p>因为 PHP 写多了，也就想当然的认为 Js 的默认参数也是这样写的，而且 PC 上的测试也是一切正常，所以也没多想什么。</p>
+<p>然而今天我在一台手机上测试的时候，发现事件没有绑定上，找了好久原因（因为手机没有控制台也不能设置断点，只好用最原始的办法在可能出问题的行上加上 <code>alert(&#39;fuck&#39;)</code> 来调试）也只是把出错的函数找了出来，却死活看不出有哪里不对 <img src="https://img.prinzeugen.net/image.php?di=E0G2" alt="emotion"></p>
+          <a class="more-link" href="/about-compatibility-of-js-default-parameters/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-07-21</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="about-compatibility-of-js-default-parameters/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/holy-new-game/">「NEW GAME!」真好看啊</a>
       </h2>
 
@@ -478,44 +518,6 @@
   <span class="pmt pms extra fa-tag">
     
       无标签
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/customize-sublime-for-web-development/">为 Web 开发定制 Sublime Text 3</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>Sublime Text 是非常强大的编辑器，插件功能更是让其拥有无限可能。我用 Sublime 也已经快八个月了，我的 Sublime 也从原来连 Package Control 也没有的纯原版到现在的 Web 开发神器，特此安利一下。</p>
-<p><img src="https://img.prinzeugen.net/image.php?di=OMC6" alt="Sublime Predawn Screenshot"></p>
-<h3 id="主题推荐"><a href="#主题推荐" class="headerlink" title="主题推荐"></a>主题推荐</h3><p><a href="https://packagecontrol.io/packages/Predawn" target="_blank" rel="noopener">Predawn</a>，就是我上面的截图所使用的主题，也提供 Atom 版。</p>
-<p><a href="https://packagecontrol.io/packages/Theme%20-%20Flatland" target="_blank" rel="noopener">Flatland</a>，也是扁平风，挺不错的。还有 Monokai 配色版。</p>
-<h3 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h3><p><a href="https://packagecontrol.io/packages/Alignment" target="_blank" rel="noopener">Alignment</a>，代码对齐，通常用于一大块变量赋值的时候的等号对齐，强迫症福音；</p>
-<p><a href="https://packagecontrol.io/packages/All%20Autocomplete" target="_blank" rel="noopener">All Autocompelete</a>，让 Sublime 足以媲美 IDE 的重要插件 —— 项目内代码提示，可以自动补全其他打开的标签页中出现过的函数/变量名</p>
-          <a class="more-link" href="/customize-sublime-for-web-development/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-04-11</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="customize-sublime-for-web-development/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Sublime/">Sublime</a>, <a class="tag-link" href="/tag/分享/">分享</a>, <a class="tag-link" href="/tag/工具/">工具</a>
     
   </span>
 </div>
