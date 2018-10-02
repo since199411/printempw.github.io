@@ -170,6 +170,50 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/a-hitokoto-crawler/">写了个一言爬虫</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>Python 实现，格式化后文本存储于 <code>hitokoto.txt</code>（使用 <code>\n</code> 做换行符，用记事本打开发现没有换行可不是窝的锅），已保存的一言 ID 保存在 <code>hid.txt</code> 中，带 Save&amp;Load，如果请求到已保存的一言则自动重新请求。本来是想要用数据库的，想想还是算了，反正也没几行（笑）。以后想存数据库的时候，正则一下保存后的格式化文本就好了。</p>
+<p>不过用 Python 写这种小脚本真心方便呢w ~</p>
+<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-25-30-1024x414.png" alt="hitokoto.py screenshot"></a></p>
+<p>命令行参数（也可以用 <code>--help</code> 查看）：</p>
+<pre><code>-c    请求的一言数量，整数
+-d    请求之间的延迟（秒），浮点数
+-a    是否自动重新请求，布尔值
+</code></pre><p>源码托管于 <a href="https://gist.github.com/printempw/8efc424f8033f7f008ed" target="_blank" rel="noopener">Gist</a>（打不开请自行解决）。</p>
+<p>唔。。最近手生了，写这么点花了将近半天 qwq</p>
+<p>单线程（并不想多线程），服务端又是随机返回，所以保存的数量多了以后，效率会很慢。1000 个请求中，999 个是重复的也很常见 qwq 所以还是挂 vps 上慢慢爬吧</p>
+<p><a href="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/12/2015-12-27_04-47-26.png" alt="2"></a></p>
+<p>爬太快的话怪不好意思的 <a href="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/09/2015-09-19_15-53-31.jpg" alt="QQ图片20150919235138"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-12-27</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="a-hitokoto-crawler/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Python/">Python</a>, <a class="tag-link" href="/tag/一言/">一言</a>, <a class="tag-link" href="/tag/爬虫/">爬虫</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/merry-xmas/">Merry Xmas!</a>
       </h2>
 
@@ -576,52 +620,6 @@ window.location.href = url;
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Sublime/">Sublime</a>, <a class="tag-link" href="/tag/工具/">工具</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/adding-quote-symbol-to-beginning-of-blockquote/">在 blockquote 元素首添加引号</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>以前似乎看到过这样的样式，但是忘记保存了。于是到处去翻，发现维基百科有类似的样式，但是。。</p>
-<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-54-46.png" alt="screenshot1"></a></p>
-<p>WTF，明明俩伪类就可以解决的。。 <a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-56-11.jpg" alt="emotion1"></a></p>
-<p>想起 <a href="https://typeblog.net/life/2015/08/21/long-live-shadowsocks.html" target="_blank" rel="noopener">Long Live Shadowsocks</a> 这篇文章里似乎有类似的样式，于是去看了看，但还不是窝想要的效果</p>
-<p><a href="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-24_09-58-54.png" alt="screenshot2"></a></p>
-<p>然后就各种找资料，仿照着东拼西凑搞成了差不多满意的样式 qwq</p>
-<blockquote>
-<p><em>The quick brown fox jumps over the lazy dog</em></p>
-</blockquote>
-<p>嘛，还算不赖吧~ </p>
-<p>blockquote { margin-bottom: 7px; quotes: “\201C” “\201D”; padding: 2em 25px 2em 30px; position: relative; overflow: hidden; } blockquote:before { content: open-quote; font-size: 3em; position: absolute; left: 0; top: 0 } blockquote:after { content: close-quote; font-size: 3em; line-height: 1; position: absolute; right: 0; bottom: 0 }</p>
-<p>参考资料：</p>
-<p><a href="https://css-tricks.com/almanac/properties/q/quotes/" target="_blank" rel="noopener">https://css-tricks.com/almanac/properties/q/quotes/</a></p>
-<p><a href="http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote" target="_blank" rel="noopener">http://stackoverflow.com/questions/4597699/css-3-adding-quote-symbol-to-beginning-of-blockquote</a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-10-25</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="adding-quote-symbol-to-beginning-of-blockquote/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/CSS/">CSS</a>, <a class="tag-link" href="/tag/设计/">设计</a>
     
   </span>
 </div>

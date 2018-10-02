@@ -170,6 +170,44 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/vscode-c-cpp-configuration-for-acm-oj/">使用 VS Code 搭建适用于 ACM 练习的 C/C++ 开发环境</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>大学入学也快一个月了，总的来说，我过得很开心，不枉我花费一年的时间 <a href="https://blessing.studio/check-in-2018-07/">高考复读</a>。具体哪里令人开心呢？我觉得最主要的是，比起初高中，大学的时间分配更为自由。</p>
+<p><strong>中学时代，学生的时间基本都被学校安排得死死的</strong>：早上什么时间必须到校，然后开始早读、上午五节课下午三节课、晚读、晚自习，最后在规定的时间离校（住宿生还要在规定的时间就寝），可以自由分配的时间少得可怜，在某些管理严格的学校甚至连人身自由都要被限制。虽然学生们苦中作乐的摸鱼技巧也不容小觑，但考虑到升学的压力，如果在兴趣上分配的时间过多，很有可能就会像我去年一样落得个无法升学的尴尬境地。</p>
+<p><strong>而大学相对来说就没有那么多破规矩</strong>：有课就上，没课的话时间就随你安排，回寝室睡觉也好出门嗨皮也罢，突出一个爱干嘛干嘛。在这些闲暇时间里，有人选择加入社团以及各种各样的学生组织，有人寻欢作乐讴歌青春，有人一头扎进自己的兴趣爱好中，也有人选择当个快乐摸鱼侠无事一身轻。</p>
+<p>而我就比较硬核了，我选择参加可能让我基本告别头发的 ACM 程序设计竞赛（不）。</p>
+<p><img src="https://img.blessing.studio/images/2018/10/02/cs-no-hair.jpg" alt="cs-no-hair"></p>
+<p>好啦言归正传，今天我们的主题是在 VS Code 编辑器中搭建适用于 ACM 练习的 C/C++ 开发环境。</p>
+          <a class="more-link" href="/vscode-c-cpp-configuration-for-acm-oj/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-10-02</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="vscode-c-cpp-configuration-for-acm-oj/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/ACM/">ACM</a>, <a class="tag-link" href="/tag/C-C/">C/C++</a>, <a class="tag-link" href="/tag/VS-Code/">VS Code</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/wsl-guide/">WSL 配置指北：打造 Windows 最强命令行</a>
       </h2>
 
@@ -528,62 +566,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>, <a class="tag-link" href="/tag/Minecraft/">Minecraft</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/教程/">教程</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/best-practice-of-adding-artisan-commands-dynamically/">Laravel 动态添加 Artisan 命令的最佳实践</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>虽然 Laravel 官方文档提供的添加 Artisan Command 的方法是直接修改 <code>app/Console/Kernel.php</code> 文件并在 <code>$commands</code> 属性中注册要添加的 Artisan 命名的类名（Laravel 服务容器会自动解析），但是，如果我们出现需要「动态（运行时）添加 Artisan 命令」的需求的话，就会很容易吃瘪。因为，Laravel 的文档（当然，我说的是官网上的）几乎没有提到任何关于这方面的内容。</p>
-<p>这也是我为什么总是吐槽 Laravel 文档有些地方很烂的原因 —— 很多时候你为了实现一个文档里没提到的功能，需要去翻半天 Laravel 的框架源码才能找到解决方法（我博客的 <a href="https://blessing.studio/tag/Laravel/">Laravel 标签</a> 下已经有不少这样的踩坑文了）。虽然 Laravel 框架的源码很优雅，看着也不会难受，但是在一堆文件中跳来跳去寻找逻辑浪费脑细胞的行为还是能省则省吧 :(</p>
-<p>这次要实现的功能是在运行时动态加载自定义的 Artisan Command（更详细一些的需求就是在皮肤站的一个插件中注册 Artisan 命令，Laravel 插件系统的实现可以参考我之前的 <a href="https://blessing.studio/laravel-plugin-system-1/">另一篇文章</a>）。</p>
-<h2 id="TL-DR-太长不看"><a href="#TL-DR-太长不看" class="headerlink" title="TL;DR 太长不看"></a>TL;DR 太长不看</h2><p>总之先上干货，毕竟不是所有人都喜欢听我废话一大堆后才拿到解决方案的。</p>
-<p>Laravel 5.3 及以上：</p>
-<pre><code class="php">Artisan::starting(function ($artisan) {
-    // 传入类名字符串即可，会被服务容器自动解析
-    $artisan-&gt;resolve(&#39;Example\FooCommand&#39;);
-    // 批量添加
-    $artisan-&gt;resolveCommands([
-        &#39;Example\FuckCommand&#39;,
-        &#39;Example\ShitCommand&#39;
-    ]);
-    // 参数必须为 Symfony\Component\Console\Command\Command 的实例
-    // 继承自 Illuminate\Console\Command 的类实例也可以
-    $artisan-&gt;add($command);
-});
-</code></pre>
-<p>Laravel 5.2：</p>
-<pre><code class="php">Event::listen(&#39;Illuminate\Console\Events\ArtisanStarting&#39;, function ($event) {
-    // 其他用法同上
-    $event-&gt;artisan-&gt;resolve(&#39;Example\BarCommand&#39;);
-});
-</code></pre>
-          <a class="more-link" href="/best-practice-of-adding-artisan-commands-dynamically/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-07-30</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="best-practice-of-adding-artisan-commands-dynamically/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>

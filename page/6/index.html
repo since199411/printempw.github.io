@@ -170,6 +170,41 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/">使用 Laravel 的 监听者模式实现缓存机制的松散耦合</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>唔，我也不知道我接下来要讲的东西是不是配得上这个题目，总之就是分享一下我在搞 Blessing Skin Server 的缓存与插件机制时的一些经验（大佬们就请忽略吧）</p>
+<p>既然要实现松散耦合的缓存机制，那就是要做到有没有缓存都没事。有缓存的话就走缓存，然后那边的模块内部实现一个包括过期时间呀啥啥的缓存机制，没有收到缓存模块的响应的时候就继续走原来的应用逻辑，一样可以正常响应。</p>
+<p>因为我们是要实现应用逻辑与缓存逻辑的解耦，所以正常应用逻辑内是不能有对那些缓存的依赖的。那么我们要通过什么来和缓存模块通信呢？巧的是，Laravel 正好提供了基于 Event 和 Listener 的观察者模式，我们就可以用这种设计模式来解耦缓存模块。</p>
+          <a class="more-link" href="/use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-08-30</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="use-observer-pattern-of-laravel-to-implement-loosely-coupled-cache/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/分享/">分享</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/optimize-read-write-options-with-laravel-service-container/">使用 Laravel 的服务容器来优化读写数据库中的 options</a>
       </h2>
 
@@ -491,41 +526,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/音乐/">音乐</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/python-auto-rename-for-netease-music-files/">Python 实现自动重命名网易云音乐下载文件</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>网易云音乐 PC 版的下载文件都是按照 <code>歌手名 - 歌曲名.mp3</code> 的格式命名的，然而我比较喜欢直接以歌曲名作为文件名。手动一个一个文件改肯定是不行的，太 tm 蠢了（笑</p>
-<p>以前我是用 shell 写的脚本来实现自动重命名的，但是有一次需要处理一张 OST 内的所有歌曲时（Rabi-Ribi 的 OST，我想把所有的文件名前面加上音轨号），shell 脚本就有些力不从心了，而且我也不想去折腾 shell 读取 ID3，就打算用 Python 来实现。</p>
-<p>不得不说 Python 用来写这种小脚本真的是贼 tm 方便，加上查 Mutagen 文档的时间写了也就半个小时：</p>
-          <a class="more-link" href="/python-auto-rename-for-netease-music-files/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-23</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="python-auto-rename-for-netease-music-files/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Python/">Python</a>
     
   </span>
 </div>

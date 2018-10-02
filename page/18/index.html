@@ -170,6 +170,40 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/hitokoto-has-been-cached/">php 输出一言会被缓存掉</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>使用 php 随机输出一言会被 wp super cache 缓存掉，咱今天才发现这一点</p>
+<p>只好再用回 JavaScript 输出了（哭</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="hitokoto-has-been-cached/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/amh-5-1-mysql-start-error-after-reboot/">VPS 软重启后 amh 5.1 mysql 启动错误的解决方法</a>
       </h2>
 
@@ -585,48 +619,6 @@ Swap: 0 0 0
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/phpmyadmin-configuration-storage/">配置 phpMyAdmin configuration storage</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>lnmp 自动安装 phpMyAdmin 后，默认高级功能是未开启的，会提示：</p>
-<blockquote>
-<p>The phpMyAdmin configuration storage is not completely configured, some extended features have been deactivated. Find out why.<br> Or alternately go to ‘Operations’ tab of any database to set it up there.</p>
-</blockquote>
-<p>似乎不同pma版本有的是中文提示：<strong>高级功能未全部设置，部分功能不可用。</strong></p>
-<p>嘛，所谓高级功能，就是pma的配置存储，建一个数据库给pma存放配置：</p>
-<h3 id="1-导入-phpmyadmin-的数据库"><a href="#1-导入-phpmyadmin-的数据库" class="headerlink" title="1.导入 phpmyadmin 的数据库"></a>1.导入 phpmyadmin 的数据库</h3><p>在phpMyAdmin的安装目录的 <a href="#" title="lnmp 安装的默认目录是 /home/wwwroot/default/phpmyadmin/sql">sql目录</a> 下找到 create_tables.sql 导入到mysql中</p>
-<h3 id="2-修改-config-inc-php"><a href="#2-修改-config-inc-php" class="headerlink" title="2.修改 config.inc.php"></a>2.修改 config.inc.php</h3><p>把以下内容的注释去掉</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-10_06-49-40.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-10_06-49-40.png" alt="20150709094915"></a></p>
-<p>视情况你可能还需要自己添加一些。。反正看一下pma底部的报告差不多就懂了</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-10</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="phpmyadmin-configuration-storage/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/记录/">记录</a>, <a class="tag-link" href="/tag/运维/">运维</a>
     
   </span>
 </div>
