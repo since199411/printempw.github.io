@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blessing.studio/"/>
-  <updated>2018-10-02T10:17:00.000Z</updated>
+  <updated>2018-10-03T04:24:52.000Z</updated>
   <id>https://blessing.studio/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>今天开始请叫我 PRIN / 布丁 🍮</title>
+    <link href="https://blessing.studio/new-nickname-prin/"/>
+    <id>https://blessing.studio/new-nickname-prin/</id>
+    <published>2018-10-03T04:24:52.000Z</published>
+    <updated>2018-10-03T04:24:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><del>没想到吧！那个摸鱼博主竟然会连续两天更新博客！</del></p><hr><p>这不是我第一次这么想：</p><p><strong>我的常用 ID <code>printempw</code> 太难读了。</strong></p><p>有多难读呢？难读到连我自己都不知道这玩意该怎么读。</p><p>这个 ID 的词源是法语的 <em>printemps</em>（春天，春季），将这个单词尾部的 <em>s</em> 替换为 <em>w</em> 后……才怪嘞！我又不会法语，怎么可能是这么高大上的理由嘛（笑）。虽然词源确实是法语，但这个单词是我看了<a href="https://zh.moegirl.org/LoveLive!" target="_blank" rel="noopener">《LoveLive!》</a>后才知道的 —— <a href="https://zh.moegirl.org/zh-hans/Printemps" target="_blank" rel="noopener">Printemps</a> 同时也是企划中 高坂穗乃果、南ことり、小泉花阳 组成的 μ’s 三个小分队之一。当时正好沉迷 LL，取 ID 时顺手就用了这个，因为 <em>printemps</em> 已经被占用了就稍微修改了一下变成现在的 <em>printempw</em> ……</p><p>嗯，真的是个怎样都好的理由。XD</p><hr><p>关于读音，法语单词 <em>printemps</em> 的读音是 [prɛ̃tɑ̃]，LL 中 <em>printemps</em> 的读音是 [プランタン]（到这里就改得没原型了……日本人的外来语发音一如既往地奇妙），按照英语的发音习惯 <em>printemps</em> 大概可以读成 [prɪnˈtemps]，而将单词尾部的 <em>s</em> 修改为 <em>w</em> 后应该读作……</p><p><img src="https://img.blessing.studio/images/2018/10/03/meme-duck-question-mark.jpg" alt="meme-duck-question-mark"></p><p>因此，这几年我一直致力于给自己起一个简单易懂、中日英三语都易于发音、和 <code>printempw</code> 这个常用 ID 有关联、最好能够可爱一些的昵称，但是苦于一直找不到合适的。</p><p>然而就在前几天的高数课上（？），我灵光一闪：</p><blockquote><p> printempw -&gt; PRIN -&gt; プリン -&gt; 🍮 -&gt; 布丁！</p></blockquote><p><del>唉，我都被自己的天才想法惊到了（不）。</del></p><hr><p>情况呢就是这么个情况，以后这就是我的新昵称了：</p><ul><li>书写：<strong>PRIN</strong> 或者 <strong>布丁</strong>（中文语境下）</li><li>读音：[プリン] 或者 <em>[prɪn]</em></li></ul><p>以后博客标题可能也会作出改动，请多关照。🍮</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;del&gt;没想到吧！那个摸鱼博主竟然会连续两天更新博客！&lt;/del&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;这不是我第一次这么想：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我的常用 ID &lt;code&gt;printempw&lt;/code&gt; 太难读了。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;有多难读呢？难读到连
+      
+    
+    </summary>
+    
+      <category term="日常" scheme="https://blessing.studio/categories/diary/"/>
+    
+    
+      <category term="水" scheme="https://blessing.studio/tag/%E6%B0%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 VS Code 搭建适用于 ACM 练习的 C/C++ 开发环境</title>
@@ -629,35 +658,6 @@
     
     
       <category term="耳机" scheme="https://blessing.studio/tag/%E8%80%B3%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在中国大陆购买 Google Play 内容的几种方法</title>
-    <link href="https://blessing.studio/google-play-payments-at-china-mainland/"/>
-    <id>https://blessing.studio/google-play-payments-at-china-mainland/</id>
-    <published>2017-06-07T13:41:16.000Z</published>
-    <updated>2017-06-07T13:42:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://img.blessing.studio/images/2017/06/07/google_play_purchase.png" alt="剁tm的！" style="border: 0;"></p><p>虽然 Google Play 在中国大陆无法正常使用，但作为 Android 官方的应用市场，我们<del>正版软件受害者</del>经常需要在 Play 商店上购买正版应用或者通过 Google Play 内购支持开发者等等。</p><p>但是作为一个不存在的公司，我们在国内用惯了的支付宝、微信支付等国内支付平台自然是无法用于购买 Google Play 内容的，所以想要在 Google Play 上花钱并不是一件容易的事。</p><p>那么身在中国大陆，我们到底要怎样才能在 Google Play 上愉快地买买买呢？本文列举了一些行之有效的方法（截至本文发布时），权当记录，希望对后来人有帮助。</p><a id="more"></a><h3 id="一、双币信用卡"><a href="#一、双币信用卡" class="headerlink" title="一、双币信用卡"></a>一、双币信用卡</h3><p>国内某些银行的多币种信用卡可以直接在 Google Play 上绑定，譬如招商银行的双币信用卡，不过账单地址要改为其他国家（具体情况可自行搜索）。</p><p>然而我是学生，这种方法 PASS<br><img src="https://img.blessing.studio/images/2017/06/07/QQ20170607203042.jpg" alt="表情1">。</p><h3 id="二、虚拟信用卡"><a href="#二、虚拟信用卡" class="headerlink" title="二、虚拟信用卡"></a>二、虚拟信用卡</h3><p>没有信用卡，网上提供的虚拟（预付费）信用卡也是可以在 Google Play 上使用的。</p><p>虚拟信用卡服务中最著名的当数 <a href="https://www.globalcash.hk" target="_blank" rel="noopener">全球付 GlobalCash</a>，我第一次（2015 年）在 Google Play 上购买正版应用（Solid Explorer）时就是用的这家。</p><p><img src="https://img.blessing.studio/images/2017/06/05/snipaste_20170605_223508.png" alt="GlobalCash 页面截图"></p><p>但是，<strong>现在</strong>我并不推荐你使用全球付。为啥呢？</p><ol><li><strong>手续费很高。</strong>单次充值最低 300CNY，小额交易每笔收取 3CNY 手续费，非本币交易收取 1.5% 的手续费。详见：<a href="https://www.globalcash.hk/foot_explain.html" target="_blank" rel="noopener">全球付 - 收费标准</a>；</li><li>余额转出需要实名认证；</li><li>经常被人指出汇率不对，不按照实时汇率表来；</li><li>近期内也经常出现全球付虚拟信用卡无法绑定 Google Play 、无法付款<em>（交易遭拒，付款方式无效）</em>或者账户被冻结<em>（要求提供信用卡或身份证明）</em>的消息。</li></ol><p>综上所述，如果你想要使用全球付，还请在充值大额款项前三思。其他提供虚拟信用卡的商家还有 Payoneer（年费 $30）和 Wirex（支持 Bitcoin，没用过）。</p><p><img src="https://img.blessing.studio/images/2017/06/07/snipaste_20170607_205727.png" alt="Google Payments Help"></p><p>不过 Google Payments 的官方帮助页面中<a href="https://support.google.com/payments/answer/6220309?hl=zh-Hans" target="_blank" rel="noopener">声明</a>了不支持虚拟信用卡，即使你确实可以使用，也不能保证之后会不会出什么事情。</p><h3 id="三、礼品卡"><a href="#三、礼品卡" class="headerlink" title="三、礼品卡"></a>三、礼品卡</h3><p>那么看起来适合学生的唯一方式就是购买 Google Play 的礼品卡了，在线购买礼品卡的话马云家就有。不过在某宝购买时请注意不要买到黑卡了，最好选那种发礼品卡扫描图片的商家（虽不能完全保证，但相对来说出事几率小一些）</p><p><img src="https://img.blessing.studio/images/2017/06/05/gift_card_sacn_img.jpg" alt="礼品卡扫描"></p><h3 id="四、注意事项"><a href="#四、注意事项" class="headerlink" title="四、注意事项"></a>四、注意事项</h3><ol><li>买礼品卡时要注意不要买错区，锁美区的方法可以 Google 查。<a href="https://www.v2ex.com/t/268074" target="_blank" rel="noopener">如何查看你当前 Google Play 账户在哪个区域？</a></li><li>第一次充值时会让你创建 Google Wallet 账户，记得地址填美国的，之后可以在 <a href="https://payments.google.com/payments/home#settings" target="_blank" rel="noopener">Google 钱包地区设置</a> 查看；</li><li>兑换礼品卡时不一定要用美国 IP 的代理服务器，我用的 HK 代理似乎也没问题；</li><li>题外话，当年用盗版欠下的债，总是会还的。</li></ol><p><img src="https://img.blessing.studio/images/2017/06/05/snipaste_20170605_223826.png" alt="Google Payments"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://img.blessing.studio/images/2017/06/07/google_play_purchase.png&quot; alt=&quot;剁tm的！&quot; style=&quot;border: 0;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;虽然 Google Play 在中国大陆无法正常使用，但作为 Android 官方的应用市场，我们&lt;del&gt;正版软件受害者&lt;/del&gt;经常需要在 Play 商店上购买正版应用或者通过 Google Play 内购支持开发者等等。&lt;/p&gt;
-&lt;p&gt;但是作为一个不存在的公司，我们在国内用惯了的支付宝、微信支付等国内支付平台自然是无法用于购买 Google Play 内容的，所以想要在 Google Play 上花钱并不是一件容易的事。&lt;/p&gt;
-&lt;p&gt;那么身在中国大陆，我们到底要怎样才能在 Google Play 上愉快地买买买呢？本文列举了一些行之有效的方法（截至本文发布时），权当记录，希望对后来人有帮助。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blessing.studio/categories/essay/"/>
-    
-    
-      <category term="记录" scheme="https://blessing.studio/tag/%E8%AE%B0%E5%BD%95/"/>
-    
-      <category term="Android" scheme="https://blessing.studio/tag/Android/"/>
-    
-      <category term="Google" scheme="https://blessing.studio/tag/Google/"/>
     
   </entry>
   

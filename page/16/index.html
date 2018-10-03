@@ -170,6 +170,49 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/using-the-extension-of-chrome-to-subscribe-rss-with-feedly/">如何在 Chrome 中方便地添加 RSS 订阅源至 Feedly</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p><style type="text/css"><br>.withBreak {<br>    word-break: break-all; word-wrap: break-word;<br>}<br></style>窝也经常在网上到处乱逛，从别人的友链出发跳来跳去，有时候找到了一些内容质量高的博客就 RSS 订阅至 feedly ，但是每一次都要打开 feedly 再添加，确实是不便。Google 了一下找到了解决方案，整理如下：</p>
+<h3 id="1-安装-Chrome-扩展程序-RSS-Subscription-Extension"><a href="#1-安装-Chrome-扩展程序-RSS-Subscription-Extension" class="headerlink" title="1.安装 Chrome 扩展程序 RSS Subscription Extension"></a>1.安装 Chrome 扩展程序 <a href="https://chrome.google.com/webstore/detail/rss-subscription-extensio/nlbjncdgjeocebhnmkbbbdekmmmcbfjd?hl=zh-CN" target="_blank" rel="noopener">RSS Subscription Extension</a></h3><h3 id="2-配置扩展使用的-RSS-阅读器"><a href="#2-配置扩展使用的-RSS-阅读器" class="headerlink" title="2.配置扩展使用的 RSS 阅读器"></a>2.配置扩展使用的 RSS 阅读器</h3><p>默认的 RSS 阅读器是 Bloglines 和 My Yahoo，然而 Bloglines 老早就<a href="http://www.williamlong.info/archives/2325.html" target="_blank" rel="noopener">停止服务</a>了，My Yahoo 窝也没用过，窝自然还是要继续使用窝大 Feedly 辣~下面的内容参考了<a href="https://coderwall.com/p/nrcu_a/using-chrome-s-rss-extension-with-feedly" target="_blank" rel="noopener">这篇文章</a>。</p>
+<p>进入 RSS Subscription Extension 配置页 -&gt; 添加 -&gt; 填入如下网址</p>
+<blockquote>
+<p><a href="https://www.feedly.com/home#subscription/feed/%s" target="_blank" rel="noopener">https://www.feedly.com/home#subscription/feed/%s</a></p>
+</blockquote>
+<p>保存后即可一键订阅 RSS 至 feedly 。</p>
+<h3 id="3-关于扩展的使用"><a href="#3-关于扩展的使用" class="headerlink" title="3.关于扩展的使用"></a>3.关于扩展的使用</h3><p>这个扩展的图标只会在可以抓取到 RSS 源或链接的页面上才会显示，具体效果就像这样 </p>
+<p><a href="https://img.blessing.studio/images/2015/08/2015-08-09_06-21-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-09_06-21-37.png" alt="extension_demo"></a></p>
+<hr>
+<p>虽然图标确实有够丑。。<a href="https://img.blessing.studio/images/2015/08/2015-08-08_03-04-04.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/08/2015-08-08_03-04-04.jpg" alt="20150808110355"></a> 找个时间替换图标为 feedly 的图标吧</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/essay/">随笔</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-08-09</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="using-the-extension-of-chrome-to-subscribe-rss-with-feedly/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Chrome/">Chrome</a>, <a class="tag-link" href="/tag/RSS/">RSS</a>, <a class="tag-link" href="/tag/分享/">分享</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/fall-in-love-with-my-iroha/">迷上 CM3D2 了 药丸</a>
       </h2>
 
@@ -578,68 +621,6 @@ $ sudo reboot
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/审查制度/">审查制度</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/linux-install-memcached-and-enable-memcache-for-wordpress/">Linux 安装 memcached 并启用 Wordpress memcache 缓存</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>首先先来理一下 memcache 和 memcached 的区别：</p>
-<blockquote>
-<p><a href="http://memcached.org/" target="_blank" rel="noopener">Memcache</a> 是一个自由和开放源代码、高性能的、具有分布式对象的缓存系统。它可以用来保存一些经常存取的对象或数据，加速动态 web 应用程序，减轻数据库负载。保存的数据像一张巨大的 HASH 表，该表以键值对的方式存在内存中。</p>
-</blockquote>
-<p>Memcache 是这个项目的名称，memcached 是这个项目的主程序名称也是守护进程。还有一个 memcached 是 php-extension。</p>
-<p>环境：<em>Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-57-generic i686) with lnmp</em></p>
-<h3 id="一、安装-memcached-服务端"><a href="#一、安装-memcached-服务端" class="headerlink" title="一、安装 memcached 服务端"></a>一、安装 memcached 服务端</h3><p>网上的都是下载源码本地编译的，但是可以 apt-get 的话为什么不用呢？</p>
-<p>apt-get install memcached memcached -d -m 128 -u root -p 11211 #启动 memcached 服务</p>
-<p>参数说明：</p>
-<p><em>-p  侦听的端口，默认为 11211</em><br><em>-m  使用内存大小，默认为 64m</em><br><em>-d  作为守护进程启动</em></p>
-<p>可以用 <span class="lang:sh decode:true crayon-inline">ps -ef|grep memcached</span>  或者 <span class="lang:sh decode:true  crayon-inline">telnet 127.0.0.1 11211</span>  查看 memcached 服务状态</p>
-<h3 id="二、安装-PHP-memcached-扩展"><a href="#二、安装-PHP-memcached-扩展" class="headerlink" title="二、安装 PHP memcached 扩展"></a>二、安装 PHP memcached 扩展</h3><p>这个就没有那么方便了，要自己编译，在<a href="http://pecl.php.net/package/memcached" target="_blank" rel="noopener">这里</a>选一个版本下载解压（注意 memcached 和 memcache 两种 php 扩展的区别，推荐 php-memcached </p>
-<p>wget <a href="http://pecl.php.net/get/memcached-2.1.0.tgz" target="_blank" rel="noopener">http://pecl.php.net/get/memcached-2.1.0.tgz</a> tar -xvf memcached-2.1.0.tgz</p>
-<p>开始编译：（机灵点儿，下面 php 路径自己看着改</p>
-<p>/usr/local/php/bin/phpize ./configure –with-php-config=/usr/local/php/bin/php-config make &amp;&amp; make install</p>
-<p>编译成功后会输出</p>
-<blockquote>
-<p>Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/</p>
-</blockquote>
-<p>ls 一下这个目录，</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-47-15.png" alt="20150726203222"></a></p>
-<p>多了一个编译出来的 memcache.so ，mv 到你的 <em>php extension dir</em> 里去（可以在 phpinfo() 中查看</p>
-<p>然后在 php.ini 的最后加入一句</p>
-<p>extension = memcache.so</p>
-<p>重启 php-fpm 和 nginx 后就可以在 phpinfo() 中看到扩展信息了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-28_14-51-15.png" alt="phpinfo"></a></p>
-<h3 id="三、在-WordPress-中启用-memcache-缓存"><a href="#三、在-WordPress-中启用-memcache-缓存" class="headerlink" title="三、在 WordPress 中启用 memcache 缓存"></a>三、在 WordPress 中启用 memcache 缓存</h3><p>推荐 W3-Total-Cache，运行 W3TC 的 compatibility check 可以看到 memcache 已经安装成功可以使用了</p>
-<p><a href="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-29_03-14-37.png" alt="w3tc_memcache"></a></p>
-<p>具体设置就不说了，自己看着改吧。</p>
-<p>（如果跟窝一样无法忍受 W3TC 的破图标的话就看一下<a href="https://prinzeugen.net/way-to-change-icon-of-w3-total-cache-in-admin-menu-sidebar/" target="_blank" rel="noopener">这一篇</a>吧</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-07-29</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="linux-install-memcached-and-enable-memcache-for-wordpress/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Linux/">Linux</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
     
   </span>
 </div>

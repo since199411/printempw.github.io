@@ -170,6 +170,47 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/ascii-art-for-characters/">使用制表符生成字母的字符画</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>今天看到了 <a href="https://www.anotherhome.net/about" target="_blank" rel="noopener">AnotherHome</a> 的首页源码，发现了注释里的这玩意：</p>
+<p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-49-21.png" alt="antherhome html comment"></p>
+<p>觉得挺有意思的，正好闲着，就写了个用制表符生成字母画的脚本：</p>
+<p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-51-34.png" alt="exec result"></p>
+<p>还是 Python 实现，源码托管于 <a href="https://gist.github.com/printempw/689a1da4b515aa682d4b" target="_blank" rel="noopener">Gist</a>。</p>
+<p>明明不是很复杂的东西，想保存字符画的数据结构时却想了窝好长时间 qwq</p>
+<p>本来是想定义个类，然后生成 A-Z 的实例，可以取出各行内容的，后来想想一个用一个 dict 就好了，key 是大写字母，value 是保存有各字母字符画的各行字符串的 list。</p>
+<p><img src="https://img.blessing.studio/images/2015/12/2015-12-31_14-46-13.png" alt="blessing studio result"></p>
+<p>各位 dalao 见笑了 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-12-28</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="ascii-art-for-characters/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Python/">Python</a>, <a class="tag-link" href="/tag/小玩意儿/">小玩意儿</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/a-hitokoto-crawler/">写了个一言爬虫</a>
       </h2>
 
@@ -573,53 +614,6 @@ window.location.href = url;
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/use-babun-buildin-python3-to-execute-python-script-in-st3/">在 Sublime Text 3 中使用 babun 内 python3 作为 build system</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>标题是不是写的有点绕呢~</p>
-<p>因为 ST3 内置的 python build system，是使用 cmd 的命令的，然而窝的 Python 配置啊，pip 安装的库啊都是在 babun 里安装的 python 中配置的。（babun <a href="http://babun.github.io/" target="_blank" rel="noopener">是个啥</a>？）因为 ST3 的 <code>Ctrl + B</code> 很好用，懒得切出去终端里执行了，所以需要自定义 ST3 的 <code>build system</code> 以使用 babun 内置 python3 来运行 python 脚本。</p>
-<p>首先先找到你的 babun 的 bin 目录，一般都位于这个目录下：</p>
-<p>C:\Users\your-uname.babun\cygwin\bin\</p>
-<p>其中的 <code>your-uname</code> 替换成你自己的 windows 用户名</p>
-<p>然后 ST3 中执行：<span class="lang:default decode:true crayon-inline ">Tools -&gt; Build System -&gt; New Build System…</span></p>
-<p>会打开一个名为 <code>untitled.sublime-build</code> 的新文件，内容如下</p>
-<p>{ “shell_cmd”: “make” }</p>
-<p>将其改为：</p>
-<p>{ “cmd”: [“C:\Users\your-uname\.babun\cygwin\bin\python3.4m.exe”, “-u”, “$file”], “file_regex”: “^[ ]<em>File \”(…</em>?)\”, line ([0-9]*)”, “selector”: “source.python” }</p>
-<p>并重命名保存到 <span class="lang:default decode:true crayon-inline ">C:\Users\your-uname\AppData\Roaming\Sublime Text 3\Packages\User</span>  目录下。</p>
-<p>注意使用 <code>\\\</code> 转义反斜杠。另外 babun 中 <code>/bin/python3.4m.exe</code> 这个请酌情而定。</p>
-<p>babun 默认内置的是 python 2.7，可以使用 <code>$ pact install python3</code>，使用 <code>$ ls -al /usr/bin/ |grep python</code> 来查看所安装的 python 版本可执行文件。</p>
-<p>最终效果如下：</p>
-<p><a href="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-01_05-24-05.png" alt="final"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-11-01</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="use-babun-buildin-python3-to-execute-python-script-in-st3/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Sublime/">Sublime</a>, <a class="tag-link" href="/tag/工具/">工具</a>
     
   </span>
 </div>

@@ -170,6 +170,46 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/lnmp-wordpress-cant-display-all-themes/">lnmp 搭建 WordPress 后台不能显示所有主题</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>wordpress搬到vps上后，后台主题页只剩下一个默认的 Twenty Fifteen 了</p>
+<p><a href="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-27_15-39-05.jpg" alt="QQ图片20150627233807"></a> ，搜索了一下发现原因是 php 禁用了 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">scandir</span>  函数</p>
+<p>依照如下方法启用即可：</p>
+<h3 id="1-编辑-php-ini"><a href="#1-编辑-php-ini" class="headerlink" title="1.编辑 php.ini"></a>1.编辑 php.ini</h3><p><span class="lang:default decode:true crayon-inline">vim /usr/local/php/etc/php.ini</span></p>
+<h3 id="2-查找-scandir"><a href="#2-查找-scandir" class="headerlink" title="2.查找 scandir"></a>2.查找 scandir</h3><p>在vim下输入 <span class="theme:arduino-ide lang:default decode:true  crayon-inline ">/scandir</span>  查找，删除 disable_functions 中的 scandir</p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-10_07-33-14.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-10_07-33-14.png" alt="20150710152316"></a></p>
+<h3 id="3-重启-php-fpm"><a href="#3-重启-php-fpm" class="headerlink" title="3.重启 php-fpm"></a>3.重启 php-fpm</h3><p><span class="lang:default decode:true  crayon-inline ">/etc/init.d/php-fpm restart</span></p>
+<p><a href="https://img.blessing.studio/images/2015/07/2015-07-10_07-36-26.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/07/2015-07-10_07-36-26.png" alt="20150710153609"></a>   <a href="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/06/2015-06-06_14-39-25.jpg" alt="20150606223914"></a></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-07-10</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="lnmp-wordpress-cant-display-all-themes/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/phpmyadmin-configuration-storage/">配置 phpMyAdmin configuration storage</a>
       </h2>
 
@@ -611,42 +651,6 @@ arch ramips_24kec 400
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/OpenWRT/">OpenWRT</a>, <a class="tag-link" href="/tag/小米/">小米</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/death-note/">死亡笔记中途弃坑</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>哎呀死亡笔记30以后的不怎么想看了呢，拖了几个星期了</p>
-<p>果然窝还是喜欢轻松悠闲的日常搞笑系动画呐</p>
-<p>看了下剧情简介，果然【其他人做的到吗】是出自最后一集吗（笑）</p>
-<p>顺带一说第二期的OP是个什么鬼</p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-06-22</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="death-note/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/ACGN/">ACGN</a>
     
   </span>
 </div>

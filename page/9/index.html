@@ -170,6 +170,46 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/hello-ghost-goodbye-wordpress/">Hello Ghost, goodbye Wordpress</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>虽然以前就一直想要弃用 WordPress 了，但是由于没有时间<del>（懒）</del> ，而且也是对这个完善的 CMS 有了感情。</p>
+<p>然而在 ConoHa 的 VPS 被 DDoS 而搬迁至 DigitalOcean 后，我奇怪的发现 WordPress 的响应速度慢了很多。TTFB 甚至达到了史无前例的 16s。</p>
+<p>对于这种情况，我第一个想到的就是数据库的锅。然而看了慢查询日志，导出 wp query 却发现问题不在数据库查询上。</p>
+<p>后来又使用了排除大法，最终将问题定位于我所使用的 Seventeen 主题上。</p>
+<p>看来是主题中做了什么耗费大量 CPU 时间的事件，导致前后台响应慢成狗（默认主题没事）。</p>
+<p>要知道同样内存，ConoHa 和 DigitalOcean 的 CPU 配置可不只差了一点半点。这也是我最初选择 ConoHa 的原因之一。</p>
+<p>然而发生了这档子事，反正我是再也不会去用 ConoHa 了。</p>
+<p>那么怎么办呢？活人总不能让尿憋死吧。</p>
+          <a class="more-link" href="/hello-ghost-goodbye-wordpress/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/diary/">日常</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-01-31</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="hello-ghost-goodbye-wordpress/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Ghost/">Ghost</a>, <a class="tag-link" href="/tag/WordPress/">WordPress</a>, <a class="tag-link" href="/tag/博客/">博客</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/welcome-to-ghost/">Welcome to Ghost</a>
       </h2>
 
@@ -566,47 +606,6 @@ $ cp connect /usr/local/bin
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/ascii-art-for-characters/">使用制表符生成字母的字符画</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>今天看到了 <a href="https://www.anotherhome.net/about" target="_blank" rel="noopener">AnotherHome</a> 的首页源码，发现了注释里的这玩意：</p>
-<p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-49-21.png" alt="antherhome html comment"></p>
-<p>觉得挺有意思的，正好闲着，就写了个用制表符生成字母画的脚本：</p>
-<p><img src="https://img.blessing.studio/images/2015/12/2015-12-27_07-51-34.png" alt="exec result"></p>
-<p>还是 Python 实现，源码托管于 <a href="https://gist.github.com/printempw/689a1da4b515aa682d4b" target="_blank" rel="noopener">Gist</a>。</p>
-<p>明明不是很复杂的东西，想保存字符画的数据结构时却想了窝好长时间 qwq</p>
-<p>本来是想定义个类，然后生成 A-Z 的实例，可以取出各行内容的，后来想想一个用一个 dict 就好了，key 是大写字母，value 是保存有各字母字符画的各行字符串的 list。</p>
-<p><img src="https://img.blessing.studio/images/2015/12/2015-12-31_14-46-13.png" alt="blessing studio result"></p>
-<p>各位 dalao 见笑了 <a href="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/10/2015-10-03_12-39-25.jpg" alt="pa"></a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-12-28</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="ascii-art-for-characters/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Python/">Python</a>, <a class="tag-link" href="/tag/小玩意儿/">小玩意儿</a>
     
   </span>
 </div>
