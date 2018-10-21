@@ -170,6 +170,48 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/deploy-hexo-blog-automatically-with-travis-ci/">使用 Travis CI 自动部署 Hexo 博客</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>之前（六月份高考完后）我把博客引擎由 Ghost <a href="https://blessing.studio/migrated-to-hexo/">换成了静态博客生成器 Hexo</a>，并且只使用了自带的 Git Deployment 来手动部署生成好的静态博客文件到服务器上。虽然不像动态博客程序那样可以随时随地更新博客，但是想到马上就要上大学了，之后手头都会有电脑，所以更新博客也不算那么麻烦。</p>
+<p>但是实在是人算不如天算，浙江这一届新高考改革是结结实实地把我坑了一把。二段线以上一段线未满这样中途半端的分数让人在填志愿时着实是犯难 —— 这次浙江几乎普遍出现「一段考生抢以往的二本中好学校，二段考生抢三本学校」这样神秘的情况。思来想去最后把心一横，决定去再读一年高四。后来全省高考录取情况出来后，也证实了我当时复读的决定也不是不合理的（譬如当时上了新浪微博热门话题的「浙江滑档大学」等）。</p>
+<p>关于复读的话题就先放一放吧，毕竟现在的时间确实是有些紧，可能得等到寒假时才能好好地写一篇近况报告以及关于高四生活的事情了，非常遗憾。</p>
+<p>回到正题，因为我输得透彻滚去读高四了，所以自然不可能每次都有配置完好的操作环境让我手动发博文 + 部署（虽然我也不见得有时间写什么博文）。在这样的前提条件下，一个 Hexo 博客的自动部署（持续集成）系统就显得非常有必要了。</p>
+<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>首先我们需要了解的是，我们到底希望实现一个怎样的系统？以下是我的设想：</p>
+<ol>
+<li>更新博客文章内容后 commit 到 GitHub repo（也可以直接在 GitHub 网页上 commit）；</li>
+<li>Travis CI 自动编译生成出新的静态博客文件；</li>
+<li>自动部署至 GitHub Pages 和我自己的服务器。</li>
+</ol>
+          <a class="more-link" href="/deploy-hexo-blog-automatically-with-travis-ci/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-10-04</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="deploy-hexo-blog-automatically-with-travis-ci/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/博客/">博客</a>, <a class="tag-link" href="/tag/持续集成/">持续集成</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/minecraft-yggdrasil-api-third-party-implementation/">又是一种 Minecraft 外置登录解决方案：自行实现 Yggdrasil API</a>
       </h2>
 
@@ -533,42 +575,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/Lumen/">Lumen</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/replace-cable-of-ath-es55/">给 ATH-ES55 耳机更换线材</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>大概是几年前（总之是我的 AM800 掉在火车上之后），我从某位 <a href="https://twitter.com/Panpawliet" target="_blank" rel="noopener">dalao</a> 手里低价收来了 ATH-IM50 和 ATH-ES55 两副耳机。当时写的记录文章在 <a href="https://blessing.studio/get-im50/">这里</a>，两年前的文章，现在看起来挺尬的，行文风格差了真不是一点半点。</p>
-<p>而且好几年过去了，这俩耳机也或多或少都出了些问题。其中 IM50 原配的线已经发硬且接触不良，官方升级线又买不起（说实话也不值），于是就去某宝买了个 DIY 升级线，用着也还算不错。</p>
-<p><img src="https://img.blessing.studio/images/2017/06/10/snipaste_20170610_230116.png" alt="某宝订单"></p>
-<p>至于 ES55，收来的时候耳机插头就是坏的，虽然当初随便买了个插头随便焊上去了事，不过后来又重新焊了一次（当时写的博文在 <a href="https://blessing.studio/tips-for-fixing-audio-jack/">这里</a>）。然而因为 ES55 不好在学校里用（太显眼，漏音也严重），放着吃灰了几个月，前几天高考结束拿出来的时候发现它的线材都已经变得黏糊糊的了。</p>
-          <a class="more-link" href="/replace-cable-of-ath-es55/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/diary/">日常</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-06-10</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="replace-cable-of-ath-es55/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/耳机/">耳机</a>
     
   </span>
 </div>

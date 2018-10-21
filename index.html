@@ -170,6 +170,45 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/phpstudy-prober-page-502-bad-gateway/">phpStudy 访问探针页面出现 502 Bad Gateway 的解决方法</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>不要问我为什么要用 phpStudy，我也不想。</p>
+<h2 id="TL-DR-太长不看"><a href="#TL-DR-太长不看" class="headerlink" title="TL;DR 太长不看"></a>TL;DR 太长不看</h2><p>Windows 环境下的 <strong>PHP 7.2.1 / 7.1.13</strong> 这两个版本有问题，在执行 <code>getenv()</code> 函数且第二个参数为 <code>false</code> 时，会造成 PHP FastCGI 进程 ( <code>php-cgi.exe</code> ) 崩溃。这是一个已知的 <a href="https://bugs.php.net/bug.php?id=75794" target="_blank" rel="noopener">BUG</a>，并且已经在 <strong>2018-02-01</strong> 发布的 <strong>PHP 7.2.2</strong> 与 <strong>PHP 7.1.14</strong> 中 <a href="http://www.php.net/ChangeLog-7.php#7.2.2" target="_blank" rel="noopener">被修复</a> 了。</p>
+<p>然而遗憾的是，你现在（截至发稿日 2018-10-21）能在 phpStudy 官网下载到的最新的集成环境，其中的 PHP 版本依然停留在 7.2.1 与 7.1.13。惊不惊喜，意不意外？</p>
+<p><img src="https://img.blessing.studio/images/2018/10/21/phpstudy-fake-version-7210.png" alt="phpstudy-fake-version-7210"></p>
+<p>最绝的是，phpStudy 明明自带的是 <strong>7.2.1</strong> 版本的 PHP，却在界面上显示成了 <strong>7.2.10</strong>，是我瞎了还是你瞎了？补零也不是你这么补的啊兄弟……</p>
+<p>修复方法也很简单，<strong>升级 PHP 版本即可</strong>。</p>
+<p>下面开始讲废话。</p>
+          <a class="more-link" href="/phpstudy-prober-page-502-bad-gateway/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-10-21</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="phpstudy-prober-page-502-bad-gateway/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/PHP/">PHP</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/new-nickname-prin/">今天开始请叫我 PRIN / 布丁 🍮</a>
       </h2>
 
@@ -539,48 +578,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Windows/">Windows</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/deploy-hexo-blog-automatically-with-travis-ci/">使用 Travis CI 自动部署 Hexo 博客</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>之前（六月份高考完后）我把博客引擎由 Ghost <a href="https://blessing.studio/migrated-to-hexo/">换成了静态博客生成器 Hexo</a>，并且只使用了自带的 Git Deployment 来手动部署生成好的静态博客文件到服务器上。虽然不像动态博客程序那样可以随时随地更新博客，但是想到马上就要上大学了，之后手头都会有电脑，所以更新博客也不算那么麻烦。</p>
-<p>但是实在是人算不如天算，浙江这一届新高考改革是结结实实地把我坑了一把。二段线以上一段线未满这样中途半端的分数让人在填志愿时着实是犯难 —— 这次浙江几乎普遍出现「一段考生抢以往的二本中好学校，二段考生抢三本学校」这样神秘的情况。思来想去最后把心一横，决定去再读一年高四。后来全省高考录取情况出来后，也证实了我当时复读的决定也不是不合理的（譬如当时上了新浪微博热门话题的「浙江滑档大学」等）。</p>
-<p>关于复读的话题就先放一放吧，毕竟现在的时间确实是有些紧，可能得等到寒假时才能好好地写一篇近况报告以及关于高四生活的事情了，非常遗憾。</p>
-<p>回到正题，因为我输得透彻滚去读高四了，所以自然不可能每次都有配置完好的操作环境让我手动发博文 + 部署（虽然我也不见得有时间写什么博文）。在这样的前提条件下，一个 Hexo 博客的自动部署（持续集成）系统就显得非常有必要了。</p>
-<h2 id="0x01-需求分析"><a href="#0x01-需求分析" class="headerlink" title="0x01 需求分析"></a>0x01 需求分析</h2><p>首先我们需要了解的是，我们到底希望实现一个怎样的系统？以下是我的设想：</p>
-<ol>
-<li>更新博客文章内容后 commit 到 GitHub repo（也可以直接在 GitHub 网页上 commit）；</li>
-<li>Travis CI 自动编译生成出新的静态博客文件；</li>
-<li>自动部署至 GitHub Pages 和我自己的服务器。</li>
-</ol>
-          <a class="more-link" href="/deploy-hexo-blog-automatically-with-travis-ci/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2017-10-04</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="deploy-hexo-blog-automatically-with-travis-ci/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Hexo/">Hexo</a>, <a class="tag-link" href="/tag/博客/">博客</a>, <a class="tag-link" href="/tag/持续集成/">持续集成</a>
     
   </span>
 </div>

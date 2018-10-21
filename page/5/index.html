@@ -170,6 +170,47 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/laravel-plugin-system-1/">Laravel 框架下的插件机制实现（一）—— 构建插件系统</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>插件，即 Plug-in（又有外挂、Extension、Addon 等叫法），是一类特定的功能模块，通过和应用程序的互动，用来替应用程序增加一些所需要的特定的功能。插件的特点是：</p>
+<ul>
+<li>当你需要它的时候激活它，不需要它的时候禁用/删除它；</li>
+<li>无论是激活还是禁用都不影响系统核心模块的运行。</li>
+</ul>
+<p>也就是说插件是一种非侵入式的模块化设计，实现了核心程序与插件程序的松散耦合。上面的介绍部分摘自 <a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">中文 WikiPedia</a>。</p>
+<p>虽然现在网上有很多 PHP 的插件机制的实现（当然我指的是英文内容，中文关于 PHP 插件机制的搜出来现在还是那么点破文章），譬如 <a href="https://github.com/FoolCode/Plugin" target="_blank" rel="noopener">FoolCode/Plugin</a>，或者 WordPress 的插件实现。</p>
+<p>不过我今天想介绍的是如何使用 Laravel 的服务容器、事件机制等功能来实现一个比较优雅的插件机制。</p>
+<p><em>Greatly inspired by <a href="https://github.com/flarum/core/tree/master/src/Extension" target="_blank" rel="noopener">Flarum</a></em>，在此致谢 ヾ(´ωﾟ｀)</p>
+          <a class="more-link" href="/laravel-plugin-system-1/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-11-20</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="laravel-plugin-system-1/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Laravel/">Laravel</a>, <a class="tag-link" href="/tag/PHP/">PHP</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/how-to-load-gist-dynamically-via-clicking-button/">实现点击按钮加载 Gist 代码块</a>
       </h2>
 
@@ -511,42 +552,6 @@ if (!String.prototype.endsWith) {
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Sublime/">Sublime</a>, <a class="tag-link" href="/tag/分享/">分享</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/yet-another-solution-for-javascript-i18n/">又是一种用于 JavaScript 的前端国际化方案</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>现在 Blessing Skin Server 的 HTML 模板是使用 Laravel 自带的本地化来实现多语言支持的，并且使用了 <a href="https://github.com/Devitek/laravel-yaml-translation" target="_blank" rel="noopener">devitek/yaml-translation</a> 这个包把 Laravel 语言文件从默认的 PHP 数组形式改为 YAML 格式的文件。</p>
-<p>不得不说数组形式的语言文件简直反人类好吗，一大堆 <code>=&gt;</code> 看的眼晕。。YAML 大法好！(ゝ∀･)</p>
-<p>回到正题。虽然 HTML 模板里的国际化是解决了，但是整个应用中需要国际化的地方可不止 HTML 模板，同时还有 JavaScript。但是静态的脚本文件中总不能内嵌 PHP 吧，所以我们得搞个单独的解决方案。</p>
-<p>虽然说网上现成的 JS 国际化的库很多，但我总觉得有些看不上眼（可能是我没找到好的），就准备自己实现一下。</p>
-          <a class="more-link" href="/yet-another-solution-for-javascript-i18n/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-09-15</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="yet-another-solution-for-javascript-i18n/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
     
   </span>
 </div>

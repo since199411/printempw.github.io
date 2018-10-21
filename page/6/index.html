@@ -170,6 +170,42 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/yet-another-solution-for-javascript-i18n/">又是一种用于 JavaScript 的前端国际化方案</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>现在 Blessing Skin Server 的 HTML 模板是使用 Laravel 自带的本地化来实现多语言支持的，并且使用了 <a href="https://github.com/Devitek/laravel-yaml-translation" target="_blank" rel="noopener">devitek/yaml-translation</a> 这个包把 Laravel 语言文件从默认的 PHP 数组形式改为 YAML 格式的文件。</p>
+<p>不得不说数组形式的语言文件简直反人类好吗，一大堆 <code>=&gt;</code> 看的眼晕。。YAML 大法好！(ゝ∀･)</p>
+<p>回到正题。虽然 HTML 模板里的国际化是解决了，但是整个应用中需要国际化的地方可不止 HTML 模板，同时还有 JavaScript。但是静态的脚本文件中总不能内嵌 PHP 吧，所以我们得搞个单独的解决方案。</p>
+<p>虽然说网上现成的 JS 国际化的库很多，但我总觉得有些看不上眼（可能是我没找到好的），就准备自己实现一下。</p>
+          <a class="more-link" href="/yet-another-solution-for-javascript-i18n/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-09-15</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="yet-another-solution-for-javascript-i18n/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/custom-responses-of-laravel-validations/">自定义 Laravel Validator 所返回的响应</a>
       </h2>
 
@@ -495,42 +531,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/ACGN/">ACGN</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/about-the-compatibility-of-formdata-get/">关于 FormData.get() 的兼容性问题</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>又踩到坑了，稍微记录一下 ( ・_ゝ・)</p>
-<p>我在 Ajax 上传文件时是用的构建 <code>FormData</code> 对象的方法，构建完之后我很自然的打算从对象里面取出值来做验证，StackOverflow 里搜了一下之后就知道了有 <code>FormData.get()</code> 这个方法，我也没想太多就直接用了，并且在我本地环境（Chrome 51）上没有任何问题。</p>
-<p>前天把 beta 版的 v3 皮肤站上线测试了，今天就有人发邮件给我，竟然是 <code>FormData.get()</code> 这个语句报错了，提示 <code>e.get is not a function</code>，当时我就知道八成又是兼容性问题了 ( `д´)</p>
-<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="noopener">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-07-26</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="about-the-compatibility-of-formdata-get/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
     
   </span>
 </div>

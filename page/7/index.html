@@ -170,6 +170,42 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/about-the-compatibility-of-formdata-get/">关于 FormData.get() 的兼容性问题</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>又踩到坑了，稍微记录一下 ( ・_ゝ・)</p>
+<p>我在 Ajax 上传文件时是用的构建 <code>FormData</code> 对象的方法，构建完之后我很自然的打算从对象里面取出值来做验证，StackOverflow 里搜了一下之后就知道了有 <code>FormData.get()</code> 这个方法，我也没想太多就直接用了，并且在我本地环境（Chrome 51）上没有任何问题。</p>
+<p>前天把 beta 版的 v3 皮肤站上线测试了，今天就有人发邮件给我，竟然是 <code>FormData.get()</code> 这个语句报错了，提示 <code>e.get is not a function</code>，当时我就知道八成又是兼容性问题了 ( `д´)</p>
+<p>查了一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" target="_blank" rel="noopener">MDN 文档</a> 果然是这样，<code>FormData.get()</code> 方法竟然是从 Chrome 50.0 开始支持的，而那个用户用的是三六蛋浏览器，于是就喜闻乐见的 GG 了 <img src="https://ooo.0o0.ooo/2016/07/25/5796c0b56c157.jpg" alt="emotion"></p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2016-07-26</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="about-the-compatibility-of-formdata-get/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tag/记录/">记录</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/generate-aplayer-config-from-netease-automatically/">Node 实现自动解析网易云音乐并转换为 APlayer 配置</a>
       </h2>
 
@@ -484,40 +520,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/六四/">六四</a>, <a class="tag-link" href="/tag/审查制度/">审查制度</a>, <a class="tag-link" href="/tag/政治/">政治</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/add-more-tag-for-ghost/">为 Ghost 博客添加 more 标签支持</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>众所周知，WordPress 有个 <code>&lt;!--more--&gt;</code> 标签可以控制预览输出的内容，在 <code>&lt;!--more--&gt;</code> 之后的内容是不会显示在预览中的，需要进入 Post 页才能看到完整内容。</p>
-<p>蛋疼的是，Ghost 并不支持类似的功能，只能让它自动切割预览内容（根据字数）。这 TM 的就非常尴尬了，刚刚在展示窝惠的魅力时（上一篇 Post），如果让 Ghost 自己来切的话，就会把三张图片全部切在预览里，这样首页就会变得贼大，所以得想个法子了。</p>
-          <a class="more-link" href="/add-more-tag-for-ghost/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-04-17</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="add-more-tag-for-ghost/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/Ghost/">Ghost</a>, <a class="tag-link" href="/tag/博客/">博客</a>
     
   </span>
 </div>

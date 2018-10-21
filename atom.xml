@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blessing.studio/"/>
-  <updated>2018-10-03T04:24:52.000Z</updated>
+  <updated>2018-10-21T12:36:42.000Z</updated>
   <id>https://blessing.studio/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>phpStudy 访问探针页面出现 502 Bad Gateway 的解决方法</title>
+    <link href="https://blessing.studio/phpstudy-prober-page-502-bad-gateway/"/>
+    <id>https://blessing.studio/phpstudy-prober-page-502-bad-gateway/</id>
+    <published>2018-10-21T12:36:42.000Z</published>
+    <updated>2018-10-21T12:36:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>不要问我为什么要用 phpStudy，我也不想。</p><h2 id="TL-DR-太长不看"><a href="#TL-DR-太长不看" class="headerlink" title="TL;DR 太长不看"></a>TL;DR 太长不看</h2><p>Windows 环境下的 <strong>PHP 7.2.1 / 7.1.13</strong> 这两个版本有问题，在执行 <code>getenv()</code> 函数且第二个参数为 <code>false</code> 时，会造成 PHP FastCGI 进程 ( <code>php-cgi.exe</code> ) 崩溃。这是一个已知的 <a href="https://bugs.php.net/bug.php?id=75794" target="_blank" rel="noopener">BUG</a>，并且已经在 <strong>2018-02-01</strong> 发布的 <strong>PHP 7.2.2</strong> 与 <strong>PHP 7.1.14</strong> 中 <a href="http://www.php.net/ChangeLog-7.php#7.2.2" target="_blank" rel="noopener">被修复</a> 了。</p><p>然而遗憾的是，你现在（截至发稿日 2018-10-21）能在 phpStudy 官网下载到的最新的集成环境，其中的 PHP 版本依然停留在 7.2.1 与 7.1.13。惊不惊喜，意不意外？</p><p><img src="https://img.blessing.studio/images/2018/10/21/phpstudy-fake-version-7210.png" alt="phpstudy-fake-version-7210"></p><p>最绝的是，phpStudy 明明自带的是 <strong>7.2.1</strong> 版本的 PHP，却在界面上显示成了 <strong>7.2.10</strong>，是我瞎了还是你瞎了？补零也不是你这么补的啊兄弟……</p><p>修复方法也很简单，<strong>升级 PHP 版本即可</strong>。</p><p>下面开始讲废话。</p><a id="more"></a><h2 id="0x01-问题描述"><a href="#0x01-问题描述" class="headerlink" title="0x01 问题描述"></a>0x01 问题描述</h2><p>因为某些原因，我需要在 Windows 开发机上重新配置 PHP 开发环境（这个原因等下一篇博文再细说）。以前我一直用的是 <a href="http://www.upupw.net/" target="_blank" rel="noopener">UPUPW 一键包</a>，虽然它很好用，不过考虑到它的默认配置更适用于生产环境而非开发环境，而且相比起来 <a href="http://phpstudy.php.cn/" target="_blank" rel="noopener">phpStudy</a> 可以更方便地切换 PHP 版本与 Web 服务器（有时候测试兼容性要用到），所以最后我选择了使用 phpStudy 进行开发环境的配置。</p><p>然后坑就来了。</p><p>安装完 phpStudy 后，按照我个人的习惯先访问 PHP 探针页面，结果就被糊了一脸 <strong>502 Bad Gateway</strong>。懵了一阵子，开始找日志排查原因。先看 Nginx 的错误日志 <code>error.log</code>：</p><pre><code class="text">2018/10/21 11:45:14 [error] 81019#14893: *10 WSARecv() failed (10054: An existing connection was forcibly closed by the remote host) while reading response header from upstream, client: 127.0.0.1, server: localhost, request: &quot;GET /l.php HTTP/1.1&quot;, upstream: &quot;fastcgi://127.0.0.1:9000&quot;, host: &quot;localhost&quot;</code></pre><p>呃……远程主机强迫关闭了一个现有的连接？从日志来看，Nginx 是正常收到了请求，所以应该是 Nginx 通过 CGI 协议将请求交给 PHP 解析器处理时出现问题了，也就是监听在 <code>127.0.0.1:9000</code> 上的 PHP FastCGI 进程出了问题。（看不懂？那你应该去复习一下 <a href="https://segmentfault.com/q/1010000000256516/a-1020000000259560" target="_blank" rel="noopener">Nginx 与 PHP 交互的流程</a> 了。）</p><h2 id="0x02-问题排查"><a href="#0x02-问题排查" class="headerlink" title="0x02 问题排查"></a>0x02 问题排查</h2><p>接着去看一下 PHP 的错误日志。</p><p>phpStudy 中的 <code>php.ini</code> 默认设置了 <code>log_errors = On</code> 但是没有指定 <code>error_log</code> 的值，所以错误信息会被发送至 SAPI 错误记录器（前提是 <code>error_reporting</code> 设置正确）。在此例中，PHP 会将错误信息通过 CGI 发送至 Nginx，Nginx 捕获后会将错误记录至 <code>error.log</code>，就像这样：</p><pre><code class="test">2018/10/21 11:45:14 [error] 81019#14893: *16 FastCGI sent in stderr: &quot;PHP Fatal error:  Uncaught Error: Call to undefined function test() in E:\environment\bundle\php-study\PHPTutorial\WWW\l.php:183Stack trace:#0 {main}  thrown in E:\environment\bundle\php-study\PHPTutorial\WWW\l.php on line 183&quot; while reading response header from upstream, client: 127.0.0.1, server: localhost, request: &quot;GET /l.php HTTP/1.1&quot;, upstream: &quot;fastcgi://127.0.0.1:9000&quot;, host: &quot;localhost&quot;</code></pre><p>然而我并没有在 <code>error.log</code> 中找到任何 PHP 的错误日志，也就是说……我不信邪，将 <code>error_log</code> 设置为文件日志后，却依然没有任何错误信息。草，没有错误日志你让我玩个屁啊！</p><p>好吧，这种情况下就只能靠万能的 Google 大老师了。</p><p>用关键词「Windows PHP 502 Bad Gateway」查了一下，似乎有说是 <code>php-cgi.exe</code> 进程开太少，造成并发阻塞的话会造成 502。我这才想起来，php-fpm 只适用于类 Unix 系统，Windows 版的 PHP 是没有自带 FastCGI 进程管理器的。打开任务管理器看了一下，果然，phpStudy 只开了一个 <code>php-cgi.exe</code>。</p><p><img src="https://img.blessing.studio/images/2018/10/21/phpstudy-single-php-cgi-process.png" alt="phpstudy-single-php-cgi-process"></p><p>看起来挺靠谱啊！难道就是这玩意造成的 502？</p><p>为了验证，我手动开启了几个 <code>php-cgi.exe</code> 进程，并修改 <code>nginx.conf</code> 如下：</p><pre><code class="nginx">upstream php_fastcgi {    server 127.0.0.1:9000;    server 127.0.0.1:9001;    server 127.0.0.1:9002;}server {    # ...    location ~ ^.+\.php {        # 原来是 fastcgi_pass 127.0.0.1:9000;        fastcgi_pass php_fastcgi;        # ...    }}</code></pre><p>重启 Nginx 后尝试访问之前出问题的页面，很遗憾地，依然是 502 Bad Gateway。不过，虽然问题并不是 <code>php-cgi.exe</code> 进程过少造成的，但是这次尝试并没有白费，我在这次测试中发现了一个现象：</p><p><strong>每次访问这个页面，<code>php-cgi.exe</code> 进程就会异常退出。</strong></p><p>因为 phpStudy 自带守护进程，就算 <code>php-cgi.exe</code> 崩溃了也会马上新开一个，所以我之前一直没有注意到。把所有配置还原成默认状态后观察进程，发现每次访问探针页面时，<code>php-cgi.exe</code> 进程都会死掉然后马上变成新的，然后 Nginx 那边就 502 了。至此，问题基本就能确定了：</p><p><strong>该页面中的某些 PHP 代码会造成 <code>php-cgi.exe</code> 进程崩溃。</strong></p><p>找到问题就好办了，用二分法最后定位到了 <a href="http://www.yahei.net/" target="_blank" rel="noopener">探针</a> 中造成问题的代码：</p><pre><code class="php">&lt;?phpecho getenv(&quot;HTTP_ACCEPT_LANGUAGE&quot;);</code></pre><h2 id="0x03-问题解决"><a href="#0x03-问题解决" class="headerlink" title="0x03 问题解决"></a>0x03 问题解决</h2><p>Google 了一下「php getenv FastCGI crash」，找到不少类似的问题 ( <a href="https://stackoverflow.com/questions/48286208/getenvanystring-is-causing-an-internal-server-error" target="_blank" rel="noopener">#1</a>, <a href="https://segmentfault.com/q/1010000015345101/" target="_blank" rel="noopener">#2</a>, <a href="https://blog.csdn.net/smile12393/article/details/81132040" target="_blank" rel="noopener">#3</a> )，看来并不是个例。就像 TL;DR 中说的一样，这是只有运行在 FastCGI 模式下的 Windows 版 PHP 7.2.1 / 7.1.13 会遇到的一个 <a href="https://bugs.php.net/bug.php?id=75794" target="_blank" rel="noopener">BUG</a>，当 <code>getenv()</code> 的第二参数为 <code>false</code>（默认值）时就会造成 <code>php-cgi.exe</code> 崩溃。Apache 因为基本都是以模块的方式加载 PHP 的，一般不会受此影响，然而 phpStudy 中的 Apache 也是通过 FastCGI 加载 PHP 的，所以一样会中招。</p><p>解决方法也和上面说的一样：<strong>升级 PHP 版本即可</strong>。</p><p>排查这问题前前后后花了我将近一天的时间……因为很不爽所以写了这么一大段来抱怨，还请诸位见谅。另外，我已经受够这些 PHP 集成环境了，所以下一篇博文将是手动配置 WNMP 环境的教程。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不要问我为什么要用 phpStudy，我也不想。&lt;/p&gt;
+&lt;h2 id=&quot;TL-DR-太长不看&quot;&gt;&lt;a href=&quot;#TL-DR-太长不看&quot; class=&quot;headerlink&quot; title=&quot;TL;DR 太长不看&quot;&gt;&lt;/a&gt;TL;DR 太长不看&lt;/h2&gt;&lt;p&gt;Windows 环境下的 &lt;strong&gt;PHP 7.2.1 / 7.1.13&lt;/strong&gt; 这两个版本有问题，在执行 &lt;code&gt;getenv()&lt;/code&gt; 函数且第二个参数为 &lt;code&gt;false&lt;/code&gt; 时，会造成 PHP FastCGI 进程 ( &lt;code&gt;php-cgi.exe&lt;/code&gt; ) 崩溃。这是一个已知的 &lt;a href=&quot;https://bugs.php.net/bug.php?id=75794&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;BUG&lt;/a&gt;，并且已经在 &lt;strong&gt;2018-02-01&lt;/strong&gt; 发布的 &lt;strong&gt;PHP 7.2.2&lt;/strong&gt; 与 &lt;strong&gt;PHP 7.1.14&lt;/strong&gt; 中 &lt;a href=&quot;http://www.php.net/ChangeLog-7.php#7.2.2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;被修复&lt;/a&gt; 了。&lt;/p&gt;
+&lt;p&gt;然而遗憾的是，你现在（截至发稿日 2018-10-21）能在 phpStudy 官网下载到的最新的集成环境，其中的 PHP 版本依然停留在 7.2.1 与 7.1.13。惊不惊喜，意不意外？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.blessing.studio/images/2018/10/21/phpstudy-fake-version-7210.png&quot; alt=&quot;phpstudy-fake-version-7210&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最绝的是，phpStudy 明明自带的是 &lt;strong&gt;7.2.1&lt;/strong&gt; 版本的 PHP，却在界面上显示成了 &lt;strong&gt;7.2.10&lt;/strong&gt;，是我瞎了还是你瞎了？补零也不是你这么补的啊兄弟……&lt;/p&gt;
+&lt;p&gt;修复方法也很简单，&lt;strong&gt;升级 PHP 版本即可&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;下面开始讲废话。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="https://blessing.studio/categories/tech/"/>
+    
+    
+      <category term="记录" scheme="https://blessing.studio/tag/%E8%AE%B0%E5%BD%95/"/>
+    
+      <category term="PHP" scheme="https://blessing.studio/tag/PHP/"/>
+    
+  </entry>
   
   <entry>
     <title>今天开始请叫我 PRIN / 布丁 🍮</title>
@@ -633,31 +663,6 @@
       <category term="PHP" scheme="https://blessing.studio/tag/PHP/"/>
     
       <category term="Lumen" scheme="https://blessing.studio/tag/Lumen/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>给 ATH-ES55 耳机更换线材</title>
-    <link href="https://blessing.studio/replace-cable-of-ath-es55/"/>
-    <id>https://blessing.studio/replace-cable-of-ath-es55/</id>
-    <published>2017-06-10T15:53:14.000Z</published>
-    <updated>2017-06-10T15:53:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>大概是几年前（总之是我的 AM800 掉在火车上之后），我从某位 <a href="https://twitter.com/Panpawliet" target="_blank" rel="noopener">dalao</a> 手里低价收来了 ATH-IM50 和 ATH-ES55 两副耳机。当时写的记录文章在 <a href="https://blessing.studio/get-im50/">这里</a>，两年前的文章，现在看起来挺尬的，行文风格差了真不是一点半点。</p><p>而且好几年过去了，这俩耳机也或多或少都出了些问题。其中 IM50 原配的线已经发硬且接触不良，官方升级线又买不起（说实话也不值），于是就去某宝买了个 DIY 升级线，用着也还算不错。</p><p><img src="https://img.blessing.studio/images/2017/06/10/snipaste_20170610_230116.png" alt="某宝订单"></p><p>至于 ES55，收来的时候耳机插头就是坏的，虽然当初随便买了个插头随便焊上去了事，不过后来又重新焊了一次（当时写的博文在 <a href="https://blessing.studio/tips-for-fixing-audio-jack/">这里</a>）。然而因为 ES55 不好在学校里用（太显眼，漏音也严重），放着吃灰了几个月，前几天高考结束拿出来的时候发现它的线材都已经变得黏糊糊的了。</p><a id="more"></a><p><img src="https://img.blessing.studio/images/2017/06/10/IMG_20170609_224017.jpg" alt="ES55 辣鸡线材"></p><p>这里不得不吐槽一下 ES55 的原装线材，突出一个辣鸡。线又细又容易缠绕，放久了还会出油变黏，感觉就像路边摊耳机线一样，说不出话 <img src="https://img.blessing.studio/images/2017/06/07/QQ20170607203042.jpg" alt="表情1"></p><p>这时候我正好也不想继续用这根 IM50 升级线了（外套的热缩管开始发黄，插到耳机单元上的插头壳子掉了一半，耳挂也没原装的好用），于是就打算把它换到 ES55 上，也算是废物利用了（笑）网上也没有关于 ATH-ES55 换线的相关资料，于是写<del>水</del>一篇博文权当记录。</p><p>既然决定要做，就该动粗了<img src="https://img.blessing.studio/images/2017/06/10/QQ20170610233518.jpg" alt="表情2"></p><p><img src="https://img.blessing.studio/images/2017/06/10/IMG_20170610_200132.jpg" alt="1"></p><p><em>▲ 先把 IM50 升级线的头给去掉。镀银线不知道是不是真的，粗倒是挺粗的，声音也没听出来啥差别。</em></p><p><img src="https://img.blessing.studio/images/2017/06/10/IMG_20170610_200459.jpg" alt="2"></p><p><em>▲ 俩单元用四颗螺丝固定，家中常备螺丝刀套装很有用（笑）另外注意拆的时候不要手一抖戳振膜上了。</em></p><p><img src="https://img.blessing.studio/images/2017/06/10/IMG_20170610_202429.jpg" alt="3"></p><p><em>▲ 用烙铁弄掉原装线后，把新的线焊上去。然而我没正经学过焊接，虽不至于虚焊，不过焊的很丑，但愿不要太影响声音。另外注意烙铁不要长时间放在焊点上，不然可能把背面的振膜烫变形（我之前有个便宜头戴就是这样死的）</em></p><p><img src="https://img.blessing.studio/images/2017/06/10/IMG_20170610_210319.jpg" alt="4"></p><p><em>▲ 完成形态。虽然白色线有点违和……</em></p><p>以上。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;大概是几年前（总之是我的 AM800 掉在火车上之后），我从某位 &lt;a href=&quot;https://twitter.com/Panpawliet&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;dalao&lt;/a&gt; 手里低价收来了 ATH-IM50 和 ATH-ES55 两副耳机。当时写的记录文章在 &lt;a href=&quot;https://blessing.studio/get-im50/&quot;&gt;这里&lt;/a&gt;，两年前的文章，现在看起来挺尬的，行文风格差了真不是一点半点。&lt;/p&gt;
-&lt;p&gt;而且好几年过去了，这俩耳机也或多或少都出了些问题。其中 IM50 原配的线已经发硬且接触不良，官方升级线又买不起（说实话也不值），于是就去某宝买了个 DIY 升级线，用着也还算不错。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img.blessing.studio/images/2017/06/10/snipaste_20170610_230116.png&quot; alt=&quot;某宝订单&quot;&gt;&lt;/p&gt;
-&lt;p&gt;至于 ES55，收来的时候耳机插头就是坏的，虽然当初随便买了个插头随便焊上去了事，不过后来又重新焊了一次（当时写的博文在 &lt;a href=&quot;https://blessing.studio/tips-for-fixing-audio-jack/&quot;&gt;这里&lt;/a&gt;）。然而因为 ES55 不好在学校里用（太显眼，漏音也严重），放着吃灰了几个月，前几天高考结束拿出来的时候发现它的线材都已经变得黏糊糊的了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="日常" scheme="https://blessing.studio/categories/diary/"/>
-    
-    
-      <category term="耳机" scheme="https://blessing.studio/tag/%E8%80%B3%E6%9C%BA/"/>
     
   </entry>
   
