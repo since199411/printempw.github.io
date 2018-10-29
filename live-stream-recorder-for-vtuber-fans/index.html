@@ -37,6 +37,7 @@
 <meta property="og:description" content="首先是惯例的闲聊时间。 虽然这是我第一次在这个博客中提到 Virtual YouTuber，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（キズナアイ）诞生、四天王聚首，到年初 狐叔 引领的个人势井喷，再到以彩虹社（にじさんじ）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕…">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg">
+<meta property="og:image" content="https://img.blessing.studio/images/2018/10/30/live-stream-recorder_logs.png">
 <meta property="og:updated_time" content="2018-10-29T15:45:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种监测 VTuber 直播并自动录像的方法">
@@ -202,6 +203,7 @@
 <p>👉 <a href="https://github.com/printempw/live-stream-recorder" target="_blank" rel="noopener"><strong>printempw/live-stream-recorder</strong></a> 👈</p>
 <p>脚本是我几个月前写的，跑得还算安稳，也成功帮我录下了不少惨遭 Mea 削除存档的直播，可喜可贺。因为当时搜索类似解决方案时基本没看到几个，所以最近把代码整理了一下，糊了个像样的文档分享出来。使用方法都在项目 README 里说明了，这里就不再赘述。</p>
 <p>这玩意儿的原理其实很简单，就是每隔 30s 查询一次直播状态（这一块比较难搞），如果在播就开始录像。录像方面，使用 <a href="https://github.com/rg3/youtube-dl/" target="_blank" rel="noopener">youtube-dl</a> 或者 <a href="https://github.com/streamlink/streamlink" target="_blank" rel="noopener">streamlink</a> 等工具获取直播 HLS 的 <code>.m3u8</code> 地址，然后直接交给 ffmpeg 进行录制（还能顺带推流转播，不得不说 ffmpeg 真是神器）。</p>
+<p><img src="https://img.blessing.studio/images/2018/10/30/live-stream-recorder_logs.png" alt="live-stream-recorder_logs"></p>
 <p>因为功能就这么点，所以我选择了用 Shell 脚本来完成，之后有时间的话或许会用 PHP 给它套个便于操控的网页前端。也可以再优化一下，把轮询模式改为 Pub/Sub 模式，节省点资源（不过我那台 VPS 就是为了录像买的，所以说实话怎样都好）。总之，有缘再说吧。</p>
 <hr>
 <p>其他类似的项目：</p>
