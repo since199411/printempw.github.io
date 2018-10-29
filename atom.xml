@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blessing.studio/"/>
-  <updated>2018-10-21T12:36:42.000Z</updated>
+  <updated>2018-10-29T15:45:36.000Z</updated>
   <id>https://blessing.studio/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一种监测 VTuber 直播并自动录像的方法</title>
+    <link href="https://blessing.studio/live-stream-recorder-for-vtuber-fans/"/>
+    <id>https://blessing.studio/live-stream-recorder-for-vtuber-fans/</id>
+    <published>2018-10-29T15:45:36.000Z</published>
+    <updated>2018-10-29T15:45:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先是惯例的闲聊时间。</p><p>虽然这是我第一次在这个博客中提到 <a href="https://zh.wikipedia.org/zh-cn/%E8%99%9B%E6%93%ACYouTuber" target="_blank" rel="noopener">Virtual YouTuber</a>，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（<a href="https://zh.wikipedia.org/wiki/%E7%B5%86%E6%84%9B" target="_blank" rel="noopener">キズナアイ</a>）诞生、四天王聚首，到年初 <a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E3%81%AE%E3%81%98%E3%82%83%E3%83%AD%E3%83%AA%E7%8B%90%E5%A8%98Youtuber%E3%81%8A%E3%81%98%E3%81%95%E3%82%93" target="_blank" rel="noopener">狐叔</a> 引领的个人势井喷，再到以彩虹社（<a href="https://ja.wikipedia.org/wiki/%E3%81%AB%E3%81%98%E3%81%95%E3%82%93%E3%81%98" target="_blank" rel="noopener">にじさんじ</a>）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕……如此种种，VTuber 界的快速发展令人眼花缭乱，也难怪有「一个月 = VTuber 历一年」的说法。</p><p>不如说 VTuber 的世界实在过于精彩，每天都有大量好玩的内容产出，以至于我甚至已经很久没有看新番动画等传统 ACG 作品，就连游戏也不玩了，只能说 VTuber 沼恐怖如斯。</p><p><img src="https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg" alt="meme_i_am_ok"></p><p>为什么突然谈起这茬？其实我一直都想写一篇关于 VTuber 的文章，但是当时由于学业之类的原因只能搁置。然而到了现在，时间和精力确实是有了，但是正处繁荣期的 VTuber 市场的复杂度，却已经不再是我这孱弱的文笔能够描绘的了。只能说，非常遗憾。</p><p>既然写不出来，那就不写，这是我写博客的标准。如果参考别人的文章照猫画虎、东拼西凑，确实是能挤出一点像样的文字，但那种中途半端的东西又有什么意思呢？我写博客是给自己看的，不是拿去哗众取宠的。所以，牛逼的文章就交给牛逼的人去写，我只管写我自己能写得出来的东西就够了。</p><p>好了，闲话休题，今天我们的主题是「如何对 VTuber 的直播进行自动录像」。</p><a id="more"></a><hr><p>为什么会有这个需求呢？</p><p>简单来说，直播系的 VTuber 虽然有着视频系所无法比肩的「亲近感」与「参与感」，但是直播的形式也不可避免地要消耗观众更多的时间与精力（关于直播系与视频系优缺点的讨论网上有很多，我这里就不再深入）。毕竟当个 NEET 一天 25 小时高强度看直播还是比较有难度的，所以碰到上课、上班时喜欢的 VTuber 正好开播的话就很吃瘪。</p><p>虽然大部分直播系 VTuber 都有为学畜社畜着想、基本都会留下直播的存档录像，但还是有好几个「臭名昭著」的，喜欢突击直播又不爱留档的选手，比如说 —— <a href="https://twitter.com/Freeze_Mea" target="_blank" rel="noopener">神楽めあ</a>。<del>（本来想在这里稍微介绍一下这位屑女仆，但是我发现三言两语根本解释不清 Mea 这个混沌且复杂的 VTuber，遂作罢。或许我下篇关于 VTuber 的博文会是「浅谈神楽めあ的魅力」也说不定，咕咕咕）</del></p><p>但是我又特别喜欢看她的直播、不想错过，怎么办呢？</p><p>要么就他力本願，拜托录像班录好上传，要么就自己动手、丰衣足食。</p><hr><p>好歹我也会捣鼓点代码，于是我就写了几个脚本来完成我的需求（让计算机按照自己的意愿工作，我觉得这就是编程的醍醐味），监视 YouTube、OPENREC、Twitch、TwitCasting 等平台，只要主播一开播就自动开始录像。代码开源在 GitHub 上：</p><p>👉 <a href="https://github.com/printempw/live-stream-recorder" target="_blank" rel="noopener"><strong>printempw/live-stream-recorder</strong></a> 👈</p><p>脚本是我几个月前写的，跑得还算安稳，也成功帮我录下了不少惨遭 Mea 削除存档的直播，可喜可贺。因为当时搜索类似解决方案时基本没看到几个，所以最近把代码整理了一下，糊了个像样的文档分享出来。使用方法都在项目 README 里说明了，这里就不再赘述。</p><p>这玩意儿的原理其实很简单，就是每隔 30s 查询一次直播状态（这一块比较难搞），如果在播就开始录像。录像方面，使用 <a href="https://github.com/rg3/youtube-dl/" target="_blank" rel="noopener">youtube-dl</a> 或者 <a href="https://github.com/streamlink/streamlink" target="_blank" rel="noopener">streamlink</a> 等工具获取直播 HLS 的 <code>.m3u8</code> 地址，然后直接交给 ffmpeg 进行录制（还能顺带推流转播，不得不说 ffmpeg 真是神器）。</p><p>因为功能就这么点，所以我选择了用 Shell 脚本来完成，之后有时间的话或许会用 PHP 给它套个便于操控的网页前端。也可以再优化一下，把轮询模式改为 Pub/Sub 模式，节省点资源（不过我那台 VPS 就是为了录像买的，所以说实话怎样都好）。总之，有缘再说吧。</p><hr><p>其他类似的项目：</p><ul><li><a href="https://www.bilibili.com/read/cv1083415" target="_blank" rel="noopener">【转播 man】其他平台转播到 bilibili 的一种方法</a></li><li><a href="https://www.bilibili.com/read/mobile/1122933" target="_blank" rel="noopener">简单易用 外网直播流转播至 B 站的小工具</a></li><li><a href="https://www.bilibili.com/read/cv1388431" target="_blank" rel="noopener">AutoYtB —— 自动检测 youtube 与推特进行自动转播至 B 站并进行录制与转码</a></li></ul><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先是惯例的闲聊时间。&lt;/p&gt;
+&lt;p&gt;虽然这是我第一次在这个博客中提到 &lt;a href=&quot;https://zh.wikipedia.org/zh-cn/%E8%99%9B%E6%93%ACYouTuber&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Virtual YouTuber&lt;/a&gt;，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%B5%86%E6%84%9B&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;キズナアイ&lt;/a&gt;）诞生、四天王聚首，到年初 &lt;a href=&quot;https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E3%81%AE%E3%81%98%E3%82%83%E3%83%AD%E3%83%AA%E7%8B%90%E5%A8%98Youtuber%E3%81%8A%E3%81%98%E3%81%95%E3%82%93&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;狐叔&lt;/a&gt; 引领的个人势井喷，再到以彩虹社（&lt;a href=&quot;https://ja.wikipedia.org/wiki/%E3%81%AB%E3%81%98%E3%81%95%E3%82%93%E3%81%98&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;にじさんじ&lt;/a&gt;）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕……如此种种，VTuber 界的快速发展令人眼花缭乱，也难怪有「一个月 = VTuber 历一年」的说法。&lt;/p&gt;
+&lt;p&gt;不如说 VTuber 的世界实在过于精彩，每天都有大量好玩的内容产出，以至于我甚至已经很久没有看新番动画等传统 ACG 作品，就连游戏也不玩了，只能说 VTuber 沼恐怖如斯。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg&quot; alt=&quot;meme_i_am_ok&quot;&gt;&lt;/p&gt;
+&lt;p&gt;为什么突然谈起这茬？其实我一直都想写一篇关于 VTuber 的文章，但是当时由于学业之类的原因只能搁置。然而到了现在，时间和精力确实是有了，但是正处繁荣期的 VTuber 市场的复杂度，却已经不再是我这孱弱的文笔能够描绘的了。只能说，非常遗憾。&lt;/p&gt;
+&lt;p&gt;既然写不出来，那就不写，这是我写博客的标准。如果参考别人的文章照猫画虎、东拼西凑，确实是能挤出一点像样的文字，但那种中途半端的东西又有什么意思呢？我写博客是给自己看的，不是拿去哗众取宠的。所以，牛逼的文章就交给牛逼的人去写，我只管写我自己能写得出来的东西就够了。&lt;/p&gt;
+&lt;p&gt;好了，闲话休题，今天我们的主题是「如何对 VTuber 的直播进行自动录像」。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="https://blessing.studio/categories/tech/"/>
+    
+    
+      <category term="VTuber" scheme="https://blessing.studio/tag/VTuber/"/>
+    
+      <category term="音视频处理" scheme="https://blessing.studio/tag/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>phpStudy 访问探针页面出现 502 Bad Gateway 的解决方法</title>
@@ -634,35 +664,6 @@
       <category term="JavaScript" scheme="https://blessing.studio/tag/JavaScript/"/>
     
       <category term="Hexo" scheme="https://blessing.studio/tag/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>让 Lumen 的 dd() 与 dump() 函数输出更漂亮</title>
-    <link href="https://blessing.studio/lumen-dd-dump-with-prettier-result/"/>
-    <id>https://blessing.studio/lumen-dd-dump-with-prettier-result/</id>
-    <published>2017-06-11T01:57:21.000Z</published>
-    <updated>2017-06-11T01:57:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>做开发的，免不了要和调试打交道。单说 PHP，有的人直接 <code>echo</code>，有的人用 <code>print_r()</code>，有的人用 <code>var_dump()</code>，还有的人直接上 Xdebug，用啥的都有。</p><p>如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— <code>dd()</code> 和 <code>dump()</code>。这两个函数都能够输出变量的值，不同的是 <code>dd()</code> 在输出变量值后会停止脚本的执行，而 <code>dump()</code> 不会。它们的使用方法可参照官方文档：<a href="https://laravel.com/docs/5.4/helpers#method-dd" target="_blank" rel="noopener">Helpers - Laravel Documentation</a>。</p><p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214238.png" alt="Laravel dd() 输出示例"></p><p>什么？哦，上帝！真是见鬼！怎么会有人在 Laravel 中还在用 <code>echo</code> + <code>die()</code>？好家伙，我敢打赌，他一定没有好好看文档，我向圣母玛利亚保证。如果让我看到这群愚蠢的土拨鼠，看在上帝的份上，我会用靴子狠狠地踢他们的屁股，我发誓我绝对会。</p><a id="more"></a><p>但是如果你在 Lumen（一个为速度而生的类 Laravel 微框架）中也想使用这些帮助函数的话，你会发现 <code>dump()</code> 无法使用了（报错 <code>Call to undefined function</code>），而且 <code>dd()</code> 的结果会变成这样瞎眼的输出：</p><p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214933.png" alt="Lumen dd() 输出示例"></p><p>淦！这不就是 <code>var_dump()</code> 吗？为毛在 Laravel 上输出那么漂亮，在 Lumen 上就无法使用了呢？</p><p>正是因为 Lumen 是个微框架。</p><p>作为一个为速度而生的微框架（全栈框架 Laravel 的性能问题一直是为人所诟病的），它把能精简的东西都尽量精简了。Laravel 那个漂亮的 <code>dd()</code> 输出实际上是依赖于 Symfony 的 <a href="http://symfony.com/doc/current/components/var_dumper.html" target="_blank" rel="noopener"><code>VarDumper</code></a> 组件，Laravel 默认预装了该组件，而 Lumen 没有。</p><p><strong>那么解决方法就很简单了，只需重新安装该组件即可</strong>：</p><pre><code>$ composer require symfony/var-dumper</code></pre><p>安装完成后就可以在 Lumen 中看到和 Laravel 一样的调试输出，而且 <code>dump()</code> 函数也可以使用了。</p><p><img src="https://img.blessing.studio/images/2017/06/11/snipaste_20170611_093434.png" alt=""></p><p>顺带一提，有人觉得这样的变量内容输出没有 <code>var_dump()</code> 好，原因是要不停地点展开很麻烦。其实只要按住 <code>Ctrl</code> 再点击箭头，就可以快速展开所有的子项目了。</p><hr><p>单说解决方法也有点太没意思，顺便也说说为啥安装上 <code>symfony/var-dumper</code> 组件后 <code>dd()</code> 的输出就会变得好看吧。</p><p>首先我们定位到 <code>dd()</code> 函数的声明位置：<code>vendor/illuminate/support/helpers.php</code>（其他大部分的帮助函数都在这里，和 Laravel 一样），可以看到该函数具体实现是这样的：</p><pre><code>if (! function_exists(&#39;dd&#39;)) {    /**     * Dump the passed variables and end the script.     *     * @param  mixed     * @return void     */    function dd(...$args)    {        foreach ($args as $x) {            (new Dumper)-&gt;dump($x);        }        die(1);    }}</code></pre><p>可以看到这里用了 PHP5.6+ 的变长参数语法 <code>...</code>，函数内部遍历参数列表并把它们交给 <code>Dumper</code> 处理，最后用 <code>die(1)</code> 结束整个脚本的运行。</p><p>那么这个 <code>Dumper</code> 是个啥呢？我们继续定位，可以发现它的完整类名为 <code>Illuminate\Support\Debug\Dumper</code>，而上面所使用的 <code>dump()</code> 方法具体实现如下（话说这函数的 DocBlock 还蛮有意思的，优雅地导出一个值）：</p><pre><code>/** * Dump a value with elegance. * * @param  mixed  $value * @return void */public function dump($value){    if (class_exists(CliDumper::class)) {        $dumper = &#39;cli&#39; === PHP_SAPI ? new CliDumper : new HtmlDumper;        $dumper-&gt;dump((new VarCloner)-&gt;cloneVar($value));    } else {        var_dump($value);    }}</code></pre><p>可以看到，<code>dd()</code> 函数是根据 <code>Symfony\Component\VarDumper\Dumper\CliDumper</code> 这个类是否存在来决定是用 <code>symfony/var-dumper</code> 组件导出漂亮的结果还是直接用内置函数 <code>var_dump()</code> 来导出。</p><p>所以在我们通过 composer 安装 <code>symfony/var-dumper</code> 组件后，<code>dd()</code> 函数就会检测并自动使用该组件替换原生函数以输出更漂亮的结果。</p><p>以上。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;做开发的，免不了要和调试打交道。单说 PHP，有的人直接 &lt;code&gt;echo&lt;/code&gt;，有的人用 &lt;code&gt;print_r()&lt;/code&gt;，有的人用 &lt;code&gt;var_dump()&lt;/code&gt;，还有的人直接上 Xdebug，用啥的都有。&lt;/p&gt;
-&lt;p&gt;如果你用过 Laravel，那你应该知道 Laravel 内置了几个很方便的帮助函数（Helper）—— &lt;code&gt;dd()&lt;/code&gt; 和 &lt;code&gt;dump()&lt;/code&gt;。这两个函数都能够输出变量的值，不同的是 &lt;code&gt;dd()&lt;/code&gt; 在输出变量值后会停止脚本的执行，而 &lt;code&gt;dump()&lt;/code&gt; 不会。它们的使用方法可参照官方文档：&lt;a href=&quot;https://laravel.com/docs/5.4/helpers#method-dd&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Helpers - Laravel Documentation&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img.blessing.studio/images/2017/06/11/snipaste_20170610_214238.png&quot; alt=&quot;Laravel dd() 输出示例&quot;&gt;&lt;/p&gt;
-&lt;p&gt;什么？哦，上帝！真是见鬼！怎么会有人在 Laravel 中还在用 &lt;code&gt;echo&lt;/code&gt; + &lt;code&gt;die()&lt;/code&gt;？好家伙，我敢打赌，他一定没有好好看文档，我向圣母玛利亚保证。如果让我看到这群愚蠢的土拨鼠，看在上帝的份上，我会用靴子狠狠地踢他们的屁股，我发誓我绝对会。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="https://blessing.studio/categories/tech/"/>
-    
-    
-      <category term="Laravel" scheme="https://blessing.studio/tag/Laravel/"/>
-    
-      <category term="PHP" scheme="https://blessing.studio/tag/PHP/"/>
-    
-      <category term="Lumen" scheme="https://blessing.studio/tag/Lumen/"/>
     
   </entry>
   

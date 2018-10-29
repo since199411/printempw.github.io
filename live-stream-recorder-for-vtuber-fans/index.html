@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta name="theme-color" content="#3C8DBC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="HandheldFriendly" content="True" />
+
+
+<meta name="description" content="这里是 @printempw 的个人博客，基本上啥都写：开发心得分享，日常吐槽吹逼，偶尔也会写正经文字，欢迎订阅。" />
+
+  <meta name="keywords" content="VTuber,音视频处理," />
+
+
+
+
+<meta name="google-site-verification" content="WUNRfYChNMDduwLOFHG41TsVrre6BOaI7jKshEvtRts" />
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<meta name="generator" content="Hexo" />
+
+
+<meta name="description" content="首先是惯例的闲聊时间。 虽然这是我第一次在这个博客中提到 Virtual YouTuber，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（キズナアイ）诞生、四天王聚首，到年初 狐叔 引领的个人势井喷，再到以彩虹社（にじさんじ）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕…">
+<meta name="keywords" content="VTuber,音视频处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一种监测 VTuber 直播并自动录像的方法">
+<meta property="og:url" content="https://blessing.studio/live-stream-recorder-for-vtuber-fans/index.html">
+<meta property="og:site_name" content="Blessing Studio">
+<meta property="og:description" content="首先是惯例的闲聊时间。 虽然这是我第一次在这个博客中提到 Virtual YouTuber，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（キズナアイ）诞生、四天王聚首，到年初 狐叔 引领的个人势井喷，再到以彩虹社（にじさんじ）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕…">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg">
+<meta property="og:updated_time" content="2018-10-29T15:45:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一种监测 VTuber 直播并自动录像的方法">
+<meta name="twitter:description" content="首先是惯例的闲聊时间。 虽然这是我第一次在这个博客中提到 Virtual YouTuber，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（キズナアイ）诞生、四天王聚首，到年初 狐叔 引领的个人势井喷，再到以彩虹社（にじさんじ）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕…">
+<meta name="twitter:image" content="https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg">
+<meta name="twitter:creator" content="@printempw">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blessing Studio">
+
+
+
+  <link rel="canonical" href="https://blessing.studio/live-stream-recorder-for-vtuber-fans/"/>
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" sizes="192x192" href="/images/icon.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon.png" />
+
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/libs/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Alegreya" />
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Alegreya+SC" />
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="https://fonts.cat.net/css?family=PT+Serif">
+
+
+    <title>一种监测 VTuber 直播并自动录像的方法 - Blessing Studio</title>
+  </head>
+
+  <body lang="zh-CN">
+
+    <div id="pageframe" class="fw">
+      <script type="text/javascript" src="/js/nanobar.js"></script>
+<script type="text/javascript">
+    /* Initial NanoBar */
+    var nanobar = new Nanobar({
+        bg: "#BEDBEC",
+        target: document.getElementById("pageframe"),
+        id: "inb"
+    });
+</script>
+
+
+      <div id="top" class="fw clf">
+        <div id="header" class="wc center">
+  <div class="logo-container left">
+    
+    <div class="logo left">
+      <a href="https://blessing.studio"><img src="/images/logo.png"></a>
+    </div>
+  </div>
+
+  <div class="social right">
+    
+    <div class="ico right" id="tg-s"><a href="javascript:void()" class="fa fa-search"></a></div>
+    <form role="search" method="get" id="searchform-top" action="https://www.google.com/search">
+      <input type="hidden" name="sitesearch" value="https://blessing.studio">
+      <input type="text" name="q" id="s-top" placeholder="搜一搜 (ゝω·)☆ " />
+    </form>
+
+    
+    <div id="toggler" class="right">
+      
+        
+          <div class="ico">
+            <a href="https://twitter.com/printempw" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+          </div>
+        
+          <div class="ico">
+            <a href="https://github.com/printempw" target="_blank" title="GitHub" class="fa fa-github"></a>
+          </div>
+        
+      
+      <div class="ico">
+        <a href="/atom.xml" target="_blank" class="fa fa-rss" ></a>
+      </div>
+    </div>
+
+    <div class="ico right" id="tg-m"><a href="javascript:;" class="fa fa-bars"></a></div>
+  </div>
+
+  <div class="topmenu left">
+    <div class="menu-container">
+      <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-tech">
+      <a href="/categories/tech/" title="提高姿势水平" rel="section">
+      技术
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-archive">
+      <a href="/archives/" title="总览历史文章" rel="section">
+      归档
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-kaomoji">
+      <a href="javascript:void;" title="点我点我" rel="section">
+      (´・ω・`)
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+  <div class="left clf"></div>
+
+</div>
+
+      </div>
+
+      <div id="container" class="wc center clf page-post">
+        <script type="text/javascript">nanobar.go(20);</script>
+
+        <div id="content" class="wp">
+          
+
+  
+  <article class="post post-type-normal hentry">
+    <h1 class="post-title">
+      <a href="/live-stream-recorder-for-vtuber-fans/">一种监测 VTuber 直播并自动录像的方法</a>
+    </h1>
+
+    
+
+
+
+
+
+
+    <div class="post-content">
+      
+      <p>首先是惯例的闲聊时间。</p>
+<p>虽然这是我第一次在这个博客中提到 <a href="https://zh.wikipedia.org/zh-cn/%E8%99%9B%E6%93%ACYouTuber" target="_blank" rel="noopener">Virtual YouTuber</a>，不过我大概也算是比较早开始看 VTuber 的那一批人了。从始皇帝老爱（<a href="https://zh.wikipedia.org/wiki/%E7%B5%86%E6%84%9B" target="_blank" rel="noopener">キズナアイ</a>）诞生、四天王聚首，到年初 <a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E3%81%AE%E3%81%98%E3%82%83%E3%83%AD%E3%83%AA%E7%8B%90%E5%A8%98Youtuber%E3%81%8A%E3%81%98%E3%81%95%E3%82%93" target="_blank" rel="noopener">狐叔</a> 引领的个人势井喷，再到以彩虹社（<a href="https://ja.wikipedia.org/wiki/%E3%81%AB%E3%81%98%E3%81%95%E3%82%93%E3%81%98" target="_blank" rel="noopener">にじさんじ</a>）为首的 2D 势、杂谈生放势展示了 VTuber 更大的可能性，而注意到这块肥肉的资本们也纷纷入场，百花争鸣的 VTuber 战国时代就此拉开序幕……如此种种，VTuber 界的快速发展令人眼花缭乱，也难怪有「一个月 = VTuber 历一年」的说法。</p>
+<p>不如说 VTuber 的世界实在过于精彩，每天都有大量好玩的内容产出，以至于我甚至已经很久没有看新番动画等传统 ACG 作品，就连游戏也不玩了，只能说 VTuber 沼恐怖如斯。</p>
+<p><img src="https://img.blessing.studio/images/2018/10/29/meme_i_am_ok.jpg" alt="meme_i_am_ok"></p>
+<p>为什么突然谈起这茬？其实我一直都想写一篇关于 VTuber 的文章，但是当时由于学业之类的原因只能搁置。然而到了现在，时间和精力确实是有了，但是正处繁荣期的 VTuber 市场的复杂度，却已经不再是我这孱弱的文笔能够描绘的了。只能说，非常遗憾。</p>
+<p>既然写不出来，那就不写，这是我写博客的标准。如果参考别人的文章照猫画虎、东拼西凑，确实是能挤出一点像样的文字，但那种中途半端的东西又有什么意思呢？我写博客是给自己看的，不是拿去哗众取宠的。所以，牛逼的文章就交给牛逼的人去写，我只管写我自己能写得出来的东西就够了。</p>
+<p>好了，闲话休题，今天我们的主题是「如何对 VTuber 的直播进行自动录像」。</p>
+<a id="more"></a>
+<hr>
+<p>为什么会有这个需求呢？</p>
+<p>简单来说，直播系的 VTuber 虽然有着视频系所无法比肩的「亲近感」与「参与感」，但是直播的形式也不可避免地要消耗观众更多的时间与精力（关于直播系与视频系优缺点的讨论网上有很多，我这里就不再深入）。毕竟当个 NEET 一天 25 小时高强度看直播还是比较有难度的，所以碰到上课、上班时喜欢的 VTuber 正好开播的话就很吃瘪。</p>
+<p>虽然大部分直播系 VTuber 都有为学畜社畜着想、基本都会留下直播的存档录像，但还是有好几个「臭名昭著」的，喜欢突击直播又不爱留档的选手，比如说 —— <a href="https://twitter.com/Freeze_Mea" target="_blank" rel="noopener">神楽めあ</a>。<del>（本来想在这里稍微介绍一下这位屑女仆，但是我发现三言两语根本解释不清 Mea 这个混沌且复杂的 VTuber，遂作罢。或许我下篇关于 VTuber 的博文会是「浅谈神楽めあ的魅力」也说不定，咕咕咕）</del></p>
+<p>但是我又特别喜欢看她的直播、不想错过，怎么办呢？</p>
+<p>要么就他力本願，拜托录像班录好上传，要么就自己动手、丰衣足食。</p>
+<hr>
+<p>好歹我也会捣鼓点代码，于是我就写了几个脚本来完成我的需求（让计算机按照自己的意愿工作，我觉得这就是编程的醍醐味），监视 YouTube、OPENREC、Twitch、TwitCasting 等平台，只要主播一开播就自动开始录像。代码开源在 GitHub 上：</p>
+<p>👉 <a href="https://github.com/printempw/live-stream-recorder" target="_blank" rel="noopener"><strong>printempw/live-stream-recorder</strong></a> 👈</p>
+<p>脚本是我几个月前写的，跑得还算安稳，也成功帮我录下了不少惨遭 Mea 削除存档的直播，可喜可贺。因为当时搜索类似解决方案时基本没看到几个，所以最近把代码整理了一下，糊了个像样的文档分享出来。使用方法都在项目 README 里说明了，这里就不再赘述。</p>
+<p>这玩意儿的原理其实很简单，就是每隔 30s 查询一次直播状态（这一块比较难搞），如果在播就开始录像。录像方面，使用 <a href="https://github.com/rg3/youtube-dl/" target="_blank" rel="noopener">youtube-dl</a> 或者 <a href="https://github.com/streamlink/streamlink" target="_blank" rel="noopener">streamlink</a> 等工具获取直播 HLS 的 <code>.m3u8</code> 地址，然后直接交给 ffmpeg 进行录制（还能顺带推流转播，不得不说 ffmpeg 真是神器）。</p>
+<p>因为功能就这么点，所以我选择了用 Shell 脚本来完成，之后有时间的话或许会用 PHP 给它套个便于操控的网页前端。也可以再优化一下，把轮询模式改为 Pub/Sub 模式，节省点资源（不过我那台 VPS 就是为了录像买的，所以说实话怎样都好）。总之，有缘再说吧。</p>
+<hr>
+<p>其他类似的项目：</p>
+<ul>
+<li><a href="https://www.bilibili.com/read/cv1083415" target="_blank" rel="noopener">【转播 man】其他平台转播到 bilibili 的一种方法</a></li>
+<li><a href="https://www.bilibili.com/read/mobile/1122933" target="_blank" rel="noopener">简单易用 外网直播流转播至 B 站的小工具</a></li>
+<li><a href="https://www.bilibili.com/read/cv1388431" target="_blank" rel="noopener">AutoYtB —— 自动检测 youtube 与推特进行自动转播至 B 站并进行录制与转码</a></li>
+</ul>
+<p>以上。</p>
+
+      <div class="post-about"><p>除另有声明外，本博客文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享(Creative Commons) 署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a> 进行许可。</p></div>
+    </div>
+
+    <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2018-10-29</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="live-stream-recorder-for-vtuber-fans/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/VTuber/">VTuber</a>, <a class="tag-link" href="/tag/音视频处理/">音视频处理</a>
+    
+  </span>
+</div>
+
+  </article>
+
+  
+    <div class="disqus"></div>
+
+<p class="disqus-notice hentry"  style="display: none;">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  如果评论框加载不出来，那就说明 Disqus 被墙了，你看着办吧 |ー` )
+</p>
+
+  
+
+        </div>
+
+        <div id="sidebar" class="fl">
+
+  <div id="abovesb">
+    <div class="card">
+      <div class="gr center">
+        <p id="music-toggle">
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+        </p>
+        <img src="/images/avatar.jpg" width="112" height="112">
+      </div>
+
+      <div class="blogname">Blessing Studio</div>
+      <div class="blogdesc">半吊子全栈开发者的日常</div>
+
+      <div class="sbmenu">
+        <div class="menu-container">
+          <ul class="menu">
+  
+    
+    <li class="menu-item menu-item-friends">
+      <a href="/friends" title="友情链接" rel="section">
+        <i class="fa fa-link"></i>我的小伙伴们
+      </a>
+    </li>
+  
+    
+    <li class="menu-item menu-item-about">
+      <a href="/about" title="(*ﾟ∀ﾟ*)" rel="section">
+        <i class="fa fa-code"></i>关于我
+      </a>
+    </li>
+  
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    <div id="music-player" class="aplayer hide rotated"></div>
+  </div>
+
+  <script type="text/javascript">nanobar.go(40);</script>
+
+  <div id="sb">
+    
+<div id="sbpin">
+  
+  
+
+  
+  <div class="clf widget-item widget_text">
+    <div class="textwidget">
+      <script type="text/javascript" src="https://work.prinzeugen.net/hitokoto/hitokoto.php?encode=javascript"></script>
+      <p id="hitokoto"><script>hitokoto();</script></p>
+    </div>
+  </div>
+
+  
+  
+
+</div>
+
+  </div>
+
+</div>
+
+      </div><!-- #container -->
+
+      <div id="foot" class="fw">
+        <div id="bottom" class="fw">
+  <div id="footer" class="wc center clf">
+    <div class="info">
+      <p>Copyleft 2018 <a href="https://blessing.studio">Blessing Studio</a>. Proudly published with <a href="https://hexo.io/" target="_blank">Hexo</a>. Made with ❤ by printempw.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+    </div><!-- #pageframe.fw -->
+    <script type="text/javascript">nanobar.go(80);</script>
+
+    <div class="back-to-top">
+      <span class="fa fa-angle-up"></span>
+    </div>
+
+    <script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/jquery.libs.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/libs/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65656002-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    <script type="text/javascript">
+    $("a.like-vote").mouseover(function() {
+        $("#heart").removeClass("fa-heart-o");
+        $("#heart").addClass("fa-heart");
+    });
+
+    $("a.like-vote").mouseout(function() {
+        $("#heart").removeClass("fa-heart");
+        $("#heart").addClass("fa-heart-o");
+    });
+
+    $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=get", function (data) {
+        $('#count').html(data.like);
+    });
+
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me ?') {
+            $.getJSON("//work.prinzeugen.net/do-you-like-me/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('#count').fadeOut(200);
+                    $('#count').html(String(parseInt(data.like)));
+                    $('#count').fadeIn(200);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+</script>
+
+    <style type="text/css">
+    .menu-item-kaomoji a {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .info-rise {
+        z-index: 99999;
+        position: absolute;
+        padding: 0 4px;
+        border-radius: 1px;
+        background-color: #f69;
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        cursor: default
+    }
+</style>
+
+<script type="text/javascript">
+    var kaomoji_array = ["|∀ﾟ", "(´ﾟДﾟ`)", "(;´Д`)", "(｀･ω･)", "(=ﾟωﾟ)=", "| ω・´)", "|-` )", "|д` )", "|ー` )", "|∀` )", "(つд⊂)", "(ﾟДﾟ≡ﾟДﾟ)", "(＾o＾)ﾉ", "(|||ﾟДﾟ)", "( ﾟ∀ﾟ)", "( ´∀`)", "(*´∀`)", "(*ﾟ∇ﾟ)", "(*ﾟーﾟ)", "(　ﾟ 3ﾟ)", "( ´ー`)", "( ・_ゝ・)", "( ´_ゝ`)", "(*´д`)", "(・ー・)", "(・∀・)", "(ゝ∀･)", "(〃∀〃)", "(*ﾟ∀ﾟ*)", "( ﾟ∀。)", "( `д´)", "(`ε´ )", "(`ヮ´ )", "σ`∀´)", " ﾟ∀ﾟ)σ", "ﾟ ∀ﾟ)ノ", "(╬ﾟдﾟ)", "(|||ﾟдﾟ)", "( ﾟдﾟ)", "Σ( ﾟдﾟ)", "( ;ﾟдﾟ)", "( ;´д`)", "(　д ) ﾟ ﾟ", "( ☉д⊙)", "(((　ﾟдﾟ)))", "( ` ・´)", "( ´д`)", "( -д-)", "(>д<)", "･ﾟ( ﾉд`ﾟ)", "( TдT)", "(￣∇￣)", "(￣3￣)", "(￣ｰ￣)", "(￣ . ￣)", "(￣皿￣)", "(￣艸￣)", "(￣︿￣)", "(￣︶￣)", "ヾ(´ωﾟ｀)", "(*´ω`*)", "(・ω・)", "( ´・ω)", "(｀・ω)", "(´・ω・`)", "(`・ω・´)", "( `_っ´)", "( `ー´)", "( ´_っ`)", "( ´ρ`)", "( ﾟωﾟ)", "(oﾟωﾟo)", "(　^ω^)", "(｡◕∀◕｡)", "/( ◕‿‿◕ )\\", "ヾ(´ε`ヾ)", "(ノﾟ∀ﾟ)ノ", "(σﾟдﾟ)σ", "(σﾟ∀ﾟ)σ", "|дﾟ )", "┃電柱┃", "ﾟ(つд`ﾟ)", "ﾟÅﾟ )　", "⊂彡☆))д`)", "⊂彡☆))д´)", "⊂彡☆))∀`)", "(´∀((☆ミつ"];
+    var hits = 0;
+    var start_time = 0;
+
+    $('.menu-item-kaomoji a').click(function(e) {
+
+        if (start_time == 0) start_time = Date.now();
+
+        hits ++;
+
+        if (hits % 5 === 0) {
+            index = Math.floor(Math.random() * kaomoji_array.length);
+            $(this).html(kaomoji_array[index]);
+        }
+
+        x = $(this).offset().left + $(this).width();
+        y = $(this).offset().top + $(this).height();
+
+        if (hits % 50 === 0) {
+            var duration = 2000;
+            // actions per minite
+            var apm = parseInt(hits / ((Date.now() - start_time) / 1000) * 60);
+            start_time = 0;
+            hits = 0;
+            hit = $('<span class="info-rise" style="border: 1px solid #ffd6e4;font-size:13.5px;z-index:9999999;">手速：'+apm+' actions/min </span>');
+
+            console.log('APM: '+apm);
+        } else {
+            var duration = 500;
+            hit = $('<span class="info-rise">+1</span>');
+        }
+
+        hit.appendTo($("body"));
+
+        hit.css({
+            opacity: 0,
+            left: x,
+            top: y
+        }).animate({
+            opacity: 1,
+            top: y - 16
+        }, 250).animate({
+            opacity: 1,
+            top: y - 20
+        }, duration).animate({
+            top: y - 20
+        }, duration).animate({
+            opacity: 0,
+            top: y - 32
+        }, 250, function() {
+            return $(this).remove();
+        });
+
+    });
+</script>
+
+    <style type="text/css">
+    .p-load-gist {
+        margin: 25px 0 25px !important;
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.load-gist').on('click', function() {
+        var gist = {
+            url: '//work.prinzeugen.net/gist/printempw/' + $(this).data('hash') + '.json?callback=?',
+            dom: this
+        };
+
+        $.getJSON(gist.url, function(data) {
+            gist.style      = document.createElement('link');
+            gist.style.type = 'text/css';
+            gist.style.rel  = 'stylesheet';
+            gist.style.href = data.stylesheet;
+
+            document.getElementsByTagName('HEAD')[0].appendChild(gist.style);
+
+            $(gist.dom).after(data.div).remove();
+        });
+    });
+</script>
+
+    <script type="text/javascript">
+    String.prototype.cleanSlug = function () {
+        var search = '/index.html';
+
+        if (this.indexOf(search) === -1) {
+            return this.slice(0, -1)
+        } else {
+            return this.replace(search, '');
+        }
+    }
+
+    var Counter = function (url) {
+        this.baseCounterUrl = url;
+
+        this.initAllPostViews = function () {
+            var self = this;
+
+            // 遍历 post-view
+            $('[id=post-view]').each(function () {
+                // 默认 PV 设为 0
+                var span = $(this).html(0);
+                var slug = span.attr('data').cleanSlug();
+
+                self.getPostViewBySlug(slug, function (pv) {
+                    span.html(pv);
+                })
+            });
+        }
+
+        this.getPostViewBySlug = function (slug, callback) {
+            var url = this.baseCounterUrl + '/get/' + slug;
+
+            $.getJSON(url, function (data) {
+                callback(data.pv);
+            });
+        }
+
+        this.incPostViewBySlug = function (slug) {
+            var url = this.baseCounterUrl + '/increase/' + slug;
+
+            $.post(url, {}, function (data) {
+                $('#post-view').html(data.pv);
+            });
+        }
+    }
+
+    var counter = new Counter('https://work.prinzeugen.net/hexo-view-counter');
+
+    $(document).ready(function () {
+        counter.initAllPostViews();
+    });
+</script>
+
+
+<script type="text/javascript">
+    counter.incPostViewBySlug(
+        $('#post-view').attr('data').cleanSlug()
+    );
+</script>
+
+
+    <script src="/js/APlayer.min.js"></script>
+<script type="text/javascript">
+    var player = undefined;
+
+    $.getJSON('https://work.prinzeugen.net/music/play_list.json', function (json) {
+        // APlayer.addMusic sucks
+        // And APlayer does not provide any method to remove
+        // the automatically added music [undefined]
+        player = new APlayer({
+            element: document.getElementById('music-player'),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            mutex: true,
+            preload: 'none',
+            theme: '#367FA9',
+            music: json
+        });
+
+        console.log('Music player initialized', json);
+    });
+
+    $('#music-toggle').click(function () {
+        if (player === undefined) {
+            return;
+        }
+
+        $('.card').addClass('rotated').addClass('hide');
+
+        // I don't know why APlayer 1.6.0 tends to
+        // attach "height: 0px" style to .aplayer-list automatically
+        $('.aplayer-list').removeAttr('style')
+
+        $('#music-player').removeClass('hide');
+
+        $('#abovesb').css('padding', 0);
+
+        setTimeout(function () {
+            $('#music-player').removeClass('rotated');
+        }, 10);
+    });
+
+    $('body').on('click', '.aplayer-icon-menu', function () {
+        $('.aplayer-list').removeClass('aplayer-list-hide');
+
+        $('#music-player').addClass('rotated').addClass('hide');
+
+        $('.card').removeClass('hide');
+
+        setTimeout(function () {
+            $('.card').removeClass('rotated');
+        }, 10);
+
+        $('#abovesb').css('padding', '7px 0 1px');
+    });
+</script>
+
+
+    
+  <script src="/js/jquery.disqusloader.js"></script>
+
+<script type="text/javascript">
+  $.disqusLoader('.disqus', {
+    scriptUrl: '//blessing-studio.disqus.com/embed.js',
+    laziness: 0,
+    preLoadCallback: function () {
+        $('.disqus-notice').show()
+    },
+    disqusConfig: function () {
+      this.callbacks.onReady = [function () {
+        $('.disqus-notice').hide()
+      }];
+    }
+  });
+</script>
+
+
+
+    <script type="text/javascript">nanobar.go(100);</script>
+  </body>
+</html>
