@@ -170,6 +170,52 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/customize-zsh-prompt/">自定义 Zsh 提示符</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <p>babun 内建的 zsh 默认使用的是 <code>babun</code> 主题，就长这样：</p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-18-44.png" alt="babun1"></a></p>
+<p>换主题时看中了 oh-my-zsh 默认主题 <code>robbyrussell</code>，然而这个主题并没有窝喜欢的 <code>$</code> 提示符，只好自己动手修改啦</p>
+<p>这是修改后的效果：</p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_01-25-48.png" alt="babun2"></a></p>
+<p>关于 zsh 自定义前缀，网上似乎没有中文教程呢，有时间的话翻译一下吧（有生之年</p>
+<p><a href="http://code.tutsplus.com/tutorials/how-to-customize-your-command-prompt--net-24083" target="_blank" rel="noopener">How to Customize Your Command Prompt</a></p>
+<p>这是修改后的主题内容：</p>
+<p>local ret_status=”%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)” PROMPT=’${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}%{$reset_color%}%{$fg_bold[blue]%}$ %{$reset_color%}’ ZSH_THEME_GIT_PROMPT_PREFIX=”git:(%{$fg[red]%}” ZSH_THEME_GIT_PROMPT_SUFFIX=”%{$reset_color%}” ZSH_THEME_GIT_PROMPT_DIRTY=”%{$fg[blue]%}) %{$fg[yellow]%}✗ %{$reset_color%}” ZSH_THEME_GIT_PROMPT_CLEAN=”%{$fg[blue]%})”</p>
+<p>在 <code>~/.oh-my-zsh/themes</code> 下新建个以 <code>.zsh-theme</code> 为扩展名的文件，把上面的内容复制进去。</p>
+<p>或者你可以直接 <span class="lang:sh decode:true crayon-inline ">$ wget <a href="https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme" target="_blank" rel="noopener">https://files.prinzeugen.net/Archive/robbyrussell-makaizou.zsh-theme</a></span></p>
+<p>然后编辑 <code>~/.zshrc</code>，将 <code>ZSH_THEME</code> 改为所修改主题的文件名</p>
+<p><a href="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" target="_blank" rel="noopener"><img src="https://img.blessing.studio/images/2015/11/2015-11-22_03-44-07.png" alt="zshrc"></a></p>
+<p>重启终端就可以看到效果辣 XDD</p>
+
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/tech/">技术</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2015-11-22</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="customize-zsh-prompt/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/Shell/">Shell</a>, <a class="tag-link" href="/tag/工具/">工具</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/wow-typography/">最近有点迷上字体排印学了</a>
       </h2>
 
@@ -545,41 +591,6 @@
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/博客/">博客</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/rest-in-peace-alex-king/">Rest in peace, Alex King</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>WordPress 的创始人之一 Alex King ，罹患大肠癌去世。</p>
-<p>站点全灰以示纪念。愿天国不再有病痛。</p>
-<p><a href="https://poststatus.com/alex-king/" target="_blank" rel="noopener">https://poststatus.com/alex-king/</a></p>
-
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/essay/">随笔</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2015-09-30</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="rest-in-peace-alex-king/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/WordPress/">WordPress</a>
     
   </span>
 </div>

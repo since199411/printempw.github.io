@@ -170,6 +170,53 @@
 
     <article class="post post-type-normal hentry">
       <h2 class="post-title">
+        <a href="/kemono-friends/">快乐的旅途与汇聚的奇迹：《动物朋友》推荐</a>
+      </h2>
+
+      <div class="post-content">
+        
+          <div class="alert alert-info"><p>本文大概有 14k 字，我也不知道阅读完需要多少分钟。</p>
+</div>
+<p>不过为了方便各位看官的时间管理，我还是贴心地提供了 TL;DR（太长不看）简介：</p>
+<blockquote>
+<p>《动物朋友》超好看的！！！</p>
+</blockquote>
+<p>标题上的「推荐」二字只是为了念起来好听，实际上本文并无多少安利意图。</p>
+<p>谨以此文纪念《动物朋友》这部奇迹的作品。</p>
+<h2 id="一、什么是《动物朋友》？"><a href="#一、什么是《动物朋友》？" class="headerlink" title="一、什么是《动物朋友》？"></a>一、什么是《动物朋友》？</h2><p>『动物朋友』（けものフレンズ，又译作『兽娘动物园』、『萌兽之友』）是由けものフレンズプロジェクト发起的日本跨媒体制作企划，有手游、漫画、动画等衍生作品。本文主要讲述企划中于 2017 年 1 月开播的 TV 动画。</p>
+<blockquote>
+<p>个人比较喜欢「动物朋友」这个译名，看不惯的朋友们请自行脑内替换。以我奇妙的感性来看，「动物朋友」更能体现出「人」与「动物」之间的亲密关系，而不是像「兽娘动物园」那样有种淡淡的疏离感。毕竟这部作品讲述的是人类与各种动物们和睦相处、互相扶持渡过难关的温馨故事，而不是人类通过牢笼般的「动物园」观察动物们。</p>
+</blockquote>
+<p>这部动画讲述的是在疑似人类灭绝、看不到其他人类存在的巨大综合<del>美少女</del>动物园「Japari Park（ジャパリパーク）」里，动画里目前唯一的人类「小包（かばんちゃん）」在旅途中与各式各样因「砂之星（サンドスター）」的力量而拥有人类姿态的动物女孩 —— 通称「Friends（フレンズ）」们邂逅的故事。</p>
+<p><img src="https://img.blessing.studio/images/2017/04/04/anime-main.jpg" alt="动画主视觉图"></p>
+<p>……当然，如果仅仅是这样，我是不可能为它专门写一篇博客的，毕竟我这博客又不是什么 ACG 资讯站点 (・_ゝ・)</p>
+          <a class="more-link" href="/kemono-friends/#more">阅读全文&rarr;</a>
+        
+      </div>
+
+      <div class="post-meta clf">
+  <span class="pmt pms fa-book">
+    
+      <a class="category-link" href="/categories/essay/">随笔</a>
+    
+  </span>
+  <span class="pmt pms fa-clock-o">2017-04-23</span>
+  <span class="pmt pms fa-eye">
+    <span id="post-view" data="kemono-friends/">Loading</span> Hits
+  </span>
+  <span class="pmt pms extra fa-tag">
+    
+      <a class="tag-link" href="/tag/ACGN/">ACGN</a>, <a class="tag-link" href="/tag/安利/">安利</a>
+    
+  </span>
+</div>
+
+    </article>
+  
+    
+
+    <article class="post post-type-normal hentry">
+      <h2 class="post-title">
         <a href="/kindle-pw3/">至臻完美，只为阅读 —— Kindle Paperwhite 简评</a>
       </h2>
 
@@ -517,43 +564,6 @@ Illuminate\Database\Console\Migrations\MigrateCommand
   <span class="pmt pms extra fa-tag">
     
       <a class="tag-link" href="/tag/Https/">Https</a>, <a class="tag-link" href="/tag/Let-s-Encrypt/">Let's Encrypt</a>, <a class="tag-link" href="/tag/记录/">记录</a>
-    
-  </span>
-</div>
-
-    </article>
-  
-    
-
-    <article class="post post-type-normal hentry">
-      <h2 class="post-title">
-        <a href="/implement-of-php-remote-downloading-with-progress-bar/">PHP 远程文件下载的进度条实现</a>
-      </h2>
-
-      <div class="post-content">
-        
-          <p>PHP 实现远程下载文件到服务端并不是什么新鲜玩意，用 <code>cURL</code>、<code>file_get_contents</code>、<code>fopen</code> 等都能够轻易实现。</p>
-<p>但是这几种常规的方法都是在一个线程内下载文件，等文件下载完毕以后才能返回 HTTP 响应。所造成的结果就是用户在页面上点击「下载到服务器」按钮后，会看到空白页和加载的小菊花转啊转，转好久之后才出现「下载成功」的页面。</p>
-<p>当然，我上面所举例的情况是只使用纯粹的表单 POST 发送请求的情况。现在的话就算再不济也一般会使用 <code>ajax</code> 发送请求，然后在前台放个加载动画，等收到下载成功的回应之后再进行下一步操作。</p>
-<p><strong>但是！</strong>即使是去掉了恶心的且需要等待的空白页，这样做还是对用户体验有不好的影响。没有具体的下载进度，只有一个一直转呀转的菊花图，估计挺多用户都无法坐和放宽吧<del>（至少对于我来说是这样的）</del></p>
-<p>而我一个 PHP 项目的一键更新系统正好需要重构，遂研究了如何在 PHP 作为后端时显示远程文件下载进度条，并捣鼓出了个像样的解决方案，在这里分享一下。</p>
-          <a class="more-link" href="/implement-of-php-remote-downloading-with-progress-bar/#more">阅读全文&rarr;</a>
-        
-      </div>
-
-      <div class="post-meta clf">
-  <span class="pmt pms fa-book">
-    
-      <a class="category-link" href="/categories/tech/">技术</a>
-    
-  </span>
-  <span class="pmt pms fa-clock-o">2016-11-26</span>
-  <span class="pmt pms fa-eye">
-    <span id="post-view" data="implement-of-php-remote-downloading-with-progress-bar/">Loading</span> Hits
-  </span>
-  <span class="pmt pms extra fa-tag">
-    
-      <a class="tag-link" href="/tag/PHP/">PHP</a>
     
   </span>
 </div>
