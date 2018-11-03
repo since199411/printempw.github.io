@@ -28,21 +28,21 @@
 <meta name="generator" content="Hexo" />
 
 
-<meta name="description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 621sama DE-SU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了">
+<meta name="description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 DESU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了问题的根源。特此记">
 <meta name="keywords" content="记录,Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows Update 出现错误 0x800703ed 可能的解决方法">
 <meta property="og:url" content="https://blessing.studio/fix-windows-update-error-0x800703ed/index.html">
 <meta property="og:site_name" content="Blessing Studio">
-<meta property="og:description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 621sama DE-SU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了">
+<meta property="og:description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 DESU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了问题的根源。特此记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.blessing.studio/images/2018/02/13/DV0b0p7VAAAn_zT.jpg">
-<meta property="og:image" content="https://i.loli.net/2018/02/13/5a82f52fb0971.png">
-<meta property="og:image" content="https://img.blessing.studio/images/2018/02/13/Snipaste_2018-02-13_21-41-29.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2018/11/04/sticker_288532_sorena.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2018/11/04/windows-update-error-fixed.png">
 <meta property="og:updated_time" content="2018-02-13T03:31:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Update 出现错误 0x800703ed 可能的解决方法">
-<meta name="twitter:description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 621sama DE-SU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了">
+<meta name="twitter:description" content="HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 DESU。其实 2018 年的第一篇博文原定应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。 最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 0x800703ed」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了问题的根源。特此记">
 <meta name="twitter:image" content="https://img.blessing.studio/images/2018/02/13/DV0b0p7VAAAn_zT.jpg">
 <meta name="twitter:creator" content="@printempw">
 
@@ -193,7 +193,7 @@
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-问题描述"><span class="toc-text">0x01 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-尝试定位问题"><span class="toc-text">0x02 尝试定位问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-解决问题"><span class="toc-text">0x03 解决问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-后记"><span class="toc-text">0x04 后记</span></a></li></ol>
       </div>
       
-      <p>HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 <strong>621sama</strong> DE-SU。其实 2018 年的第一篇博文<del>原定</del>应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。</p>
+      <p>HAIDOMO，这里是年终总结拖了两个月还没写完，上一篇博文发布于去年十月份的某鸽系博主 DESU。其实 2018 年的第一篇博文<del>原定</del>应该是 2017 年的年度总结的，但是由于各种各样的原因，那篇文章到现在还没写完咕咕咕。</p>
 <p>最近几天正好遇到了如标题所述的「Windows Update 自动更新时出现错误 <code>0x800703ed</code>」的状况，在网上搜索许久，最后历经千辛万苦才终于定位到了问题的根源。特此记录，希望能帮到后来人。</p>
 <h2 id="0x01-问题描述"><a href="#0x01-问题描述" class="headerlink" title="0x01 问题描述"></a>0x01 问题描述</h2><p>虽然我现在已经没多少追 Windows Insider Perview 的热情了，不过最近巨硬推出的那个 Fluent Design 看起来还是挺赞的，就打算在 Windows Update 中升级到最新的 Insider Preview。虽然速度屌慢，但是还是成功地检查到了 Build 17093 的更新并且进入了「正在准备更新」这一阶段。谁曾想等进度跑到 100% 却出现了如下错误：</p>
 <p><img src="https://img.blessing.studio/images/2018/02/13/DV0b0p7VAAAn_zT.jpg" alt="error 0x800703ed screenshot"></p>
@@ -220,15 +220,15 @@
 <p>安装了 Windows &amp; Linux 双系统。</p>
 </blockquote>
 <p>……。</p>
-<p><img src="https://i.loli.net/2018/02/13/5a82f52fb0971.png" alt="Sticker 288532"></p>
+<p><img src="https://img.blessing.studio/images/2018/11/04/sticker_288532_sorena.png" alt="sticker_288532_sorena"></p>
 <h2 id="0x03-解决问题"><a href="#0x03-解决问题" class="headerlink" title="0x03 解决问题"></a>0x03 解决问题</h2><p>按照那几个网站上的说法（详见页脚的参考链接），如果你在机器上安装了 Windows、Linux 双系统启动，并且使用了其他引导程序（例如 grub），在使用 Windows Update 执行更新操作时就会出现  <code>0x800703ed</code> 错误。</p>
 <p><strong>而且我正好如他所述，在机器上安装了 Deepin Linux 与 Windows 的双系统，并且交给 Linux 所在分区上的 grub2 来引导双系统启动。</strong></p>
 <p>到这里基本就可以破案了。之后我把引导程序由 grub2 切换回巨硬的 NT 6.x，重启之后 Windows Update 就一切正常了，并且成功更新至 Build 17093。</p>
-<p><img src="https://img.blessing.studio/images/2018/02/13/Snipaste_2018-02-13_21-41-29.png" alt="Snipaste_2018-02-13_21-41-29.png"></p>
+<p><img src="https://img.blessing.studio/images/2018/11/04/windows-update-error-fixed.png" alt="windows-update-error-fixed"></p>
 <p>具体切换引导程序的操作我这里就不说了，这种东西网上一搜一大把，注意区分 Legacy BIOS + MBR 环境和 UEFI + GPT 环境就好了。</p>
 <p>其实昨天我在切换引导程序时还出了点小插曲：像是不小心把硬盘和 PE U盘 的 MBR <strong>一起弄坏</strong>导致差点进不去任何系统啦、修复 BCD 时总是出现莫名奇妙的问题啦、懵了半小时最后才发现是硬盘活动分区忘记改回来了之类的，要不是昨天手头正好还有个 Deepin 的 LiveCD 我现在早就凉凉了<del>（谁让我不会写 grub2 配置，看到 grub rescue 命令行就只有懵逼的份儿呢）</del>。</p>
 <h2 id="0x04-后记"><a href="#0x04-后记" class="headerlink" title="0x04 后记"></a>0x04 后记</h2><p>至于为什么使用非 Windows 引导程序就会导致更新时出现 <code>0x800703ed</code> 错误，我也只能说不知道啦，鬼知道巨硬是怎么想的。或许是巨硬的系统更新流程里需要使用它自己的引导程序做些神秘的事情吧。</p>
-<p><strong>Windows Update 更新完成后是可以切换回 grub2 引导，完全 OJBK。</strong></p>
+<p><strong>Windows Update 更新完成后是可以切换回 grub2 引导的，完全 OJBK。</strong></p>
 <p>不过需要注意的是，本文提到的解决方法虽然对包括我在内的许多用户都有效，但是到读者你的机器上可能就不行了，毕竟巨硬的报错从来只是给个自己编的错误代码而从来不给具体信息。正如我在标题上写的<strong>「可能的解决方法」</strong>一样，如果「切换引导程序」这个方法对于同样遇到此错误的你不起作用或者对你的设备造成了什么损伤的话，请不要顺着网线过来打我，蟹蟹。</p>
 <p>另外预告一下，最近除了年终总结，我应该会再写一篇关于 WSL（<em>Windows Subsystem for Linux</em>）的文章，敬请期待咕咕咕。</p>
 <p><strong>参考链接：</strong></p>

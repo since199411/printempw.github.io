@@ -37,7 +37,7 @@
 <meta property="og:description" content="唉，我现在用的这破手机播 1080P 视频要掉帧，只好在电脑上看，说不出话。 缘起前些天我关注的某 气人主播 在 bilibili 上传了《盗贼之海》（Sea of Thieves）Alpha 测试的直播录像，却因吃了文化亏不慎违反了保密协定，不久视频就被不存在了。不过好在有热心猛男把缓存好了的睾清视频发了出来，像我这样没赶上趟的人才能爽到 :P  然而这位pong友上传的是 bilibili 客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/20170513185210.png">
-<meta property="og:image" content="https://ooo.0o0.ooo/2017/05/13/5916f998dd712.png">
+<meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/QQ20170513201744.png">
 <meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/QQ20170513201722.png">
 <meta property="og:image" content="https://img.blessing.studio/images/2017/05/13/QQ20170513202429.png">
 <meta property="og:updated_time" content="2017-05-13T13:48:21.000Z">
@@ -246,13 +246,13 @@ file &#39;/path/to/3.flv&#39;
 </code></pre>
 <p>然后，就好了。合并速度差不多就是你硬盘的 I/O 速度。</p>
 <p>题外话，在 Windows 上，<code>ffmpeg</code> 可以用 <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a> 这个包管理器安装。直接在终端中运行 <code>$ choco install ffmpeg</code>，下载安装修改环境变量一步到位，突出一个爽到。</p>
-<h3 id="写个脚本"><a href="#写个脚本" class="headerlink" title="写个脚本"></a>写个脚本</h3><p>知道了原理，就可以动手写个自动化脚本了。这里我选择了 Bash 脚本语言，毕竟就这么点功能，几行就 OK。用 Bash 的话开个终端复制进去就可以直接运行，比起其他语言也方便 <del>（我才不会说是因为我 Python 都快忘光了呢）</del>。</p>
-<p>另外需要注意的是，有些视频的分段超过了 10 个文件，如果直接遍历的话会变成 <code>[1, 10, 2, 3...]</code> 这样的顺序，导致最后拼接出来的视频也变成这样，所以需要给单位数的分段先添个 <code>0</code>，这样就会是 <code>[01, 02 ... 10]</code> 的正常顺序了。</p>
-<p class="p-load-gist"><button class="btn btn-default load-gist" data-hash="1bc29da99b238d68e87af874f898f435">点击以加载 Gist（无法加载时请翻墙）</button></p>
+<h3 id="写个脚本"><a href="#写个脚本" class="headerlink" title="写个脚本"></a>写个脚本</h3><p>知道了原理，就可以动手写个自动化脚本了。这里我选择了 Bash 脚本语言，毕竟就这么点功能，几行就 OK。用 Bash 的话开个终端复制进去就可以直接运行，比起其他语言也方便 <del>（我才不会说是因为我 Python 都快忘光了呢）</del>。代码放在 <a href="https://gist.github.com/printempw/1bc29da99b238d68e87af874f898f435" target="_blank" rel="noopener">Gist</a> 上：</p>
+<script src="https://gist.github.com/printempw/1bc29da99b238d68e87af874f898f435.js"></script>
+
 <p>这里是压缩过的单行版，方便复制：</p>
-<pre><code class="bash">cat /dev/null &gt; ff.txt;for i in *.blv; do seq_num=&quot;${i%.blv}&quot;;if [ &quot;${#seq_num}&quot; -eq 1 ];then mv &quot;$i&quot; &quot;0$seq_num.flv&quot;;else mv &quot;$i&quot; &quot;$seq_num.flv&quot;;fi;done;for i in *.flv; do echo &quot;file &#39;${i}&#39;&quot; &gt;&gt; &quot;ff.txt&quot;;done;ffmpeg -f concat -i ff.txt -c copy ../output.mp4;rm ff.txt;printf &quot;success&quot;
+<pre><code class="bash">cat /dev/null &gt; ff.txt;for i in `ls -1 *.flv | sort -n`; do echo &quot;file &#39;${i}&#39;&quot; &gt;&gt; ff.txt;done;ffmpeg -f concat -i ff.txt -c copy ../output.mp4;rm ff.txt;printf &quot;success&quot;
 </code></pre>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://ooo.0o0.ooo/2017/05/13/5916f998dd712.png" alt="终端执行"></p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://img.blessing.studio/images/2017/05/13/QQ20170513201744.png" alt="终端执行"></p>
 <p><img src="https://img.blessing.studio/images/2017/05/13/QQ20170513201722.png" alt="输出结果"></p>
 <p>合并过程大概六七秒吧，一发入魂非常到位。</p>
 <p>将合并后的视频文件 <code>output.mp4</code> 和 <code>danmaku.xml</code> 弹幕文件一起拖入「弹弹 Play」或「BiliLocal」等本地弹幕播放器后就可以观看了，爽到。</p>
